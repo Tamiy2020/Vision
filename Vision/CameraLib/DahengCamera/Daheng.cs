@@ -113,19 +113,16 @@ namespace Vision.CameraLib
             try
             {
                 Daheng cam = objUserParam as Daheng;
-                cam.ImageShowAndSave(objIFrameData);
+                cam. ho_Image = cam.dahengImage.Show(objIFrameData);
+                if (cam.objIGXFeatureControl.GetEnumFeature("TriggerMode").GetValue() == "Off")
+                {
+                    cam.da_Window.HobjectToHimage(cam.ho_Image);
+                    cam.ho_Image.Dispose();
+                    GC.Collect();
+                }
             }
             catch (Exception) { }
 
-        }
-
-        /// <summary>
-        ///  图像的显示
-        /// </summary>
-        /// <param name="objIFrameData"></param>
-        private void ImageShowAndSave(IFrameData objIFrameData)
-        {
-            dahengImage.Show(objIFrameData);
         }
 
         /// <summary>
@@ -138,33 +135,38 @@ namespace Vision.CameraLib
             if (name == strName)
             {
                 displayWin = windows;
-                dahengImage = new DahengImage(objIGXDevice, displayWin);
+                dahengImage = new DahengImage(objIGXDevice);
             }
         }
 
+
+        /// <summary>
+        /// 实时专用
+        /// </summary>
+        public HWindow_Final da_Window;
         /// <summary>
         /// 切换触发模式
         /// </summary>
         /// <param name="isOn"></param>
-        public void ChangeTriggerMode(bool isOn)
+        public void ChangeTriggerMode(bool live,HWindow_Final window)
         {
-            if (isOn)
+            da_Window = window;
+            if (live)
             {
-                objIGXFeatureControl.GetEnumFeature("TriggerMode").SetValue("On");//单张
+                objIGXFeatureControl.GetEnumFeature("TriggerMode").SetValue("Off");//实时
             }
             else
             {
-                objIGXFeatureControl.GetEnumFeature("TriggerMode").SetValue("Off");//实时
+                objIGXFeatureControl.GetEnumFeature("TriggerMode").SetValue("On");//单张
             }
         }
 
 
-        /// <summary>
-        /// 发送软触发命令
-        /// </summary>
-        public void SoftTrigger()
+       
+
+        public override void Grad()
         {
-            objIGXFeatureControl.GetCommandFeature("TriggerSoftware").Execute();
+            objIGXFeatureControl.GetCommandFeature("TriggerSoftware").Execute();// 发送软触发命令
         }
 
         /// <summary>

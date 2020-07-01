@@ -82,7 +82,8 @@ namespace Vision
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("系统异常，请检查注册表数据");
+                        MessageBox.Show("系统异常");
+                        //Registry.CurrentUser.OpenSubKey("Software", true).DeleteSubKeyTree("HRDVision");//删除注册表
                         return;
                     }
 
@@ -128,7 +129,8 @@ namespace Vision
                             ChangeList(form.cameraManager.listCamera, str5, 4);
                             break;
                         default:
-                            MessageBox.Show("系统异常，请检查注册表数据");
+                            MessageBox.Show("系统异常");
+                           // Registry.CurrentUser.OpenSubKey("Software", true).DeleteSubKeyTree("HRDVision");//删除注册表
                             return;
                     }
                     form.cameraManager.OpenAll();//打开所有相机

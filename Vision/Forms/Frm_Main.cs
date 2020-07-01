@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.CameraLib;
@@ -18,7 +19,9 @@ namespace Vision.Forms
 
         private ExecutionManager executionManager = null;
 
-        public Form cameraWin = null;
+        public Form cameraWin = null;//相机显示窗体
+
+        List<Frm_Edit> edits=new List<Frm_Edit> ();//编辑窗体列队
 
         public Frm_Main()
         {
@@ -30,14 +33,30 @@ namespace Vision.Forms
                 cameraManager = new FileManager();
             }
 
-
-
         }
 
+        /// <summary>
+        /// 添加编辑窗体
+        /// </summary>
+        private void AddEditForm()
+        {
+            for (int i = 0; i < cameraManager.listCamera.Count; i++)
+            {
+                Frm_Edit edit = new Frm_Edit(tabControl1.TabPages[1 + i], executionManager.listMeasureManager[i]);
+                edit.Show();
+                edits.Add(edit);
+            }
+        }
+
+        /// <summary>
+        /// 窗体加载中
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Frm_Main_Load(object sender, EventArgs e)
         {
             executionManager = new ExecutionManager(cameraManager);
-            executionManager.GradAll();
+            AddEditForm();//添加编辑窗体
         }
 
         /// <summary>
@@ -48,7 +67,6 @@ namespace Vision.Forms
         {
             switch (count)
             {
-
                 case 1:
                     cameraWin = new Frm_OneWin(tabControl1.TabPages[0]);
                     tabControl1.TabPages.Remove(tabPage3);
@@ -87,13 +105,27 @@ namespace Vision.Forms
             executionManager.GradAll();
         }
 
-
+        /// <summary>
+        /// 窗体关闭中
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Frm_Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             cameraManager.CloseAll();
             Environment.Exit(0);
         }
 
-        
+        /// <summary>
+        /// 窗体显示完成时
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Frm_Main_Shown(object sender, EventArgs e)
+        {
+            executionManager.GradAll();//第一次没有图像
+            Thread.Sleep(100);
+            executionManager.GradAll();
+        }
     }
 }

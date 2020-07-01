@@ -20,11 +20,11 @@ namespace Vision.CameraLib
         int nHeigh = 0;                   ///<图像高度
 
         byte[] m_byMonoBuffer = null;                ///<黑白相机buffer
-        HWindow_Final m_dpWin;
+      
 
-        public DahengImage(IGXDevice objIGXDevice, HWindow_Final dpWin)
+        public DahengImage(IGXDevice objIGXDevice)
         {
-            m_dpWin = dpWin;
+          
             m_objIGXDevice = objIGXDevice;
 
             if (null != objIGXDevice)
@@ -38,7 +38,7 @@ namespace Vision.CameraLib
             m_byMonoBuffer = new byte[nWidth * nHeigh];
         }
 
-        public void Show(IBaseData objIBaseData)
+        public HObject Show(IBaseData objIBaseData)
         {
 
 
@@ -67,14 +67,13 @@ namespace Vision.CameraLib
                             HOperatorSet.GenEmptyObj(out image);
                             image.Dispose();
                             HOperatorSet.GenImage1(out image, "byte", nWidth, nHeigh, new IntPtr(p));
-                            m_dpWin.HobjectToHimage(image);
-                            image.Dispose();//释放ho_Image
-                            GC.Collect();
+                            return image;
                         }
 
                     }
                 }
             }
+            return null;
 
         }
 

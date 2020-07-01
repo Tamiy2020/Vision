@@ -21,14 +21,14 @@ namespace Vision
 
         public void Grad()
         {
-            if (camera is File)
+            camera.Grad();
+            camera.displayWin.HobjectToHimage(camera.ho_Image);
+            try
             {
-                (camera as File).GradImage();
+                camera.ho_Image.Dispose();
             }
-            if (camera is Daheng)
-            {
-                (camera as Daheng).SoftTrigger();
-            }
+            catch (Exception) { }
+          
         }
     }
 }

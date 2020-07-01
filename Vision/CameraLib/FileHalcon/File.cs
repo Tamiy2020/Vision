@@ -60,14 +60,10 @@ namespace Vision.CameraLib
             }
         }
 
-        /// <summary>
-        /// 采集一次
-        /// </summary>
-        public void GradImage()
+        public override void Grad()
         {
             HOperatorSet.GrabImage(out HObject ho_Image, hv_AcqHandle);
-            displayWin.HobjectToHimage(ho_Image);
-            ho_Image.Dispose();
+            this.ho_Image = ho_Image;
         }
     }
 }

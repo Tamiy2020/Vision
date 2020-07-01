@@ -53,7 +53,7 @@
             this.hWindow_Final1.BackColor = System.Drawing.Color.Transparent;
             this.hWindow_Final1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.hWindow_Final1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hWindow_Final1.DrawModel = false;
+            this.hWindow_Final1.DrawModel = true;
             this.hWindow_Final1.EditModel = true;
             this.hWindow_Final1.Image = null;
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);

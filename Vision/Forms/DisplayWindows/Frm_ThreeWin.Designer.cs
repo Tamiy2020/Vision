@@ -30,8 +30,8 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.hWindow_Final1 = new ChoiceTech.Halcon.Control.HWindow_Final();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.hWindow_Final2 = new ChoiceTech.Halcon.Control.HWindow_Final();
             this.hWindow_Final3 = new ChoiceTech.Halcon.Control.HWindow_Final();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -56,13 +56,14 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1281, 721);
+            this.splitContainer1.Size = new System.Drawing.Size(1281, 722);
             this.splitContainer1.SplitterDistance = 1057;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.IsSplitterFixed = true;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -74,14 +75,28 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1057, 721);
-            this.splitContainer2.SplitterDistance = 208;
+            this.splitContainer2.Size = new System.Drawing.Size(1057, 722);
+            this.splitContainer2.SplitterDistance = 240;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // hWindow_Final1
+            // 
+            this.hWindow_Final1.BackColor = System.Drawing.Color.Transparent;
+            this.hWindow_Final1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.hWindow_Final1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hWindow_Final1.DrawModel = true;
+            this.hWindow_Final1.EditModel = true;
+            this.hWindow_Final1.Image = null;
+            this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
+            this.hWindow_Final1.Name = "hWindow_Final1";
+            this.hWindow_Final1.Size = new System.Drawing.Size(1057, 240);
+            this.hWindow_Final1.TabIndex = 0;
             // 
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.IsSplitterFixed = true;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -93,35 +108,22 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.hWindow_Final3);
-            this.splitContainer3.Size = new System.Drawing.Size(1057, 512);
-            this.splitContainer3.SplitterDistance = 228;
+            this.splitContainer3.Size = new System.Drawing.Size(1057, 481);
+            this.splitContainer3.SplitterDistance = 240;
             this.splitContainer3.SplitterWidth = 1;
             this.splitContainer3.TabIndex = 0;
-            // 
-            // hWindow_Final1
-            // 
-            this.hWindow_Final1.BackColor = System.Drawing.Color.Transparent;
-            this.hWindow_Final1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.hWindow_Final1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hWindow_Final1.DrawModel = false;
-            this.hWindow_Final1.EditModel = true;
-            this.hWindow_Final1.Image = null;
-            this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
-            this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(1057, 208);
-            this.hWindow_Final1.TabIndex = 0;
             // 
             // hWindow_Final2
             // 
             this.hWindow_Final2.BackColor = System.Drawing.Color.Transparent;
             this.hWindow_Final2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.hWindow_Final2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hWindow_Final2.DrawModel = false;
+            this.hWindow_Final2.DrawModel = true;
             this.hWindow_Final2.EditModel = true;
             this.hWindow_Final2.Image = null;
             this.hWindow_Final2.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final2.Name = "hWindow_Final2";
-            this.hWindow_Final2.Size = new System.Drawing.Size(1057, 228);
+            this.hWindow_Final2.Size = new System.Drawing.Size(1057, 240);
             this.hWindow_Final2.TabIndex = 1;
             // 
             // hWindow_Final3
@@ -129,19 +131,19 @@
             this.hWindow_Final3.BackColor = System.Drawing.Color.Transparent;
             this.hWindow_Final3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.hWindow_Final3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hWindow_Final3.DrawModel = false;
+            this.hWindow_Final3.DrawModel = true;
             this.hWindow_Final3.EditModel = true;
             this.hWindow_Final3.Image = null;
             this.hWindow_Final3.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final3.Name = "hWindow_Final3";
-            this.hWindow_Final3.Size = new System.Drawing.Size(1057, 283);
+            this.hWindow_Final3.Size = new System.Drawing.Size(1057, 240);
             this.hWindow_Final3.TabIndex = 1;
             // 
             // Frm_ThreeWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1281, 721);
+            this.ClientSize = new System.Drawing.Size(1281, 722);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

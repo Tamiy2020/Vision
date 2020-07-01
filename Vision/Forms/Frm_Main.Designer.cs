@@ -185,6 +185,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_Main_FormClosing);
             this.Load += new System.EventHandler(this.Frm_Main_Load);
+            this.Shown += new System.EventHandler(this.Frm_Main_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
