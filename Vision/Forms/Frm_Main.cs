@@ -21,7 +21,7 @@ namespace Vision.Forms
 
         public Form cameraWin = null;//相机显示窗体
 
-        List<Frm_Edit> edits=new List<Frm_Edit> ();//编辑窗体列队
+        List<Frm_Edit> edits = new List<Frm_Edit>();//编辑窗体列队
 
         public Frm_Main()
         {
@@ -55,6 +55,7 @@ namespace Vision.Forms
         /// <param name="e"></param>
         private void Frm_Main_Load(object sender, EventArgs e)
         {
+            cameraWin.Show();
             executionManager = new ExecutionManager(cameraManager);
             AddEditForm();//添加编辑窗体
         }
@@ -96,7 +97,7 @@ namespace Vision.Forms
                 default:
                     break;
             }
-            cameraWin.Show();
+            //cameraWin.Show();
         }
 
 
@@ -124,7 +125,7 @@ namespace Vision.Forms
         private void Frm_Main_Shown(object sender, EventArgs e)
         {
             executionManager.GradAll();//第一次没有图像
-            Thread.Sleep(100);
+            Thread.Sleep(200);
             executionManager.GradAll();
         }
     }

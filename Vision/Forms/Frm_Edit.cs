@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HalconDotNet;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,12 @@ namespace Vision.Forms
 {
     public partial class Frm_Edit : Form
     {
-        MeasureManager measureManager;
+       public  MeasureManager measureManager;
+
+        /// <summary>
+        /// 采集的图片
+        /// </summary>
+        public HObject ho_Image;
 
         public Frm_Edit(Control parent, MeasureManager measureManager)
         {
@@ -32,6 +38,8 @@ namespace Vision.Forms
             Parent = parent;//设置控件的父容器
             Dock = DockStyle.Fill;//停靠模式填充
             this.measureManager = measureManager;
+
+            HOperatorSet.GenEmptyObj(out ho_Image);//ho_Image赋空值
         }
 
         private void Frm_Edit_Shown(object sender, EventArgs e)
@@ -57,7 +65,9 @@ namespace Vision.Forms
         /// </summary>
         private void GrabAndMeasure()
         {
+
             measureManager.camera.Grad();
+
             hWindow_Final1.HobjectToHimage(measureManager.camera.ho_Image);
             measureManager.camera.ho_Image.Dispose();
         }

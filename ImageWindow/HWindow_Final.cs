@@ -398,7 +398,7 @@ namespace ChoiceTech.Halcon.Control
 
             lock (this)
             {
-                viewWindow.displayHobject(null,hObj, null,null,null);
+                viewWindow.displayHobject(null,hObj, null,null);
             }
 
 
@@ -423,7 +423,7 @@ namespace ChoiceTech.Halcon.Control
         {
             lock (this)
             {
-                viewWindow.displayHobject(null, hObj, color, null,null );
+                viewWindow.displayHobject(null, hObj, color, null);
             }
         }
 
@@ -431,15 +431,15 @@ namespace ChoiceTech.Halcon.Control
         {
             lock (this)
             {
-                viewWindow.displayHobject(null, hObj, color, draw,null);
+                viewWindow.displayHobject(null, hObj, color, draw);
             }
         }
 
-        public void DispString(HTuple x, HTuple y, string str, string color,HTuple hv_Size)
+        public void DispString(HTuple x, HTuple y, string str, string color)
         {
             lock (this)
             {
-                viewWindow.displayHobject(new ViewROI.Config.HobjectString(x, y, str), null, color, null, hv_Size);
+                viewWindow.displayHobject(new ViewROI.Config.HobjectString(x, y, str), null, color, null);
             }
         }
         #endregion

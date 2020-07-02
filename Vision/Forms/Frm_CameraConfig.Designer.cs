@@ -209,6 +209,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "相机配置";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_CameraConfig_FormClosing);
             this.Load += new System.EventHandler(this.Frm_CameraConfig_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

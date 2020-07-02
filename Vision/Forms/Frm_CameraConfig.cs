@@ -200,8 +200,12 @@ namespace Vision.Forms
             this.Hide();
             form.Show();
         }
+
         #endregion
 
-
+        private void Frm_CameraConfig_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (regkey != null) Registry.CurrentUser.OpenSubKey("Software", true).DeleteSubKeyTree("HRDVision");//删除注册表
+        }
     }
 }

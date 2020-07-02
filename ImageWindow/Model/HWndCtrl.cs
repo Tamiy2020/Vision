@@ -1010,7 +1010,7 @@ namespace ViewWindow.Model
 		 }*/
 		public void DispObj(HobjectString hobjectString, HObject hObj, string draw)
 		{
-			DispObj(hobjectString, hObj, null, draw,null );
+			DispObj(hobjectString, hObj, null, draw);
 		}
 
 		/// <summary>
@@ -1049,15 +1049,8 @@ namespace ViewWindow.Model
             }
         }*/
 		
-		public void DispObj(HobjectString hobjectString, HObject hObj, string color, string draw,HTuple hv_Size)
+		public void DispObj(HobjectString hobjectString, HObject hObj, string color, string draw)
 		{
-			try
-			{
-				set_display_font(viewPort.HalconWindow, hv_Size, "serif", "false", "false");//设置字体大小
-			}
-			catch (Exception) { }
-			
-			
 			lock (this)
 			{
 				//显示指定的颜色

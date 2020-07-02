@@ -322,9 +322,9 @@ namespace ViewWindow
 
         }*/
 
-        public void displayHobject(ViewROI.Config.HobjectString hobjectString, HObject obj, string color, string draw,HTuple hv_Size)
+        public void displayHobject(ViewROI.Config.HobjectString hobjectString, HObject obj, string color, string draw)
         {
-            _hWndControl.DispObj(hobjectString, obj, color, draw, hv_Size);
+            _hWndControl.DispObj(hobjectString, obj, color, draw);
 
         }
         /*public void displayHobject(HObject obj)
@@ -334,7 +334,7 @@ namespace ViewWindow
 
         public void displayHobject(ViewROI.Config.HobjectString hobjectString, HObject obj, string draw)
         {
-            _hWndControl.DispObj(hobjectString, obj, null, draw,null);
+            _hWndControl.DispObj(hobjectString, obj, null, draw);
         }
         #endregion
     }
