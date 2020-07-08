@@ -57,7 +57,6 @@ namespace Vision.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             GrabAndMeasure();
-
         }
 
         /// <summary>
@@ -67,9 +66,16 @@ namespace Vision.Forms
         {
 
             measureManager.camera.Grad();
-
+            if (measureManager.camera is Daheng)
+            {
+                while (!(measureManager.camera as Daheng).bIsOver)
+                {
+                    System.Threading.Thread.Sleep(1);
+                }
+            }
             hWindow_Final1.HobjectToHimage(measureManager.camera.ho_Image);
             measureManager.camera.ho_Image.Dispose();
+            GC.Collect();
         }
 
         //实时标志
@@ -85,6 +91,7 @@ namespace Vision.Forms
                 {
                     (measureManager.camera as Daheng).ChangeTriggerMode(live, hWindow_Final1);
                     button1.Enabled = false;
+                
                 }
                 else
                 {

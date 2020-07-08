@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Vision.CameraLib;
 
@@ -22,10 +23,18 @@ namespace Vision
         public void Grad()
         {
             camera.Grad();
+            if ( camera is Daheng )
+            {
+                while (!(camera as Daheng).bIsOver )
+                {
+                    Thread.Sleep(1);
+                }
+            }
             camera.displayWin.HobjectToHimage(camera.ho_Image);
             try
             {
                 camera.ho_Image.Dispose();
+                GC.Collect();
             }
             catch (Exception) { }
           

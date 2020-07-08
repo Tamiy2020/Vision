@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChoiceTech.Halcon.Control;
 using GxIAPINET;
+using HalconDotNet;
 
 namespace Vision.CameraLib
 {
@@ -16,34 +17,38 @@ namespace Vision.CameraLib
         /// <summary>
         /// 设备对象
         /// </summary>
-        public IGXDevice objIGXDevice = null;
+        private IGXDevice objIGXDevice = null;
 
         /// <summary>
         /// 流对象
         /// </summary>
-        public IGXStream objIGXStream = null;
+        private IGXStream objIGXStream = null;
 
         /// <summary>
         /// 远端设备属性控制器对象
         /// </summary>
-        public IGXFeatureControl objIGXFeatureControl = null;
+        private IGXFeatureControl objIGXFeatureControl = null;
 
         /// <summary>
         /// 流层属性控制器对象
         /// </summary>
-        public IGXFeatureControl objIGXStreamFeatureControl = null;
+        private IGXFeatureControl objIGXStreamFeatureControl = null;
 
         /// <summary>
         /// 设备打开状态
         /// </summary>
-        public bool bIsOpen = false;
+        private bool bIsOpen = false;
 
         /// <summary>
         /// 发送开采命令标识
         /// </summary>
-        public bool bIsSnap = false;
+        private bool bIsSnap = false;
 
-        DahengImage dahengImage = null;
+        private DahengImage dahengImage = null;
+
+        public bool bIsOver = false;
+
+        // public event Action<HObject> eventImage;
 
         /// <summary>
         /// 打开相机
@@ -112,13 +117,24 @@ namespace Vision.CameraLib
         {
             try
             {
+
                 Daheng cam = objUserParam as Daheng;
-                cam. ho_Image = cam.dahengImage.Show(objIFrameData);
+                HObject image = cam.dahengImage.Show(objIFrameData);
+                if (cam.ho_Image != image)
+                {
+                    cam.ho_Image = image;
+                    if (cam.objIGXFeatureControl.GetEnumFeature("TriggerMode").GetValue() == "On")
+                    {
+                        cam.bIsOver = true;
+                    }
+
+                }
                 if (cam.objIGXFeatureControl.GetEnumFeature("TriggerMode").GetValue() == "Off")
                 {
                     cam.da_Window.HobjectToHimage(cam.ho_Image);
                     cam.ho_Image.Dispose();
                     GC.Collect();
+
                 }
             }
             catch (Exception) { }
@@ -148,7 +164,7 @@ namespace Vision.CameraLib
         /// 切换触发模式
         /// </summary>
         /// <param name="isOn"></param>
-        public void ChangeTriggerMode(bool live,HWindow_Final window)
+        public void ChangeTriggerMode(bool live, HWindow_Final window)
         {
             da_Window = window;
             if (live)
@@ -162,10 +178,11 @@ namespace Vision.CameraLib
         }
 
 
-       
+
 
         public override void Grad()
         {
+            bIsOver = false;
             objIGXFeatureControl.GetCommandFeature("TriggerSoftware").Execute();// 发送软触发命令
         }
 

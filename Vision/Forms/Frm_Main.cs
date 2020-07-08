@@ -124,9 +124,9 @@ namespace Vision.Forms
         /// <param name="e"></param>
         private void Frm_Main_Shown(object sender, EventArgs e)
         {
-            executionManager.GradAll();//第一次没有图像
-            Thread.Sleep(200);
-            executionManager.GradAll();
+            executionManager.GradAll();//上一次的图像
+          /*  Thread.Sleep(200);
+            executionManager.GradAll();*/
         }
     }
 }
