@@ -27,11 +27,6 @@ namespace Vision.CameraLib
         public HWindow_Final displayWin = null;
 
         /// <summary>
-        /// 图像
-        /// </summary>
-        public HObject ho_Image;
-     
-        /// <summary>
         /// 打开相机
         /// </summary>
         public virtual void Open() { }

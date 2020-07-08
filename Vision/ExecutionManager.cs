@@ -27,5 +27,14 @@ namespace Vision
                 measureManager.Grad();
             }
         }
+
+        public void  LiveAll(bool live)
+        {
+            foreach (var measureManager in listMeasureManager)
+            {
+                measureManager.Live(live);
+            }
+            
+        }
     }
 }

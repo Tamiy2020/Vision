@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HalconDotNet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,27 +18,30 @@ namespace Vision
             if (camera is Daheng)
             {
                 (camera as Daheng).StartDevice();
+                (camera as Daheng).eventImage += MeasureManager_eventImage;
             }
+            if (camera is File)
+            {
+                (camera as File).eventImage += MeasureManager_eventImage;
+            }
+        }
+
+        private void MeasureManager_eventImage(HObject ho_Image)
+        {
+            camera.displayWin.HobjectToHimage(ho_Image);
         }
 
         public void Grad()
         {
-            camera.Grad();
-            if ( camera is Daheng )
+            camera.Grad();          
+        }
+
+        public void Live(bool live)
+        {
+            if (camera is Daheng)
             {
-                while (!(camera as Daheng).bIsOver )
-                {
-                    Thread.Sleep(1);
-                }
+                (camera as Daheng).ChangeTriggerMode(live);
             }
-            camera.displayWin.HobjectToHimage(camera.ho_Image);
-            try
-            {
-                camera.ho_Image.Dispose();
-                GC.Collect();
-            }
-            catch (Exception) { }
-          
         }
     }
 }

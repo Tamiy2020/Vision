@@ -34,72 +34,32 @@ namespace Vision.Forms
         /// </summary>
         private void Initialize(Control parent, MeasureManager measureManager)
         {
+            //HOperatorSet.GenEmptyObj(out ho_Image);//ho_Image赋空值
             TopLevel = false;//设为非顶级窗体
             Parent = parent;//设置控件的父容器
             Dock = DockStyle.Fill;//停靠模式填充
             this.measureManager = measureManager;
+            if (measureManager.camera is Daheng)
+            {
+                (measureManager.camera as Daheng).eventImage += Frm_Edit_eventImage;
+            }
+            if (measureManager.camera is File)
+            {
+                (measureManager.camera as File).eventImage += Frm_Edit_eventImage;
+            }
 
-            HOperatorSet.GenEmptyObj(out ho_Image);//ho_Image赋空值
+
+
+        }
+
+        private void Frm_Edit_eventImage(HObject ho_Image)
+        {
+            hWindow_Final1.HobjectToHimage(ho_Image);
         }
 
         private void Frm_Edit_Shown(object sender, EventArgs e)
         {
-            if (measureManager.camera is File)
-            {
-                button2.Visible = false;
-            }
-            GrabAndMeasure();
-
-        }
-
-
-        //采集按钮
-        private void button1_Click(object sender, EventArgs e)
-        {
-            GrabAndMeasure();
-        }
-
-        /// <summary>
-        /// 采集测量
-        /// </summary>
-        private void GrabAndMeasure()
-        {
-
-            measureManager.camera.Grad();
-            if (measureManager.camera is Daheng)
-            {
-                while (!(measureManager.camera as Daheng).bIsOver)
-                {
-                    System.Threading.Thread.Sleep(1);
-                }
-            }
-            hWindow_Final1.HobjectToHimage(measureManager.camera.ho_Image);
-            measureManager.camera.ho_Image.Dispose();
-            GC.Collect();
-        }
-
-        //实时标志
-        bool live = false;
-
-        //实时按钮
-        private void button2_Click(object sender, EventArgs e)
-        {
-            live = !live;
-            if (measureManager.camera is Daheng)
-            {
-                if (live)
-                {
-                    (measureManager.camera as Daheng).ChangeTriggerMode(live, hWindow_Final1);
-                    button1.Enabled = false;
-                
-                }
-                else
-                {
-                    (measureManager.camera as Daheng).ChangeTriggerMode(live, hWindow_Final1);
-                    button1.Enabled = true;
-                }
-
-            }
+         
         }
 
     }

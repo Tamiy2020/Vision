@@ -16,12 +16,14 @@ namespace Vision.CameraLib
         /// <summary>
         /// 初始化参数
         /// </summary>
-        HTuple[] initpara = null;
+        private HTuple[] initpara = null;
 
         /// <summary>
         /// 采集句柄HTuple 
         /// </summary>
-        HTuple hv_AcqHandle = null;
+        private HTuple hv_AcqHandle = null;
+
+        public event Action<HObject> eventImage;
 
         public File(HTuple[] initpara)
         {
@@ -63,7 +65,8 @@ namespace Vision.CameraLib
         public override void Grad()
         {
             HOperatorSet.GrabImage(out HObject ho_Image, hv_AcqHandle);
-            this.ho_Image = ho_Image;
+            eventImage?.Invoke(ho_Image);
+            ho_Image.Dispose();
         }
     }
 }

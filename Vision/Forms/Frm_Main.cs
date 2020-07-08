@@ -124,9 +124,24 @@ namespace Vision.Forms
         /// <param name="e"></param>
         private void Frm_Main_Shown(object sender, EventArgs e)
         {
-            executionManager.GradAll();//上一次的图像
-          /*  Thread.Sleep(200);
-            executionManager.GradAll();*/
+            executionManager.GradAll();
+        }
+
+        bool live=false ;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            live = !live;
+            if (live)
+            {
+                executionManager.LiveAll(live);
+                button1.Enabled = false;
+            }
+            else
+            {
+                executionManager.LiveAll(live);
+                button1.Enabled = true;
+            }
+            
         }
     }
 }

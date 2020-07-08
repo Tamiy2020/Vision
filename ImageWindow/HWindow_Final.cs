@@ -54,7 +54,7 @@ namespace ChoiceTech.Halcon.Control
         public HWindow_Final()
         {
             InitializeComponent();
-            //使用双缓冲，让图像显示不闪烁
+          /*  //使用双缓冲，让图像显示不闪烁
             SetStyle(
                      ControlStyles.OptimizedDoubleBuffer
                      | ControlStyles.ResizeRedraw
@@ -62,7 +62,7 @@ namespace ChoiceTech.Halcon.Control
                      | ControlStyles.AllPaintingInWmPaint
                      | ControlStyles.UserPaint
                      | ControlStyles.SupportsTransparentBackColor,
-                     true);
+                     true);*/
 
             //
             viewWindow = new ViewWindow.ViewWindow(mCtrl_HWindow);

@@ -46,9 +46,7 @@ namespace Vision.CameraLib
 
         private DahengImage dahengImage = null;
 
-        public bool bIsOver = false;
-
-        // public event Action<HObject> eventImage;
+        public event Action<HObject> eventImage;
 
         /// <summary>
         /// 打开相机
@@ -117,25 +115,11 @@ namespace Vision.CameraLib
         {
             try
             {
-
                 Daheng cam = objUserParam as Daheng;
                 HObject image = cam.dahengImage.Show(objIFrameData);
-                if (cam.ho_Image != image)
-                {
-                    cam.ho_Image = image;
-                    if (cam.objIGXFeatureControl.GetEnumFeature("TriggerMode").GetValue() == "On")
-                    {
-                        cam.bIsOver = true;
-                    }
-
-                }
-                if (cam.objIGXFeatureControl.GetEnumFeature("TriggerMode").GetValue() == "Off")
-                {
-                    cam.da_Window.HobjectToHimage(cam.ho_Image);
-                    cam.ho_Image.Dispose();
-                    GC.Collect();
-
-                }
+                eventImage?.Invoke(image);
+                image.Dispose();
+                GC.Collect();
             }
             catch (Exception) { }
 
@@ -164,9 +148,9 @@ namespace Vision.CameraLib
         /// 切换触发模式
         /// </summary>
         /// <param name="isOn"></param>
-        public void ChangeTriggerMode(bool live, HWindow_Final window)
+        public void ChangeTriggerMode(bool live)
         {
-            da_Window = window;
+          
             if (live)
             {
                 objIGXFeatureControl.GetEnumFeature("TriggerMode").SetValue("Off");//实时
@@ -182,7 +166,6 @@ namespace Vision.CameraLib
 
         public override void Grad()
         {
-            bIsOver = false;
             objIGXFeatureControl.GetCommandFeature("TriggerSoftware").Execute();// 发送软触发命令
         }
 
