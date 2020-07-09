@@ -34,28 +34,21 @@ namespace Vision.Forms
         /// </summary>
         private void Initialize(Control parent, MeasureManager measureManager)
         {
-            //HOperatorSet.GenEmptyObj(out ho_Image);//ho_Image赋空值
+            HOperatorSet.GenEmptyObj(out ho_Image);//ho_Image赋空值
             TopLevel = false;//设为非顶级窗体
             Parent = parent;//设置控件的父容器
             Dock = DockStyle.Fill;//停靠模式填充
             this.measureManager = measureManager;
-            if (measureManager.camera is Daheng)
-            {
-                (measureManager.camera as Daheng).eventImage += Frm_Edit_eventImage;
-            }
-            if (measureManager.camera is File)
-            {
-                (measureManager.camera as File).eventImage += Frm_Edit_eventImage;
-            }
-
-
+            measureManager.camera.ImageAcqed += Camera_ImageAcqed;
 
         }
 
-        private void Frm_Edit_eventImage(HObject ho_Image)
+        private void Camera_ImageAcqed(HObject ho_Image)
         {
+            this.ho_Image = ho_Image;
             hWindow_Final1.HobjectToHimage(ho_Image);
         }
+
 
         private void Frm_Edit_Shown(object sender, EventArgs e)
         {

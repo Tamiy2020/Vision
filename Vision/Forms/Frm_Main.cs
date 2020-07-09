@@ -30,7 +30,12 @@ namespace Vision.Forms
             if ((cameraManager as DahengManager).EnumDevice()) { }
             else
             {
-                cameraManager = new FileManager();
+                cameraManager = new DahuaManager();
+                if ((cameraManager as DahuaManager).EnumDevice()) { }
+                else
+                {
+                    cameraManager = new FileManager();
+                }
             }
 
         }
@@ -125,6 +130,11 @@ namespace Vision.Forms
         private void Frm_Main_Shown(object sender, EventArgs e)
         {
             executionManager.GradAll();
+            if (cameraManager is DahuaManager)
+            {
+                Thread.Sleep(500);
+                executionManager.GradAll();//大华相机第一次没有图像
+            }
         }
 
         bool live=false ;

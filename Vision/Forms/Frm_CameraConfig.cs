@@ -32,7 +32,7 @@ namespace Vision.Forms
         {
             form = new Frm_Main();
 
-            if (form.cameraManager is DahengManager)
+            if (form.cameraManager is DahengManager|| form.cameraManager is DahuaManager)
             {
                 panel2.Visible = false;
                 foreach (var camera in form.cameraManager.listCamera)

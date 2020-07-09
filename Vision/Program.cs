@@ -95,7 +95,7 @@ namespace Vision
                     Application.Run(form);
 
                 }
-                else if (form.cameraManager is DahengManager)
+                else if (form.cameraManager is DahengManager|| form.cameraManager is DahuaManager)
                 {
                     switch (regkey.GetValue("Cameras").ToString())
                     {

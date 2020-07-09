@@ -35,18 +35,16 @@ namespace Vision.CameraLib
         private IGXFeatureControl objIGXStreamFeatureControl = null;
 
         /// <summary>
-        /// 设备打开状态
-        /// </summary>
-        private bool bIsOpen = false;
-
-        /// <summary>
         /// 发送开采命令标识
         /// </summary>
         private bool bIsSnap = false;
 
         private DahengImage dahengImage = null;
 
-        public event Action<HObject> eventImage;
+        /// <summary>
+        /// 图像接收事件
+        /// </summary>
+       // public event Action<HObject> eventImage;
 
         /// <summary>
         /// 打开相机
@@ -73,8 +71,6 @@ namespace Vision.CameraLib
             objIGXFeatureControl.GetEnumFeature("TriggerSource").SetValue("Software");//设置触发源软触发
             objIGXFeatureControl.GetEnumFeature("TriggerMode").SetValue("On");//默认单张
 
-            //更新设备打开标识
-            bIsOpen = true;
 
         }
 
@@ -117,7 +113,7 @@ namespace Vision.CameraLib
             {
                 Daheng cam = objUserParam as Daheng;
                 HObject image = cam.dahengImage.Show(objIFrameData);
-                eventImage?.Invoke(image);
+                OnImageAcqed(image);//触发事件
                 image.Dispose();
                 GC.Collect();
             }
@@ -130,20 +126,16 @@ namespace Vision.CameraLib
         /// </summary>
         /// <param name="name"></param>
         /// <param name="windows"></param>
-        public override void SetWindow(string name, HWindow_Final windows)
+        public override void SetWindow(string name, HWindow_Final window)
         {
             if (name == strName)
             {
-                displayWin = windows;
+                displayWin = window;
                 dahengImage = new DahengImage(objIGXDevice);
             }
         }
 
 
-        /// <summary>
-        /// 实时专用
-        /// </summary>
-        public HWindow_Final da_Window;
         /// <summary>
         /// 切换触发模式
         /// </summary>
@@ -203,7 +195,6 @@ namespace Vision.CameraLib
                 objIGXDevice.Close();
                 objIGXDevice = null;
             }
-            bIsOpen = false;
         }
     }
 }

@@ -23,7 +23,10 @@ namespace Vision.CameraLib
         /// </summary>
         private HTuple hv_AcqHandle = null;
 
-        public event Action<HObject> eventImage;
+        /// <summary>
+        /// 图像接收事件
+        /// </summary>
+      //  public event Action<HObject> eventImage;
 
         public File(HTuple[] initpara)
         {
@@ -58,15 +61,16 @@ namespace Vision.CameraLib
         {
             if (strName == name)
             {
-                this.displayWin = window;
+                displayWin = window;
             }
         }
 
         public override void Grad()
         {
             HOperatorSet.GrabImage(out HObject ho_Image, hv_AcqHandle);
-            eventImage?.Invoke(ho_Image);
+            OnImageAcqed(ho_Image);//触发事件
             ho_Image.Dispose();
+            GC.Collect();
         }
     }
 }

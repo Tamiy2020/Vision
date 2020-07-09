@@ -18,15 +18,12 @@ namespace Vision
             if (camera is Daheng)
             {
                 (camera as Daheng).StartDevice();
-                (camera as Daheng).eventImage += MeasureManager_eventImage;
             }
-            if (camera is File)
-            {
-                (camera as File).eventImage += MeasureManager_eventImage;
-            }
+            camera.ImageAcqed += Camera_ImageAcqed;
+           
         }
 
-        private void MeasureManager_eventImage(HObject ho_Image)
+        private void Camera_ImageAcqed(HObject ho_Image)
         {
             camera.displayWin.HobjectToHimage(ho_Image);
         }
@@ -41,6 +38,10 @@ namespace Vision
             if (camera is Daheng)
             {
                 (camera as Daheng).ChangeTriggerMode(live);
+            }
+            if (camera is Dahua)
+            {
+                (camera as Dahua).ChangeTriggerMode(live);
             }
         }
     }

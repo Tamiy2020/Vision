@@ -48,7 +48,8 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.menuStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.toolStripMenuItem2,
@@ -57,32 +58,32 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1280, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(1280, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(54, 25);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(49, 24);
             this.toolStripMenuItem1.Text = "文件";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(54, 25);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(49, 24);
             this.toolStripMenuItem2.Text = "设置";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(54, 25);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(49, 24);
             this.toolStripMenuItem3.Text = "系统";
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(54, 25);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(49, 24);
             this.toolStripMenuItem4.Text = "帮助";
             // 
             // tabControl1
@@ -95,10 +96,10 @@
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 31);
+            this.tabControl1.Location = new System.Drawing.Point(0, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1280, 636);
+            this.tabControl1.Size = new System.Drawing.Size(1280, 637);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -106,7 +107,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1272, 603);
+            this.tabPage1.Size = new System.Drawing.Size(1272, 604);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "工作界面";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -165,7 +166,7 @@
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(675, 0);
+            this.button1.Location = new System.Drawing.Point(760, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 31);
             this.button1.TabIndex = 2;
@@ -177,7 +178,7 @@
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(525, 0);
+            this.button2.Location = new System.Drawing.Point(621, -1);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(97, 31);
             this.button2.TabIndex = 3;
