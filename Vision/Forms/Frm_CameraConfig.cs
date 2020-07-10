@@ -38,6 +38,10 @@ namespace Vision.Forms
                 foreach (var camera in form.cameraManager.listCamera)
                 {
                     camera.Open();
+                    if (camera is Dahua )
+                    {
+                        camera.Grad();
+                    }
                     comboBox1.Items.Add(camera.strName);
                 }
             }

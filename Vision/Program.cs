@@ -134,6 +134,13 @@ namespace Vision
                             return;
                     }
                     form.cameraManager.OpenAll();//打开所有相机
+                    if (form .cameraManager is DahuaManager)
+                    {
+                        foreach (var camera in form.cameraManager.listCamera)
+                        {
+                            camera.Grad();
+                        }
+                    }
                     form.SetCameraWindows(form.cameraManager.listCamera.Count);//设置相机窗体样式
                     GetWin(form.cameraWin, form.cameraManager.listCamera, str1, str2, str3, str4, str5);//获得相机的窗体
 

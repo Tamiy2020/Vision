@@ -26,6 +26,16 @@ namespace Vision.Forms
         public Frm_Main()
         {
             InitializeComponent();
+            //使用双缓冲，让图像显示不闪烁
+            SetStyle(
+                     ControlStyles.OptimizedDoubleBuffer
+                     | ControlStyles.ResizeRedraw
+                     | ControlStyles.Selectable
+                     | ControlStyles.AllPaintingInWmPaint
+                     | ControlStyles.UserPaint
+                     | ControlStyles.SupportsTransparentBackColor,
+                     true);
+
             cameraManager = new DahengManager();
             if ((cameraManager as DahengManager).EnumDevice()) { }
             else
@@ -130,14 +140,9 @@ namespace Vision.Forms
         private void Frm_Main_Shown(object sender, EventArgs e)
         {
             executionManager.GradAll();
-            if (cameraManager is DahuaManager)
-            {
-                Thread.Sleep(500);
-                executionManager.GradAll();//大华相机第一次没有图像
-            }
         }
 
-        bool live=false ;
+        bool live = false;
         private void button2_Click(object sender, EventArgs e)
         {
             live = !live;
@@ -151,7 +156,7 @@ namespace Vision.Forms
                 executionManager.LiveAll(live);
                 button1.Enabled = true;
             }
-            
+
         }
     }
 }

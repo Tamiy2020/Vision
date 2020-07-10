@@ -7,21 +7,24 @@ using ThridLibray;
 
 namespace Vision.CameraLib
 {
-    public  class DahuaManager:CameraManager
+    public class DahuaManager : CameraManager
     {
         /// <summary>
         /// 设备信息列表
         /// </summary>
-        List<IDeviceInfo> li = new List<IDeviceInfo>();
+        private List<IDeviceInfo> li = new List<IDeviceInfo>();
 
-
+        /// <summary>
+        /// 枚举设备
+        /// </summary>
+        /// <returns></returns>
         public bool EnumDevice()
         {
             // 设备搜索 
             // device search 
             li = Enumerator.EnumerateDevices();
 
-            if (li.Count ==0)
+            if (li.Count == 0)
             {
                 return false;
             }
@@ -35,7 +38,7 @@ namespace Vision.CameraLib
                 }
                 return true;
             }
-            
+
         }
     }
 }

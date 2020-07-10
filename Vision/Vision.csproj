@@ -69,6 +69,10 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Basler.Pylon, Version=1.1.0.0, Culture=neutral, PublicKeyToken=e389355f398382ab, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\x64\Debug\Basler.Pylon.dll</HintPath>
+    </Reference>
     <Reference Include="GxIAPINET, Version=1.0.7224.20697, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\x64\Debug\GxIAPINET.dll</HintPath>
@@ -104,6 +108,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraLib\BaslerCamera\BaslerCam.cs" />
+    <Compile Include="CameraLib\BaslerCamera\BaslerManager.cs" />
     <Compile Include="CameraLib\Camera.cs" />
     <Compile Include="CameraLib\CameraManager.cs" />
     <Compile Include="CameraLib\DahengCamera\Daheng.cs" />

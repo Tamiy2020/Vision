@@ -24,9 +24,16 @@ namespace Vision.CameraLib
         /// </summary>
         public bool EnumDevice()
         {
-            //初始化
-            objIGXFactory = IGXFactory.GetInstance();
-            objIGXFactory.Init();
+            try
+            {
+                //初始化
+                objIGXFactory = IGXFactory.GetInstance();
+                objIGXFactory.Init();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
             //listIGXDeviceInfo.Clear();
             objIGXFactory.UpdateDeviceList(200, listIGXDeviceInfo);
