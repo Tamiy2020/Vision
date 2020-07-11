@@ -41,10 +41,10 @@ namespace Vision.DataProcess
 
 
         /// <summary>
-        /// 返回详细信息字符串
+        /// 返回详细信息
         /// </summary>
         /// <returns></returns>
-        string GetResultDetail();
+        object[] GetResultDetail();
 
         /// <summary>
         /// 返回数据表格

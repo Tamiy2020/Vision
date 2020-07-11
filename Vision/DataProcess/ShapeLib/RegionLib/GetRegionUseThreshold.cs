@@ -97,15 +97,21 @@ namespace Vision.DataProcess.ShapeLib
         }
 
         /// <summary>
-        /// 返回详细信息字符串
+        /// 返回详细信息
         /// </summary>
         /// <returns></returns>
-        public override string GetResultDetail()
-        {
-            string detaildResult = base.GetResultDetail();
-            detaildResult += "            下限：" + minValue.ToString();
-            detaildResult += "  上限：" + maxValue.ToString() + "\n" + "\n";
-            return detaildResult;
+        public override object[] GetResultDetail()
+        { 
+            string function;
+            if (Exist)
+            {
+                function = "产品有无";
+            }
+            else
+            {
+                function = "缺陷检测";
+            }
+            return new object[] { name,function, minValue.ToString(), maxValue.ToString(), hv_Area.D.ToString("f0") };
         }
 
 

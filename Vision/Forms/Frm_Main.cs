@@ -35,9 +35,18 @@ namespace Vision.Forms
                      | ControlStyles.UserPaint
                      | ControlStyles.SupportsTransparentBackColor,
                      true);
+            bool temp;
+            try
+            {
+                cameraManager = new DahengManager();
+                temp = (cameraManager as DahengManager).EnumDevice();
+            }
+            catch (Exception)
+            {
 
-            cameraManager = new DahengManager();
-            if ((cameraManager as DahengManager).EnumDevice()) { }
+                temp = false;
+            }
+            if (temp) { }
             else
             {
                 cameraManager = new DahuaManager();
@@ -115,11 +124,54 @@ namespace Vision.Forms
             //cameraWin.Show();
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 窗体显示完成时
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Frm_Main_Shown(object sender, EventArgs e)
         {
             executionManager.GradAll();
         }
+
+
+
+        #region 实时图像
+        private void btn_Live_Click(object sender, EventArgs e)
+        {
+            executionManager.LiveAll(true);
+            btn_Live.Enabled = false;
+            btn_Test.Enabled = false;
+            btn_Auto.Enabled = true;
+        }
+        #endregion
+
+        #region 自动测试
+        private void btn_Auto_Click(object sender, EventArgs e)
+        {
+            executionManager.LiveAll(false);
+            btn_Live.Enabled = true;
+            btn_Test.Enabled = true;
+            btn_Auto.Enabled = false;
+        }
+        #endregion
+
+        #region 手动测试
+        private void btn_Test_Click(object sender, EventArgs e)
+        {
+            executionManager.GradAll();
+        }
+        #endregion
+
+        #region 计数清零
+        private void tsmi_Clear_Click(object sender, EventArgs e)
+        {
+            foreach (var item in executionManager.listMeasureManager)
+            {
+                item.ClearCount();
+            }
+        }
+        #endregion
 
         /// <summary>
         /// 窗体关闭中
@@ -132,31 +184,21 @@ namespace Vision.Forms
             Environment.Exit(0);
         }
 
-        /// <summary>
-        /// 窗体显示完成时
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Frm_Main_Shown(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
             executionManager.GradAll();
         }
 
-        bool live = false;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            live = !live;
-            if (live)
-            {
-                executionManager.LiveAll(live);
-                button1.Enabled = false;
-            }
-            else
-            {
-                executionManager.LiveAll(live);
-                button1.Enabled = true;
-            }
-
+            timer1.Stop();
         }
+
+
     }
 }

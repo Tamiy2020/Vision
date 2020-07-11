@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Vision.CameraLib
 {
@@ -50,19 +51,6 @@ namespace Vision.CameraLib
         public override void Close()
         {
             HOperatorSet.CloseFramegrabber(hv_AcqHandle);
-        }
-
-        /// <summary>
-        /// 设置窗体
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="window"></param>
-        public override void SetWindow(string name, HWindow_Final window)
-        {
-            if (strName == name)
-            {
-                displayWin = window;
-            }
         }
 
         public override void Grad()

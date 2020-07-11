@@ -50,14 +50,9 @@ namespace Vision.DataProcess.ShapeLib
            
         }
 
-        public override string GetResultDetail()
+        public override object[] GetResultDetail()
         {
-            string detaildResult = name.ToString();
-            if (measureResult == Result.NG) detaildResult += "：NG";
-            if (measureResult == Result.OK) detaildResult += "：OK";
-            if (measureResult == Result.无料) detaildResult += "：无料";
-            detaildResult += "  测量值：" + hv_Area.D.ToString("f0");
-            return detaildResult;
+            return null;
         }
 
 

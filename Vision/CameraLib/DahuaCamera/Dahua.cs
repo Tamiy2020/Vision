@@ -263,18 +263,6 @@ namespace Vision.CameraLib
           
         }
 
-        /// <summary>
-        /// 设置窗体
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="window"></param>
-        public override void SetWindow(string name, HWindow_Final window)
-        {
-            if (name ==strName)
-            {
-                displayWin = window;
-            }
-        }
 
         public override void Grad()
         {

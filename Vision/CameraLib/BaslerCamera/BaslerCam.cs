@@ -98,13 +98,7 @@ namespace Vision.CameraLib
             }
         }
 
-        public override void SetWindow(string name, HWindow_Final window)
-        {
-            if (name ==strName)
-            {
-                displayWin = window;
-            }
-        }
+      
 
         public override void Grad()
         {

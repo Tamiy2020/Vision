@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using ChoiceTech.Halcon.Control;
 using GxIAPINET;
 using HalconDotNet;
@@ -121,17 +122,16 @@ namespace Vision.CameraLib
 
         }
 
-        /// <summary>
-        /// 设置窗体
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="windows"></param>
-        public override void SetWindow(string name, HWindow_Final window)
+        public override void SetWindow(string name, HWindow_Final window, Label lbl_OK, Label lbl_Sum, Label lbl_Num, Label lbl_Yield)
         {
-            if (name == strName)
+            if (strName == name)
             {
-                displayWin = window;
                 dahengImage = new DahengImage(objIGXDevice);
+                displayWin = window;
+                Label_OK = lbl_OK;
+                Label_Sum = lbl_Sum;
+                Label_Num = lbl_Num;
+                Label_Yield = lbl_Yield;
             }
         }
 

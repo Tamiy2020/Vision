@@ -174,6 +174,7 @@ namespace Vision
                     var temp = cameras[i];
                     cameras[i] = cameras[index];
                     cameras[index] = temp;
+                    cameras[index].Index = index;
                 }
             }
         }
@@ -189,29 +190,36 @@ namespace Vision
             switch (cameras.Count)
             {
                 case 1:
-                    cameras[0].SetWindow(vs[0], (cameraWin as Frm_OneWin).h_Windows[0]);
+                    Frm_OneWin form1 = cameraWin as Frm_OneWin;
+                    cameras[0].SetWindow(vs[0], form1.h_Windows[0], form1.labels_OK[0], form1.labels_Sum[0], form1.labels_Num[0], form1.labels_Yield[0]);
                     break;
                 case 2:
-                    cameras[0].SetWindow(vs[0], (cameraWin as Frm_TwoWin).h_Windows[0]);
-                    cameras[1].SetWindow(vs[1], (cameraWin as Frm_TwoWin).h_Windows[1]);
+                    Frm_TwoWin form2 = cameraWin as Frm_TwoWin;
+                    cameras[0].SetWindow(vs[0], form2.h_Windows[0], form2.labels_OK[0], form2.labels_Sum[0], form2.labels_Num[0], form2.labels_Yield[0]);
+                    cameras[1].SetWindow(vs[1], form2.h_Windows[1], form2.labels_OK[1], form2.labels_Sum[1], form2.labels_Num[1], form2.labels_Yield[1]);
                     break;
                 case 3:
-                    cameras[0].SetWindow(vs[0], (cameraWin as Frm_ThreeWin).h_Windows[0]);
-                    cameras[1].SetWindow(vs[1], (cameraWin as Frm_ThreeWin).h_Windows[1]);
-                    cameras[2].SetWindow(vs[2], (cameraWin as Frm_ThreeWin).h_Windows[2]);
+                    Frm_ThreeWin form3 = cameraWin as Frm_ThreeWin;
+                    cameras[0].SetWindow(vs[0], form3.h_Windows[0], form3.labels_OK[0], form3.labels_Sum[0], form3.labels_Num[0], form3.labels_Yield[0]);
+                    cameras[1].SetWindow(vs[1], form3.h_Windows[1], form3.labels_OK[1], form3.labels_Sum[1], form3.labels_Num[1], form3.labels_Yield[1]);
+                    cameras[2].SetWindow(vs[2], form3.h_Windows[2], form3.labels_OK[2], form3.labels_Sum[2], form3.labels_Num[2], form3.labels_Yield[2]);
+                 
                     break;
                 case 4:
-                    cameras[0].SetWindow(vs[0], (cameraWin as Frm_FourWin).h_Windows[0]);
-                    cameras[1].SetWindow(vs[1], (cameraWin as Frm_FourWin).h_Windows[1]);
-                    cameras[2].SetWindow(vs[2], (cameraWin as Frm_FourWin).h_Windows[2]);
-                    cameras[3].SetWindow(vs[3], (cameraWin as Frm_FourWin).h_Windows[3]);
+                    Frm_FourWin form4 = cameraWin as Frm_FourWin;
+                    cameras[0].SetWindow(vs[0], form4.h_Windows[0], form4.labels_OK[0], form4.labels_Sum[0], form4.labels_Num[0], form4.labels_Yield[0]);
+                    cameras[1].SetWindow(vs[1], form4.h_Windows[1], form4.labels_OK[1], form4.labels_Sum[1], form4.labels_Num[1], form4.labels_Yield[1]);
+                    cameras[2].SetWindow(vs[2], form4.h_Windows[2], form4.labels_OK[2], form4.labels_Sum[2], form4.labels_Num[2], form4.labels_Yield[2]);
+                    cameras[3].SetWindow(vs[3], form4.h_Windows[3], form4.labels_OK[3], form4.labels_Sum[3], form4.labels_Num[3], form4.labels_Yield[3]);
+
                     break;
                 case 5:
-                    cameras[0].SetWindow(vs[0], (cameraWin as Frm_FiveWin).h_Windows[0]);
-                    cameras[1].SetWindow(vs[1], (cameraWin as Frm_FiveWin).h_Windows[1]);
-                    cameras[2].SetWindow(vs[2], (cameraWin as Frm_FiveWin).h_Windows[2]);
-                    cameras[3].SetWindow(vs[3], (cameraWin as Frm_FiveWin).h_Windows[3]);
-                    cameras[4].SetWindow(vs[4], (cameraWin as Frm_FiveWin).h_Windows[4]);
+                    Frm_FiveWin form5 = cameraWin as Frm_FiveWin;
+                    cameras[0].SetWindow(vs[0], form5.h_Windows[0], form5.labels_OK[0], form5.labels_Sum[0], form5.labels_Num[0], form5.labels_Yield[0]);
+                    cameras[1].SetWindow(vs[1], form5.h_Windows[1], form5.labels_OK[1], form5.labels_Sum[1], form5.labels_Num[1], form5.labels_Yield[1]);
+                    cameras[2].SetWindow(vs[2], form5.h_Windows[2], form5.labels_OK[2], form5.labels_Sum[2], form5.labels_Num[2], form5.labels_Yield[2]);
+                    cameras[3].SetWindow(vs[3], form5.h_Windows[3], form5.labels_OK[3], form5.labels_Sum[3], form5.labels_Num[3], form5.labels_Yield[3]);
+                    cameras[4].SetWindow(vs[4], form5.h_Windows[4], form5.labels_OK[4], form5.labels_Sum[4], form5.labels_Num[4], form5.labels_Yield[4]);
                     break;
                 default:
                     break;

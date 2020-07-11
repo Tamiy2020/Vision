@@ -39,16 +39,37 @@ namespace Vision.Forms
             Parent = parent;//设置控件的父容器
             Dock = DockStyle.Fill;//停靠模式填充
             this.measureManager = measureManager;
-            measureManager.camera.ImageAcqed += Camera_ImageAcqed;
+            measureManager.camera.ImageAcqed += Camera_ImageAcqed;//挂载图像接收完成事件
 
         }
 
+        //图像处理
         private void Camera_ImageAcqed(HObject ho_Image)
         {
             this.ho_Image = ho_Image;
-            hWindow_Final1.HobjectToHimage(ho_Image);
+           
+            if (measureManager.bisTest)
+            {
+                measureManager.MeasureStartDetail(ho_Image);//测量
+                hWindow_Final1.HobjectToHimage(ho_Image);
+                measureManager.DisplayResult(hWindow_Final1);//字符串
+            }
+            else
+            {
+                hWindow_Final1.HobjectToHimage(ho_Image);
+            }
         }
 
+
+        /// <summary>
+        /// 编辑模式
+        /// </summary>
+        /// <param name="sign"></param>
+        public void EditMod(bool sign)
+        {
+            toolStrip1.Enabled = !sign;
+            dgv_Data.Enabled = !sign;
+        }
 
         private void Frm_Edit_Shown(object sender, EventArgs e)
         {

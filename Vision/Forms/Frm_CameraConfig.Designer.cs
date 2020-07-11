@@ -97,7 +97,7 @@
             this.panel1.Controls.Add(this.btn_OK1);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(127, 255);
+            this.panel1.Location = new System.Drawing.Point(116, 228);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(380, 133);
             this.panel1.TabIndex = 5;
@@ -119,7 +119,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(113, 27);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(204, 25);
+            this.comboBox1.Size = new System.Drawing.Size(241, 25);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -140,7 +140,7 @@
             this.panel2.Controls.Add(this.btn_OK2);
             this.panel2.Controls.Add(this.txt_Path);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Location = new System.Drawing.Point(127, 240);
+            this.panel2.Location = new System.Drawing.Point(116, 224);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(420, 186);
             this.panel2.TabIndex = 6;
@@ -158,7 +158,7 @@
             // btn_OK2
             // 
             this.btn_OK2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_OK2.Location = new System.Drawing.Point(300, 68);
+            this.btn_OK2.Location = new System.Drawing.Point(300, 70);
             this.btn_OK2.Name = "btn_OK2";
             this.btn_OK2.Size = new System.Drawing.Size(80, 37);
             this.btn_OK2.TabIndex = 3;

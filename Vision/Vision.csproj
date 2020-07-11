@@ -7,7 +7,7 @@
     <ProjectGuid>{F37B24F5-84D1-4B85-A92F-568E2E29934C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Vision</RootNamespace>
-    <AssemblyName>Vision</AssemblyName>
+    <AssemblyName>HRDVision</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -68,6 +68,9 @@
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Basler.Pylon, Version=1.1.0.0, Culture=neutral, PublicKeyToken=e389355f398382ab, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
@@ -87,6 +90,10 @@
     </Reference>
     <Reference Include="Ookii.Dialogs.WinForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
       <HintPath>..\packages\Ookii.Dialogs.WinForms.1.1.0\lib\net45\Ookii.Dialogs.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Rabbit.InvokeHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\x64\Debug\Rabbit.InvokeHelper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -120,6 +127,16 @@
     <Compile Include="CameraLib\FileHalcon\File.cs" />
     <Compile Include="CameraLib\FileHalcon\FileManager.cs" />
     <Compile Include="DataProcess\AxByC.cs" />
+    <Compile Include="DataProcess\CalculationLib\多项计算\BaseCal_Multi.cs" />
+    <Compile Include="DataProcess\CalculationLib\多项计算\DropDistance.cs" />
+    <Compile Include="DataProcess\CalculationLib\多项计算\MultipleDistance.cs" />
+    <Compile Include="DataProcess\CalculationLib\多项计算\PinDistance.cs" />
+    <Compile Include="DataProcess\CalculationLib\单项计算\AngelLineToLine.cs" />
+    <Compile Include="DataProcess\CalculationLib\单项计算\BaseCal_Single.cs" />
+    <Compile Include="DataProcess\CalculationLib\单项计算\CircleRadius.cs" />
+    <Compile Include="DataProcess\CalculationLib\单项计算\DisLineToLine.cs" />
+    <Compile Include="DataProcess\CalculationLib\单项计算\DisPointToLine.cs" />
+    <Compile Include="DataProcess\CalculationLib\单项计算\DisPointToPoint.cs" />
     <Compile Include="DataProcess\IDataProcess.cs" />
     <Compile Include="DataProcess\MeasuringUnit.cs" />
     <Compile Include="DataProcess\ParameterLib\Canny.cs" />
@@ -127,6 +144,7 @@
     <Compile Include="DataProcess\ParameterLib\Measure_Pos.cs" />
     <Compile Include="DataProcess\ParameterLib\Threshold.cs" />
     <Compile Include="DataProcess\PositionLib\BasePosition.cs" />
+    <Compile Include="DataProcess\PositionLib\TranslationTracking.cs" />
     <Compile Include="DataProcess\ShapeLib\BaseShape.cs" />
     <Compile Include="DataProcess\ShapeLib\GetSetOfLines.cs" />
     <Compile Include="DataProcess\ShapeLib\RegionLib\GetRegionUseThreshold.cs" />
@@ -191,6 +209,12 @@
     <Compile Include="Forms\DisplayWindows\Frm_TwoWin.Designer.cs">
       <DependentUpon>Frm_TwoWin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Frm_Unit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frm_Unit.Designer.cs">
+      <DependentUpon>Frm_Unit.cs</DependentUpon>
+    </Compile>
     <Compile Include="MeasureManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -218,6 +242,9 @@
     <EmbeddedResource Include="Forms\Frm_Main.resx">
       <DependentUpon>Frm_Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Frm_Unit.resx">
+      <DependentUpon>Frm_Unit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -226,6 +253,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
@@ -248,6 +276,41 @@
       <Name>HWindow_Tool</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\保存.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\打开.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\另存为.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\退出.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\新建.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\线.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\有无识别.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\圆.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\多边.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\跟踪定位.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\缺陷检测.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

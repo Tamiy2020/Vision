@@ -125,13 +125,13 @@ namespace Vision.DataProcess
 
 
 
-        public virtual string GetResultDetail()//返回详细信息字符串
+        public virtual object[] GetResultDetail()//返回详细信息
         {
             return null;
         }
 
 
-        public List<DataRow> GetDataTableRows(DataTable dataTable)//返回表格数据
+        public virtual List<DataRow> GetDataTableRows(DataTable dataTable)//返回表格数据
         {
             return null;
         }
