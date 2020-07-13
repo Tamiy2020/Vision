@@ -43,14 +43,21 @@ namespace Vision.Forms
             }
             catch (Exception)
             {
-
                 temp = false;
             }
             if (temp) { }
             else
             {
-                cameraManager = new DahuaManager();
-                if ((cameraManager as DahuaManager).EnumDevice()) { }
+                try
+                {
+                    cameraManager = new DahuaManager();
+                    temp = (cameraManager as DahuaManager).EnumDevice();
+                }
+                catch (Exception)
+                {
+                    temp = false;
+                }
+                if (temp) { }
                 else
                 {
                     cameraManager = new FileManager();
@@ -80,6 +87,7 @@ namespace Vision.Forms
         private void Frm_Main_Load(object sender, EventArgs e)
         {
             cameraWin.Show();
+
             executionManager = new ExecutionManager(cameraManager);
             AddEditForm();//添加编辑窗体
         }

@@ -66,7 +66,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.lbl_OK1);
             this.splitContainer1.Size = new System.Drawing.Size(1210, 692);
-            this.splitContainer1.SplitterDistance = 909;
+            this.splitContainer1.SplitterDistance = 912;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -80,7 +80,7 @@
             this.hWindow_Final1.Image = null;
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(909, 692);
+            this.hWindow_Final1.Size = new System.Drawing.Size(912, 692);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // lbl_Yield1

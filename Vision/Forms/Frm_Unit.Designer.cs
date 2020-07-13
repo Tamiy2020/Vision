@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.pnl_Top = new System.Windows.Forms.Panel();
-            this.pnl_Bottom = new System.Windows.Forms.Panel();
-            this.pnl_Fill = new System.Windows.Forms.Panel();
             this.pnl_String = new System.Windows.Forms.Panel();
             this.nud_Spacing = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_Name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pnl_Bottom = new System.Windows.Forms.Panel();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_OK = new System.Windows.Forms.Button();
+            this.pnl_Fill = new System.Windows.Forms.Panel();
             this.pnl_Top.SuspendLayout();
-            this.pnl_Bottom.SuspendLayout();
             this.pnl_String.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Spacing)).BeginInit();
+            this.pnl_Bottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_Top
@@ -56,26 +56,6 @@
             this.pnl_Top.Size = new System.Drawing.Size(460, 54);
             this.pnl_Top.TabIndex = 0;
             // 
-            // pnl_Bottom
-            // 
-            this.pnl_Bottom.AutoScroll = true;
-            this.pnl_Bottom.Controls.Add(this.btn_Cancel);
-            this.pnl_Bottom.Controls.Add(this.btn_OK);
-            this.pnl_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Bottom.Location = new System.Drawing.Point(0, 614);
-            this.pnl_Bottom.Name = "pnl_Bottom";
-            this.pnl_Bottom.Size = new System.Drawing.Size(460, 51);
-            this.pnl_Bottom.TabIndex = 1;
-            // 
-            // pnl_Fill
-            // 
-            this.pnl_Fill.AutoScroll = true;
-            this.pnl_Fill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Fill.Location = new System.Drawing.Point(0, 54);
-            this.pnl_Fill.Name = "pnl_Fill";
-            this.pnl_Fill.Size = new System.Drawing.Size(460, 560);
-            this.pnl_Fill.TabIndex = 2;
-            // 
             // pnl_String
             // 
             this.pnl_String.Controls.Add(this.nud_Spacing);
@@ -87,6 +67,7 @@
             // 
             // nud_Spacing
             // 
+            this.nud_Spacing.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.nud_Spacing.Location = new System.Drawing.Point(89, 3);
             this.nud_Spacing.Maximum = new decimal(new int[] {
             1500,
@@ -111,6 +92,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.Location = new System.Drawing.Point(3, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 17);
@@ -127,14 +109,27 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(3, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 7;
             this.label1.Text = "请输入名字";
             // 
+            // pnl_Bottom
+            // 
+            this.pnl_Bottom.AutoScroll = true;
+            this.pnl_Bottom.Controls.Add(this.btn_Cancel);
+            this.pnl_Bottom.Controls.Add(this.btn_OK);
+            this.pnl_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnl_Bottom.Location = new System.Drawing.Point(0, 614);
+            this.pnl_Bottom.Name = "pnl_Bottom";
+            this.pnl_Bottom.Size = new System.Drawing.Size(460, 51);
+            this.pnl_Bottom.TabIndex = 1;
+            // 
             // btn_Cancel
             // 
+            this.btn_Cancel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_Cancel.Location = new System.Drawing.Point(277, 12);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
@@ -145,6 +140,7 @@
             // 
             // btn_OK
             // 
+            this.btn_OK.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_OK.Location = new System.Drawing.Point(21, 12);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 27);
@@ -152,6 +148,15 @@
             this.btn_OK.Text = "确定";
             this.btn_OK.UseVisualStyleBackColor = true;
             this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
+            // 
+            // pnl_Fill
+            // 
+            this.pnl_Fill.AutoScroll = true;
+            this.pnl_Fill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Fill.Location = new System.Drawing.Point(0, 54);
+            this.pnl_Fill.Name = "pnl_Fill";
+            this.pnl_Fill.Size = new System.Drawing.Size(460, 560);
+            this.pnl_Fill.TabIndex = 2;
             // 
             // Frm_Unit
             // 
@@ -171,10 +176,10 @@
             this.Load += new System.EventHandler(this.Frm_Unit_Load);
             this.pnl_Top.ResumeLayout(false);
             this.pnl_Top.PerformLayout();
-            this.pnl_Bottom.ResumeLayout(false);
             this.pnl_String.ResumeLayout(false);
             this.pnl_String.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Spacing)).EndInit();
+            this.pnl_Bottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -16,12 +16,21 @@ namespace Vision.Forms
 {
     public partial class Frm_Edit : Form
     {
-       public  MeasureManager measureManager;
+        /// <summary>
+        ///  测量单元管理器
+        /// </summary>
+        public MeasureManager measureManager;
 
         /// <summary>
         /// 采集的图片
         /// </summary>
         public HObject ho_Image;
+
+
+        /// <summary>
+        /// 单元窗体
+        /// </summary>
+        //private Frm_Unit frm_Unit;
 
         public Frm_Edit(Control parent, MeasureManager measureManager)
         {
@@ -47,7 +56,7 @@ namespace Vision.Forms
         private void Camera_ImageAcqed(HObject ho_Image)
         {
             this.ho_Image = ho_Image;
-           
+
             if (measureManager.bisTest)
             {
                 measureManager.MeasureStartDetail(ho_Image);//测量
@@ -73,8 +82,7 @@ namespace Vision.Forms
 
         private void Frm_Edit_Shown(object sender, EventArgs e)
         {
-         
-        }
 
+        }
     }
 }

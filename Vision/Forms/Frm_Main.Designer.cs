@@ -158,20 +158,20 @@
             // tsmi_Excel
             // 
             this.tsmi_Excel.Name = "tsmi_Excel";
-            this.tsmi_Excel.Size = new System.Drawing.Size(180, 24);
+            this.tsmi_Excel.Size = new System.Drawing.Size(160, 24);
             this.tsmi_Excel.Text = "写入Excel";
             // 
             // tsmi_IO
             // 
             this.tsmi_IO.Name = "tsmi_IO";
-            this.tsmi_IO.Size = new System.Drawing.Size(180, 24);
+            this.tsmi_IO.Size = new System.Drawing.Size(160, 24);
             this.tsmi_IO.Text = "IO控制";
             // 
             // tsmi_Clear
             // 
             this.tsmi_Clear.Name = "tsmi_Clear";
             this.tsmi_Clear.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.tsmi_Clear.Size = new System.Drawing.Size(180, 24);
+            this.tsmi_Clear.Size = new System.Drawing.Size(160, 24);
             this.tsmi_Clear.Text = "计数清零";
             this.tsmi_Clear.Click += new System.EventHandler(this.tsmi_Clear_Click);
             // 
@@ -261,7 +261,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tabControl1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl1.Location = new System.Drawing.Point(0, 35);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -270,10 +270,10 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1256, 734);
+            this.tabPage1.Size = new System.Drawing.Size(1256, 735);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "工作界面";
             this.tabPage1.UseVisualStyleBackColor = true;

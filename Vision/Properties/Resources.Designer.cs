@@ -103,6 +103,16 @@ namespace Vision.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 基准线 {
+            get {
+                object obj = ResourceManager.GetObject("基准线", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 多边 {
             get {
                 object obj = ResourceManager.GetObject("多边", resourceCulture);

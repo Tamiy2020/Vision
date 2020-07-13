@@ -31,6 +31,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.hWindow_Final1 = new ChoiceTech.Halcon.Control.HWindow_Final();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbtn_DatumLine = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_Line = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_LineList = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_Circle = new System.Windows.Forms.ToolStripButton();
@@ -95,6 +96,7 @@
             this.toolStrip1.AutoSize = false;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(50, 50);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtn_DatumLine,
             this.tsbtn_Line,
             this.tsbtn_LineList,
             this.tsbtn_Circle,
@@ -105,6 +107,15 @@
             this.toolStrip1.Size = new System.Drawing.Size(1000, 55);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsbtn_DatumLine
+            // 
+            this.tsbtn_DatumLine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtn_DatumLine.Image = global::Vision.Properties.Resources.基准线;
+            this.tsbtn_DatumLine.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtn_DatumLine.Name = "tsbtn_DatumLine";
+            this.tsbtn_DatumLine.Size = new System.Drawing.Size(54, 52);
+            this.tsbtn_DatumLine.Text = "基准线";
             // 
             // tsbtn_Line
             // 
@@ -185,6 +196,7 @@
             // 
             this.groupBox2.Controls.Add(this.dgv_Data);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(496, 490);
@@ -207,6 +219,7 @@
             // 
             this.groupBox1.Controls.Add(this.dgv_File);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(496, 152);
@@ -270,5 +283,6 @@
         private System.Windows.Forms.ToolStripButton tsbtn_Exist;
         private System.Windows.Forms.DataGridView dgv_Data;
         public ChoiceTech.Halcon.Control.HWindow_Final hWindow_Final1;
+        private System.Windows.Forms.ToolStripButton tsbtn_DatumLine;
     }
 }

@@ -91,9 +91,11 @@ namespace Vision.CameraLib
                     catch { }
 
                 }
-                catch (Exception exception)
+                catch (Exception /*exception*/)
                 {
-                    Catcher.Show(exception);
+                    //Catcher.Show(exception);
+                    MessageBox.Show("系统异常");
+                    Environment.Exit(0);
                 }
             }
         }

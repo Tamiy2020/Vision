@@ -130,6 +130,9 @@
   <data name="圆" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\圆.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="基准线" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\基准线.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="多边" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\多边.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
