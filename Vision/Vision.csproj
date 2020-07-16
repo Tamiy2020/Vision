@@ -84,10 +84,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\x64\Debug\halcondotnet.dll</HintPath>
     </Reference>
-    <Reference Include="hdevenginedotnet, Version=17.12.0.0, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\x64\Debug\hdevenginedotnet.dll</HintPath>
-    </Reference>
     <Reference Include="Ookii.Dialogs.WinForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
       <HintPath>..\packages\Ookii.Dialogs.WinForms.1.1.0\lib\net45\Ookii.Dialogs.WinForms.dll</HintPath>
     </Reference>
@@ -161,12 +157,6 @@
     <Compile Include="DataProcess\StaticMethodLib.cs" />
     <Compile Include="Enum_Info.cs" />
     <Compile Include="ExecutionManager.cs" />
-    <Compile Include="Forms\Frm_Unit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Frm_Unit.Designer.cs">
-      <DependentUpon>Frm_Unit.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Frm_CameraConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +205,12 @@
     <Compile Include="Forms\DisplayWindows\Frm_TwoWin.Designer.cs">
       <DependentUpon>Frm_TwoWin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UFrm_Exist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UFrm_Exist.Designer.cs">
+      <DependentUpon>UFrm_Exist.cs</DependentUpon>
+    </Compile>
     <Compile Include="MeasureManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -233,9 +229,6 @@
     <EmbeddedResource Include="Forms\DisplayWindows\Frm_TwoWin.resx">
       <DependentUpon>Frm_TwoWin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Frm_Unit.resx">
-      <DependentUpon>Frm_Unit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frm_CameraConfig.resx">
       <DependentUpon>Frm_CameraConfig.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frm_Main.resx">
       <DependentUpon>Frm_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UFrm_Exist.resx">
+      <DependentUpon>UFrm_Exist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

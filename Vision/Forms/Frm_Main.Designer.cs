@@ -239,6 +239,7 @@
             this.tsmi_osk.Name = "tsmi_osk";
             this.tsmi_osk.Size = new System.Drawing.Size(134, 24);
             this.tsmi_osk.Text = "软键盘";
+            this.tsmi_osk.Click += new System.EventHandler(this.tsmi_osk_Click);
             // 
             // tsmi_About
             // 
@@ -280,50 +281,50 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1256, 734);
+            this.tabPage2.Size = new System.Drawing.Size(1256, 735);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "相机1";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1256, 734);
+            this.tabPage3.Size = new System.Drawing.Size(1256, 735);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "相机2";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1256, 734);
+            this.tabPage4.Size = new System.Drawing.Size(1256, 735);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "相机3";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 29);
+            this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1256, 734);
+            this.tabPage5.Size = new System.Drawing.Size(1256, 735);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "相机4";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // tabPage6
             // 
-            this.tabPage6.Location = new System.Drawing.Point(4, 29);
+            this.tabPage6.Location = new System.Drawing.Point(4, 28);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1256, 734);
+            this.tabPage6.Size = new System.Drawing.Size(1256, 735);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "相机5";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -361,7 +362,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
+            this.button1.Text = "开始测试";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -372,7 +373,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
-            this.button2.Text = "button2";
+            this.button2.Text = "停止测试";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 

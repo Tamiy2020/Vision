@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HalconDotNet;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,6 +36,8 @@ namespace Vision.Forms
                      | ControlStyles.UserPaint
                      | ControlStyles.SupportsTransparentBackColor,
                      true);
+            
+
             bool temp;
             try
             {
@@ -86,10 +89,14 @@ namespace Vision.Forms
         /// <param name="e"></param>
         private void Frm_Main_Load(object sender, EventArgs e)
         {
-            cameraWin.Show();
+            cameraWin.Show();//会报异常
 
             executionManager = new ExecutionManager(cameraManager);
             AddEditForm();//添加编辑窗体
+            HOperatorSet.OpenFramegrabber("File", 0, 1, 0, 0, 0, 0, "default", -1, "default",
+   1, "false", "必须有", "default",
+   -1, -1, out HTuple hv_AcqHandle);
+            HOperatorSet.GrabImage(out HObject ho_Image, hv_AcqHandle);  //关键语句
         }
 
         /// <summary>
@@ -207,6 +214,10 @@ namespace Vision.Forms
             timer1.Stop();
         }
 
-
+        private void tsmi_osk_Click(object sender, EventArgs e)
+        {
+          
+          
+        }
     }
 }

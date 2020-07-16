@@ -104,6 +104,7 @@ namespace Vision
         /// </summary>
         public event Func<object, object, int> AddCompleted;
 
+        public event Action<object,object> Test;
 
         public MeasureManager(Camera camera)//构造函数
         {
@@ -147,7 +148,7 @@ namespace Vision
             Num_OK = 0;
             LastResult = Result.OK;
             k = 1;
-            // maxId = 1;
+            maxId = 1;
             measuringUnits = new ArrayList();//测量列队
         }
 
@@ -276,8 +277,8 @@ namespace Vision
         /// </summary>
         /// <param name="ho_Image"></param>
         private void Camera_ImageAcqed(HObject ho_Image)
-        {   
-         
+        {
+
             if (bisTest)
             {
                 measureResult = MeasureStart(ho_Image);//测量
@@ -291,7 +292,7 @@ namespace Vision
             {
                 camera.displayWin.HobjectToHimage(ho_Image);
             }
-          
+
         }
 
         /// <summary>
@@ -329,10 +330,10 @@ namespace Vision
             camera.Grad();
         }
 
-       /// <summary>
-       /// 实时
-       /// </summary>
-       /// <param name="live"></param>
+        /// <summary>
+        /// 实时
+        /// </summary>
+        /// <param name="live"></param>
         public void Live(bool live)
         {
             bisTest = false;
@@ -359,6 +360,19 @@ namespace Vision
             }
             return Rows;
         }
+
+        public List<object[]> ListAllData()
+        {
+            List<object[]> Rows = new List<object[]>();
+            foreach (var item in measuringUnits)
+            {
+                Rows.Add((item as MeasuringUnit).GetResultDetail());
+            }
+            return Rows;
+
+        }
+
+       
 
         /// <summary>
         /// 列出所有线

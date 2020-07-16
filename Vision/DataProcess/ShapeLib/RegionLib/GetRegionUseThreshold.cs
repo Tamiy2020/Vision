@@ -63,8 +63,19 @@ namespace Vision.DataProcess.ShapeLib
             measureResult = Result.OK;
             color = "green";
             Rectangle2 ROI = parameter.rectangle2.GetShapePositioned() as Rectangle2;//获取ROI矩形
+            
             HObject ho_ROI = Func_HalconFunction.GenRectangle2(ROI);//创建ROI矩形形状
-            ho_Shape = Func_ImageProcessing.Threshold_SelectMaxRegion(ho_Image, ho_ROI, parameter.hv_MinGray, parameter.hv_MaxGray);//创建结果形状
+
+           
+
+
+           
+
+
+           
+
+
+           ho_Shape = Func_ImageProcessing.Threshold_SelectMaxRegion(ho_Image, ho_ROI, parameter.hv_MinGray, parameter.hv_MaxGray);//创建结果形状
             HOperatorSet.AreaCenter(ho_Shape, out hv_Area, out centerPoint.hv_Row, out centerPoint.hv_Column);//求取区域面积
             HOperatorSet.RegionFeatures(ho_ROI, "row1", out HTuple hv_Row1);
             HOperatorSet.RegionFeatures(ho_ROI, "column1", out HTuple hv_Column1);
@@ -111,7 +122,7 @@ namespace Vision.DataProcess.ShapeLib
             {
                 function = "缺陷检测";
             }
-            return new object[] { name,function, minValue.ToString(), maxValue.ToString(), hv_Area.D.ToString("f0") };
+            return new object[] { name,function, minValue.ToString (), maxValue.ToString (), hv_Area.D.ToString("f0") };
         }
 
 
