@@ -103,19 +103,20 @@ namespace Vision
         /// 添加完成事件
         /// </summary>
         public event Func<object, object, int> AddCompleted;
-
-        public event Action<object,object> Test;
+      
 
         public MeasureManager(Camera camera)//构造函数
         {
             this.camera = camera;
             Initialize();//初始化
-            if (camera is Daheng)
-            {
-                (camera as Daheng).StartDevice();
-            }
+          
             camera.ImageAcqed += Camera_ImageAcqed;
 
+        }
+
+        public void ImageAcqed()
+        {
+            camera.ImageAcqed += Camera_ImageAcqed;
         }
 
 
@@ -286,6 +287,7 @@ namespace Vision
                 camera.displayWin.HobjectToHimage(ho_Image);
                 DisplayResult(camera.displayWin);//字符串
                 Display();
+                Thread.Sleep(50);
                 MeasureFinish(Convert.ToInt32(!measureResult) + 2 * camera.Index, 1);//发结果信号 灭灯
             }
             else//实时
@@ -327,6 +329,7 @@ namespace Vision
         public void Grad()
         {
             bisTest = true;
+          
             camera.Grad();
         }
 

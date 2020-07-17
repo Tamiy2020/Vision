@@ -35,6 +35,8 @@ namespace Vision.DataProcess.ShapeLib
         /// </summary>
         public bool Exist;
 
+        Rectangle2 ROI;
+
         public GetRegionUseThreshold()//构造函数
         {
             //初始化字段默认值
@@ -62,25 +64,17 @@ namespace Vision.DataProcess.ShapeLib
             base.Measure(ho_Image);//调用基类的测量方法
             measureResult = Result.OK;
             color = "green";
-            Rectangle2 ROI = parameter.rectangle2.GetShapePositioned() as Rectangle2;//获取ROI矩形
-            
+            ROI = parameter.rectangle2.GetShapePositioned() as Rectangle2;//获取ROI矩形
+
             HObject ho_ROI = Func_HalconFunction.GenRectangle2(ROI);//创建ROI矩形形状
 
-           
 
-
-           
-
-
-           
-
-
-           ho_Shape = Func_ImageProcessing.Threshold_SelectMaxRegion(ho_Image, ho_ROI, parameter.hv_MinGray, parameter.hv_MaxGray);//创建结果形状
+            ho_Shape = Func_ImageProcessing.Threshold_SelectMaxRegion(ho_Image, ho_ROI, parameter.hv_MinGray, parameter.hv_MaxGray);//创建结果形状
             HOperatorSet.AreaCenter(ho_Shape, out hv_Area, out centerPoint.hv_Row, out centerPoint.hv_Column);//求取区域面积
-            HOperatorSet.RegionFeatures(ho_ROI, "row1", out HTuple hv_Row1);
+          /*  HOperatorSet.RegionFeatures(ho_ROI, "row1", out HTuple hv_Row1);
             HOperatorSet.RegionFeatures(ho_ROI, "column1", out HTuple hv_Column1);
             DP.hv_Column = hv_Column1;
-            DP.hv_Row = hv_Row1;
+            DP.hv_Row = hv_Row1;*/
             ho_ROI.Dispose();
             if (minValue > hv_Area || hv_Area > maxValue)//？面积在设定范围内
             {
@@ -94,16 +88,15 @@ namespace Vision.DataProcess.ShapeLib
 
         public override void DisplayDetail(HWindow_Final window)//显示详细信息
         {
-          
+
             base.DisplayDetail(window);
-            HObject ho_Rectangle = Func_HalconFunction.GenRectangle1(Func_Mathematics.ToRectangle1(parameter.rectangle2));
+            HObject ho_Rectangle = Func_HalconFunction.GenRectangle1(Func_Mathematics.ToRectangle1(ROI));
             window.DispObj(ho_Rectangle, color, "margin");
         }
 
         public override void DisplayResult(HWindow_Final window)//显示简单信息
         {
-            base.DisplayResult(window);
-            HObject ho_Rectangle = Func_HalconFunction.GenRectangle1(Func_Mathematics.ToRectangle1(parameter.rectangle2));
+            HObject ho_Rectangle = Func_HalconFunction.GenRectangle1(Func_Mathematics.ToRectangle1(ROI));
             window.DispObj(ho_Rectangle, color, "margin");
         }
 
@@ -112,7 +105,7 @@ namespace Vision.DataProcess.ShapeLib
         /// </summary>
         /// <returns></returns>
         public override object[] GetResultDetail()
-        { 
+        {
             string function;
             if (Exist)
             {
@@ -122,7 +115,7 @@ namespace Vision.DataProcess.ShapeLib
             {
                 function = "缺陷检测";
             }
-            return new object[] { name,function, minValue.ToString (), maxValue.ToString (), hv_Area.D.ToString("f0") };
+            return new object[] { name, function, minValue.ToString(), maxValue.ToString(), hv_Area.D.ToString("f0") };
         }
 
 

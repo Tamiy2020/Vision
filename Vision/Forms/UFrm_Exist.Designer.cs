@@ -91,8 +91,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.btn_SelectROI);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.splitContainer1.Size = new System.Drawing.Size(1273, 767);
-            this.splitContainer1.SplitterDistance = 805;
+            this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
+            this.splitContainer1.SplitterDistance = 827;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -107,13 +107,13 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(805, 767);
+            this.hWindow_Final1.Size = new System.Drawing.Size(827, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // lbl_Area
             // 
             this.lbl_Area.AutoSize = true;
-            this.lbl_Area.Location = new System.Drawing.Point(326, 73);
+            this.lbl_Area.Location = new System.Drawing.Point(349, 79);
             this.lbl_Area.Name = "lbl_Area";
             this.lbl_Area.Size = new System.Drawing.Size(15, 17);
             this.lbl_Area.TabIndex = 57;
@@ -123,7 +123,7 @@
             // 
             this.rdo_ExistTwo.AutoSize = true;
             this.rdo_ExistTwo.Checked = true;
-            this.rdo_ExistTwo.Location = new System.Drawing.Point(11, 386);
+            this.rdo_ExistTwo.Location = new System.Drawing.Point(27, 409);
             this.rdo_ExistTwo.Name = "rdo_ExistTwo";
             this.rdo_ExistTwo.Size = new System.Drawing.Size(74, 21);
             this.rdo_ExistTwo.TabIndex = 55;
@@ -134,7 +134,7 @@
             // rdo_Exist
             // 
             this.rdo_Exist.AutoSize = true;
-            this.rdo_Exist.Location = new System.Drawing.Point(254, 386);
+            this.rdo_Exist.Location = new System.Drawing.Point(351, 409);
             this.rdo_Exist.Name = "rdo_Exist";
             this.rdo_Exist.Size = new System.Drawing.Size(74, 21);
             this.rdo_Exist.TabIndex = 56;
@@ -144,7 +144,7 @@
             // 
             // nud_MaxValue
             // 
-            this.nud_MaxValue.Location = new System.Drawing.Point(252, 312);
+            this.nud_MaxValue.Location = new System.Drawing.Point(351, 312);
             this.nud_MaxValue.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -156,7 +156,7 @@
             // 
             // nud_MinValue
             // 
-            this.nud_MinValue.Location = new System.Drawing.Point(11, 312);
+            this.nud_MinValue.Location = new System.Drawing.Point(26, 312);
             this.nud_MinValue.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -169,7 +169,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(250, 297);
+            this.label5.Location = new System.Drawing.Point(349, 297);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 17);
             this.label5.TabIndex = 53;
@@ -178,7 +178,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 297);
+            this.label4.Location = new System.Drawing.Point(23, 297);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 17);
             this.label4.TabIndex = 54;
@@ -186,7 +186,8 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(11, 603);
+            this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_Cancel.Location = new System.Drawing.Point(26, 605);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
             this.btn_Cancel.TabIndex = 50;
@@ -196,7 +197,8 @@
             // 
             // btn_OK
             // 
-            this.btn_OK.Location = new System.Drawing.Point(343, 603);
+            this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_OK.Location = new System.Drawing.Point(352, 605);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 27);
             this.btn_OK.TabIndex = 49;
@@ -210,6 +212,7 @@
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.Size = new System.Drawing.Size(151, 23);
             this.txt_Name.TabIndex = 48;
+            this.txt_Name.Text = "有无";
             // 
             // label1
             // 
@@ -231,7 +234,7 @@
             this.groupBox1.Controls.Add(this.nud_MinGray);
             this.groupBox1.Location = new System.Drawing.Point(2, 119);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(465, 130);
+            this.groupBox1.Size = new System.Drawing.Size(459, 130);
             this.groupBox1.TabIndex = 46;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "阈值调整";
@@ -325,10 +328,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1273, 767);
+            this.ClientSize = new System.Drawing.Size(1292, 796);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

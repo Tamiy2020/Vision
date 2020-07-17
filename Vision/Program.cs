@@ -139,10 +139,22 @@ namespace Vision
                         foreach (var camera in form.cameraManager.listCamera)
                         {
                             camera.Grad();
+                            (camera as Dahua).setExposureTime(regkey.GetValue($"ExposureTime{camera.Index + 1}").ToString());
+                            (camera as Dahua).setGainRaw(regkey.GetValue($"GainRaw{camera.Index + 1}").ToString());
+
+                        }
+                    }
+                    if (form.cameraManager is DahengManager)
+                    {
+                        foreach (var camera in form.cameraManager.listCamera)
+                        {
+                            (camera as Daheng).StartDevice();
                         }
                     }
                     form.SetCameraWindows(form.cameraManager.listCamera.Count);//设置相机窗体样式
+                  
                     GetWin(form.cameraWin, form.cameraManager.listCamera, str1, str2, str3, str4, str5);//获得相机的窗体
+                   
 
                     Thread.Sleep(500);
                     //前面可加启动中的窗体

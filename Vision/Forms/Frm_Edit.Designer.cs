@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.hWindow_Final1 = new ChoiceTech.Halcon.Control.HWindow_Final();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbtn_Exist = new System.Windows.Forms.ToolStripButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dgv_Data = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgv_File = new System.Windows.Forms.DataGridView();
             this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EditItem = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeleteItem = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dgv_Data = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,9 +60,9 @@
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Data)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_File)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Data)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -118,7 +118,7 @@
             this.tsbtn_Exist.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtn_Exist.Name = "tsbtn_Exist";
             this.tsbtn_Exist.Size = new System.Drawing.Size(54, 47);
-            this.tsbtn_Exist.Text = "有无识别";
+            this.tsbtn_Exist.Text = "缺陷检测";
             this.tsbtn_Exist.Click += new System.EventHandler(this.tsbtn_Exist_Click);
             // 
             // tabControl1
@@ -126,7 +126,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tabControl1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -136,21 +136,46 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dgv_Data);
-            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1260, 171);
+            this.tabPage1.Size = new System.Drawing.Size(1260, 169);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "测量数据";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dgv_Data
+            // 
+            this.dgv_Data.AllowUserToAddRows = false;
+            this.dgv_Data.AllowUserToResizeColumns = false;
+            this.dgv_Data.AllowUserToResizeRows = false;
+            this.dgv_Data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv_Data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgv_Data.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgv_Data.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgv_Data.ColumnHeadersHeight = 25;
+            this.dgv_Data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgv_Data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5});
+            this.dgv_Data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_Data.Enabled = false;
+            this.dgv_Data.Location = new System.Drawing.Point(3, 3);
+            this.dgv_Data.Name = "dgv_Data";
+            this.dgv_Data.RowTemplate.Height = 23;
+            this.dgv_Data.Size = new System.Drawing.Size(1254, 163);
+            this.dgv_Data.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dgv_File);
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1260, 171);
+            this.tabPage2.Size = new System.Drawing.Size(1260, 169);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "文件控制";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -175,7 +200,7 @@
             this.dgv_File.Name = "dgv_File";
             this.dgv_File.RowTemplate.Height = 23;
             this.dgv_File.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgv_File.Size = new System.Drawing.Size(1254, 165);
+            this.dgv_File.Size = new System.Drawing.Size(1254, 163);
             this.dgv_File.TabIndex = 0;
             this.dgv_File.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_File_CellClick);
             // 
@@ -190,110 +215,67 @@
             // 
             this.ItemName.HeaderText = "名称                 ";
             this.ItemName.Name = "ItemName";
-            this.ItemName.Width = 125;
+            this.ItemName.Width = 130;
             // 
             // EditItem
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.NullValue = "编辑";
-            this.EditItem.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.NullValue = "编辑";
+            this.EditItem.DefaultCellStyle = dataGridViewCellStyle6;
             this.EditItem.HeaderText = "编辑     ";
             this.EditItem.Name = "EditItem";
-            this.EditItem.Width = 58;
+            this.EditItem.Width = 63;
             // 
             // DeleteItem
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.NullValue = "删除";
-            this.DeleteItem.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.NullValue = "删除";
+            this.DeleteItem.DefaultCellStyle = dataGridViewCellStyle7;
             this.DeleteItem.HeaderText = "删除     ";
             this.DeleteItem.Name = "DeleteItem";
-            this.DeleteItem.Width = 58;
-            // 
-            // dgv_Data
-            // 
-            this.dgv_Data.AllowUserToAddRows = false;
-            this.dgv_Data.AllowUserToResizeColumns = false;
-            this.dgv_Data.AllowUserToResizeRows = false;
-            this.dgv_Data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgv_Data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgv_Data.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgv_Data.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgv_Data.ColumnHeadersHeight = 25;
-            this.dgv_Data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgv_Data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column9});
-            this.dgv_Data.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_Data.Enabled = false;
-            this.dgv_Data.Location = new System.Drawing.Point(3, 3);
-            this.dgv_Data.Name = "dgv_Data";
-            this.dgv_Data.RowTemplate.Height = 23;
-            this.dgv_Data.Size = new System.Drawing.Size(1254, 165);
-            this.dgv_Data.TabIndex = 0;
+            this.DeleteItem.Width = 63;
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "名称                            ";
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Blue;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column1.HeaderText = "名称                                             ";
             this.Column1.Name = "Column1";
-            this.Column1.Width = 169;
+            this.Column1.Width = 242;
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "功能             ";
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Tomato;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column2.HeaderText = "功能                   ";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 109;
+            this.Column2.Width = 138;
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "下限        ";
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Maroon;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column3.HeaderText = "下限           ";
             this.Column3.Name = "Column3";
-            this.Column3.Width = 89;
+            this.Column3.Width = 106;
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "上限          ";
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Maroon;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column4.HeaderText = "上限               ";
             this.Column4.Name = "Column4";
-            this.Column4.Width = 97;
+            this.Column4.Width = 122;
             // 
             // Column5
             // 
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Green;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column5.HeaderText = "1     ";
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Green;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column5.HeaderText = "测量结果     ";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 56;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "2        ";
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 72;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "3     ";
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 56;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "4       ";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 68;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "5         ";
-            this.Column9.Name = "Column9";
-            this.Column9.Width = 76;
+            this.Column5.Width = 110;
             // 
             // Frm_Edit
             // 
@@ -306,7 +288,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Frm_Edit";
             this.Text = "Frm_Edit";
-            this.Shown += new System.EventHandler(this.Frm_Edit_Shown);
+            this.Load += new System.EventHandler(this.Frm_Edit_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -315,9 +297,9 @@
             this.toolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Data)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_File)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Data)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -342,9 +324,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
     }
 }

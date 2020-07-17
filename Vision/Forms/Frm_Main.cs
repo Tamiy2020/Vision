@@ -1,4 +1,5 @@
 ﻿using HalconDotNet;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,11 +19,14 @@ namespace Vision.Forms
 
         public CameraManager cameraManager = null;
 
-        private ExecutionManager executionManager = null;
+        private   ConfigManager configManager = null;
 
         public Form cameraWin = null;//相机显示窗体
 
         List<Frm_Edit> edits = new List<Frm_Edit>();//编辑窗体列队
+
+
+        RegistryKey regkey;// = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("HRDVision").OpenSubKey("FilePath");
 
         public Frm_Main()
         {
@@ -36,7 +40,7 @@ namespace Vision.Forms
                      | ControlStyles.UserPaint
                      | ControlStyles.SupportsTransparentBackColor,
                      true);
-            
+
 
             bool temp;
             try
@@ -67,6 +71,8 @@ namespace Vision.Forms
                 }
             }
 
+          
+
         }
 
         /// <summary>
@@ -76,7 +82,7 @@ namespace Vision.Forms
         {
             for (int i = 0; i < cameraManager.listCamera.Count; i++)
             {
-                Frm_Edit edit = new Frm_Edit(tabControl1.TabPages[1 + i], executionManager.listMeasureManager[i]);
+                Frm_Edit edit = new Frm_Edit(tabControl1.TabPages[1 + i], configManager.ExecutionManager.listMeasureManager[i]);
                 edit.Show();
                 edits.Add(edit);
             }
@@ -89,14 +95,31 @@ namespace Vision.Forms
         /// <param name="e"></param>
         private void Frm_Main_Load(object sender, EventArgs e)
         {
+          
             cameraWin.Show();//会报异常
 
-            executionManager = new ExecutionManager(cameraManager);
+            configManager = new ConfigManager(cameraManager);
             AddEditForm();//添加编辑窗体
             HOperatorSet.OpenFramegrabber("File", 0, 1, 0, 0, 0, 0, "default", -1, "default",
-   1, "false", "必须有", "default",
+   1, "false", "TANGMING", "default",
    -1, -1, out HTuple hv_AcqHandle);
             HOperatorSet.GrabImage(out HObject ho_Image, hv_AcqHandle);  //关键语句
+
+            regkey = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("HRDVision").OpenSubKey("FilePath", true);
+            if (regkey.GetValue("Path")==null)
+            {
+                regkey.SetValue("Path", "");
+            }
+            else
+            {
+                string str = regkey.GetValue("Path").ToString();
+                if (str!="")
+                {
+                    this.Text = Text + "——" + str.Substring(str.LastIndexOf("\\") + 1).Replace(".fpc", string.Empty);
+                }
+              
+            }
+               
         }
 
         /// <summary>
@@ -146,7 +169,7 @@ namespace Vision.Forms
         /// <param name="e"></param>
         private void Frm_Main_Shown(object sender, EventArgs e)
         {
-            executionManager.GradAll();
+            configManager.ExecutionManager.GradAll();
         }
 
 
@@ -154,34 +177,42 @@ namespace Vision.Forms
         #region 实时图像
         private void btn_Live_Click(object sender, EventArgs e)
         {
-            executionManager.LiveAll(true);
+            configManager.ExecutionManager.LiveAll(true);
             btn_Live.Enabled = false;
             btn_Test.Enabled = false;
             btn_Auto.Enabled = true;
+            foreach (var item in edits)
+            {
+                item.LiveMod(true);
+            }
         }
         #endregion
 
         #region 自动测试
         private void btn_Auto_Click(object sender, EventArgs e)
         {
-            executionManager.LiveAll(false);
+            configManager.ExecutionManager.LiveAll(false);
             btn_Live.Enabled = true;
             btn_Test.Enabled = true;
             btn_Auto.Enabled = false;
+            foreach (var item in edits)
+            {
+                item.LiveMod(false);
+            }
         }
         #endregion
 
         #region 手动测试
         private void btn_Test_Click(object sender, EventArgs e)
         {
-            executionManager.GradAll();
+            configManager.ExecutionManager.GradAll();
         }
         #endregion
 
         #region 计数清零
         private void tsmi_Clear_Click(object sender, EventArgs e)
         {
-            foreach (var item in executionManager.listMeasureManager)
+            foreach (var item in configManager.ExecutionManager.listMeasureManager)
             {
                 item.ClearCount();
             }
@@ -201,7 +232,7 @@ namespace Vision.Forms
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            executionManager.GradAll();
+            configManager.ExecutionManager.GradAll();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -216,8 +247,81 @@ namespace Vision.Forms
 
         private void tsmi_osk_Click(object sender, EventArgs e)
         {
-          
-          
+
+
+        }
+
+        //新建
+        private void tsmi_New_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("确定要新建吗？\n\r请确保您之前编辑的项目已保存。", "新建项目", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result == DialogResult.OK)//？确定新建
+            {
+                configManager.ExecutionManager.ClearMUMList();//清空数据
+                regkey.SetValue("Path", "");
+
+                foreach (var item in edits)
+                {
+                    item.UpdateDataGridView();
+                }
+                this.Text = "HRDVison";
+                configManager.ExecutionManager.GradAll();//运行一次测试
+
+
+            }
+        }
+
+        //打开
+        private void tsmi_Open_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)//选择路径
+            {
+                regkey.SetValue("Path", openFileDialog1.FileName);//保存路径
+                configManager.ExecutionManager.Dispose();
+                configManager.LoadUnitData(cameraManager);//加载数据
+                configManager.ExecutionManager.GradAll();//运行一次测试
+
+                this.Text = Text + "——" + openFileDialog1.SafeFileName.Replace(".fpc", string.Empty);
+                for (int i = 0; i < edits.Count; i++)
+                {
+                    edits[i].SetExecutionUnit(configManager.ExecutionManager.listMeasureManager[i]);
+                }
+                   
+            }
+        }
+
+        //保存
+        private void tsmi_Save_Click(object sender, EventArgs e)
+        {
+            if (regkey.GetValue ("Path").ToString ()!="")
+            {
+                configManager.SaveMeasureData(regkey.GetValue("Path").ToString());
+                return;
+            }
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)//选择路径
+            {
+                regkey.SetValue("Path", saveFileDialog1.FileName);//保存路径
+                configManager.SaveMeasureData(regkey.GetValue("Path").ToString());
+
+                string str = saveFileDialog1.FileName.ToString().Substring(saveFileDialog1.FileName.LastIndexOf("\\") + 1);
+                this.Text = Text + "——" + str.Replace(".fpc", string.Empty);
+            }
+
+        }
+
+        //另存为
+        private void tsmi_SaveAs_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)//选择路径
+            {
+                configManager.SaveMeasureData(saveFileDialog1.FileName);
+            }
+        }
+
+        //退出
+        private void tsmi_Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

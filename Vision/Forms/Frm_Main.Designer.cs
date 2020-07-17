@@ -65,6 +65,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btn_Auto = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -106,6 +108,7 @@
             this.tsmi_New.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.tsmi_New.Size = new System.Drawing.Size(238, 24);
             this.tsmi_New.Text = "新建(&N)";
+            this.tsmi_New.Click += new System.EventHandler(this.tsmi_New_Click);
             // 
             // tsmi_Open
             // 
@@ -114,6 +117,7 @@
             this.tsmi_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.tsmi_Open.Size = new System.Drawing.Size(238, 24);
             this.tsmi_Open.Text = "打开(&O)";
+            this.tsmi_Open.Click += new System.EventHandler(this.tsmi_Open_Click);
             // 
             // tsmi_Save
             // 
@@ -122,6 +126,7 @@
             this.tsmi_Save.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.tsmi_Save.Size = new System.Drawing.Size(238, 24);
             this.tsmi_Save.Text = "保存(&S)";
+            this.tsmi_Save.Click += new System.EventHandler(this.tsmi_Save_Click);
             // 
             // tsmi_SaveAs
             // 
@@ -131,6 +136,7 @@
             | System.Windows.Forms.Keys.S)));
             this.tsmi_SaveAs.Size = new System.Drawing.Size(238, 24);
             this.tsmi_SaveAs.Text = "另存为(&A)";
+            this.tsmi_SaveAs.Click += new System.EventHandler(this.tsmi_SaveAs_Click);
             // 
             // toolStripSeparator1
             // 
@@ -144,6 +150,7 @@
             this.tsmi_Exit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.tsmi_Exit.Size = new System.Drawing.Size(238, 24);
             this.tsmi_Exit.Text = "退出(&X)";
+            this.tsmi_Exit.Click += new System.EventHandler(this.tsmi_Exit_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -358,6 +365,7 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(944, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -369,6 +377,7 @@
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(1060, 13);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
@@ -394,6 +403,14 @@
             this.btn_Auto.Text = "自动测试";
             this.btn_Auto.UseVisualStyleBackColor = true;
             this.btn_Auto.Click += new System.EventHandler(this.btn_Auto_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "数据文件(*.fpc)|*.fpc";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "数据文件(*.fpc)|*.fpc";
             // 
             // Frm_Main
             // 
@@ -464,6 +481,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btn_Auto;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

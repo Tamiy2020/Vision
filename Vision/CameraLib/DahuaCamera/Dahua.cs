@@ -195,7 +195,7 @@ namespace Vision.CameraLib
                 p.SetValue("Mono8");
             }
 
-            // 设置曝光 
+          /*  // 设置曝光 
             // set ExposureTime 
             using (IFloatParameter p = objDev.ParameterCollection[ParametrizeNameSet.ExposureTime])
             {
@@ -207,7 +207,7 @@ namespace Vision.CameraLib
             using (IFloatParameter p = objDev.ParameterCollection[ParametrizeNameSet.GainRaw])
             {
                 p.SetValue(1.0);
-            }
+            }*/
 
             // 开启图像采集函数线程
             renderThread = new Thread(new ThreadStart(ShowThread));
@@ -306,5 +306,58 @@ namespace Vision.CameraLib
                 Catcher.Show(exception);
             }
         }
+
+        /// <summary>
+        /// 获取曝光时间
+        /// </summary>
+        /// <returns></returns>
+        public string getExposureTime()
+        {
+            /* ExposureTime */
+            {
+                using (IFloatParameter p = objDev.ParameterCollection[new FloatName("ExposureTime")])
+                {
+                    Trace.WriteLine(string.Format("ExposureTime value: {0}", p.GetValue()));
+                    return p.GetValue().ToString("f2");
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// 获取增益
+        /// </summary>
+        /// <returns></returns>
+        public string getGainRaw()
+        {
+            {
+                using (IFloatParameter p = objDev.ParameterCollection[new FloatName("GainRaw")])
+                {
+                    Trace.WriteLine(string.Format("ExposureTime value: {0}", p.GetValue()));
+                    return p.GetValue().ToString("f2");
+                }
+            }
+        }
+
+
+        public void setGainRaw(string gainRaw)
+        {
+            /* 设置增益 */
+            using (IFloatParameter p = objDev.ParameterCollection[ParametrizeNameSet.GainRaw])
+            {
+                p.SetValue(double.Parse(gainRaw));
+            }
+        }
+
+        public void setExposureTime(string et)
+        {
+            /* 设置曝光 */
+            using (IFloatParameter p = objDev.ParameterCollection[ParametrizeNameSet.ExposureTime])
+            {
+                p.SetValue(double.Parse(et));
+            }
+        }
+
+
     }
 }

@@ -42,7 +42,6 @@ namespace Vision.DataProcess.ShapeLib
         public override void DisplayDetail(HWindow_Final window)//显示详细信息
         {
             window .DispObj(ho_Shape, "green", "fill");//区域
-            window.DispString(DP.hv_Column, DP.hv_Row - 150, ((double)hv_Area).ToString("f0"), color);//区域面积
         }
 
         public override void DisplayResult(HWindow_Final window)//显示简单信息

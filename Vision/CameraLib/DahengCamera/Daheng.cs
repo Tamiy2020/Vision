@@ -110,7 +110,7 @@ namespace Vision.CameraLib
         /// <param name="objIFrameData">图像信息对象</param>
         private void CaptureCallbackPro(object objUserParam, IFrameData objIFrameData)
         {
-            //try
+            try
             {
                 Daheng cam = objUserParam as Daheng;
                 HObject image = cam.dahengImage.Show(objIFrameData);
@@ -118,7 +118,7 @@ namespace Vision.CameraLib
                 image.Dispose();
                 GC.Collect();
             }
-            //catch (Exception) { }
+            catch (Exception) { }
 
         }
 

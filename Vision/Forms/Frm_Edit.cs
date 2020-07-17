@@ -25,7 +25,7 @@ namespace Vision.Forms
 
       
 
-        private delegate void InvokeHandler();
+       
 
 
         public Frm_Edit(Control parent, MeasureManager measureManager)
@@ -51,7 +51,15 @@ namespace Vision.Forms
           
         }
 
-      
+        public void SetExecutionUnit(MeasureManager measureManager)
+        {
+            this.measureManager = measureManager;
+
+            measureManager.AddCompleted += MeasureManager_AddCompleted;//挂载测量单元管理器添加完成事件
+            measureManager.ModificationCompleted += MeasureManager_ModificationCompleted;//挂载测量单元管理器修改完成事件
+            UpdateDataGridView();
+        }
+
 
         private int MeasureManager_ModificationCompleted(object sender, object e)
         {
@@ -67,7 +75,7 @@ namespace Vision.Forms
         /// <summary>
         /// 更新列表显示
         /// </summary>
-        private void UpdateDataGridView()
+        public  void UpdateDataGridView()
         {
             dgv_File.Rows.Clear();
             foreach (var item in measureManager .ListAllUnit())
@@ -119,7 +127,7 @@ namespace Vision.Forms
                 hWindow_Final1.HobjectToHimage(ho_Image);
                 measureManager.DisplayResult(hWindow_Final1);//字符串
 
-                this.Invoke(new InvokeHandler(UpdateDataGridView_Data));
+                this.Invoke(new Action(UpdateDataGridView_Data));
 
                
             }
@@ -130,19 +138,14 @@ namespace Vision.Forms
         }
 
 
+       
         /// <summary>
-        /// 编辑模式
+        /// 实时模式
         /// </summary>
         /// <param name="sign"></param>
-        public void EditMod(bool sign)
+        public void LiveMod(bool sign)
         {
             toolStrip1.Enabled = !sign;
-           // dgv_Data.Enabled = !sign;
-        }
-
-        private void Frm_Edit_Shown(object sender, EventArgs e)
-        {
-
         }
 
         private void tsbtn_Exist_Click(object sender, EventArgs e)
@@ -208,6 +211,11 @@ namespace Vision.Forms
                     }
                 }
             }
+        }
+
+        private void Frm_Edit_Load(object sender, EventArgs e)
+        {
+            UpdateDataGridView();
         }
     }
 }

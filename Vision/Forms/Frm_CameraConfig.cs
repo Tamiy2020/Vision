@@ -42,6 +42,11 @@ namespace Vision.Forms
                     {
                         camera.Grad();
                     }
+                    if (camera is Daheng)
+                    {
+                        (camera as Daheng).StartDevice();
+                    }
+
                     comboBox1.Items.Add(camera.strName);
                 }
             }
@@ -56,7 +61,12 @@ namespace Vision.Forms
         #region 选择相机
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (regkey == null) regkey = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("HRDVision"); //创建注册表
+            if (regkey == null)
+            {
+                regkey = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("HRDVision"); //创建注册表
+                regkey.CreateSubKey("FilePath"); //创建注册表
+            
+            }
             if (lbl_C1.Text == string.Empty)
             {
                 str1 = comboBox1.SelectedItem.ToString();
@@ -117,6 +127,15 @@ namespace Vision.Forms
             form.SetCameraWindows(form.cameraManager.listCamera.Count);
             Program.GetWin(form.cameraWin, form.cameraManager.listCamera, str1, str2, str3, str4, str5);
             regkey.SetValue("Cameras", form.cameraManager.listCamera.Count, RegistryValueKind.DWord);
+            foreach (var camera  in form.cameraManager.listCamera)
+            {
+                if (camera is Dahua)
+                {
+                    regkey.SetValue($"ExposureTime{camera .Index +1}", (camera as Dahua).getExposureTime());
+                    regkey.SetValue($"GainRaw{camera.Index + 1}", (camera as Dahua).getGainRaw());
+
+                }
+            }
             Thread.Sleep(500);
             this.Hide();
             form.Show();
@@ -136,7 +155,12 @@ namespace Vision.Forms
         private void btn_Add_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txt_Path.Text) || !Directory.Exists(txt_Path.Text)) return;
-            if (regkey == null) regkey = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("HRDVision"); //创建注册表
+            if (regkey == null)
+            {
+                regkey = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("HRDVision"); //创建注册表
+                regkey.CreateSubKey("FilePath"); //创建注册表
+            }
+               
             if (lbl_C1.Text == string.Empty)
             {
                 str1 = txt_Path.Text;
