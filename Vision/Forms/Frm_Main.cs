@@ -19,7 +19,7 @@ namespace Vision.Forms
 
         public CameraManager cameraManager = null;
 
-        private   ConfigManager configManager = null;
+        private ConfigManager configManager = null;
 
         public Form cameraWin = null;//相机显示窗体
 
@@ -71,7 +71,7 @@ namespace Vision.Forms
                 }
             }
 
-          
+
 
         }
 
@@ -95,7 +95,7 @@ namespace Vision.Forms
         /// <param name="e"></param>
         private void Frm_Main_Load(object sender, EventArgs e)
         {
-          
+
             cameraWin.Show();//会报异常
 
             configManager = new ConfigManager(cameraManager);
@@ -106,20 +106,20 @@ namespace Vision.Forms
             HOperatorSet.GrabImage(out HObject ho_Image, hv_AcqHandle);  //关键语句
 
             regkey = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("HRDVision").OpenSubKey("FilePath", true);
-            if (regkey.GetValue("Path")==null)
+            if (regkey.GetValue("Path") == null)
             {
                 regkey.SetValue("Path", "");
             }
             else
             {
                 string str = regkey.GetValue("Path").ToString();
-                if (str!="")
+                if (str != "")
                 {
                     this.Text = Text + "——" + str.Substring(str.LastIndexOf("\\") + 1).Replace(".fpc", string.Empty);
                 }
-              
+
             }
-               
+
         }
 
         /// <summary>
@@ -245,11 +245,7 @@ namespace Vision.Forms
             timer1.Stop();
         }
 
-        private void tsmi_osk_Click(object sender, EventArgs e)
-        {
 
-
-        }
 
         //新建
         private void tsmi_New_Click(object sender, EventArgs e)
@@ -286,14 +282,14 @@ namespace Vision.Forms
                 {
                     edits[i].SetExecutionUnit(configManager.ExecutionManager.listMeasureManager[i]);
                 }
-                   
+
             }
         }
 
         //保存
         private void tsmi_Save_Click(object sender, EventArgs e)
         {
-            if (regkey.GetValue ("Path").ToString ()!="")
+            if (regkey.GetValue("Path").ToString() != "")
             {
                 configManager.SaveMeasureData(regkey.GetValue("Path").ToString());
                 return;
@@ -323,5 +319,140 @@ namespace Vision.Forms
         {
             this.Close();
         }
+
+        private void tsmi_Excel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("尚未开发，敬请期待！");
+        }
+
+        private void tsmi_IO_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("尚未开发，敬请期待！");
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 0)
+            {
+                tsmi_SaveImage.Enabled = false;
+                tsmi_SaveResultImage.Enabled = false;
+            }
+            else
+            {
+                tsmi_SaveImage.Enabled = true;
+                tsmi_SaveResultImage.Enabled = true;
+            }
+        }
+
+
+        //保存当前采集图片
+        private void tsmi_SaveImage_Click(object sender, EventArgs e)
+        {
+
+            switch (tabControl1.SelectedIndex)
+            {
+
+                case 1:
+                    SaveImage(1);
+                    break;
+                case 2:
+                    SaveImage(2);
+                    break;
+                case 3:
+                    SaveImage(3);
+                    break;
+                case 4:
+                    SaveImage(4);
+                    break;
+                case 5:
+                    SaveImage(5);
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+        private void tsmi_SaveResultImage_Click(object sender, EventArgs e)
+        {
+            switch (tabControl1.SelectedIndex)
+            {
+
+                case 1:
+                    SaveResultImage(1);
+                    break;
+                case 2:
+                    SaveResultImage(2);
+                    break;
+                case 3:
+                    SaveResultImage(3);
+                    break;
+                case 4:
+                    SaveResultImage(4);
+                    break;
+                case 5:
+                    SaveResultImage(5);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 保存采集图片
+        /// </summary>
+        /// <param name="index"></param>
+        private void SaveImage(int index)
+        {
+            if (sfd_Image.ShowDialog() == DialogResult.OK)
+            {
+                HOperatorSet.WriteImage(edits[index - 1].GetImage(), "tiff", 0, sfd_Image.FileName);
+            }
+        }
+
+        /// <summary>
+        /// 保存结果图像
+        /// </summary>
+        /// <param name="index"></param>
+        private void SaveResultImage(int index)
+        {
+            if (sfd_Image.ShowDialog() == DialogResult.OK)
+            {
+                HOperatorSet.DumpWindowImage(out HObject ho_Image, edits[index - 1].GetHWindow());
+                HOperatorSet.WriteImage(ho_Image, "tiff", 0, sfd_Image.FileName);
+            }
+        }
+
+        private void tsmi_Login_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("还没写ε=(´ο｀*)))唉");
+        }
+
+        private void tsmi_Password_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("还没写ε=(´ο｀*)))唉");
+        }
+
+        private void tsmi_LogOut_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("还没写ε=(´ο｀*)))唉");
+        }
+        private void tsmi_osk_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("还没有键盘");
+        }
+
+        private void tsmi_About_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("17887202071");
+        }
+
+        private void tsmi_Instruction_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("没有说明");
+        }
+
+
     }
 }

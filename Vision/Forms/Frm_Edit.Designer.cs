@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.hWindow_Final1 = new ChoiceTech.Halcon.Control.HWindow_Final();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -42,17 +42,17 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgv_Data = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgv_File = new System.Windows.Forms.DataGridView();
             this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EditItem = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeleteItem = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -91,7 +91,7 @@
             this.hWindow_Final1.BackColor = System.Drawing.Color.Transparent;
             this.hWindow_Final1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.hWindow_Final1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hWindow_Final1.DrawModel = false;
+            this.hWindow_Final1.DrawModel = true;
             this.hWindow_Final1.EditModel = true;
             this.hWindow_Final1.Image = null;
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 50);
@@ -153,7 +153,7 @@
             this.dgv_Data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgv_Data.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgv_Data.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgv_Data.ColumnHeadersHeight = 25;
+            this.dgv_Data.ColumnHeadersHeight = 27;
             this.dgv_Data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_Data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -168,6 +168,48 @@
             this.dgv_Data.RowTemplate.Height = 23;
             this.dgv_Data.Size = new System.Drawing.Size(1254, 163);
             this.dgv_Data.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Blue;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Column1.HeaderText = "名称                                             ";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 242;
+            // 
+            // Column2
+            // 
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Tomato;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle9;
+            this.Column2.HeaderText = "功能                   ";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 138;
+            // 
+            // Column3
+            // 
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Maroon;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle10;
+            this.Column3.HeaderText = "下限           ";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 106;
+            // 
+            // Column4
+            // 
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Maroon;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle11;
+            this.Column4.HeaderText = "上限               ";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 122;
+            // 
+            // Column5
+            // 
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Green;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle12;
+            this.Column5.HeaderText = "测量结果     ";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 110;
             // 
             // tabPage2
             // 
@@ -219,63 +261,21 @@
             // 
             // EditItem
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.NullValue = "编辑";
-            this.EditItem.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.NullValue = "编辑";
+            this.EditItem.DefaultCellStyle = dataGridViewCellStyle13;
             this.EditItem.HeaderText = "编辑     ";
             this.EditItem.Name = "EditItem";
             this.EditItem.Width = 63;
             // 
             // DeleteItem
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.NullValue = "删除";
-            this.DeleteItem.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.NullValue = "删除";
+            this.DeleteItem.DefaultCellStyle = dataGridViewCellStyle14;
             this.DeleteItem.HeaderText = "删除     ";
             this.DeleteItem.Name = "DeleteItem";
             this.DeleteItem.Width = 63;
-            // 
-            // Column1
-            // 
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Blue;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column1.HeaderText = "名称                                             ";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 242;
-            // 
-            // Column2
-            // 
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Tomato;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column2.HeaderText = "功能                   ";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 138;
-            // 
-            // Column3
-            // 
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Maroon;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column3.HeaderText = "下限           ";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 106;
-            // 
-            // Column4
-            // 
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Maroon;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column4.HeaderText = "上限               ";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 122;
-            // 
-            // Column5
-            // 
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Green;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Column5.HeaderText = "测量结果     ";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 110;
             // 
             // Frm_Edit
             // 

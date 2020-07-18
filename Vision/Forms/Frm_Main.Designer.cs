@@ -67,6 +67,7 @@
             this.btn_Auto = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.sfd_Image = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -167,12 +168,14 @@
             this.tsmi_Excel.Name = "tsmi_Excel";
             this.tsmi_Excel.Size = new System.Drawing.Size(160, 24);
             this.tsmi_Excel.Text = "写入Excel";
+            this.tsmi_Excel.Click += new System.EventHandler(this.tsmi_Excel_Click);
             // 
             // tsmi_IO
             // 
             this.tsmi_IO.Name = "tsmi_IO";
             this.tsmi_IO.Size = new System.Drawing.Size(160, 24);
             this.tsmi_IO.Text = "IO控制";
+            this.tsmi_IO.Click += new System.EventHandler(this.tsmi_IO_Click);
             // 
             // tsmi_Clear
             // 
@@ -193,15 +196,19 @@
             // 
             // tsmi_SaveImage
             // 
+            this.tsmi_SaveImage.Enabled = false;
             this.tsmi_SaveImage.Name = "tsmi_SaveImage";
             this.tsmi_SaveImage.Size = new System.Drawing.Size(190, 24);
             this.tsmi_SaveImage.Text = "保存当前采集图像";
+            this.tsmi_SaveImage.Click += new System.EventHandler(this.tsmi_SaveImage_Click);
             // 
             // tsmi_SaveResultImage
             // 
+            this.tsmi_SaveResultImage.Enabled = false;
             this.tsmi_SaveResultImage.Name = "tsmi_SaveResultImage";
             this.tsmi_SaveResultImage.Size = new System.Drawing.Size(190, 24);
             this.tsmi_SaveResultImage.Text = "保存当前结果图像";
+            this.tsmi_SaveResultImage.Click += new System.EventHandler(this.tsmi_SaveResultImage_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -218,18 +225,21 @@
             this.tsmi_Login.Name = "tsmi_Login";
             this.tsmi_Login.Size = new System.Drawing.Size(134, 24);
             this.tsmi_Login.Text = "用户登录";
+            this.tsmi_Login.Click += new System.EventHandler(this.tsmi_Login_Click);
             // 
             // tsmi_Password
             // 
             this.tsmi_Password.Name = "tsmi_Password";
             this.tsmi_Password.Size = new System.Drawing.Size(134, 24);
             this.tsmi_Password.Text = "密码管理";
+            this.tsmi_Password.Click += new System.EventHandler(this.tsmi_Password_Click);
             // 
             // tsmi_LogOut
             // 
             this.tsmi_LogOut.Name = "tsmi_LogOut";
             this.tsmi_LogOut.Size = new System.Drawing.Size(134, 24);
             this.tsmi_LogOut.Text = "退出登录";
+            this.tsmi_LogOut.Click += new System.EventHandler(this.tsmi_LogOut_Click);
             // 
             // toolStripMenuItem5
             // 
@@ -253,12 +263,14 @@
             this.tsmi_About.Name = "tsmi_About";
             this.tsmi_About.Size = new System.Drawing.Size(134, 24);
             this.tsmi_About.Text = "关于软件";
+            this.tsmi_About.Click += new System.EventHandler(this.tsmi_About_Click);
             // 
             // tsmi_Instruction
             // 
             this.tsmi_Instruction.Name = "tsmi_Instruction";
             this.tsmi_Instruction.Size = new System.Drawing.Size(134, 24);
             this.tsmi_Instruction.Text = "操作说明";
+            this.tsmi_Instruction.Click += new System.EventHandler(this.tsmi_Instruction_Click);
             // 
             // tabControl1
             // 
@@ -275,6 +287,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1264, 767);
             this.tabControl1.TabIndex = 1;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -412,6 +425,10 @@
             // 
             this.saveFileDialog1.Filter = "数据文件(*.fpc)|*.fpc";
             // 
+            // sfd_Image
+            // 
+            this.sfd_Image.Filter = "图片文件(*.tif)|*.tif";
+            // 
             // Frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -483,6 +500,7 @@
         private System.Windows.Forms.Button btn_Auto;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog sfd_Image;
     }
 }
 

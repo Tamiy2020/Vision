@@ -23,15 +23,15 @@ namespace Vision.Forms
         /// </summary>
         public MeasureManager measureManager;
 
-      
 
-       
+
+
 
 
         public Frm_Edit(Control parent, MeasureManager measureManager)
         {
             InitializeComponent();
-        
+
             Initialize(parent, measureManager);//初始化
         }
 
@@ -48,7 +48,7 @@ namespace Vision.Forms
 
             measureManager.AddCompleted += MeasureManager_AddCompleted;//挂载测量单元管理器添加完成事件
             measureManager.ModificationCompleted += MeasureManager_ModificationCompleted;//挂载测量单元管理器修改完成事件
-          
+
         }
 
         public void SetExecutionUnit(MeasureManager measureManager)
@@ -75,10 +75,10 @@ namespace Vision.Forms
         /// <summary>
         /// 更新列表显示
         /// </summary>
-        public  void UpdateDataGridView()
+        public void UpdateDataGridView()
         {
             dgv_File.Rows.Clear();
-            foreach (var item in measureManager .ListAllUnit())
+            foreach (var item in measureManager.ListAllUnit())
             {
                 dgv_File.Rows.Add(item);//在表格视图中添加测量项
             }
@@ -90,29 +90,19 @@ namespace Vision.Forms
             List<object[]> rows = measureManager.ListAllData();
             foreach (var item in rows)
             {
-
-              
-              
                 dgv_Data.Rows.Add(item);//在表格视图中添加测量项
-
 
                 if (Convert.ToInt32(item[2]) > Convert.ToInt32(item[4]) || Convert.ToInt32(item[4]) > Convert.ToInt32(item[3]))
                 {
-                    for (int i = 0; i < dgv_Data.Rows.Count; i++)
-                    {
-                        dgv_Data.Rows[i].Cells[4].Style.ForeColor = Color.Red;
-                    }
-
+                    dgv_Data.Rows[dgv_Data.Rows.Count - 1].Cells[4].Style.ForeColor = Color.Red;
                 }
-
-
             }
-           
+
         }
 
         private int MeasureManager_AddCompleted(object sender, object e)
         {
-            dgv_File .Rows.Add(e as object[]);
+            dgv_File.Rows.Add(e as object[]);
             UpdateDataGridView();
             return 0;
         }
@@ -120,7 +110,7 @@ namespace Vision.Forms
         //图像处理
         private void Camera_ImageAcqed(HObject ho_Image)
         {
-          
+
             if (measureManager.bisTest)
             {
                 measureManager.MeasureStartDetail(ho_Image);//测量
@@ -129,7 +119,6 @@ namespace Vision.Forms
 
                 this.Invoke(new Action(UpdateDataGridView_Data));
 
-               
             }
             else
             {
@@ -138,7 +127,17 @@ namespace Vision.Forms
         }
 
 
-       
+        public HObject GetImage()
+        {
+            return hWindow_Final1.Image;
+        }
+
+        public HWindow GetHWindow()
+        {
+            return hWindow_Final1.hWindowControl.HalconWindow; 
+        }
+
+
         /// <summary>
         /// 实时模式
         /// </summary>
@@ -150,7 +149,7 @@ namespace Vision.Forms
 
         private void tsbtn_Exist_Click(object sender, EventArgs e)
         {
-            UFrm_Exist uFrm_Exist = new UFrm_Exist(this,hWindow_Final1.Image);
+            UFrm_Exist uFrm_Exist = new UFrm_Exist(this, hWindow_Final1.Image);
             uFrm_Exist.ShowDialog();
         }
 
@@ -168,15 +167,15 @@ namespace Vision.Forms
             {
                 object data = measureManager.GetMeasuringUnit(id);//查找该id对应的项
                 if (data == null) { MessageBox.Show("查无此项修改失败"); return; }//查无此项修改失败
-             
+
 
                 #region 反射生成窗体
                 Type formType = (measureManager.GetMeasuringUnit(id) as MeasuringUnit).formType;//拿到窗体类型
-                object form = Activator.CreateInstance(formType,this,hWindow_Final1.Image , data);//通过窗体类型创建窗体
-              /*  PropertyInfo propertyInfo = formType.GetProperty("Parent");//找到Paraent属性
-                propertyInfo.SetValue(form, splitContainer1.Panel2, null);//赋值Paraent属性 */               
+                object form = Activator.CreateInstance(formType, this, hWindow_Final1.Image, data);//通过窗体类型创建窗体
+                /*  PropertyInfo propertyInfo = formType.GetProperty("Parent");//找到Paraent属性
+                  propertyInfo.SetValue(form, splitContainer1.Panel2, null);//赋值Paraent属性 */
                 MethodInfo methodInfo = formType.GetMethod("ShowDialog", new Type[] { });//找到Show方法
-             
+
                 methodInfo.Invoke(form, null);//执行Show方法 
                 #endregion
 
