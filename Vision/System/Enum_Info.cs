@@ -16,4 +16,15 @@ namespace Vision
         OK=1,
         无料 = -1
     }
+
+
+    /// <summary>
+    /// 线类型枚举
+    /// </summary>
+    public enum LineStyle
+    {
+        灰度抓取,
+        边缘检测,
+        边缘拟合
+    }
 }

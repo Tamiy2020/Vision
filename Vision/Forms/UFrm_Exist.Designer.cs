@@ -91,7 +91,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btn_SelectROI);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 836;
+            this.splitContainer1.SplitterDistance = 842;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -106,7 +106,7 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(836, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(842, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // lbl_Area
@@ -340,7 +340,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "有无检测窗体";
+            this.Text = "缺陷检测窗体";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UFrm_Exist_FormClosing);
             this.Load += new System.EventHandler(this.UFrm_Exist_Load);

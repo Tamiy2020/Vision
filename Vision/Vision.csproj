@@ -128,6 +128,12 @@
     <Compile Include="Forms\Ufrm_DatumLine.Designer.cs">
       <DependentUpon>Ufrm_DatumLine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Ufrm_Line.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ufrm_Line.Designer.cs">
+      <DependentUpon>Ufrm_Line.cs</DependentUpon>
+    </Compile>
     <Compile Include="System\ConfigManager.cs" />
     <Compile Include="DataProcess\AxByC.cs" />
     <Compile Include="DataProcess\CalculationLib\多项计算\BaseCal_Multi.cs" />
@@ -252,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UFrm_Exist.resx">
       <DependentUpon>UFrm_Exist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ufrm_Line.resx">
+      <DependentUpon>Ufrm_Line.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -161,6 +161,12 @@ namespace Vision.Forms
             ufrm_DatumLine.ShowDialog();
         }
 
+        //边缘提取
+        private void tsbtn_Line_Click(object sender, EventArgs e)
+        {
+            Ufrm_Line ufrm_Line = new Ufrm_Line(this, hWindow_Final1.Image);
+            ufrm_Line.ShowDialog();
+        }
 
         //缺陷检测
         private void tsbtn_Exist_Click(object sender, EventArgs e)
@@ -235,6 +241,6 @@ namespace Vision.Forms
             UpdateDataGridView();
         }
 
-
+       
     }
 }
