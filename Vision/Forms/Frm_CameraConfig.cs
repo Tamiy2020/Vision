@@ -26,6 +26,8 @@ namespace Vision.Forms
         public Frm_CameraConfig()
         {
             InitializeComponent();
+            Registry.ClassesRoot.CreateSubKey(".fpc").SetValue("","fpcfile"); //创建注册表
+            Registry.ClassesRoot.CreateSubKey("fpcfile").CreateSubKey("DefaultIcon").SetValue("", "C:\\Windows\\System32\\HRD.ico");
         }
 
         private void Frm_CameraConfig_Load(object sender, EventArgs e)

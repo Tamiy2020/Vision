@@ -85,12 +85,11 @@ namespace Vision
                         }
                         try
                         {
-                            form.cameraManager.OpenAll();
+                            form.cameraManager.OpenAll();//打开所有相机
                         }
                         catch (Exception)
                         {
                             MessageBox.Show("系统异常");
-                            //Registry.CurrentUser.OpenSubKey("Software", true).DeleteSubKeyTree("HRDVision");//删除注册表
                             return;
                         }
 
@@ -102,7 +101,7 @@ namespace Vision
                         Application.Run(form);
 
                     }
-                    else if (form.cameraManager is DahengManager || form.cameraManager is DahuaManager)
+                    else if (form.cameraManager is DahengManager || form.cameraManager is DahuaManager)//大恒、大华相机
                     {
                         switch (regkey.GetValue("Cameras").ToString())
                         {
@@ -137,7 +136,6 @@ namespace Vision
                                 break;
                             default:
                                 MessageBox.Show("系统异常");
-                                // Registry.CurrentUser.OpenSubKey("Software", true).DeleteSubKeyTree("HRDVision");//删除注册表
                                 return;
                         }
                         form.cameraManager.OpenAll();//打开所有相机
@@ -145,9 +143,9 @@ namespace Vision
                         {
                             foreach (var camera in form.cameraManager.listCamera)
                             {
-                                camera.Grad();
-                                (camera as Dahua).setExposureTime(regkey.GetValue($"ExposureTime{camera.Index + 1}").ToString());
-                                (camera as Dahua).setGainRaw(regkey.GetValue($"GainRaw{camera.Index + 1}").ToString());
+                                camera.Grad();//开始采集
+                                (camera as Dahua).setExposureTime(regkey.GetValue($"ExposureTime{camera.Index + 1}").ToString());//设置曝光
+                                (camera as Dahua).setGainRaw(regkey.GetValue($"GainRaw{camera.Index + 1}").ToString());//设置增益
 
                             }
                         }
@@ -155,7 +153,7 @@ namespace Vision
                         {
                             foreach (var camera in form.cameraManager.listCamera)
                             {
-                                (camera as Daheng).StartDevice();
+                                (camera as Daheng).StartDevice();//开始采集
                             }
                         }
                         form.SetCameraWindows(form.cameraManager.listCamera.Count);//设置相机窗体样式
@@ -174,12 +172,15 @@ namespace Vision
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new Frm_CameraConfig());
-
                 }
 
             }
         }
 
+        /// <summary>
+        /// 判断软件是否已经运行
+        /// </summary>
+        /// <returns></returns>
         private static bool isAlreadyRunning()
         {
             bool b = false;
@@ -192,7 +193,7 @@ namespace Vision
         }
 
         /// <summary>
-        /// 大恒类改变相机的顺序
+        /// 大恒类、大华类改变相机的顺序
         /// </summary>
         /// <param name="cameras">相机集合</param>
         /// <param name="str">序列号</param>

@@ -118,8 +118,7 @@ namespace Vision.Forms
         //框选区域
         private void btn_SelectROI_Click(object sender, EventArgs e)
         {
-            getRegionUseThreshold.minValue = (double)nud_MinValue.Value;
-            getRegionUseThreshold.maxValue = (double)nud_MaxValue.Value;
+          
             DrawMode(true);
 
             Rectangle1 rectangle1 = Func_HalconFunction.DrawRectangle1(hWindow_Final1.hWindowControl.HalconWindow);
@@ -139,7 +138,6 @@ namespace Vision.Forms
                 data .DisplayDetail(hWindow_Final1);
                 lbl_Area .Text= getRegionUseThreshold.hv_Area.D.ToString();
                 if (OnRunOnce != null) OnRunOnce.Invoke(0);
-
             }
 
         }
@@ -148,8 +146,6 @@ namespace Vision.Forms
         {
             getRegionUseThreshold.name = (txt_Name.Text).Trim();
             getRegionUseThreshold.formType = GetType();
-            getRegionUseThreshold.minValue = (double)nud_MinValue.Value;
-            getRegionUseThreshold.maxValue = (double)nud_MaxValue.Value;
         }
 
         private void nud_MinGray_ValueChanged(object sender, EventArgs e)
@@ -262,6 +258,18 @@ namespace Vision.Forms
         private void UFrm_Exist_FormClosing(object sender, FormClosingEventArgs e)
         {
             
+        }
+
+        private void nud_MinValue_ValueChanged(object sender, EventArgs e)
+        {
+            getRegionUseThreshold.minValue = (double)nud_MinValue.Value;
+        
+
+        }
+
+        private void nud_MaxValue_ValueChanged(object sender, EventArgs e)
+        {
+            getRegionUseThreshold.maxValue = (double)nud_MaxValue.Value;
         }
     }
 }

@@ -16,17 +16,30 @@ namespace Vision.Forms
 {
     public partial class Frm_Main : Form
     {
-
+        /// <summary>
+        /// 相机管理器
+        /// </summary>
         public CameraManager cameraManager = null;
 
+        /// <summary>
+        /// 文件配置管理器
+        /// </summary>
         private ConfigManager configManager = null;
 
-        public Form cameraWin = null;//相机显示窗体
+        /// <summary>
+        /// 相机显示窗体
+        /// </summary>
+        public Form cameraWin = null;
 
-        List<Frm_Edit> edits = new List<Frm_Edit>();//编辑窗体列队
+        /// <summary>
+        /// 编辑窗体列队
+        /// </summary>
+        private List<Frm_Edit> edits = new List<Frm_Edit>();
 
-
-        RegistryKey regkey;// = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("HRDVision").OpenSubKey("FilePath");
+        /// <summary>
+        /// 注册表
+        /// </summary>
+        private RegistryKey regkey = null;
 
         public Frm_Main()
         {
@@ -42,7 +55,7 @@ namespace Vision.Forms
                      true);
 
 
-            bool temp;
+            bool temp;//是否有相机
             try
             {
                 cameraManager = new DahengManager();
@@ -99,11 +112,23 @@ namespace Vision.Forms
             cameraWin.Show();//会报异常
 
             configManager = new ConfigManager(cameraManager);
+
             AddEditForm();//添加编辑窗体
-            HOperatorSet.OpenFramegrabber("File", 0, 1, 0, 0, 0, 0, "default", -1, "default",
-   1, "false", "TANGMING", "default",
-   -1, -1, out HTuple hv_AcqHandle);
-            HOperatorSet.GrabImage(out HObject ho_Image, hv_AcqHandle);  //关键语句
+
+            ///解决区域为空的方法
+            #region 解决方法1：读取一张比区域还大的图像 
+            //HOperatorSet.OpenFramegrabber("File", 0, 1, 0, 0, 0, 0, "default", -1, "default", 1, "false", "TANGMING", "default",-1, -1, out HTuple hv_AcqHandle);
+            //HOperatorSet.GrabImage(out HObject ho_Image, hv_AcqHandle);  
+            #endregion
+
+            #region 解决方法2：重置DataBase为指导缓存大小
+            //  HOperatorSet.ResetObjDb(5000, 5000, 1);//参数1：图像宽度 参数2：图像高度 参数3:通道   
+            #endregion
+
+            #region 解决方法3：设置系统是否裁剪区域为false 
+            HOperatorSet.SetSystem("clip_region", "false");//设置系统是否裁剪区域为false 
+            #endregion
+
 
             regkey = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("HRDVision").OpenSubKey("FilePath", true);
             if (regkey.GetValue("Path") == null)
@@ -115,7 +140,7 @@ namespace Vision.Forms
                 string str = regkey.GetValue("Path").ToString();
                 if (str != "")
                 {
-                    this.Text = Text + "——" + str.Substring(str.LastIndexOf("\\") + 1).Replace(".fpc", string.Empty);
+                    this.Text = "HRDVison" + "--" + str.Substring(str.LastIndexOf("\\") + 1).Replace(".fpc", string.Empty);
                 }
 
             }
@@ -274,10 +299,19 @@ namespace Vision.Forms
             {
                 regkey.SetValue("Path", openFileDialog1.FileName);//保存路径
                 configManager.ExecutionManager.Dispose();
-                configManager.LoadUnitData(cameraManager);//加载数据
+                try
+                {
+                    configManager.LoadUnitData(cameraManager);//加载数据
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("文件错误");
+                    regkey.SetValue("Path", "");
+                    Close();
+                }
                 configManager.ExecutionManager.GradAll();//运行一次测试
 
-                this.Text = Text + "——" + openFileDialog1.SafeFileName.Replace(".fpc", string.Empty);
+                this.Text = "HRDVison" + "--" + openFileDialog1.SafeFileName.Replace(".fpc", string.Empty);
                 for (int i = 0; i < edits.Count; i++)
                 {
                     edits[i].SetExecutionUnit(configManager.ExecutionManager.listMeasureManager[i]);
@@ -300,7 +334,7 @@ namespace Vision.Forms
                 configManager.SaveMeasureData(regkey.GetValue("Path").ToString());
 
                 string str = saveFileDialog1.FileName.ToString().Substring(saveFileDialog1.FileName.LastIndexOf("\\") + 1);
-                this.Text = Text + "——" + str.Replace(".fpc", string.Empty);
+                this.Text = "HRDVison" + "--" + str.Replace(".fpc", string.Empty);
             }
 
         }

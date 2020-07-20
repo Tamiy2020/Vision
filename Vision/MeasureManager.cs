@@ -110,7 +110,7 @@ namespace Vision
             this.camera = camera;
             Initialize();//初始化
           
-            camera.ImageAcqed += Camera_ImageAcqed;
+           // camera.ImageAcqed += Camera_ImageAcqed;
 
         }
 
@@ -119,6 +119,7 @@ namespace Vision
             camera.ImageAcqed += Camera_ImageAcqed;
         }
 
+     
 
         public MeasureManager(MeasureManager data)//用于克隆副本的构造函数
         {
@@ -552,6 +553,12 @@ namespace Vision
             {
                 (item as IDisposable).Dispose();
             }
+         
+        }
+
+        public void ClearImageAcqed()
+        {
+            camera.ImageAcqed -= Camera_ImageAcqed;
         }
 
         public object Clone()

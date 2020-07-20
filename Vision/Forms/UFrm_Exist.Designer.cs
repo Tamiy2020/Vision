@@ -92,7 +92,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btn_SelectROI);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 827;
+            this.splitContainer1.SplitterDistance = 830;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -107,7 +107,7 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(827, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(830, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // lbl_Area
@@ -153,6 +153,7 @@
             this.nud_MaxValue.Name = "nud_MaxValue";
             this.nud_MaxValue.Size = new System.Drawing.Size(88, 23);
             this.nud_MaxValue.TabIndex = 52;
+            this.nud_MaxValue.ValueChanged += new System.EventHandler(this.nud_MaxValue_ValueChanged);
             // 
             // nud_MinValue
             // 
@@ -165,6 +166,7 @@
             this.nud_MinValue.Name = "nud_MinValue";
             this.nud_MinValue.Size = new System.Drawing.Size(90, 23);
             this.nud_MinValue.TabIndex = 51;
+            this.nud_MinValue.ValueChanged += new System.EventHandler(this.nud_MinValue_ValueChanged);
             // 
             // label5
             // 

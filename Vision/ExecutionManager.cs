@@ -12,7 +12,7 @@ namespace Vision
     /// 执行管理器
     /// </summary>
     [Serializable]//序列化标志，表示当前类的实例可以被序列化储存
-    public class ExecutionManager: IDisposable
+    public class ExecutionManager : IDisposable
     {
         /// <summary>
         /// 测量单元管理器列队
@@ -27,17 +27,18 @@ namespace Vision
 
         public ExecutionManager(CameraManager cameraManager)
         {
-            listMeasureManager= new List<MeasureManager>();
+            listMeasureManager = new List<MeasureManager>();
             foreach (var camera in cameraManager.listCamera)
             {
                 MeasureManager measureManager = new MeasureManager(camera);
+                measureManager.ImageAcqed();
                 measureManager.MeasureFinish += MeasureManager_MeasureFinish;//
                 listMeasureManager.Add(measureManager);
             }
             Initialize();
         }
 
-        public ExecutionManager(CameraManager cameraManager,List<MeasureManager> measureManagers)
+        public ExecutionManager(CameraManager cameraManager, List<MeasureManager> measureManagers)
         {
             for (int i = 0; i < cameraManager.listCamera.Count; i++)
             {
@@ -49,7 +50,7 @@ namespace Vision
             Initialize();
         }
 
-      
+
 
 
         /// <summary>
@@ -65,7 +66,7 @@ namespace Vision
         {
             if (arg >= listMeasureManager.Count)
                 return 0;
-            listMeasureManager[arg].Grad ();//开始一次测量
+            listMeasureManager[arg].Grad();//开始一次测量
             return 0;
         }
 
@@ -84,20 +85,20 @@ namespace Vision
             }
         }
 
-        public void  LiveAll(bool live)
+        public void LiveAll(bool live)
         {
             foreach (var measureManager in listMeasureManager)
             {
                 measureManager.Live(live);
             }
-            
+
         }
 
         /// <summary>
         /// 获取用以保存的数据克隆副本
         /// </summary>
         /// <returns></returns>
-        public  List<MeasureManager> GetMeasureManagerListClone()
+        public List<MeasureManager> GetMeasureManagerListClone()
         {
             List<MeasureManager> listMeasureManager = new List<MeasureManager>();
             foreach (var item in this.listMeasureManager)
@@ -125,6 +126,7 @@ namespace Vision
             foreach (var item in listMeasureManager)
             {
                 item.Dispose();
+                item.ClearImageAcqed();
             }
         }
     }

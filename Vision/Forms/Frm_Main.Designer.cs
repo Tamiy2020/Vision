@@ -419,11 +419,11 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.Filter = "数据文件(*.fpc)|*.fpc";
+            this.openFileDialog1.Filter = "FPC文件|*.fpc";
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.Filter = "数据文件(*.fpc)|*.fpc";
+            this.saveFileDialog1.Filter = "FPC文件|*.fpc";
             // 
             // sfd_Image
             // 
