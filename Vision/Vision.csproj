@@ -122,7 +122,13 @@
     <Compile Include="CameraLib\DahuaCamera\DahuaManager.cs" />
     <Compile Include="CameraLib\FileHalcon\File.cs" />
     <Compile Include="CameraLib\FileHalcon\FileManager.cs" />
-    <Compile Include="ConfigManager.cs" />
+    <Compile Include="Forms\Ufrm_DatumLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ufrm_DatumLine.Designer.cs">
+      <DependentUpon>Ufrm_DatumLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="System\ConfigManager.cs" />
     <Compile Include="DataProcess\AxByC.cs" />
     <Compile Include="DataProcess\CalculationLib\多项计算\BaseCal_Multi.cs" />
     <Compile Include="DataProcess\CalculationLib\多项计算\DropDistance.cs" />
@@ -156,8 +162,8 @@
     <Compile Include="DataProcess\ShapeLib\Rectangle2.cs" />
     <Compile Include="DataProcess\ShapeLib\RegionLib\Region.cs" />
     <Compile Include="DataProcess\StaticMethodLib.cs" />
-    <Compile Include="Enum_Info.cs" />
-    <Compile Include="ExecutionManager.cs" />
+    <Compile Include="System\Enum_Info.cs" />
+    <Compile Include="System\ExecutionManager.cs" />
     <Compile Include="Forms\Frm_CameraConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,11 +218,11 @@
     <Compile Include="Forms\UFrm_Exist.Designer.cs">
       <DependentUpon>UFrm_Exist.cs</DependentUpon>
     </Compile>
-    <Compile Include="IOManager.cs" />
-    <Compile Include="MeasureManager.cs" />
+    <Compile Include="System\IOManager.cs" />
+    <Compile Include="System\MeasureManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemData.cs" />
+    <Compile Include="System\SystemData.cs" />
     <EmbeddedResource Include="Forms\DisplayWindows\Frm_FiveWin.resx">
       <DependentUpon>Frm_FiveWin.cs</DependentUpon>
     </EmbeddedResource>
@@ -240,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frm_Main.resx">
       <DependentUpon>Frm_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ufrm_DatumLine.resx">
+      <DependentUpon>Ufrm_DatumLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UFrm_Exist.resx">
       <DependentUpon>UFrm_Exist.cs</DependentUpon>

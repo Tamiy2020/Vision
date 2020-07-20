@@ -84,18 +84,25 @@ namespace Vision.Forms
             }
         }
 
+        /// <summary>
+        /// 更新测量数据表格
+        /// </summary>
         private void UpdateDataGridView_Data()
         {
             dgv_Data.Rows.Clear();
             List<object[]> rows = measureManager.ListAllData();
             foreach (var item in rows)
             {
-                dgv_Data.Rows.Add(item);//在表格视图中添加测量项
-
-                if (Convert.ToInt32(item[2]) > Convert.ToInt32(item[4]) || Convert.ToInt32(item[4]) > Convert.ToInt32(item[3]))
+                if (item !=null)
                 {
-                    dgv_Data.Rows[dgv_Data.Rows.Count - 1].Cells[4].Style.ForeColor = Color.Red;
+                    dgv_Data.Rows.Add(item);//在表格视图中添加测量项
+
+                    if (Convert.ToInt32(item[2]) > Convert.ToInt32(item[4]) || Convert.ToInt32(item[4]) > Convert.ToInt32(item[3]))
+                    {
+                        dgv_Data.Rows[dgv_Data.Rows.Count - 1].Cells[4].Style.ForeColor = Color.Red;
+                    }
                 }
+               
             }
 
         }
@@ -134,7 +141,7 @@ namespace Vision.Forms
 
         public HWindow GetHWindow()
         {
-            return hWindow_Final1.hWindowControl.HalconWindow; 
+            return hWindow_Final1.hWindowControl.HalconWindow;
         }
 
 
@@ -147,11 +154,22 @@ namespace Vision.Forms
             toolStrip1.Enabled = !sign;
         }
 
+        //基准线
+        private void tsbtn_DatumLine_Click(object sender, EventArgs e)
+        {
+            Ufrm_DatumLine ufrm_DatumLine = new Ufrm_DatumLine(this, hWindow_Final1.Image);
+            ufrm_DatumLine.ShowDialog();
+        }
+
+
+        //缺陷检测
         private void tsbtn_Exist_Click(object sender, EventArgs e)
         {
             UFrm_Exist uFrm_Exist = new UFrm_Exist(this, hWindow_Final1.Image);
             uFrm_Exist.ShowDialog();
         }
+
+
 
         //编辑/删除
         private void dgv_File_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -216,5 +234,7 @@ namespace Vision.Forms
         {
             UpdateDataGridView();
         }
+
+
     }
 }

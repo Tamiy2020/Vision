@@ -13,16 +13,19 @@ using Vision.DataProcess.ShapeLib;
 
 namespace Vision.Forms
 {
-    public partial class UFrm_Exist : Form
+    public partial class Ufrm_DatumLine : Form
     {
         private HObject ho_Image;
 
         private Frm_Edit form;
 
+        private MeasureManager measureManager;
+
         /// <summary>
-        /// 灰度区域检测单元
+        /// 线
         /// </summary>
-        private GetRegionUseThreshold getRegionUseThreshold;
+        private  Line line;
+
 
         /// <summary>
         /// 测量单元
@@ -34,8 +37,6 @@ namespace Vision.Forms
         /// </summary>
         protected MeasuringUnit oldData;
 
-        private MeasureManager measureManager;
-
         /// <summary>
         /// 可以执行测量方法的标志
         /// </summary>
@@ -46,13 +47,13 @@ namespace Vision.Forms
         /// </summary>
         public bool EditMode { get; }
 
-
         /// <summary>
         /// 执行运行一次方法事件
         /// </summary>
         public event Func<int, int> OnRunOnce;
 
-        public UFrm_Exist(Frm_Edit form, HObject ho_Image)//构造函数
+
+        public Ufrm_DatumLine(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
             this.form = form;
@@ -60,7 +61,7 @@ namespace Vision.Forms
             EditMode = false;
         }
 
-        public UFrm_Exist(Frm_Edit form, HObject ho_Image, MeasuringUnit data)//编辑模式
+        public Ufrm_DatumLine(Frm_Edit form, HObject ho_Image, MeasuringUnit data)//编辑模式
         {
             InitializeComponent();
             this.form = form;
@@ -68,12 +69,10 @@ namespace Vision.Forms
             this.data = data;
             oldData = (MeasuringUnit)data.Clone();
             EditMode = true;
+
         }
 
-
-
-
-        private void UFrm_Exist_Load(object sender, EventArgs e)
+        private void Ufrm_DatumLine_Load(object sender, EventArgs e)
         {
             hWindow_Final1.HobjectToHimage(ho_Image);
             if (measureManager == null)
@@ -84,27 +83,24 @@ namespace Vision.Forms
             //判断是否编辑模式进入
             if (EditMode)
             {
-                //编辑模式
-                getRegionUseThreshold = data as GetRegionUseThreshold;
-                nud_MaxGray.Value = trb_MaxGray.Value = getRegionUseThreshold.parameter.hv_MaxGray;
-                nud_MinGray.Value = trb_MinGray.Value = getRegionUseThreshold.parameter.hv_MinGray;
-                rdo_Exist.Checked = getRegionUseThreshold.Exist;
-                rdo_ExistTwo.Checked = !getRegionUseThreshold.Exist;
-                nud_MaxValue.Value = (decimal)getRegionUseThreshold.maxValue;
-                nud_MinValue.Value = (decimal)getRegionUseThreshold.minValue;
-                txt_Name.Text = getRegionUseThreshold.name;
+                line = data as Line;
+                nud_xStart.Value = (decimal)line.hv_Column1.D;
+                nud_yStart.Value = (decimal)line.hv_Row1.D;
+                nud_xEnd.Value = (decimal)line.hv_Column2.D;
+                nud_yEnd.Value = (decimal)line.hv_Row2.D;
+
+                txt_Name.Text = data.name;
                 txt_Name.Enabled = false;//编辑模式下不能编辑名字
                 prepared = true;
                 RunOnce();
             }
             else
             {
-                //非编辑模式
-                getRegionUseThreshold = new GetRegionUseThreshold();
-                data = getRegionUseThreshold;
+                line = new Line();
+                data = line;
+                data.name = txt_Name.Text;
             }
         }
-
 
         private void DrawMode(bool enable)
         {
@@ -115,19 +111,30 @@ namespace Vision.Forms
 
         }
 
-        //框选区域
-        private void btn_SelectROI_Click(object sender, EventArgs e)
+        private void btn_Draw_Click(object sender, EventArgs e)
         {
+            DrawMode(true);//绘制模式开启
 
-            DrawMode(true);
+            line.SetLine(Func_HalconFunction.DrawLine(hWindow_Final1.hWindowControl.HalconWindow));//画线
 
-            Rectangle1 rectangle1 = Func_HalconFunction.DrawRectangle1(hWindow_Final1.hWindowControl.HalconWindow);
-            getRegionUseThreshold.parameter.rectangle2 = Func_Mathematics.ToRectangle2(rectangle1);
+            DrawMode(false);//绘制模式关闭
 
-            DrawMode(false);
+            nud_xStart.Value = (decimal)line.hv_Column1.D;//赋值
+            nud_yStart.Value = (decimal)line.hv_Row1.D;//赋值
+            nud_xEnd.Value = (decimal)line.hv_Column2.D;//赋值
+            nud_yEnd.Value = (decimal)line.hv_Row2.D;//赋值
+
             prepared = true;
             RunOnce();
         }
+
+
+        private void FinalAssessment()
+        {
+            data.name = (txt_Name.Text).Trim();
+            data.formType = GetType();
+        }
+
 
         private void RunOnce()
         {
@@ -136,68 +143,41 @@ namespace Vision.Forms
                 hWindow_Final1.HobjectToHimage(ho_Image);
                 data.Measure(ho_Image);
                 data.DisplayDetail(hWindow_Final1);
-                lbl_Area.Text = getRegionUseThreshold.hv_Area.D.ToString();
                 if (OnRunOnce != null) OnRunOnce.Invoke(0);
             }
 
         }
 
-        private void FinalAssessment()
+        //起点x
+        private void nud_xStart_ValueChanged(object sender, EventArgs e)
         {
-            data.name = (txt_Name.Text).Trim();
-            data.formType = GetType();
-        }
-
-        private void nud_MinGray_ValueChanged(object sender, EventArgs e)
-        {
-            if (nud_MinGray.Value > nud_MinGray.Value)
-            {
-                nud_MaxGray.Value = nud_MinGray.Value;
-                trb_MaxGray.Value = (int)nud_MaxGray.Value;
-            }
-            trb_MinGray.Value = (int)nud_MinGray.Value;
-            getRegionUseThreshold.parameter.hv_MinGray = (int)(sender as NumericUpDown).Value;
+            line.hv_Column1 = (double)(sender as NumericUpDown).Value;
             RunOnce();
         }
 
-        private void trb_MinGray_Scroll(object sender, EventArgs e)
+        //起点y
+        private void nud_yStart_ValueChanged(object sender, EventArgs e)
         {
-            if (trb_MinGray.Value > trb_MaxGray.Value)
-            {
-                trb_MaxGray.Value = trb_MinGray.Value;
-                nud_MaxGray.Value = trb_MaxGray.Value;
-            }
-            nud_MinGray.Value = trb_MinGray.Value;
-        }
-
-        private void trb_MaxGray_Scroll(object sender, EventArgs e)
-        {
-            if (trb_MaxGray.Value < trb_MinGray.Value)
-            {
-                trb_MinGray.Value = trb_MaxGray.Value;
-                nud_MinGray.Value = trb_MinGray.Value;
-            }
-            nud_MaxGray.Value = trb_MaxGray.Value;
-        }
-
-        private void nud_MaxGray_ValueChanged(object sender, EventArgs e)
-        {
-            if (nud_MaxGray.Value < nud_MinGray.Value)
-            {
-                nud_MinGray.Value = nud_MaxGray.Value;
-                trb_MinGray.Value = (int)nud_MinGray.Value;
-            }
-            trb_MaxGray.Value = (int)nud_MaxGray.Value;
-            getRegionUseThreshold.parameter.hv_MaxGray = (int)(sender as NumericUpDown).Value;
+            line.hv_Row1 = (double)(sender as NumericUpDown).Value;
             RunOnce();
         }
 
-        private void rdo_Exist_CheckedChanged(object sender, EventArgs e)
+        //终点x
+        private void nud_xEnd_ValueChanged(object sender, EventArgs e)
         {
-            getRegionUseThreshold.Exist = (sender as RadioButton).Checked;
+            line.hv_Column2 = (double)(sender as NumericUpDown).Value;
             RunOnce();
         }
 
+        //终点y
+        private void nud_yEnd_ValueChanged(object sender, EventArgs e)
+        {
+            line.hv_Row2 = (double)(sender as NumericUpDown).Value;
+            RunOnce();
+        }
+
+
+        //确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
             if (!EditMode)//非编辑模式
@@ -246,30 +226,16 @@ namespace Vision.Forms
             //添加成功，关闭窗口
             Close();
             return;
-
         }
 
+
+        //取消
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
         }
 
-        private void UFrm_Exist_FormClosing(object sender, FormClosingEventArgs e)
-        {
 
-        }
-
-        private void nud_MinValue_ValueChanged(object sender, EventArgs e)
-        {
-            getRegionUseThreshold.minValue = (double)nud_MinValue.Value;
-
-
-        }
-
-        private void nud_MaxValue_ValueChanged(object sender, EventArgs e)
-        {
-            getRegionUseThreshold.maxValue = (double)nud_MaxValue.Value;
-        }
     }
 }

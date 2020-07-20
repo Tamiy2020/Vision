@@ -76,7 +76,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.lbl_Area);
             this.splitContainer1.Panel2.Controls.Add(this.rdo_ExistTwo);
             this.splitContainer1.Panel2.Controls.Add(this.rdo_Exist);
@@ -92,7 +91,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btn_SelectROI);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 830;
+            this.splitContainer1.SplitterDistance = 836;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -107,7 +106,7 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(830, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(836, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // lbl_Area
@@ -236,7 +235,7 @@
             this.groupBox1.Controls.Add(this.nud_MinGray);
             this.groupBox1.Location = new System.Drawing.Point(2, 119);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(459, 130);
+            this.groupBox1.Size = new System.Drawing.Size(453, 130);
             this.groupBox1.TabIndex = 46;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "阈值调整";

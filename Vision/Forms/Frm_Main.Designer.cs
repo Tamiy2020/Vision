@@ -378,7 +378,6 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(944, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -390,7 +389,6 @@
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(1060, 13);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
@@ -401,7 +399,6 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 60;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // btn_Auto
