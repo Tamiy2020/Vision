@@ -15,7 +15,10 @@ namespace Vision.DataProcess.CalculationLib
     [Serializable]//序列化标志，表示当前类的实例可以被序列化储存
     public  class MultipleDistance:BaseCal_Multi
     {
-        public MultipleDistance(double k) : base(k) { }//构造函数
+        public MultipleDistance(double k) : base(k) //构造函数
+        {
+            function = "多边测距";
+        }
 
         public override int Measure(HObject ho_Image)//测量
         {
@@ -107,7 +110,7 @@ namespace Vision.DataProcess.CalculationLib
 
         public override object[] GetResultDetail()//返回详细信息
         {
-            object[] vs = new object[]{ name, "多边到线距离", minValue.ToString(), maxValue.ToString(), GetListResult()};
+            object[] vs = new object[]{ name, function, minValue.ToString(), maxValue.ToString(), GetListResult()};
             return vs;
         }
 
@@ -134,7 +137,7 @@ namespace Vision.DataProcess.CalculationLib
             {
                 List<DataRow> dataRows1 = item.GetDataTableRows(dataTable);
                 dataRows1[0]["名称"] = name + "-" + item.name;
-                dataRows1[0]["功能"] = "多边到线距离";
+                dataRows1[0]["功能"] = function;
                 dataRows.AddRange(dataRows1);
             }
             return dataRows;

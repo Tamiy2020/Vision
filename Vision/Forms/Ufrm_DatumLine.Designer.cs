@@ -30,7 +30,10 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.hWindow_Final1 = new ChoiceTech.Halcon.Control.HWindow_Final();
-            this.btn_Draw = new System.Windows.Forms.Button();
+            this.txt_Name = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btn_Cancel = new System.Windows.Forms.Button();
+            this.btn_OK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.nud_yEnd = new System.Windows.Forms.NumericUpDown();
@@ -40,10 +43,7 @@
             this.nud_xEnd = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.nud_xStart = new System.Windows.Forms.NumericUpDown();
-            this.btn_OK = new System.Windows.Forms.Button();
-            this.btn_Cancel = new System.Windows.Forms.Button();
-            this.txt_Name = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btn_Draw = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,7 +76,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Draw);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 942;
+            this.splitContainer1.SplitterDistance = 945;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -89,20 +89,49 @@
             this.hWindow_Final1.EditModel = true;
             this.hWindow_Final1.Image = null;
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
-            this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(942, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(945, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
-            // btn_Draw
+            // txt_Name
             // 
-            this.btn_Draw.Location = new System.Drawing.Point(6, 22);
-            this.btn_Draw.Name = "btn_Draw";
-            this.btn_Draw.Size = new System.Drawing.Size(117, 40);
-            this.btn_Draw.TabIndex = 1;
-            this.btn_Draw.Text = "画基准线";
-            this.btn_Draw.UseVisualStyleBackColor = true;
-            this.btn_Draw.Click += new System.EventHandler(this.btn_Draw_Click);
+            this.txt_Name.Location = new System.Drawing.Point(132, 99);
+            this.txt_Name.Name = "txt_Name";
+            this.txt_Name.Size = new System.Drawing.Size(151, 23);
+            this.txt_Name.TabIndex = 50;
+            this.txt_Name.Text = "基准线";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 105);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 17);
+            this.label1.TabIndex = 49;
+            this.label1.Text = "请输入名字：";
+            // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_Cancel.Location = new System.Drawing.Point(12, 592);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
+            this.btn_Cancel.TabIndex = 4;
+            this.btn_Cancel.Text = "取消";
+            this.btn_Cancel.UseVisualStyleBackColor = true;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            // 
+            // btn_OK
+            // 
+            this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_OK.Location = new System.Drawing.Point(262, 592);
+            this.btn_OK.Name = "btn_OK";
+            this.btn_OK.Size = new System.Drawing.Size(75, 27);
+            this.btn_OK.TabIndex = 3;
+            this.btn_OK.Text = "确定";
+            this.btn_OK.UseVisualStyleBackColor = true;
+            this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
             // 
             // groupBox1
             // 
@@ -230,44 +259,15 @@
             this.nud_xStart.TabIndex = 1;
             this.nud_xStart.ValueChanged += new System.EventHandler(this.nud_xStart_ValueChanged);
             // 
-            // btn_OK
+            // btn_Draw
             // 
-            this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_OK.Location = new System.Drawing.Point(262, 592);
-            this.btn_OK.Name = "btn_OK";
-            this.btn_OK.Size = new System.Drawing.Size(75, 27);
-            this.btn_OK.TabIndex = 3;
-            this.btn_OK.Text = "确定";
-            this.btn_OK.UseVisualStyleBackColor = true;
-            this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
-            // 
-            // btn_Cancel
-            // 
-            this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Cancel.Location = new System.Drawing.Point(12, 592);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
-            this.btn_Cancel.TabIndex = 4;
-            this.btn_Cancel.Text = "取消";
-            this.btn_Cancel.UseVisualStyleBackColor = true;
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
-            // 
-            // txt_Name
-            // 
-            this.txt_Name.Location = new System.Drawing.Point(132, 99);
-            this.txt_Name.Name = "txt_Name";
-            this.txt_Name.Size = new System.Drawing.Size(151, 23);
-            this.txt_Name.TabIndex = 50;
-            this.txt_Name.Text = "基准线";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 105);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 17);
-            this.label1.TabIndex = 49;
-            this.label1.Text = "请输入名字：";
+            this.btn_Draw.Location = new System.Drawing.Point(6, 22);
+            this.btn_Draw.Name = "btn_Draw";
+            this.btn_Draw.Size = new System.Drawing.Size(117, 40);
+            this.btn_Draw.TabIndex = 1;
+            this.btn_Draw.Text = "画基准线";
+            this.btn_Draw.UseVisualStyleBackColor = true;
+            this.btn_Draw.Click += new System.EventHandler(this.btn_Draw_Click);
             // 
             // Ufrm_DatumLine
             // 
@@ -318,7 +318,7 @@
         private System.Windows.Forms.Button btn_Draw;
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Button btn_OK;
-        protected System.Windows.Forms.TextBox txt_Name;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txt_Name;
     }
 }

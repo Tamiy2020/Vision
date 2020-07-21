@@ -68,7 +68,6 @@ namespace Vision.DataProcess.CalculationLib
         public BaseCal_Single(double k)//构造函数
         {
             //初始化一些字段的默认值
-            name = "";
             function = "距离测量";
             DP = new Point();
             kCx = k;

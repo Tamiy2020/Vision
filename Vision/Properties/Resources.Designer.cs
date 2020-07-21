@@ -83,6 +83,16 @@ namespace Vision.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 单项计算 {
+            get {
+                object obj = ResourceManager.GetObject("单项计算", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 另存为 {
             get {
                 object obj = ResourceManager.GetObject("另存为", resourceCulture);
@@ -103,6 +113,16 @@ namespace Vision.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 圆半径 {
+            get {
+                object obj = ResourceManager.GetObject("圆半径", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 基准线 {
             get {
                 object obj = ResourceManager.GetObject("基准线", resourceCulture);
@@ -116,6 +136,16 @@ namespace Vision.Properties {
         internal static System.Drawing.Bitmap 多边 {
             get {
                 object obj = ResourceManager.GetObject("多边", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 多边计算 {
+            get {
+                object obj = ResourceManager.GetObject("多边计算", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,6 +186,16 @@ namespace Vision.Properties {
         internal static System.Drawing.Bitmap 缺陷检测 {
             get {
                 object obj = ResourceManager.GetObject("缺陷检测", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 角度计算 {
+            get {
+                object obj = ResourceManager.GetObject("角度计算", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

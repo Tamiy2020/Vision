@@ -10,12 +10,68 @@ using Vision.DataProcess.ShapeLib;
 
 namespace Vision.DataProcess
 {
+
+
+    /// <summary>
+    /// 系统操作类
+    /// </summary>
+    public class Func_System
+    {
+        public static int GetIndex(List<MeasuringUnit> measuringUnits, MeasuringUnit unit)
+        {
+            for (int i = 0; i < measuringUnits.Count; i++)
+                if (measuringUnits[i].iD == unit.iD)
+                    return i;
+            return -1;
+        }
+        public static int GetIndex(List<Line> measuringUnits, MeasuringUnit unit)
+        {
+            for (int i = 0; i < measuringUnits.Count; i++)
+                if (measuringUnits[i].iD == unit.iD)
+                    return i;
+            return -1;
+        }
+        public static int GetIndex(List<GetSetOfLines> measuringUnits, MeasuringUnit unit)
+        {
+            for (int i = 0; i < measuringUnits.Count; i++)
+                if (measuringUnits[i].iD == unit.iD)
+                    return i;
+            return -1;
+        }
+        public static MeasuringUnit GetUnit(List<MeasuringUnit> measuringUnits, int id)
+        {
+            foreach (var item in measuringUnits)
+            {
+                if (item.iD == id)
+                    return item;
+            }
+            return null;
+        }
+        public static MeasuringUnit GetUnit(List<Line> measuringUnits, int id)
+        {
+            foreach (var item in measuringUnits)
+            {
+                if (item.iD == id)
+                    return item;
+            }
+            return null;
+        }
+        public static MeasuringUnit GetUnit(List<GetSetOfLines> measuringUnits, int id)
+        {
+            foreach (var item in measuringUnits)
+            {
+                if (item.iD == id)
+                    return item;
+            }
+            return null;
+        }
+    }
+
     /// <summary>
     /// 几何计算/变换类
     /// </summary>
     public static class Func_Mathematics
     {
-
         /// <summary>
         /// 求已知直线过已知点的垂线
         /// </summary>

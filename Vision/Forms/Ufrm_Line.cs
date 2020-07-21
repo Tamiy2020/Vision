@@ -193,6 +193,7 @@ namespace Vision.Forms
 
         private void btn_Draw_Click(object sender, EventArgs e)
         {
+            hWindow_Final1.HobjectToHimage(ho_Image);//刷新
             TabPage tabPage = tabControl1.SelectedTab;
             if (tabPage != null)
             {

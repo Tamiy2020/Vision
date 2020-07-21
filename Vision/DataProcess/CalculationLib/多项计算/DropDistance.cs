@@ -26,7 +26,10 @@ namespace Vision.DataProcess.CalculationLib
         /// </summary>
         BaseCal_Single bottomLine;
 
-        public DropDistance(double k) : base(k) { }//构造函数
+        public DropDistance(double k) : base(k) //构造函数
+        {
+            function = "高低落差";
+        }
 
         public override int Measure(HObject ho_Image)//测量
         {
@@ -122,7 +125,7 @@ namespace Vision.DataProcess.CalculationLib
 
         public override object[] GetResultDetail()//返回详细信息
         {
-            return new object[] { name, "高低落差", minValue.ToString(), maxValue.ToString(), hv_RealDistance.D.ToString("f3") };
+            return new object[] { name,function, minValue.ToString(), maxValue.ToString(), hv_RealDistance.D.ToString("f3") };
         }
 
         public override List<DataRow> GetDataTableRows(DataTable dataTable)//返回表格数据
@@ -132,7 +135,7 @@ namespace Vision.DataProcess.CalculationLib
             if (measureResult == Result.NG) result = "NG";
             DataRow dataRow = dataTable.NewRow();
             dataRow["名称"] = name;
-            dataRow["功能"] = "高低落差";
+            dataRow["功能"] = function;
             dataRow["下限"] = minValue;
             dataRow["上限"] = maxValue;
             dataRow["测量值"] = hv_RealDistance.D;

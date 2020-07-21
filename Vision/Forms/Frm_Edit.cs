@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.CameraLib;
@@ -78,7 +79,7 @@ namespace Vision.Forms
             foreach (var item in measureManager.ListAllUnit())
             {
                 dgv_File.Rows.Add(item);//在表格视图中添加测量项
-                if (item[2].ToString ()=="产品有无"|| item[2].ToString() == "缺陷检测")
+                if (item[2].ToString ()=="产品有无"|| item[2].ToString() == "缺陷检测"|| Regex.IsMatch(item[2].ToString(), @"/*距离"))
                 {
                     dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[1].Style.ForeColor = Color.Blue;
                     dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[2].Style.ForeColor = Color.Tomato;
@@ -99,13 +100,13 @@ namespace Vision.Forms
                 {
                     dgv_Data.Rows.Add(item);//在表格视图中添加测量项
 
-                    if (Convert.ToInt32(item[2]) > Convert.ToInt32(item[4]) || Convert.ToInt32(item[4]) > Convert.ToInt32(item[3]))
+                    if (Convert.ToDouble(item[2]) > Convert.ToDouble(item[4]) || Convert.ToDouble(item[4]) > Convert.ToDouble(item[3]))
                     {
-                        //if (item[1].ToString() =="产品有无")
-                        //{
-                        //    dgv_Data.Rows.Clear();
-                        //    return;
-                        //}
+                        if (item[1].ToString() == "产品有无")
+                        {
+                           // dgv_Data.Rows.Clear();
+                            return;
+                        }
                         dgv_Data.Rows[dgv_Data.Rows.Count - 1].Cells[4].Style.ForeColor = Color.Red;
                     }
                 }
@@ -188,6 +189,13 @@ namespace Vision.Forms
         {
             Ufrm_Circle ufrm_Circle = new Ufrm_Circle(this, hWindow_Final1.Image);
             ufrm_Circle.ShowDialog();
+        }
+
+        //距离测量
+        private void tsmi_Cal_Single_Click(object sender, EventArgs e)
+        {
+            Ufrm_Distance ufrm_Distance = new Ufrm_Distance(this, hWindow_Final1.Image);
+            ufrm_Distance.ShowDialog();
         }
 
         //缺陷检测
@@ -282,6 +290,6 @@ namespace Vision.Forms
             }
         }
 
-     
+      
     }
 }

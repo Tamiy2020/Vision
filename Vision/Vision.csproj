@@ -134,6 +134,12 @@
     <Compile Include="Forms\Ufrm_DatumLine.Designer.cs">
       <DependentUpon>Ufrm_DatumLine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Ufrm_Distance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ufrm_Distance.Designer.cs">
+      <DependentUpon>Ufrm_Distance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Ufrm_Line.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,6 +277,9 @@
     <EmbeddedResource Include="Forms\Ufrm_DatumLine.resx">
       <DependentUpon>Ufrm_DatumLine.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ufrm_Distance.resx">
+      <DependentUpon>Ufrm_Distance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UFrm_Exist.resx">
       <DependentUpon>UFrm_Exist.cs</DependentUpon>
     </EmbeddedResource>
@@ -349,6 +358,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\基准线.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\单项计算.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\角度计算.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\多边计算.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\圆半径.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

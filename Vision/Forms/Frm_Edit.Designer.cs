@@ -43,6 +43,8 @@
             this.tsbtn_DatumLine = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_Line = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_LineList = new System.Windows.Forms.ToolStripButton();
+            this.tsbtn_Circle = new System.Windows.Forms.ToolStripButton();
+            this.tsmi_Cal_Single = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_Exist = new System.Windows.Forms.ToolStripButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -59,7 +61,6 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EditItem = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeleteItem = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.tsbtn_Circle = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -115,6 +116,7 @@
             this.tsbtn_Line,
             this.tsbtn_LineList,
             this.tsbtn_Circle,
+            this.tsmi_Cal_Single,
             this.tsbtn_Exist});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -157,6 +159,30 @@
             this.tsbtn_LineList.Size = new System.Drawing.Size(50, 50);
             this.tsbtn_LineList.Text = "多边抓取";
             this.tsbtn_LineList.Click += new System.EventHandler(this.tsbtn_LineList_Click);
+            // 
+            // tsbtn_Circle
+            // 
+            this.tsbtn_Circle.AutoSize = false;
+            this.tsbtn_Circle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtn_Circle.Image = global::Vision.Properties.Resources.圆;
+            this.tsbtn_Circle.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtn_Circle.Margin = new System.Windows.Forms.Padding(5);
+            this.tsbtn_Circle.Name = "tsbtn_Circle";
+            this.tsbtn_Circle.Size = new System.Drawing.Size(50, 50);
+            this.tsbtn_Circle.Text = "圆";
+            this.tsbtn_Circle.Click += new System.EventHandler(this.tsbtn_Circle_Click);
+            // 
+            // tsmi_Cal_Single
+            // 
+            this.tsmi_Cal_Single.AutoSize = false;
+            this.tsmi_Cal_Single.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsmi_Cal_Single.Image = global::Vision.Properties.Resources.单项计算;
+            this.tsmi_Cal_Single.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsmi_Cal_Single.Margin = new System.Windows.Forms.Padding(5);
+            this.tsmi_Cal_Single.Name = "tsmi_Cal_Single";
+            this.tsmi_Cal_Single.Size = new System.Drawing.Size(50, 50);
+            this.tsmi_Cal_Single.Text = "距离测量";
+            this.tsmi_Cal_Single.Click += new System.EventHandler(this.tsmi_Cal_Single_Click);
             // 
             // tsbtn_Exist
             // 
@@ -363,18 +389,6 @@
             this.DeleteItem.Name = "DeleteItem";
             this.DeleteItem.Width = 63;
             // 
-            // tsbtn_Circle
-            // 
-            this.tsbtn_Circle.AutoSize = false;
-            this.tsbtn_Circle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtn_Circle.Image = global::Vision.Properties.Resources.圆;
-            this.tsbtn_Circle.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtn_Circle.Margin = new System.Windows.Forms.Padding(5);
-            this.tsbtn_Circle.Name = "tsbtn_Circle";
-            this.tsbtn_Circle.Size = new System.Drawing.Size(50, 50);
-            this.tsbtn_Circle.Text = "圆";
-            this.tsbtn_Circle.Click += new System.EventHandler(this.tsbtn_Circle_Click);
-            // 
             // Frm_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -427,5 +441,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.ToolStripButton tsbtn_Circle;
+        private System.Windows.Forms.ToolStripButton tsmi_Cal_Single;
     }
 }
