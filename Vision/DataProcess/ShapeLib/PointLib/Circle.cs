@@ -24,6 +24,7 @@ namespace Vision.DataProcess.ShapeLib
             hv_Column = 0;
             hv_Row = 0;
             hv_Radius = 0;
+            function = "画圆";
             name = "圆";
         }
 
@@ -32,6 +33,7 @@ namespace Vision.DataProcess.ShapeLib
             this.hv_Row = hv_Row;
             this.hv_Column = hv_Column;
             this.hv_Radius = hv_Radius;
+            function = "画圆";
             name = "圆";
         }
 
@@ -89,7 +91,7 @@ namespace Vision.DataProcess.ShapeLib
         public override int Measure(HObject ho_Image)
         {
             base.Measure(ho_Image);//调用基类的测量方法
-            //ho_Shape = Func_HalconFunction.GenCircle(GetShapePositioned() as Circle);
+            ho_Shape = Func_HalconFunction.GenCircle(GetShapePositioned() as Circle);
             return 1;
         }
 
@@ -97,7 +99,7 @@ namespace Vision.DataProcess.ShapeLib
         {
             try { ho_Shape.Dispose(); } catch (Exception) { }
             Circle circlePositioned = GetShapePositioned() as Circle;
-            // ho_Shape = Func_HalconFunction.GenCircle(circlePositioned);
+            ho_Shape = Func_HalconFunction.GenCircle(circlePositioned);
             try
             {
                 DP.SetPoint(circlePositioned);

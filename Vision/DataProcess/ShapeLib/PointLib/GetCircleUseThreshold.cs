@@ -28,6 +28,7 @@ namespace Vision.DataProcess.ShapeLib
         {
             maxId = 1;
             RegionList = new List<Region>();
+            function = "抓圆";
         }
 
         /// <summary>

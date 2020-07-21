@@ -14,7 +14,7 @@ using Vision.DataProcess.ShapeLib;
 
 namespace Vision.Forms
 {
-    public partial class Ufrm_LineList : Form
+    public partial class Ufrm_Circle : Form
     {
         private HObject ho_Image;
 
@@ -23,14 +23,19 @@ namespace Vision.Forms
         private MeasureManager measureManager;
 
         /// <summary>
-        /// 一组线单元
+        /// 圆单元
         /// </summary>
-        private GetSetOfLines getSetOfLines;
+        private Circle circle;
 
         /// <summary>
-        /// 抓线单元
+        /// 抓圆测单元
         /// </summary>
-        private GetLineUseThreshold slgLine;
+        private GetCircleUseThreshold getCircleUseThreshold;
+
+        /// <summary>
+        /// 灰度区域检测单元
+        /// </summary>
+        private GetRegionUseThreshold getRegionUseThreshold;
 
 
 
@@ -42,7 +47,7 @@ namespace Vision.Forms
         /// <summary>
         /// 旧测量单元
         /// </summary>
-        protected MeasuringUnit oldData;
+        private MeasuringUnit oldData;
 
         /// <summary>
         /// 可以执行测量方法的标志
@@ -54,7 +59,7 @@ namespace Vision.Forms
         /// </summary>
         public bool EditMode { get; }
 
-        public Ufrm_LineList(Frm_Edit form, HObject ho_Image)//构造函数
+        public Ufrm_Circle(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
             this.form = form;
@@ -62,7 +67,7 @@ namespace Vision.Forms
             EditMode = false;
         }
 
-        public Ufrm_LineList(Frm_Edit form, HObject ho_Image, MeasuringUnit data)//编辑模式
+        public Ufrm_Circle(Frm_Edit form, HObject ho_Image, MeasuringUnit data)//编辑模式
         {
             InitializeComponent();
             this.form = form;
@@ -78,17 +83,6 @@ namespace Vision.Forms
             hWindow_Final1.hWindowControl.Focus();//聚焦到窗口
             hWindow_Final1.DrawModel = enable;//禁止缩放平移
             splitContainer1.Panel2.Enabled = !enable;
-
-            if (null == slgLine)
-            {
-                btn_slg_ReDrowROI.Enabled = false;
-
-            }
-            else if (!enable)
-            {
-                btn_slg_ReDrowROI.Enabled = true;
-
-            }
 
         }
 
@@ -109,63 +103,148 @@ namespace Vision.Forms
 
         }
 
-        private void Ufrm_LineList_Load(object sender, EventArgs e)
+
+        private void Ufrm_Circle_Load(object sender, EventArgs e)
         {
             hWindow_Final1.HobjectToHimage(ho_Image);
             if (measureManager == null)
             {
                 measureManager = form.measureManager;
             }
-            if (EditMode)
+            if (EditMode)//编辑模式
             {
-                getSetOfLines = data as GetSetOfLines;
-                //nud_MaxGray.Value = trb_MaxGray.Value = (getSetOfLines.LineList[0] as GetLineUseThreshold).parameter.hv_MaxGray;
-               // nud_MinGray.Value = trb_MinGray.Value = (getSetOfLines.LineList[0] as GetLineUseThreshold).parameter.hv_MinGray;
-                if (2 == (getSetOfLines.LineList[0] as GetLineUseThreshold).TPLR)
-                {
-                    rdo_DownEdge.Checked = true;
-                }
-                if (3 == (getSetOfLines.LineList[0] as GetLineUseThreshold).TPLR)
-                {
-                    rdo_LeftEdge.Checked = true;
-                }
-                if (4 == (getSetOfLines.LineList[0] as GetLineUseThreshold).TPLR)
-                {
-                    rdo_RightEdge.Checked = true;
-                }
-                cmb_slg_SelectItem.Items.AddRange(getSetOfLines.GetLinesName());//添加combobox项
-
-                txt_Name.Text = getSetOfLines.name;
+                txt_Name.Text = data.name;
                 txt_Name.Enabled = false;//编辑模式下不能编辑名字
+
+                if (data is GetCircleUseThreshold)
+                {
+                    tabControl1.TabPages.Remove(tabPage1);
+                    getCircleUseThreshold = data as GetCircleUseThreshold;
+                   // nud_MaxGray.Value = trb_MaxGray.Value = (getCircleUseThreshold.RegionList[0] as GetRegionUseThreshold).parameter.hv_MaxGray;
+                    //nud_MinGray.Value = trb_MinGray.Value = (getCircleUseThreshold.RegionList[0] as GetRegionUseThreshold).parameter.hv_MinGray;
+                    tabControl1.SelectedTab = tabPage2;
+
+
+                    cmb_slg_SelectItem.Items.AddRange(getCircleUseThreshold.GetRegionsName());//添加combobox项
+                }
+                else
+                {
+                    circle = data as Circle;
+                    nud_Circle_x.Value = (decimal)circle.hv_Column.D;
+                    nud_Circle_y.Value = (decimal)circle.hv_Row.D;
+                    nud_Radius.Value = (decimal)circle.hv_Radius.D;
+                    tabControl1.SelectedTab = tabPage1;
+                    tabControl1.TabPages.Remove(tabPage2);
+                }
                 prepared = true;
-                RunOnce();
             }
             else
             {
-                getSetOfLines = new GetSetOfLines();
-                data = getSetOfLines;
+                circle = new Circle();
+                data = circle;
             }
+            RunOnce();
+
+
         }
 
+        //画圆
+        private void btn_DrawCircle_Click(object sender, EventArgs e)
+        {
+            if (circle == null)
+            {
+                circle = new Circle();
+                data = circle;
+            }
+
+            hWindow_Final1.HobjectToHimage(ho_Image);//刷新显示区
+            DrawMode(true);//绘制模式开启
+            circle.SetCircle(Func_HalconFunction.DrawCircle(hWindow_Final1.hWindowControl.HalconWindow));//画圆编辑模式
+            DrawMode(false);//绘制模式关闭
+
+            getCircleUseThreshold = null;
+            nud_Circle_x.Value = (decimal)circle.hv_Column.D;//赋值
+            nud_Circle_y.Value = (decimal)circle.hv_Row.D;//赋值
+            nud_Radius.Value = (decimal)circle.hv_Radius.D;//赋值
+           // PositionAssigment();//跟踪赋值
+           // SetShapeInvert();
+            prepared = true;//可以运行
+            RunOnce();//运行一次
+        }
+
+        //半径
+        private void nud_Radius_ValueChanged(object sender, EventArgs e)
+        {
+            circle.hv_Radius = (double)(sender as NumericUpDown).Value;
+            RunOnce();
+        }
+
+        //圆心x
+        private void nud_Circle_x_ValueChanged(object sender, EventArgs e)
+        {
+            circle.hv_Column = (double)(sender as NumericUpDown).Value;
+            RunOnce();
+        }
+
+        //圆心y
+        private void nud_Circle_y_ValueChanged(object sender, EventArgs e)
+        {
+            circle.hv_Row = (double)(sender as NumericUpDown).Value;
+            RunOnce();
+
+        }
+
+        //框选区域
         private void btn_DrawROIs_Click(object sender, EventArgs e)
         {
-            getSetOfLines.RemoveAll();//删除所有项
+            if (getCircleUseThreshold == null)
+            {
+                getCircleUseThreshold = new GetCircleUseThreshold();
+                data = getCircleUseThreshold;
+                circle = null;
+            }
+            getCircleUseThreshold.RemoveAll();//删除所有项
             hWindow_Final1.HobjectToHimage(ho_Image);//刷新图片
             hWindow_Final1.ContextMenuStrip = contextMenuStrip1;//启用右键菜单
             DrawMode(true);//绘制模式开启
-            Rectangle1 rectangle1 = Func_HalconFunction.DrawRectangle1(hWindow_Final1.hWindowControl.HalconWindow);//画矩形
+            Rectangle2 rectangle2 = Func_HalconFunction.DrawRectangle2(hWindow_Final1.hWindowControl.HalconWindow);//画矩形
             DrawMode(false);//绘制模式关闭
-            HObject ho_Rectangle = Func_HalconFunction.GenRectangle1(rectangle1);//创建矩形
+            HObject ho_Rectangle = Func_HalconFunction.GenRectangle2(rectangle2);//创建矩形
             hWindow_Final1.DispObj(ho_Rectangle, "blue");//显示矩形
-            //创建该项
-            GetLineUseThreshold line = new GetLineUseThreshold(new Threshold(Func_Mathematics.ToRectangle2(rectangle1)));
-            getSetOfLines.AddLine(line);//添加该项
-            cmb_slg_SelectItem.SelectedItem = null;//
-            slgLine = null;
+            getCircleUseThreshold.AddRegion(new GetRegionUseThreshold(new Threshold(rectangle2)));//添加该项
         }
 
+        //下一个
+        private void tsmi_Next_Click(object sender, EventArgs e)
+        {
+            DrawMode(true);//绘制模式开启
+            Rectangle2 rectangle2 = Func_HalconFunction.DrawRectangle2(hWindow_Final1.hWindowControl.HalconWindow);//画矩形
+            DrawMode(false);//绘制模式关闭
+            HObject ho_Rectangle = Func_HalconFunction.GenRectangle2(rectangle2);//创建矩形
+            hWindow_Final1.DispObj(ho_Rectangle, "blue");//显示矩形
+            getCircleUseThreshold.AddRegion(new GetRegionUseThreshold(new Threshold(rectangle2)));//添加该项
+        }
 
-        // 整体最小灰度滑条
+        //完成
+        private void tsmi_Done_Click(object sender, EventArgs e)
+        {
+            hWindow_Final1.ContextMenuStrip = null;//禁用右键菜单
+            cmb_slg_SelectItem.Items.Clear();//清空cmbobox
+            cmb_slg_SelectItem.Items.AddRange(getCircleUseThreshold.GetRegionsName());//添加combobox项
+            //cmb_slg_SelectItem.SelectedIndex = 0;
+            prepared = true;
+            RunOnce();//运行测试
+        }
+
+        //取消
+        private void tsmi_Cancel_Click(object sender, EventArgs e)
+        {
+
+            hWindow_Final1.ContextMenuStrip = null;//禁用右键菜单
+            RunOnce();//运行测试
+        }
+
+        //整体最小灰度滑条
         private void trb_MinGray_Scroll(object sender, EventArgs e)
         {
             if (trb_MinGray.Value > trb_MaxGray.Value)
@@ -185,12 +264,17 @@ namespace Vision.Forms
                 trb_MaxGray.Value = (int)nud_MaxGray.Value;
             }
             trb_MinGray.Value = (int)nud_MinGray.Value;
-            for (int i = 0; i < getSetOfLines.CountOfLine; i++)
+            if (getCircleUseThreshold != null)
             {
-                (getSetOfLines.GetLine(i) as GetLineUseThreshold).parameter.hv_MinGray = (int)(sender as NumericUpDown).Value;
-                if ((getSetOfLines.GetLine(i) as GetLineUseThreshold).parameter.hv_MinGray > (getSetOfLines.GetLine(i) as GetLineUseThreshold).parameter.hv_MaxGray)
-                    (getSetOfLines.GetLine(i) as GetLineUseThreshold).parameter.hv_MaxGray = (int)(sender as NumericUpDown).Value;
+                for (int i = 0; i < getCircleUseThreshold.RegionList.Count; i++)
+                {
+                    (getCircleUseThreshold.RegionList[i] as GetRegionUseThreshold).parameter.hv_MinGray = (int)(sender as NumericUpDown).Value;
+                    if ((getCircleUseThreshold.RegionList[i] as GetRegionUseThreshold).parameter.hv_MinGray > (getCircleUseThreshold.RegionList[i] as GetRegionUseThreshold).parameter.hv_MaxGray)
+                        (getCircleUseThreshold.RegionList[i] as GetRegionUseThreshold).parameter.hv_MaxGray = (int)(sender as NumericUpDown).Value;
+
+                }
             }
+
             RunOnce();//运行测试
         }
 
@@ -200,7 +284,7 @@ namespace Vision.Forms
             if (trb_MaxGray.Value < trb_MinGray.Value)
             {
                 trb_MinGray.Value = trb_MaxGray.Value;
-                nud_MinGray.Value = (int)trb_MinGray.Value;
+                nud_MinGray.Value = trb_MinGray.Value;
             }
             nud_MaxGray.Value = trb_MaxGray.Value;
         }
@@ -214,52 +298,15 @@ namespace Vision.Forms
                 trb_MinGray.Value = (int)nud_MinGray.Value;
             }
             trb_MaxGray.Value = (int)nud_MaxGray.Value;
-            for (int i = 0; i < getSetOfLines.CountOfLine; i++)
+            if (getCircleUseThreshold != null)
             {
-                (getSetOfLines.GetLine(i) as GetLineUseThreshold).parameter.hv_MaxGray = (int)(sender as NumericUpDown).Value;
-                if ((getSetOfLines.GetLine(i) as GetLineUseThreshold).parameter.hv_MinGray > (getSetOfLines.GetLine(i) as GetLineUseThreshold).parameter.hv_MaxGray)
-                    (getSetOfLines.GetLine(i) as GetLineUseThreshold).parameter.hv_MinGray = (int)(sender as NumericUpDown).Value;
-            }
-            RunOnce();//运行测试
-        }
+                for (int i = 0; i < getCircleUseThreshold.RegionList.Count; i++)
+                {
+                    (getCircleUseThreshold.RegionList[i] as GetRegionUseThreshold).parameter.hv_MaxGray = (int)(sender as NumericUpDown).Value;
+                    if ((getCircleUseThreshold.RegionList[i] as GetRegionUseThreshold).parameter.hv_MinGray > (getCircleUseThreshold.RegionList[i] as GetRegionUseThreshold).parameter.hv_MaxGray)
+                        (getCircleUseThreshold.RegionList[i] as GetRegionUseThreshold).parameter.hv_MinGray = (int)(sender as NumericUpDown).Value;
 
-        //上
-        private void rdo_UpEdge_CheckedChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < getSetOfLines.CountOfLine; i++)
-            {
-                (getSetOfLines.GetLine(i) as GetLineUseThreshold).TPLR = 1;
-            }
-            RunOnce();//运行测试
-        }
-
-
-        //下
-        private void rdo_DownEdge_CheckedChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < getSetOfLines.CountOfLine; i++)
-            {
-                (getSetOfLines.GetLine(i) as GetLineUseThreshold).TPLR = 2;
-            }
-            RunOnce();//运行测试
-        }
-
-        //左
-        private void rdo_LeftEdge_CheckedChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < getSetOfLines.CountOfLine; i++)
-            {
-                (getSetOfLines.GetLine(i) as GetLineUseThreshold).TPLR = 3;
-            }
-            RunOnce();//运行测试
-        }
-
-        //右
-        private void rdo_RightEdge_CheckedChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < getSetOfLines.CountOfLine; i++)
-            {
-                (getSetOfLines.GetLine(i) as GetLineUseThreshold).TPLR = 4;
+                }
             }
             RunOnce();//运行测试
         }
@@ -273,32 +320,23 @@ namespace Vision.Forms
 
                 return;
             }
-            slgLine = getSetOfLines.GetLine(cmb_slg_SelectItem.SelectedIndex) as GetLineUseThreshold;//获取选择的项
-            trb_slg_MaxGray.Value = slgLine.parameter.hv_MaxGray.I;
-            trb_slg_MinGray.Value = slgLine.parameter.hv_MinGray.I;
-            nud_slg_MaxGray.Value = slgLine.parameter.hv_MaxGray.I;
-            nud_slg_MinGray.Value = slgLine.parameter.hv_MinGray.I;
-            nud_slg_b_pex.Value = (decimal)slgLine.b.D;
+            if (getCircleUseThreshold != null)
+            {
+                getRegionUseThreshold = getCircleUseThreshold.GetRegion(Convert.ToInt32(cmb_slg_SelectItem.SelectedItem.ToString()) - 1) as GetRegionUseThreshold;
+            }
+            trb_slg_MaxGray.Value = getRegionUseThreshold.parameter.hv_MaxGray.I;
+            trb_slg_MinGray.Value = getRegionUseThreshold.parameter.hv_MinGray.I;
+            nud_slg_MaxGray.Value = getRegionUseThreshold.parameter.hv_MaxGray.I;
+            nud_slg_MinGray.Value = getRegionUseThreshold.parameter.hv_MinGray.I;
             btn_slg_ReDrowROI.Enabled = true;
         }
 
-        //重画选区
+        //重画
         private void btn_slg_ReDrowROI_Click(object sender, EventArgs e)
         {
             DrawMode(true);//绘制模式开启
-            Rectangle1 rectangle1 = Func_Mathematics.ToRectangle1(slgLine.parameter.rectangle2);
-            Rectangle2 rectangle2;
-            if (rectangle1 != null)
-            {
-                rectangle1 = Func_HalconFunction.DrawRectangle1Mod(hWindow_Final1.hWindowControl.HalconWindow, rectangle1);//画矩形
-                rectangle2 = Func_Mathematics.ToRectangle2(rectangle1);
-            }
-            else
-            {
-                rectangle2 = Func_HalconFunction.DrawRectangle2Mod(hWindow_Final1.hWindowControl.HalconWindow, slgLine.parameter.rectangle2);
-            }
+            getRegionUseThreshold.parameter.rectangle2 = Func_HalconFunction.DrawRectangle2Mod(hWindow_Final1.hWindowControl.HalconWindow, getRegionUseThreshold.parameter.rectangle2);
             DrawMode(false);//绘制模式关闭
-            slgLine.parameter.rectangle2 = rectangle2;
             RunOnce();//运行测试
         }
 
@@ -322,8 +360,11 @@ namespace Vision.Forms
                 trb_slg_MaxGray.Value = (int)nud_slg_MaxGray.Value;
             }
             trb_slg_MinGray.Value = (int)nud_slg_MinGray.Value;
-            if (slgLine == null) return;
-            slgLine.parameter.hv_MinGray = (int)(sender as NumericUpDown).Value;
+            if (getRegionUseThreshold != null)
+            {
+                getRegionUseThreshold.parameter.hv_MinGray = (int)(sender as NumericUpDown).Value;
+            }
+
             RunOnce();//运行测试
         }
 
@@ -347,48 +388,10 @@ namespace Vision.Forms
                 trb_slg_MinGray.Value = (int)nud_slg_MinGray.Value;
             }
             trb_slg_MaxGray.Value = (int)nud_slg_MaxGray.Value;
-            if (slgLine == null) return;
-            slgLine.parameter.hv_MaxGray = (int)(sender as NumericUpDown).Value;
+            if (getRegionUseThreshold != null) getRegionUseThreshold.parameter.hv_MaxGray = (int)(sender as NumericUpDown).Value;
             RunOnce();//运行测试
         }
 
-        //上下微调
-        private void nud_slg_b_pex_ValueChanged(object sender, EventArgs e)
-        {
-            slgLine.b = (double)nud_slg_b_pex.Value;
-            RunOnce();//运行测试
-        }
-
-        //下一个
-        private void tsmi_Next_Click(object sender, EventArgs e)
-        {
-            DrawMode(true);//绘制模式开启
-            Rectangle1 rectangle1 = Func_HalconFunction.DrawRectangle1(hWindow_Final1.hWindowControl.HalconWindow);//画矩形
-            DrawMode(false);//绘制模式关闭
-            HObject ho_Rectangle = Func_HalconFunction.GenRectangle1(rectangle1);//创建矩形 
-            hWindow_Final1.DispObj(ho_Rectangle, "blue");//显示矩形
-
-            GetLineUseThreshold line = new GetLineUseThreshold(new Threshold(Func_Mathematics.ToRectangle2(rectangle1)));
-            getSetOfLines.AddLine(line);
-        }
-
-        //完成
-        private void tsmi_Done_Click(object sender, EventArgs e)
-        {
-            hWindow_Final1.ContextMenuStrip = null;//禁用右键菜单
-            cmb_slg_SelectItem.Items.Clear();//清空cmbobox
-            cmb_slg_SelectItem.Items.AddRange(getSetOfLines.GetLinesName());//添加combobox项
-            prepared = true;
-            RunOnce();//运行测试
-        }
-
-        private void tsmi_Cancel_Click(object sender, EventArgs e)
-        {
-            hWindow_Final1.ContextMenuStrip = null;//禁用右键菜单
-            RunOnce();//运行测试
-        }
-
-        //确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
             if (!EditMode)//非编辑模式
@@ -439,7 +442,6 @@ namespace Vision.Forms
             return;
         }
 
-        //取消
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据

@@ -183,6 +183,13 @@ namespace Vision.Forms
             ufrm_LineList.ShowDialog();
         }
 
+        //圆
+        private void tsbtn_Circle_Click(object sender, EventArgs e)
+        {
+            Ufrm_Circle ufrm_Circle = new Ufrm_Circle(this, hWindow_Final1.Image);
+            ufrm_Circle.ShowDialog();
+        }
+
         //缺陷检测
         private void tsbtn_Exist_Click(object sender, EventArgs e)
         {
@@ -257,7 +264,7 @@ namespace Vision.Forms
         }
 
 
-        //文件控制  
+        //文件控制  不可编辑
         private void dgv_File_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (e.ColumnIndex ==1||e.ColumnIndex ==2)
@@ -265,5 +272,16 @@ namespace Vision.Forms
                 e.Cancel = true;
             }
         }
+
+        //测量数据 不可编辑
+        private void dgv_Data_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex>=0)
+            {
+                e.Cancel = true;
+            }
+        }
+
+     
     }
 }

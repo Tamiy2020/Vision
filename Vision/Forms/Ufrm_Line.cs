@@ -40,7 +40,7 @@ namespace Vision.Forms
         /// <summary>
         /// 旧测量单元
         /// </summary>
-        protected MeasuringUnit oldData;
+        private MeasuringUnit oldData;
 
         /// <summary>
         /// 可以执行测量方法的标志
@@ -51,11 +51,6 @@ namespace Vision.Forms
         /// 编辑模式
         /// </summary>
         public bool EditMode { get; }
-
-        /// <summary>
-        /// 执行运行一次方法事件
-        /// </summary>
-        public event Func<int, int> OnRunOnce;
 
 
         public Ufrm_Line(Frm_Edit form, HObject ho_Image)//构造函数
@@ -294,7 +289,6 @@ namespace Vision.Forms
                 hWindow_Final1.HobjectToHimage(ho_Image);
                 data.Measure(ho_Image);
                 data.DisplayDetail(hWindow_Final1);
-                if (OnRunOnce != null) OnRunOnce.Invoke(0);
             }
 
         }

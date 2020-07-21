@@ -47,11 +47,6 @@ namespace Vision.Forms
         /// </summary>
         public bool EditMode { get; }
 
-        /// <summary>
-        /// 执行运行一次方法事件
-        /// </summary>
-        public event Func<int, int> OnRunOnce;
-
 
         public Ufrm_DatumLine(Frm_Edit form, HObject ho_Image)//构造函数
         {
@@ -144,7 +139,6 @@ namespace Vision.Forms
                 hWindow_Final1.HobjectToHimage(ho_Image);
                 data.Measure(ho_Image);
                 data.DisplayDetail(hWindow_Final1);
-                if (OnRunOnce != null) OnRunOnce.Invoke(0);
             }
 
         }

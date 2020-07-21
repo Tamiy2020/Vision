@@ -47,11 +47,6 @@ namespace Vision.Forms
         public bool EditMode { get; }
 
 
-        /// <summary>
-        /// 执行运行一次方法事件
-        /// </summary>
-        public event Func<int, int> OnRunOnce;
-
         public UFrm_Exist(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
@@ -137,7 +132,6 @@ namespace Vision.Forms
                 data.Measure(ho_Image);
                 data.DisplayDetail(hWindow_Final1);
                 lbl_Area.Text = getRegionUseThreshold.hv_Area.D.ToString();
-                if (OnRunOnce != null) OnRunOnce.Invoke(0);
             }
 
         }
