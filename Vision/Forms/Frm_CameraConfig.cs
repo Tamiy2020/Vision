@@ -133,9 +133,13 @@ namespace Vision.Forms
             {
                 if (camera is Dahua)
                 {
-                    regkey.SetValue($"ExposureTime{camera .Index +1}", (camera as Dahua).getExposureTime());
-                    regkey.SetValue($"GainRaw{camera.Index + 1}", (camera as Dahua).getGainRaw());
-
+                    regkey.SetValue($"ExposureTime{camera .Index +1}", (camera as Dahua).GetExposureTime(), RegistryValueKind.DWord);
+                    regkey.SetValue($"GainRaw{camera.Index + 1}", (camera as Dahua).GetGainRaw(), RegistryValueKind.DWord);
+                }
+                if (camera is Daheng )
+                {
+                    regkey.SetValue($"ExposureTime{camera.Index + 1}", (camera as Daheng).GetExposureTime(), RegistryValueKind.DWord);
+                    regkey.SetValue($"GainRaw{camera.Index + 1}", (camera as Daheng).GetGainRaw(), RegistryValueKind.DWord);
                 }
             }
             Thread.Sleep(500);

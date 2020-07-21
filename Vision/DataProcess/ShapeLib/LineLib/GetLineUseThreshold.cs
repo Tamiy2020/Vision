@@ -55,6 +55,7 @@ namespace Vision.DataProcess.ShapeLib
             b = 0;
             HOperatorSet.GenEmptyObj(out ho_ROI);
             HOperatorSet.GenEmptyObj(out ho_SelectedRegions);
+            function = "灰度抓取线";
         }
 
         public GetLineUseThreshold(Threshold parameter)//带参数的构造函数
@@ -64,6 +65,7 @@ namespace Vision.DataProcess.ShapeLib
             b = 0;
             HOperatorSet.GenEmptyObj(out ho_ROI);
             HOperatorSet.GenEmptyObj(out ho_SelectedRegions);
+            function = "灰度抓取线";
         }
 
 

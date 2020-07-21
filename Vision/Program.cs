@@ -144,8 +144,8 @@ namespace Vision
                             foreach (var camera in form.cameraManager.listCamera)
                             {
                                 camera.Grad();//开始采集
-                                (camera as Dahua).setExposureTime(regkey.GetValue($"ExposureTime{camera.Index + 1}").ToString());//设置曝光
-                                (camera as Dahua).setGainRaw(regkey.GetValue($"GainRaw{camera.Index + 1}").ToString());//设置增益
+                                (camera as Dahua).SetExposureTime(regkey.GetValue($"ExposureTime{camera.Index + 1}").ToString());//设置曝光
+                                (camera as Dahua).SetGainRaw(regkey.GetValue($"GainRaw{camera.Index + 1}").ToString());//设置增益
 
                             }
                         }
@@ -154,6 +154,8 @@ namespace Vision
                             foreach (var camera in form.cameraManager.listCamera)
                             {
                                 (camera as Daheng).StartDevice();//开始采集
+                                (camera as Daheng).SetExposureTime(regkey.GetValue($"ExposureTime{camera.Index + 1}").ToString());//设置曝光
+                                (camera as Daheng).SetGainRaw(regkey.GetValue($"GainRaw{camera.Index + 1}").ToString());//设置增益
                             }
                         }
                         form.SetCameraWindows(form.cameraManager.listCamera.Count);//设置相机窗体样式

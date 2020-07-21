@@ -131,6 +131,7 @@ namespace Vision.Forms
 
         private void FinalAssessment()
         {
+            data.function = "基准线";
             data.name = (txt_Name.Text).Trim();
             data.formType = GetType();
         }

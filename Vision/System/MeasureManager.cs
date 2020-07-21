@@ -231,6 +231,7 @@ namespace Vision
                 {
                     //最后一次结果
                     LastResult = (Result)(-1);
+                    return;
                 }
                 final *= result;
             }

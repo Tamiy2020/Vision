@@ -30,6 +30,11 @@ namespace Vision.DataProcess
         protected internal int iD = 1;
 
         /// <summary>
+        /// 功能
+        /// </summary>
+        protected internal string function = "";
+
+        /// <summary>
         /// OK/NG
         /// </summary>
         protected Result measureResult;
@@ -66,7 +71,7 @@ namespace Vision.DataProcess
         /// </summary>
         public object[] GetViewRow()
         {
-            return new object[] { (iD).ToString(), name };
+            return new object[] { (iD).ToString(), name, function};
         }
 
 

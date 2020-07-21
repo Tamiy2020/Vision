@@ -25,9 +25,6 @@ namespace Vision.Forms
 
 
 
-
-
-
         public Frm_Edit(Control parent, MeasureManager measureManager)
         {
             InitializeComponent();
@@ -81,6 +78,11 @@ namespace Vision.Forms
             foreach (var item in measureManager.ListAllUnit())
             {
                 dgv_File.Rows.Add(item);//在表格视图中添加测量项
+                if (item[2].ToString ()=="产品有无"|| item[2].ToString() == "缺陷检测")
+                {
+                    dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[1].Style.ForeColor = Color.Blue;
+                    dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[2].Style.ForeColor = Color.Tomato;
+                }
             }
         }
 
@@ -99,6 +101,11 @@ namespace Vision.Forms
 
                     if (Convert.ToInt32(item[2]) > Convert.ToInt32(item[4]) || Convert.ToInt32(item[4]) > Convert.ToInt32(item[3]))
                     {
+                        //if (item[1].ToString() =="产品有无")
+                        //{
+                        //    dgv_Data.Rows.Clear();
+                        //    return;
+                        //}
                         dgv_Data.Rows[dgv_Data.Rows.Count - 1].Cells[4].Style.ForeColor = Color.Red;
                     }
                 }
@@ -152,6 +159,7 @@ namespace Vision.Forms
         public void LiveMod(bool sign)
         {
             toolStrip1.Enabled = !sign;
+            dgv_File .Enabled = !sign;
         }
 
         //基准线
@@ -168,6 +176,13 @@ namespace Vision.Forms
             ufrm_Line.ShowDialog();
         }
 
+        //多边抓取
+        private void tsbtn_LineList_Click(object sender, EventArgs e)
+        {
+            Ufrm_LineList ufrm_LineList = new Ufrm_LineList(this, hWindow_Final1.Image);
+            ufrm_LineList.ShowDialog();
+        }
+
         //缺陷检测
         private void tsbtn_Exist_Click(object sender, EventArgs e)
         {
@@ -180,14 +195,14 @@ namespace Vision.Forms
         //编辑/删除
         private void dgv_File_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex < 2 || e.RowIndex < 0 || e.ColumnIndex > 3 || e.RowIndex == dgv_File.RowCount) return;//点击的不是按钮
+            if (e.ColumnIndex < 3|| e.RowIndex < 0 || e.ColumnIndex > 4 || e.RowIndex == dgv_File.RowCount) return;//点击的不是按钮
             string s = "定位线";
             foreach (DataGridViewCell item in dgv_File.Rows[e.RowIndex].Cells) if (s == item.FormattedValue.ToString()) return;
 
             //获取该项id
             int id = int.Parse(dgv_File.Rows[e.RowIndex].Cells[0].Value.ToString());
 
-            if (e.ColumnIndex == 2)//编辑
+            if (e.ColumnIndex == 3)//编辑
             {
                 object data = measureManager.GetMeasuringUnit(id);//查找该id对应的项
                 if (data == null) { MessageBox.Show("查无此项修改失败"); return; }//查无此项修改失败
@@ -204,7 +219,7 @@ namespace Vision.Forms
                 #endregion
 
             }
-            if (e.ColumnIndex == 3)//删除
+            if (e.ColumnIndex == 4)//删除
             {
                 if (MessageBox.Show("确定删除吗？", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
@@ -241,6 +256,14 @@ namespace Vision.Forms
             UpdateDataGridView();
         }
 
-       
+
+        //文件控制  
+        private void dgv_File_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex ==1||e.ColumnIndex ==2)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

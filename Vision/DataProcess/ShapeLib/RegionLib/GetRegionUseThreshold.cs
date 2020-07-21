@@ -42,12 +42,14 @@ namespace Vision.DataProcess.ShapeLib
             //初始化字段默认值
             this.parameter = new Threshold();
             Exist = false;
+            function = "缺陷检测";
         }
 
         public GetRegionUseThreshold(Threshold parameter)//带参数的构造函数
         {
             this.parameter = parameter;
             Exist = false;
+            function = "缺陷检测";
         }
 
         /// <summary>
@@ -79,7 +81,11 @@ namespace Vision.DataProcess.ShapeLib
             if (minValue > hv_Area || hv_Area > maxValue)//？面积在设定范围内
             {
                 measureResult = Result.NG;
-                if (Exist) measureResult = Result.无料;//？无料
+                if (Exist)//？无料
+                { 
+                    measureResult = Result.无料;
+                    function = "产品有无";
+                }
                 color = "red";
             }
             MeasureDone = true;//已测量标志为true
@@ -106,15 +112,6 @@ namespace Vision.DataProcess.ShapeLib
         /// <returns></returns>
         public override object[] GetResultDetail()
         {
-            string function;
-            if (Exist)
-            {
-                function = "产品有无";
-            }
-            else
-            {
-                function = "缺陷检测";
-            }
             return new object[] { name, function, minValue.ToString(), maxValue.ToString(), hv_Area.D.ToString("f0") };
         }
 

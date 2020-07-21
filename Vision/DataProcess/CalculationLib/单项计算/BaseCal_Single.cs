@@ -57,7 +57,6 @@ namespace Vision.DataProcess.CalculationLib
         /// </summary>
         public MeasuringUnit unit2;
 
-        protected string function;
 
         /// <summary>
         /// 测量起点和终点

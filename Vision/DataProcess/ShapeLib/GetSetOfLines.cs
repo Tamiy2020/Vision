@@ -38,6 +38,7 @@ namespace Vision.DataProcess.ShapeLib
         {
             maxId = 1;
             LineList = new List<Line>();
+            function = "多边抓取";
         }
 
 

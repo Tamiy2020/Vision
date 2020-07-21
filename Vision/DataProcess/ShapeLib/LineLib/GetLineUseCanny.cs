@@ -30,12 +30,14 @@ namespace Vision.DataProcess.ShapeLib
         {
             parameter = new Canny();
             HOperatorSet.GenEmptyObj(out ho_SelectedRegions);
+            function = "边缘拟合线";
         }
 
         public GetLineUseCanny(Canny parameter)//带参数的构造函数
         {
             this.parameter = parameter;
             HOperatorSet.GenEmptyObj(out ho_SelectedRegions);
+            function = "边缘拟合线";
         }
 
         /// <summary>

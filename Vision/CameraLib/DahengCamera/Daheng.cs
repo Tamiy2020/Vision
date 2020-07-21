@@ -196,5 +196,43 @@ namespace Vision.CameraLib
                 objIGXDevice = null;
             }
         }
+
+        /// <summary>
+        /// 获取曝光时间
+        /// </summary>
+        /// <returns></returns>
+        public string GetExposureTime()
+        {
+            return objIGXFeatureControl.GetFloatFeature("ExposureTime").GetValue().ToString();
+        }
+
+        /// <summary>
+        /// 获取增益
+        /// </summary>
+        /// <returns></returns>
+        public string GetGainRaw()
+        {
+            return objIGXFeatureControl.GetFloatFeature("Gain").GetValue().ToString();
+        }
+
+        /// <summary>
+        /// 设置曝光
+        /// </summary>
+        /// <param name="et"></param>
+        public void SetExposureTime(string et)
+        {
+            objIGXFeatureControl.GetFloatFeature("ExposureTime").SetValue(double.Parse(et));
+        }
+
+        /// <summary>
+        /// 设置增益
+        /// </summary>
+        /// <param name="gainRaw"></param>
+        public void SetGainRaw(string gainRaw)
+        {
+            objIGXFeatureControl.GetFloatFeature("Gain").SetValue(double.Parse(gainRaw));
+        }
+
+
     }
 }

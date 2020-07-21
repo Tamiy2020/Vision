@@ -24,11 +24,13 @@ namespace Vision.DataProcess.ShapeLib
         public GetLineUseMeasure_Pos()//默认构造函数
         {
             this.parameter = new Measure_Pos();
+            function = "边缘检测线";
         }
 
         public GetLineUseMeasure_Pos(Measure_Pos parameter)//带参数的构造函数
         {
             this.parameter = parameter;
+            function = "边缘检测线";
         }
 
         /// <summary>
