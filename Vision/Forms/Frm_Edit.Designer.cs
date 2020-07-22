@@ -65,6 +65,7 @@
             this.tsbtn_Circle = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_Distance = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_MultipleDistance = new System.Windows.Forms.ToolStripButton();
+            this.tsbtn_Angle = new System.Windows.Forms.ToolStripButton();
             this.tsbtn_Exist = new System.Windows.Forms.ToolStripButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -100,7 +101,7 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EditItem = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeleteItem = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.tsbtn_Angle = new System.Windows.Forms.ToolStripButton();
+            this.tsbtn_Radius = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -159,6 +160,7 @@
             this.tsbtn_Distance,
             this.tsbtn_MultipleDistance,
             this.tsbtn_Angle,
+            this.tsbtn_Radius,
             this.tsbtn_Exist});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -237,6 +239,18 @@
             this.tsbtn_MultipleDistance.Size = new System.Drawing.Size(50, 50);
             this.tsbtn_MultipleDistance.Text = "多边测距";
             this.tsbtn_MultipleDistance.Click += new System.EventHandler(this.tsbtn_MultipleDistance_Click);
+            // 
+            // tsbtn_Angle
+            // 
+            this.tsbtn_Angle.AutoSize = false;
+            this.tsbtn_Angle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtn_Angle.Image = global::Vision.Properties.Resources.角度计算;
+            this.tsbtn_Angle.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtn_Angle.Margin = new System.Windows.Forms.Padding(5);
+            this.tsbtn_Angle.Name = "tsbtn_Angle";
+            this.tsbtn_Angle.Size = new System.Drawing.Size(50, 50);
+            this.tsbtn_Angle.Text = "角度计算";
+            this.tsbtn_Angle.Click += new System.EventHandler(this.tsbtn_Angle_Click);
             // 
             // tsbtn_Exist
             // 
@@ -652,17 +666,17 @@
             this.DeleteItem.Name = "DeleteItem";
             this.DeleteItem.Width = 63;
             // 
-            // tsbtn_Angle
+            // tsbtn_Radius
             // 
-            this.tsbtn_Angle.AutoSize = false;
-            this.tsbtn_Angle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtn_Angle.Image = global::Vision.Properties.Resources.角度计算;
-            this.tsbtn_Angle.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtn_Angle.Margin = new System.Windows.Forms.Padding(5);
-            this.tsbtn_Angle.Name = "tsbtn_Angle";
-            this.tsbtn_Angle.Size = new System.Drawing.Size(50, 50);
-            this.tsbtn_Angle.Text = "角度计算";
-            this.tsbtn_Angle.Click += new System.EventHandler(this.tsbtn_Angle_Click);
+            this.tsbtn_Radius.AutoSize = false;
+            this.tsbtn_Radius.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtn_Radius.Image = global::Vision.Properties.Resources.圆半径;
+            this.tsbtn_Radius.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtn_Radius.Margin = new System.Windows.Forms.Padding(5);
+            this.tsbtn_Radius.Name = "tsbtn_Radius";
+            this.tsbtn_Radius.Size = new System.Drawing.Size(50, 50);
+            this.tsbtn_Radius.Text = "半径计算";
+            this.tsbtn_Radius.Click += new System.EventHandler(this.tsbtn_Radius_Click);
             // 
             // Frm_Edit
             // 
@@ -738,5 +752,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column25;
         private System.Windows.Forms.ToolStripButton tsbtn_Angle;
+        private System.Windows.Forms.ToolStripButton tsbtn_Radius;
     }
 }

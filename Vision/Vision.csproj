@@ -164,6 +164,12 @@
     <Compile Include="Forms\Ufrm_MultipleDistance.Designer.cs">
       <DependentUpon>Ufrm_MultipleDistance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Ufrm_Radius.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ufrm_Radius.Designer.cs">
+      <DependentUpon>Ufrm_Radius.cs</DependentUpon>
+    </Compile>
     <Compile Include="System\ConfigManager.cs" />
     <Compile Include="DataProcess\AxByC.cs" />
     <Compile Include="DataProcess\CalculationLib\多项计算\BaseCal_Multi.cs" />
@@ -306,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Ufrm_MultipleDistance.resx">
       <DependentUpon>Ufrm_MultipleDistance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ufrm_Radius.resx">
+      <DependentUpon>Ufrm_Radius.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

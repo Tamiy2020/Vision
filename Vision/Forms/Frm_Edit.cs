@@ -1,19 +1,10 @@
 ﻿using HalconDotNet;
-using Rabbit.InvokeHelper;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Vision.CameraLib;
 using Vision.DataProcess;
 
 namespace Vision.Forms
@@ -236,6 +227,13 @@ namespace Vision.Forms
         {
             Ufrm_Angle ufrm_Angle = new Ufrm_Angle(this, hWindow_Final1.Image);
             ufrm_Angle.ShowDialog();
+        }
+
+        //半径计算
+        private void tsbtn_Radius_Click(object sender, EventArgs e)
+        {
+            Ufrm_Radius ufrm_Radius = new Ufrm_Radius(this, hWindow_Final1.Image);
+            ufrm_Radius.ShowDialog();
         }
 
         //缺陷检测
