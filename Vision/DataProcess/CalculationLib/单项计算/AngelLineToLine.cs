@@ -25,7 +25,7 @@ namespace Vision.DataProcess.CalculationLib
         {
             this.unit1 = baseLine;
             this.unit2 = line;
-            function = "线线角度";
+            function = "角度计算";
             DP.hv_Column = line.hv_Column1;//设置数据显示点横坐标
             DP.hv_Row = line.hv_Row1;//设置数据显示点纵坐标
         }
@@ -66,7 +66,7 @@ namespace Vision.DataProcess.CalculationLib
         public override List<DataRow> GetDataTableRows(DataTable dataTable)//返回数据表格
         {
             List<DataRow> dataRows = base.GetDataTableRows(dataTable);
-            dataRows[0]["测量类型"] = "线线角度";
+            dataRows[0]["测量类型"] = "角度计算";
             return dataRows;
         }
 

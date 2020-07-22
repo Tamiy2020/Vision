@@ -80,7 +80,7 @@ namespace Vision.Forms
             foreach (var item in measureManager.ListAllUnit())
             {
                 dgv_File.Rows.Add(item);//在表格视图中添加测量项
-                if (item[2].ToString() == "产品有无" || item[2].ToString() == "缺陷检测" || Regex.IsMatch(item[2].ToString(), @"/*距离") || Regex.IsMatch(item[2].ToString(), @"/*距") || item[2].ToString() == "高低落差")
+                if (item[2].ToString() == "产品有无" || item[2].ToString() == "缺陷检测" || Regex.IsMatch(item[2].ToString(), @"/*距离") || Regex.IsMatch(item[2].ToString(), @"/*距") || item[2].ToString() == "高低落差"|| Regex.IsMatch(item[2].ToString(), @"/*计算"))
                 {
                     dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[1].Style.ForeColor = Color.Blue;
                     dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[2].Style.ForeColor = Color.Tomato;
@@ -231,6 +231,13 @@ namespace Vision.Forms
             ufrm_MultipleDistance.ShowDialog();
         }
 
+        //角度计算
+        private void tsbtn_Angle_Click(object sender, EventArgs e)
+        {
+            Ufrm_Angle ufrm_Angle = new Ufrm_Angle(this, hWindow_Final1.Image);
+            ufrm_Angle.ShowDialog();
+        }
+
         //缺陷检测
         private void tsbtn_Exist_Click(object sender, EventArgs e)
         {
@@ -323,6 +330,6 @@ namespace Vision.Forms
             }
         }
 
-
+       
     }
 }

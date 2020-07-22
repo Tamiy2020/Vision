@@ -18,7 +18,7 @@ namespace Vision.DataProcess.CalculationLib
         public CircleRadius(double k, Circle circle) : base(k)//构造函数
         {
             unit1 = circle;
-            function = "圆半径";
+            function = "半径计算";
             DP.hv_Column = circle.hv_Column;//设置数据显示点横坐标
             DP.hv_Row = circle.hv_Row;//设置数据显示点纵坐标
         }
@@ -41,7 +41,7 @@ namespace Vision.DataProcess.CalculationLib
         public override List<DataRow> GetDataTableRows(DataTable dataTable)//返回数据表格
         {
             List<DataRow> dataRows = base.GetDataTableRows(dataTable);
-            dataRows[0]["测量类型"] = "圆半径";
+            dataRows[0]["测量类型"] = "半径计算";
             return dataRows;
         }
     }
