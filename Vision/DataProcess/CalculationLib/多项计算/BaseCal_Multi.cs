@@ -65,7 +65,6 @@ namespace Vision.DataProcess.CalculationLib
         protected BaseCal_Multi(double k)//构造函数
         {
             //初始化一些字段的默认值
-            name = "多边计算";
             kCx = k;
             calList = new List<BaseCal_Single>();
 

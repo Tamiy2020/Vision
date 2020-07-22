@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -79,7 +80,7 @@ namespace Vision.Forms
             foreach (var item in measureManager.ListAllUnit())
             {
                 dgv_File.Rows.Add(item);//在表格视图中添加测量项
-                if (item[2].ToString ()=="产品有无"|| item[2].ToString() == "缺陷检测"|| Regex.IsMatch(item[2].ToString(), @"/*距离"))
+                if (item[2].ToString() == "产品有无" || item[2].ToString() == "缺陷检测" || Regex.IsMatch(item[2].ToString(), @"/*距离") || Regex.IsMatch(item[2].ToString(), @"/*距") || item[2].ToString() == "高低落差")
                 {
                     dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[1].Style.ForeColor = Color.Blue;
                     dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[2].Style.ForeColor = Color.Tomato;
@@ -96,21 +97,46 @@ namespace Vision.Forms
             List<object[]> rows = measureManager.ListAllData();
             foreach (var item in rows)
             {
-                if (item !=null)
+                if (item != null)
                 {
                     dgv_Data.Rows.Add(item);//在表格视图中添加测量项
 
-                    if (Convert.ToDouble(item[2]) > Convert.ToDouble(item[4]) || Convert.ToDouble(item[4]) > Convert.ToDouble(item[3]))
+                    if (item.Length == 24)//多边测距专用
                     {
-                        if (item[1].ToString() == "产品有无")
+                        for (int i = 4; i < 24; i++)
                         {
-                           // dgv_Data.Rows.Clear();
-                            return;
+                            bool b = double.TryParse(item[i].ToString(), out double d);
+                            if (b)
+                            {
+                                if (Convert.ToDouble(item[2]) > d || d > Convert.ToDouble(item[3]))
+                                {
+                                    dgv_Data.Rows[dgv_Data.Rows.Count - 1].Cells[i].Style.ForeColor = Color.Red;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+
                         }
-                        dgv_Data.Rows[dgv_Data.Rows.Count - 1].Cells[4].Style.ForeColor = Color.Red;
                     }
+
+                    else
+                    {
+                        if (Convert.ToDouble(item[2]) > Convert.ToDouble(item[4]) || Convert.ToDouble(item[4]) > Convert.ToDouble(item[3]))
+                        {
+                            if (item[1].ToString() == "产品有无")
+                            {
+                                // dgv_Data.Rows.Clear();
+                                return;
+                            }
+                            dgv_Data.Rows[dgv_Data.Rows.Count - 1].Cells[4].Style.ForeColor = Color.Red;
+                        }
+                    }
+
+
                 }
-               
+
             }
 
         }
@@ -160,7 +186,7 @@ namespace Vision.Forms
         public void LiveMod(bool sign)
         {
             toolStrip1.Enabled = !sign;
-            dgv_File .Enabled = !sign;
+            dgv_File.Enabled = !sign;
         }
 
         //基准线
@@ -192,10 +218,17 @@ namespace Vision.Forms
         }
 
         //距离测量
-        private void tsmi_Cal_Single_Click(object sender, EventArgs e)
+        private void tsbtn_Distance_Click(object sender, EventArgs e)
         {
             Ufrm_Distance ufrm_Distance = new Ufrm_Distance(this, hWindow_Final1.Image);
             ufrm_Distance.ShowDialog();
+        }
+
+        //多边测距
+        private void tsbtn_MultipleDistance_Click(object sender, EventArgs e)
+        {
+            Ufrm_MultipleDistance ufrm_MultipleDistance = new Ufrm_MultipleDistance(this, hWindow_Final1.Image);
+            ufrm_MultipleDistance.ShowDialog();
         }
 
         //缺陷检测
@@ -210,7 +243,7 @@ namespace Vision.Forms
         //编辑/删除
         private void dgv_File_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex < 3|| e.RowIndex < 0 || e.ColumnIndex > 4 || e.RowIndex == dgv_File.RowCount) return;//点击的不是按钮
+            if (e.ColumnIndex < 3 || e.RowIndex < 0 || e.ColumnIndex > 4 || e.RowIndex == dgv_File.RowCount) return;//点击的不是按钮
             string s = "定位线";
             foreach (DataGridViewCell item in dgv_File.Rows[e.RowIndex].Cells) if (s == item.FormattedValue.ToString()) return;
 
@@ -275,7 +308,7 @@ namespace Vision.Forms
         //文件控制  不可编辑
         private void dgv_File_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (e.ColumnIndex ==1||e.ColumnIndex ==2)
+            if (e.ColumnIndex == 1 || e.ColumnIndex == 2)
             {
                 e.Cancel = true;
             }
@@ -284,12 +317,12 @@ namespace Vision.Forms
         //测量数据 不可编辑
         private void dgv_Data_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (e.ColumnIndex>=0)
+            if (e.ColumnIndex >= 0)
             {
                 e.Cancel = true;
             }
         }
 
-      
+
     }
 }

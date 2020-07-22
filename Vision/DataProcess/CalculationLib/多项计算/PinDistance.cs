@@ -107,7 +107,8 @@ namespace Vision.DataProcess.CalculationLib
 
         public override object[] GetResultDetail()//返回详细信息
         {
-            object[] vs = new object[] { name, function, minValue.ToString(), maxValue.ToString(), GetListResult() };
+            List<object> list = GetListResult();
+            object[] vs = new object[] { name, function, minValue.ToString(), maxValue.ToString(), list[0], list[1], list[2], list[3], list[4], list[5], list[6], list[7], list[8], list[9], list[10], list[11], list[12], list[13], list[14], list[15], list[16], list[17], list[18], list[19] };
             return vs;
         }
 
@@ -118,6 +119,11 @@ namespace Vision.DataProcess.CalculationLib
             {
                 list.Add(item.hv_RealDistance.D.ToString("f3"));
             }
+            for (int i = calList.Count; i < 20; i++)
+            {
+                list.Add("");
+            }
+
             return list;
         }
 
