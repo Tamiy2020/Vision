@@ -171,6 +171,7 @@ namespace Vision
             {
                 if (item is BasePosition)
                 {
+                    (item as TranslationTracking).line.MeasureDone = false;//新加的
                     if (!item.MeasureDone)
                     {
                         result = item.Measure(ho_Image);
@@ -215,6 +216,7 @@ namespace Vision
             {
                 if (item is BasePosition)
                 {
+                    (item as TranslationTracking).line.MeasureDone = false;//新加的
                     if (!item.MeasureDone)
                     {
                         result = item.Measure(ho_Image);
@@ -248,6 +250,10 @@ namespace Vision
                 IDataProcess item = (IDataProcess)measuringUnits[i];
                 if (item.MeasureDone)
                 {
+                    if (item is TranslationTracking)
+                    {
+                        (item as TranslationTracking).line.DisplayResult(window);//新加的
+                    }
                     item.DisplayResult(window);//显示简单信息
                 }
             }

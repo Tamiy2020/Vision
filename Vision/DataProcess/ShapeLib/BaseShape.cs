@@ -28,10 +28,10 @@ namespace Vision.DataProcess.ShapeLib
         /// <summary>
         /// 变换矩阵
         /// </summary>
-        protected internal HTuple hv_HomMat2D;
+        protected internal HTuple hv_HomMat2DTranslate;
 
         /// <summary>
-        /// 反转矩阵
+        /// 逆变矩阵
         /// </summary>
         protected internal HTuple hv_HomMat2DInvert;
 
@@ -50,6 +50,9 @@ namespace Vision.DataProcess.ShapeLib
         {
             shapeColor = "blue";
             HOperatorSet.GenEmptyObj(out ho_Shape);//ho_Shape赋空值
+
+          
+
         }
 
         /// <summary>
@@ -63,19 +66,21 @@ namespace Vision.DataProcess.ShapeLib
         /// </summary>
         public void GetHomMat2D()
         {
-            HOperatorSet.HomMat2dIdentity(out hv_HomMat2D);//halcon算子★★★★★★★★★★★★★★★
-            HOperatorSet.HomMat2dIdentity(out hv_HomMat2DInvert);
+            HOperatorSet.HomMat2dIdentity(out HTuple hv_HomMat2D);//创建单位矩阵
 
+            HOperatorSet.HomMat2dIdentity(out  hv_HomMat2DTranslate);
+            HOperatorSet.HomMat2dIdentity(out  hv_HomMat2DInvert);
             if (position_Horizontal != null)
             {
-                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Horizontal.hv_HomMat2D, out hv_HomMat2D);//halcon算子★★★★★★★★★★★★★★★
-                HOperatorSet.HomMat2dCompose(hv_HomMat2DInvert, position_Horizontal.hv_HomMat2DInvert, out hv_HomMat2DInvert);
+                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Horizontal.hv_HomMat2DTranslate, out hv_HomMat2DTranslate);//矩阵相乘
+                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Horizontal.hv_HomMat2DInvert, out hv_HomMat2DInvert);
             }
             if (position_Vertical != null)
             {
-                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical.hv_HomMat2D, out hv_HomMat2D);
-                HOperatorSet.HomMat2dCompose(hv_HomMat2DInvert, position_Vertical.hv_HomMat2DInvert, out hv_HomMat2DInvert);
+                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical.hv_HomMat2DTranslate, out hv_HomMat2DTranslate);
+                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical.hv_HomMat2DInvert, out hv_HomMat2DInvert);
             }
+
         }
 
         /// <summary>

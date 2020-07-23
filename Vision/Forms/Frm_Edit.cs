@@ -76,6 +76,11 @@ namespace Vision.Forms
                     dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[1].Style.ForeColor = Color.Blue;
                     dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[2].Style.ForeColor = Color.Tomato;
                 }
+                if (Regex.IsMatch(item[2].ToString(), @"/*定位"))
+                {
+                    dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[1].Style.ForeColor = Color.Red;
+                    dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[2].Style.ForeColor = Color.Red;
+                }
             }
         }
 
@@ -178,6 +183,13 @@ namespace Vision.Forms
         {
             toolStrip1.Enabled = !sign;
             dgv_File.Enabled = !sign;
+        }
+
+        //跟踪定位
+        private void tsbtn_Position_Click(object sender, EventArgs e)
+        {
+            Ufrm_Position ufrm_Position = new Ufrm_Position(this, hWindow_Final1.Image);
+            ufrm_Position.Show();
         }
 
         //基准线
@@ -328,6 +340,6 @@ namespace Vision.Forms
             }
         }
 
-       
+      
     }
 }

@@ -76,9 +76,9 @@ namespace Vision.DataProcess.ShapeLib
         public override BaseShape GetShapeReset()
         {
             base.GetShapeReset();
-            HOperatorSet.AffineTransPixel(hv_HomMat2D, hv_Row, hv_Column, out hv_Row, out hv_Column);
+            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, hv_Row, hv_Column, out hv_Row, out hv_Column);
             HTuple h1, h2, hv_phi, h4, h5, h6;
-            HOperatorSet.HomMat2dToAffinePar(hv_HomMat2D, out h1, out h2, out hv_phi, out h4, out h5, out h6);
+            HOperatorSet.HomMat2dToAffinePar(hv_HomMat2DTranslate, out h1, out h2, out hv_phi, out h4, out h5, out h6);
             hv_Phi += hv_phi;
             return this;
         }
@@ -87,9 +87,9 @@ namespace Vision.DataProcess.ShapeLib
         {
             Rectangle2 rectangle2 = new Rectangle2(hv_Row, hv_Column, hv_Phi, hv_Length1, hv_Length2);//要返回的对象
             GetHomMat2D();
-            HOperatorSet.AffineTransPixel(hv_HomMat2D, rectangle2.hv_Row, rectangle2.hv_Column, out rectangle2.hv_Row, out rectangle2.hv_Column);
+            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, rectangle2.hv_Row, rectangle2.hv_Column, out rectangle2.hv_Row, out rectangle2.hv_Column);
             HTuple h1, h2, hv_phi, h4, h5, h6;
-            HOperatorSet.HomMat2dToAffinePar(hv_HomMat2D, out h1, out h2, out hv_phi, out h4, out h5, out h6);
+            HOperatorSet.HomMat2dToAffinePar(hv_HomMat2DTranslate, out h1, out h2, out hv_phi, out h4, out h5, out h6);
             rectangle2.hv_Phi += hv_phi;
             return rectangle2;
         }

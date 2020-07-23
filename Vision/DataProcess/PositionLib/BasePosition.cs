@@ -14,12 +14,12 @@ namespace Vision.DataProcess.PositionLib
     public abstract class BasePosition : MeasuringUnit //所有跟踪定位的基类
     {
         /// <summary>
-        /// 水平
+        /// 水平位移量
         /// </summary>
         public HTuple hv_Horizontal;
 
         /// <summary>
-        /// 垂直
+        /// 垂直位移量
         /// </summary>
         public HTuple hv_Vertical;
 
@@ -27,7 +27,7 @@ namespace Vision.DataProcess.PositionLib
         /// <summary>
         /// 变换矩阵
         /// </summary>
-        public HTuple hv_HomMat2D;
+        public HTuple hv_HomMat2DTranslate;
 
         /// <summary>
         /// 逆变矩阵
@@ -39,8 +39,8 @@ namespace Vision.DataProcess.PositionLib
         {
             hv_Horizontal = 0;
             hv_Vertical = 0;
-            HOperatorSet.HomMat2dIdentity(out hv_HomMat2D);
-            HOperatorSet.HomMat2dIdentity(out hv_HomMat2DInvert);
+     /*       HOperatorSet.HomMat2dIdentity(out hv_HomMat2D);
+            HOperatorSet.HomMat2dIdentity(out hv_HomMat2DInvert);*/
         }
 
     }

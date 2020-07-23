@@ -31,21 +31,21 @@ namespace Vision.DataProcess.PositionLib
         }
         public override int Measure(HObject ho_Image)
         {
-            HOperatorSet.HomMat2dIdentity(out hv_HomMat2D);//创建单位矩阵
+            HOperatorSet.HomMat2dIdentity(out HTuple hv_HomMat2D);//创建单位矩阵
             if (!line.MeasureDone)//？线还未进行测量
                 line.Measure(ho_Image);//执行测量
             if (line.AxByC0.k == null)//？是垂直线
             {
                 hv_Horizontal = line.hv_Column1 - oldLline.hv_Column1;//求水平位移量
-                HOperatorSet.HomMat2dTranslate(hv_HomMat2D, 0, hv_Horizontal, out hv_HomMat2D);//求变换矩阵
+                HOperatorSet.HomMat2dTranslate(hv_HomMat2D, 0, hv_Horizontal, out hv_HomMat2DTranslate);//求变换矩阵
             }
             else if (line.AxByC0.k.D == 0)//？是水平线
             {
                 hv_Vertical = line.hv_Row1 - oldLline.hv_Row1;//求垂直位移量
-                HOperatorSet.HomMat2dTranslate(hv_HomMat2D, hv_Vertical, 0, out hv_HomMat2D);//求变换矩阵
+                HOperatorSet.HomMat2dTranslate(hv_HomMat2D, hv_Vertical, 0, out hv_HomMat2DTranslate);//求变换矩阵
             }
             //求逆变矩阵
-            HOperatorSet.HomMat2dInvert(hv_HomMat2D, out hv_HomMat2DInvert);
+            HOperatorSet.HomMat2dInvert(hv_HomMat2DTranslate, out hv_HomMat2DInvert);
             MeasureDone = true;//已测量标志为true
             return 1;
         }
