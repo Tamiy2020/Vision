@@ -49,6 +49,10 @@
             this.trb_MinGray = new System.Windows.Forms.TrackBar();
             this.nud_MinGray = new System.Windows.Forms.NumericUpDown();
             this.btn_SelectROI = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmb_VerticalTracking_L = new System.Windows.Forms.ComboBox();
+            this.cmb_HorizontalTracking = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,6 +80,10 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.cmb_VerticalTracking_L);
+            this.splitContainer1.Panel2.Controls.Add(this.cmb_HorizontalTracking);
+            this.splitContainer1.Panel2.Controls.Add(this.label3);
+            this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.lbl_Area);
             this.splitContainer1.Panel2.Controls.Add(this.rdo_ExistTwo);
             this.splitContainer1.Panel2.Controls.Add(this.rdo_Exist);
@@ -91,7 +99,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btn_SelectROI);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 845;
+            this.splitContainer1.SplitterDistance = 848;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -106,7 +114,7 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(845, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(848, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // lbl_Area
@@ -188,7 +196,7 @@
             // btn_Cancel
             // 
             this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Cancel.Location = new System.Drawing.Point(26, 605);
+            this.btn_Cancel.Location = new System.Drawing.Point(26, 637);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
             this.btn_Cancel.TabIndex = 50;
@@ -199,7 +207,7 @@
             // btn_OK
             // 
             this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_OK.Location = new System.Drawing.Point(352, 605);
+            this.btn_OK.Location = new System.Drawing.Point(356, 637);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 27);
             this.btn_OK.TabIndex = 49;
@@ -325,6 +333,46 @@
             this.btn_SelectROI.UseVisualStyleBackColor = true;
             this.btn_SelectROI.Click += new System.EventHandler(this.btn_SelectROI_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(24, 481);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 17);
+            this.label2.TabIndex = 58;
+            this.label2.Text = "水平跟踪：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(24, 538);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.TabIndex = 59;
+            this.label3.Text = "垂直跟踪：";
+            // 
+            // cmb_VerticalTracking_L
+            // 
+            this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_VerticalTracking_L.FormattingEnabled = true;
+            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(131, 530);
+            this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
+            this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
+            this.cmb_VerticalTracking_L.TabIndex = 61;
+            this.cmb_VerticalTracking_L.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_L_SelectedIndexChanged);
+            // 
+            // cmb_HorizontalTracking
+            // 
+            this.cmb_HorizontalTracking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_HorizontalTracking.FormattingEnabled = true;
+            this.cmb_HorizontalTracking.Location = new System.Drawing.Point(131, 473);
+            this.cmb_HorizontalTracking.Name = "cmb_HorizontalTracking";
+            this.cmb_HorizontalTracking.Size = new System.Drawing.Size(121, 25);
+            this.cmb_HorizontalTracking.TabIndex = 60;
+            this.cmb_HorizontalTracking.SelectedIndexChanged += new System.EventHandler(this.cmb_HorizontalTracking_SelectedIndexChanged);
+            // 
             // UFrm_Exist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -384,5 +432,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbl_Area;
         private System.Windows.Forms.TextBox txt_Name;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmb_VerticalTracking_L;
+        private System.Windows.Forms.ComboBox cmb_HorizontalTracking;
     }
 }

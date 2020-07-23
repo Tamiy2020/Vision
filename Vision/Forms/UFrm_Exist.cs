@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.DataProcess;
+using Vision.DataProcess.PositionLib;
 using Vision.DataProcess.ShapeLib;
 
 namespace Vision.Forms
@@ -46,6 +47,18 @@ namespace Vision.Forms
         /// </summary>
         public bool EditMode { get; }
 
+        /// <summary>
+        /// 垂直定位列队
+        /// </summary>
+        private List<MeasuringUnit> verticalPositions;
+
+        /// <summary>
+        /// 水平定位列队
+        /// </summary>
+        private List<MeasuringUnit> horizontalPositions;
+
+
+
 
         public UFrm_Exist(Frm_Edit form, HObject ho_Image)//构造函数
         {
@@ -76,6 +89,37 @@ namespace Vision.Forms
                 measureManager = form.measureManager;
             }
 
+            List<MeasuringUnit> translations = measureManager.ListAllTranslation();//所有平移跟踪
+
+            verticalPositions = new List<MeasuringUnit>();
+            horizontalPositions = new List<MeasuringUnit>();
+            for (int i = translations.Count - 1; i >= 0; i--)
+            {
+
+
+                if ((translations[i] as TranslationTracking).line.AxByC0.k == null)
+                {
+                    horizontalPositions.Add(translations[i]);
+                    cmb_HorizontalTracking.Items.Add(translations[i].name);
+                }
+
+                else if ((translations[i] as TranslationTracking).line.AxByC0.k.D == 0)//？是水平线
+                {
+                    verticalPositions.Add(translations[i]);//添加垂直定位
+                    cmb_VerticalTracking_L.Items.Add(translations[i].name);//添加垂直跟踪
+
+                }
+            }
+
+
+
+
+
+
+
+
+
+
             //判断是否编辑模式进入
             if (EditMode)
             {
@@ -87,6 +131,23 @@ namespace Vision.Forms
                 rdo_ExistTwo.Checked = !getRegionUseThreshold.Exist;
                 nud_MaxValue.Value = (decimal)getRegionUseThreshold.maxValue;
                 nud_MinValue.Value = (decimal)getRegionUseThreshold.minValue;
+
+                if (getRegionUseThreshold.position_Horizontal != null)
+                {
+                    cmb_HorizontalTracking.SelectedItem = getRegionUseThreshold.position_Horizontal.name;
+                }
+
+
+
+                if (getRegionUseThreshold.position_Vertical_L != null)
+                {
+                    cmb_VerticalTracking_L.SelectedItem = getRegionUseThreshold.position_Vertical_L.name;
+                }
+
+
+
+
+
                 txt_Name.Text = getRegionUseThreshold.name;
                 txt_Name.Enabled = false;//编辑模式下不能编辑名字
                 prepared = true;
@@ -264,6 +325,26 @@ namespace Vision.Forms
         private void nud_MaxValue_ValueChanged(object sender, EventArgs e)
         {
             getRegionUseThreshold.maxValue = (double)nud_MaxValue.Value;
+        }
+
+        private void cmb_HorizontalTracking_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prepared)
+            {
+                getRegionUseThreshold.position_Horizontal = horizontalPositions[cmb_HorizontalTracking.SelectedIndex] as BasePosition;
+                getRegionUseThreshold.SetPosition();
+                RunOnce();
+            }
+        }
+
+        private void cmb_VerticalTracking_L_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prepared)
+            {
+                getRegionUseThreshold.position_Vertical_L = verticalPositions[cmb_VerticalTracking_L.SelectedIndex] as BasePosition;
+                getRegionUseThreshold.SetPosition();
+                RunOnce();
+            }
         }
     }
 }

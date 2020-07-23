@@ -39,8 +39,6 @@ namespace Vision.DataProcess.PositionLib
         {
             hv_Horizontal = 0;
             hv_Vertical = 0;
-     /*       HOperatorSet.HomMat2dIdentity(out hv_HomMat2D);
-            HOperatorSet.HomMat2dIdentity(out hv_HomMat2DInvert);*/
         }
 
     }

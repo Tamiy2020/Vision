@@ -87,6 +87,12 @@ namespace Vision.Forms
             for (int i = translations.Count - 1; i >= 0; i--)
             {
 
+
+                if ((translations[i] as TranslationTracking).line.AxByC0.k== null )
+                { 
+                    continue; 
+                }
+
                 if ((translations[i] as TranslationTracking).line.AxByC0.k.D == 0)//？是水平线
                 {
                     verticalPositions.Add(translations[i]);//添加垂直定位
@@ -107,7 +113,7 @@ namespace Vision.Forms
                 nud_xEnd.Value = (decimal)line.hv_Column2.D;
                 nud_yEnd.Value = (decimal)line.hv_Row2.D;
 
-                if (line .position_Vertical_L !=null)
+                if (line.position_Vertical_L != null)
                 {
                     cmb_VerticalTracking_L.SelectedItem = line.position_Vertical_L.name;
                 }
@@ -158,7 +164,7 @@ namespace Vision.Forms
             prepared = true;
             RunOnce();
 
-        
+
         }
 
 
