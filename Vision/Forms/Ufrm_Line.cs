@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.DataProcess;
+using Vision.DataProcess.PositionLib;
 using Vision.DataProcess.ShapeLib;
 
 namespace Vision.Forms
@@ -53,6 +54,17 @@ namespace Vision.Forms
         public bool EditMode { get; }
 
 
+        /// <summary>
+        /// 垂直定位列队
+        /// </summary>
+        private List<MeasuringUnit> verticalPositions;
+
+        /// <summary>
+        /// 水平定位列队
+        /// </summary>
+        private List<MeasuringUnit> horizontalPositions;
+
+
         public Ufrm_Line(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
@@ -79,6 +91,29 @@ namespace Vision.Forms
                 measureManager = form.measureManager;
             }
 
+            List<MeasuringUnit> translations = measureManager.ListAllTranslation();//所有平移跟踪
+
+            verticalPositions = new List<MeasuringUnit>();
+            horizontalPositions = new List<MeasuringUnit>();
+            for (int i = translations.Count - 1; i >= 0; i--)
+            {
+
+
+                if ((translations[i] as TranslationTracking).line.AxByC0.k == null)
+                {
+                    horizontalPositions.Add(translations[i]);
+                    cmb_HorizontalTracking.Items.Add(translations[i].name);
+                }
+
+                else if ((translations[i] as TranslationTracking).line.AxByC0.k.D == 0)//？是水平线
+                {
+                    verticalPositions.Add(translations[i]);//添加垂直定位
+                    cmb_VerticalTracking_L.Items.Add(translations[i].name);//添加垂直跟踪
+
+                }
+            }
+
+
             //判断是否编辑模式进入
             if (EditMode)
             {
@@ -90,31 +125,43 @@ namespace Vision.Forms
 
                     GetLineUseThreshold getLine = data as GetLineUseThreshold;
 
-                    nud_MaxGray.Value = trb_MaxGray.Value = (line as GetLineUseThreshold).parameter.hv_MaxGray;
-                    nud_MinGray.Value = trb_MinGray.Value = (line as GetLineUseThreshold).parameter.hv_MinGray;
-                    nud_slg_b_pex.Value = (decimal)(line as GetLineUseThreshold).b.D;
-                    if (2 == (line as GetLineUseThreshold).TPLR)
+                    nud_MaxGray.Value = trb_MaxGray.Value = getLine.parameter.hv_MaxGray;
+                    nud_MinGray.Value = trb_MinGray.Value = getLine.parameter.hv_MinGray;
+                    nud_slg_b_pex.Value = (decimal)getLine.b.D;
+                    if (2 == getLine.TPLR)
                     {
                         rdo_DownEdge.Checked = true;
                     }
-                    if (3 == (line as GetLineUseThreshold).TPLR)
+                    if (3 == getLine.TPLR)
                     {
                         rdo_LeftEdge.Checked = true;
                     }
-                    if (4 == (line as GetLineUseThreshold).TPLR)
+                    if (4 == getLine.TPLR)
                     {
                         rdo_RightEdge.Checked = true;
                     }
-                    if (true == (line as GetLineUseThreshold).AngularPoint)
+                    if (true == getLine.AngularPoint)
                     {
                         checkBox1.Checked = true;
                     }
 
+                    if (getLine.position_Horizontal != null)
+                    {
+                        cmb_HorizontalTracking.SelectedItem = getLine.position_Horizontal.name;
+                    }
+
+                    if (getLine.position_Vertical_L != null)
+                    {
+                        cmb_VerticalTracking_L.SelectedItem = getLine.position_Vertical_L.name;
+                    }
+
+
+
                     tabControl1.SelectedTab = tp_Threshold;
                     tabControl1.TabPages.Remove(tp_Canny);
-                 
+
                     tabControl1.TabPages.Remove(tp_Measure_Pos);
-                  
+
                     sign = LineStyle.灰度抓取;
                 }
                 else if (data is GetLineUseMeasure_Pos)
@@ -137,10 +184,10 @@ namespace Vision.Forms
                         rdo_TranslationNegative.Checked = true;
                     }
                     tabControl1.SelectedTab = tp_Measure_Pos;
-                  
+
                     tabControl1.TabPages.Remove(tp_Threshold);
                     tabControl1.TabPages.Remove(tp_Canny);
-                 
+
                     sign = LineStyle.边缘检测;
                 }
                 else if (data is GetLineUseCanny)
@@ -152,14 +199,30 @@ namespace Vision.Forms
                     trb_High.Value = getLine.parameter.hv_High.I;
                     trb_Low.Value = getLine.parameter.hv_Low.I;
                     tabControl1.SelectedTab = tp_Canny;
-                 
+
+
+                    if (getLine.position_Horizontal != null)
+                    {
+                        cmb_HorizontalTracking.SelectedItem = getLine.position_Horizontal.name;
+                    }
+
+                    if (getLine.position_Vertical_L != null)
+                    {
+                        cmb_VerticalTracking_L.SelectedItem = getLine.position_Vertical_L.name;
+                    }
+
+
+
+
+
+
                     tabControl1.TabPages.Remove(tp_Threshold);
                     tabControl1.TabPages.Remove(tp_Measure_Pos);
-                  
+
                     sign = LineStyle.边缘拟合;
                 }
-               
-              
+
+
                 prepared = true;
 
 
@@ -590,8 +653,44 @@ namespace Vision.Forms
         //取消
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
-            if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
+           // if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
+        }
+
+        private void cmb_HorizontalTracking_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prepared)
+            {
+
+
+                (data as BaseShape).position_Horizontal = horizontalPositions[cmb_HorizontalTracking.SelectedIndex] as BasePosition;
+                (data as BaseShape).SetPosition();
+                RunOnce();
+
+
+            }
+        }
+
+        private void cmb_VerticalTracking_L_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prepared)
+            {
+                (data as BaseShape).position_Vertical_L = verticalPositions[cmb_VerticalTracking_L.SelectedIndex] as BasePosition;
+                (data as BaseShape).SetPosition();
+                RunOnce();
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1)
+            {
+                panel1.Visible = false;
+            }
+            else
+            {
+                panel1.Visible = true;
+            }
         }
     }
 }

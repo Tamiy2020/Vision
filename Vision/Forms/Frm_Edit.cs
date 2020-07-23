@@ -123,6 +123,7 @@ namespace Vision.Forms
                         {
                             if (item[1].ToString() == "产品有无")
                             {
+                                dgv_Data.Rows[dgv_Data.Rows.Count - 1].Cells[4].Style.ForeColor = Color.Red;
                                 // dgv_Data.Rows.Clear();
                                 return;
                             }

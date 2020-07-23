@@ -271,7 +271,7 @@ namespace Vision.Forms
         //取消
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
-            if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
+            //if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
         }
 

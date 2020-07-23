@@ -82,6 +82,7 @@ namespace Vision.Forms
             {
                 prepared = true;
                 txt_Name.Enabled = false;//编辑模式下不能编辑名字
+                txt_Name.Text = data.name;
                 transformation = data as TranslationTracking;
                 transformation.line = (data as TranslationTracking).line;
 
