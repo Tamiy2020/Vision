@@ -21,14 +21,33 @@ namespace Vision.DataProcess.ShapeLib
         protected internal BasePosition position_Horizontal;
 
         /// <summary>
-        /// 垂直定位
+        /// 垂直定位左
         /// </summary>
-        protected internal BasePosition position_Vertical;
+        protected internal BasePosition position_Vertical_L;
 
         /// <summary>
-        /// 变换矩阵
+        /// 垂直定位右
         /// </summary>
-        protected internal HTuple hv_HomMat2DTranslate;
+        protected internal BasePosition position_Vertical_R;
+
+
+
+        /// <summary>
+        /// 水平变换矩阵
+        /// </summary>
+        protected internal HTuple hv_HomMat2DTranslat_H;
+
+        /// <summary>
+        /// 垂直变换矩阵左
+        /// </summary>
+        protected internal HTuple hv_HomMat2DTranslate_VL;
+
+        /// <summary>
+        /// 垂直变换矩阵右
+        /// </summary>
+        protected internal HTuple hv_HomMat2DTranslate_VR;
+
+
 
         /// <summary>
         /// 逆变矩阵
@@ -68,17 +87,37 @@ namespace Vision.DataProcess.ShapeLib
         {
             HOperatorSet.HomMat2dIdentity(out HTuple hv_HomMat2D);//创建单位矩阵
 
-            HOperatorSet.HomMat2dIdentity(out  hv_HomMat2DTranslate);
+
+            HOperatorSet.HomMat2dIdentity(out hv_HomMat2DTranslat_H);
+            HOperatorSet.HomMat2dIdentity(out hv_HomMat2DTranslate_VL);
+            HOperatorSet.HomMat2dIdentity(out hv_HomMat2DTranslate_VR);
+
+
+
             HOperatorSet.HomMat2dIdentity(out  hv_HomMat2DInvert);
             if (position_Horizontal != null)
             {
-                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Horizontal.hv_HomMat2DTranslate, out hv_HomMat2DTranslate);//矩阵相乘
+                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Horizontal.hv_HomMat2DTranslate, out hv_HomMat2DTranslat_H);//矩阵相乘
+
+
                 HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Horizontal.hv_HomMat2DInvert, out hv_HomMat2DInvert);
             }
-            if (position_Vertical != null)
+            /* if (position_Vertical != null)
+             {
+                 HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical.hv_HomMat2DTranslate, out hv_HomMat2DTranslate);
+
+
+
+                 HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical.hv_HomMat2DInvert, out hv_HomMat2DInvert);
+             }*/
+
+            if (position_Vertical_L !=null )
             {
-                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical.hv_HomMat2DTranslate, out hv_HomMat2DTranslate);
-                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical.hv_HomMat2DInvert, out hv_HomMat2DInvert);
+                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical_L.hv_HomMat2DTranslate, out hv_HomMat2DTranslate_VL);
+            }
+            if (position_Vertical_R != null)
+            {
+                HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical_R.hv_HomMat2DTranslate, out hv_HomMat2DTranslate_VR);
             }
 
         }

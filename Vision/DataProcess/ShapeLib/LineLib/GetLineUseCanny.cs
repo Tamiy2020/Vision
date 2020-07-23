@@ -69,7 +69,7 @@ namespace Vision.DataProcess.ShapeLib
         public override void SetPosition()
         {
             parameter.rectangle2.position_Horizontal = position_Horizontal;
-            parameter.rectangle2.position_Vertical = position_Vertical;
+           // parameter.rectangle2.position_Vertical = position_Vertical;
         }
 
         /// <summary>

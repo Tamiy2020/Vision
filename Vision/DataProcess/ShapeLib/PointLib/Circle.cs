@@ -67,7 +67,7 @@ namespace Vision.DataProcess.ShapeLib
         public override BaseShape GetShapeReset()
         {
             base.GetShapeReset();
-            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, hv_Row, hv_Column, out hv_Row, out hv_Column);
+           // HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, hv_Row, hv_Column, out hv_Row, out hv_Column);
             return this;
         }
 
@@ -79,7 +79,7 @@ namespace Vision.DataProcess.ShapeLib
         {
             Circle circle = new Circle(hv_Row, hv_Column, hv_Radius);
             GetHomMat2D();
-            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, circle.hv_Row, circle.hv_Column, out circle.hv_Row, out circle.hv_Column);
+          //  HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, circle.hv_Row, circle.hv_Column, out circle.hv_Row, out circle.hv_Column);
             return circle;
         }
 

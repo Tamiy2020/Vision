@@ -52,10 +52,10 @@ namespace Vision.DataProcess.ShapeLib
             {
                 hv_Column += position_Horizontal.hv_Horizontal;
             }
-            if (position_Vertical != null)
+          /*  if (position_Vertical != null)
             {
                 hv_Row += position_Vertical.hv_Vertical;
-            }
+            }*/
             return new Point(hv_Column, hv_Row);
         }
 

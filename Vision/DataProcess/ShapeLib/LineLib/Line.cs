@@ -92,8 +92,8 @@ namespace Vision.DataProcess.ShapeLib
         public override BaseShape GetShapeReset()
         {
             base.GetShapeReset();
-            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate , hv_Row1, hv_Column1, out hv_Row1, out hv_Column1);
-            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, hv_Row2, hv_Column2, out hv_Row2, out hv_Column2);
+           /* HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate , hv_Row1, hv_Column1, out hv_Row1, out hv_Column1);
+            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, hv_Row2, hv_Column2, out hv_Row2, out hv_Column2);*/
             return this;
         }
 
@@ -101,8 +101,13 @@ namespace Vision.DataProcess.ShapeLib
         {
             Line line = new Line(hv_Column1, hv_Row1, hv_Column2, hv_Row2);//要返回的对象
             GetHomMat2D();
-            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, line.hv_Row1, line.hv_Column1, out line.hv_Row1, out line.hv_Column1);//应用变换
-            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, line.hv_Row2, line.hv_Column2, out line.hv_Row2, out line.hv_Column2);//应用变换
+            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslat_H, line.hv_Row1, line.hv_Column1, out line.hv_Row1, out line.hv_Column1);//水平
+
+            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate_VL, line.hv_Row1, line.hv_Column1, out line.hv_Row1, out line.hv_Column1);//垂直左
+
+            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate_VR, line.hv_Row2, line.hv_Column2, out line.hv_Row2, out line.hv_Column2);//垂直右
+
+
             line.AxByC0.GetAxByC(line);
             return line;//返回对象
         }

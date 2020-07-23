@@ -44,6 +44,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.nud_xStart = new System.Windows.Forms.NumericUpDown();
             this.btn_Draw = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmb_VerticalTracking_L = new System.Windows.Forms.ComboBox();
+            this.cmb_VerticalTracking_R = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -69,6 +73,10 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.cmb_VerticalTracking_R);
+            this.splitContainer1.Panel2.Controls.Add(this.cmb_VerticalTracking_L);
+            this.splitContainer1.Panel2.Controls.Add(this.label3);
+            this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.txt_Name);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Cancel);
@@ -76,7 +84,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Draw);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 945;
+            this.splitContainer1.SplitterDistance = 948;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -91,7 +99,7 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(945, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(948, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // txt_Name
@@ -269,6 +277,46 @@
             this.btn_Draw.UseVisualStyleBackColor = true;
             this.btn_Draw.Click += new System.EventHandler(this.btn_Draw_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(9, 430);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 17);
+            this.label2.TabIndex = 51;
+            this.label2.Text = "垂直跟踪左：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(9, 486);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 17);
+            this.label3.TabIndex = 52;
+            this.label3.Text = "垂直跟踪右：";
+            // 
+            // cmb_VerticalTracking_L
+            // 
+            this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_VerticalTracking_L.FormattingEnabled = true;
+            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(132, 422);
+            this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
+            this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
+            this.cmb_VerticalTracking_L.TabIndex = 53;
+            this.cmb_VerticalTracking_L.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_L_SelectedIndexChanged);
+            // 
+            // cmb_VerticalTracking_R
+            // 
+            this.cmb_VerticalTracking_R.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_VerticalTracking_R.FormattingEnabled = true;
+            this.cmb_VerticalTracking_R.Location = new System.Drawing.Point(132, 478);
+            this.cmb_VerticalTracking_R.Name = "cmb_VerticalTracking_R";
+            this.cmb_VerticalTracking_R.Size = new System.Drawing.Size(121, 25);
+            this.cmb_VerticalTracking_R.TabIndex = 54;
+            this.cmb_VerticalTracking_R.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_R_SelectedIndexChanged);
+            // 
             // Ufrm_DatumLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -320,5 +368,9 @@
         private System.Windows.Forms.Button btn_OK;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_Name;
+        private System.Windows.Forms.ComboBox cmb_VerticalTracking_R;
+        private System.Windows.Forms.ComboBox cmb_VerticalTracking_L;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

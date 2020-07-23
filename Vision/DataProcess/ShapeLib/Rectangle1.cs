@@ -64,11 +64,11 @@ namespace Vision.DataProcess.ShapeLib
                 hv_Column1 += position_Horizontal.hv_Horizontal;
                 hv_Column2 += position_Horizontal.hv_Horizontal;
             }
-            if (position_Vertical != null)
+          /*  if (position_Vertical != null)
             {
                 hv_Row1 += position_Vertical.hv_Vertical;
                 hv_Row2 += position_Vertical.hv_Vertical;
-            }
+            }*/
             return new Rectangle1(hv_Row1, hv_Column1, hv_Row2, hv_Column2);
         }
 

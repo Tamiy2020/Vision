@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.DataProcess;
+using Vision.DataProcess.PositionLib;
 using Vision.DataProcess.ShapeLib;
 
 namespace Vision.Forms
@@ -24,7 +25,7 @@ namespace Vision.Forms
         /// <summary>
         /// 线
         /// </summary>
-        private  Line line;
+        private Line line;
 
 
         /// <summary>
@@ -46,6 +47,11 @@ namespace Vision.Forms
         /// 编辑模式
         /// </summary>
         public bool EditMode { get; }
+
+        /// <summary>
+        /// 垂直定位列队
+        /// </summary>
+        private List<MeasuringUnit> verticalPositions;
 
 
         public Ufrm_DatumLine(Frm_Edit form, HObject ho_Image)//构造函数
@@ -75,6 +81,23 @@ namespace Vision.Forms
                 measureManager = form.measureManager;
             }
 
+            List<MeasuringUnit> translations = measureManager.ListAllTranslation();//所有平移跟踪
+
+            verticalPositions = new List<MeasuringUnit>();
+            for (int i = translations.Count - 1; i >= 0; i--)
+            {
+
+                if ((translations[i] as TranslationTracking).line.AxByC0.k.D == 0)//？是水平线
+                {
+                    verticalPositions.Add(translations[i]);//添加垂直定位
+                    cmb_VerticalTracking_L.Items.Add(translations[i].name);//添加垂直跟踪
+                    cmb_VerticalTracking_R.Items.Add(translations[i].name);//添加垂直跟踪
+
+                }
+            }
+
+
+
             //判断是否编辑模式进入
             if (EditMode)
             {
@@ -83,6 +106,19 @@ namespace Vision.Forms
                 nud_yStart.Value = (decimal)line.hv_Row1.D;
                 nud_xEnd.Value = (decimal)line.hv_Column2.D;
                 nud_yEnd.Value = (decimal)line.hv_Row2.D;
+
+                if (line .position_Vertical_L !=null)
+                {
+                    cmb_VerticalTracking_L.SelectedItem = line.position_Vertical_L.name;
+                }
+
+                if (line.position_Vertical_R != null)
+                {
+                    cmb_VerticalTracking_R.SelectedItem = line.position_Vertical_R.name;
+                }
+
+
+
 
                 txt_Name.Text = data.name;
                 txt_Name.Enabled = false;//编辑模式下不能编辑名字
@@ -121,6 +157,8 @@ namespace Vision.Forms
 
             prepared = true;
             RunOnce();
+
+        
         }
 
 
@@ -231,6 +269,24 @@ namespace Vision.Forms
             Close();
         }
 
+        //垂直跟踪左
+        private void cmb_VerticalTracking_L_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prepared)
+            {
+                line.position_Vertical_L = verticalPositions[cmb_VerticalTracking_L.SelectedIndex] as BasePosition;
+                RunOnce();
+            }
+        }
 
+        //垂直跟踪右
+        private void cmb_VerticalTracking_R_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prepared)
+            {
+                line.position_Vertical_R = verticalPositions[cmb_VerticalTracking_R.SelectedIndex] as BasePosition;
+                RunOnce();
+            }
+        }
     }
 }

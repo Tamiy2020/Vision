@@ -51,7 +51,7 @@ namespace Vision.DataProcess.ShapeLib
             foreach (BaseShape item in LineList)
             {
                 item.position_Horizontal = position_Horizontal;
-                item.position_Vertical = position_Vertical;
+               // item.position_Vertical = position_Vertical;
                 item.SetPosition();
             }
         }

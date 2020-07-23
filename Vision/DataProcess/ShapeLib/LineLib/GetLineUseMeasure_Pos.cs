@@ -39,7 +39,7 @@ namespace Vision.DataProcess.ShapeLib
         public override void SetPosition()
         {
             parameter.line.position_Horizontal = position_Horizontal;
-            parameter.line.position_Vertical = position_Vertical;
+          //  parameter.line.position_Vertical = position_Vertical;
         }
 
         public override int Measure(HObject ho_Image)//测量
