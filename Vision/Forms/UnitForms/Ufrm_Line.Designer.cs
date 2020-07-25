@@ -130,7 +130,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.chk_Angle);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Draw);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 848;
+            this.splitContainer1.SplitterDistance = 851;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -144,7 +144,7 @@
             this.hWindow_Final1.Image = null;
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(848, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(851, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // panel1
@@ -204,7 +204,7 @@
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.Size = new System.Drawing.Size(151, 23);
             this.txt_Name.TabIndex = 54;
-            this.txt_Name.Text = "线";
+            this.txt_Name.Text = "线1";
             // 
             // label1
             // 

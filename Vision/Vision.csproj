@@ -122,58 +122,58 @@
     <Compile Include="CameraLib\DahuaCamera\DahuaManager.cs" />
     <Compile Include="CameraLib\FileHalcon\File.cs" />
     <Compile Include="CameraLib\FileHalcon\FileManager.cs" />
-    <Compile Include="Forms\Ufrm_Angle.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Angle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Ufrm_Angle.Designer.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Angle.Designer.cs">
       <DependentUpon>Ufrm_Angle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Ufrm_Circle.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Circle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Ufrm_Circle.Designer.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Circle.Designer.cs">
       <DependentUpon>Ufrm_Circle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Ufrm_DatumLine.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_DatumLine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Ufrm_DatumLine.Designer.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_DatumLine.Designer.cs">
       <DependentUpon>Ufrm_DatumLine.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Ufrm_Distance.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Distance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Ufrm_Distance.Designer.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Distance.Designer.cs">
       <DependentUpon>Ufrm_Distance.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Ufrm_Line.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Line.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Ufrm_Line.Designer.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Line.Designer.cs">
       <DependentUpon>Ufrm_Line.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Ufrm_LineList.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_LineList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Ufrm_LineList.Designer.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_LineList.Designer.cs">
       <DependentUpon>Ufrm_LineList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Ufrm_MultipleDistance.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_MultipleDistance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Ufrm_MultipleDistance.Designer.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_MultipleDistance.Designer.cs">
       <DependentUpon>Ufrm_MultipleDistance.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Ufrm_Position.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Position.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Ufrm_Position.Designer.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Position.Designer.cs">
       <DependentUpon>Ufrm_Position.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Ufrm_Radius.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Radius.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Ufrm_Radius.Designer.cs">
+    <Compile Include="Forms\UnitForms\Ufrm_Radius.Designer.cs">
       <DependentUpon>Ufrm_Radius.cs</DependentUpon>
     </Compile>
     <Compile Include="System\ConfigManager.cs" />
@@ -260,10 +260,10 @@
     <Compile Include="Forms\DisplayWindows\Frm_TwoWin.Designer.cs">
       <DependentUpon>Frm_TwoWin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UFrm_Exist.cs">
+    <Compile Include="Forms\UnitForms\UFrm_Exist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\UFrm_Exist.Designer.cs">
+    <Compile Include="Forms\UnitForms\UFrm_Exist.Designer.cs">
       <DependentUpon>UFrm_Exist.cs</DependentUpon>
     </Compile>
     <Compile Include="System\IOManager.cs" />
@@ -295,34 +295,34 @@
     <EmbeddedResource Include="Forms\Frm_Main.resx">
       <DependentUpon>Frm_Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ufrm_Angle.resx">
+    <EmbeddedResource Include="Forms\UnitForms\Ufrm_Angle.resx">
       <DependentUpon>Ufrm_Angle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ufrm_Circle.resx">
+    <EmbeddedResource Include="Forms\UnitForms\Ufrm_Circle.resx">
       <DependentUpon>Ufrm_Circle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ufrm_DatumLine.resx">
+    <EmbeddedResource Include="Forms\UnitForms\Ufrm_DatumLine.resx">
       <DependentUpon>Ufrm_DatumLine.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ufrm_Distance.resx">
+    <EmbeddedResource Include="Forms\UnitForms\Ufrm_Distance.resx">
       <DependentUpon>Ufrm_Distance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UFrm_Exist.resx">
+    <EmbeddedResource Include="Forms\UnitForms\UFrm_Exist.resx">
       <DependentUpon>UFrm_Exist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ufrm_Line.resx">
+    <EmbeddedResource Include="Forms\UnitForms\Ufrm_Line.resx">
       <DependentUpon>Ufrm_Line.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ufrm_LineList.resx">
+    <EmbeddedResource Include="Forms\UnitForms\Ufrm_LineList.resx">
       <DependentUpon>Ufrm_LineList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ufrm_MultipleDistance.resx">
+    <EmbeddedResource Include="Forms\UnitForms\Ufrm_MultipleDistance.resx">
       <DependentUpon>Ufrm_MultipleDistance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ufrm_Position.resx">
+    <EmbeddedResource Include="Forms\UnitForms\Ufrm_Position.resx">
       <DependentUpon>Ufrm_Position.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ufrm_Radius.resx">
+    <EmbeddedResource Include="Forms\UnitForms\Ufrm_Radius.resx">
       <DependentUpon>Ufrm_Radius.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

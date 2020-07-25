@@ -99,7 +99,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btn_SelectROI);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 851;
+            this.splitContainer1.SplitterDistance = 854;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -114,7 +114,7 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(851, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(854, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // cmb_VerticalTracking_L
@@ -261,7 +261,6 @@
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.Size = new System.Drawing.Size(151, 23);
             this.txt_Name.TabIndex = 48;
-            this.txt_Name.Text = "有无";
             // 
             // label1
             // 
