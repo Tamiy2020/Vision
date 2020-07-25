@@ -56,8 +56,8 @@ namespace Vision.Forms
             object[] vs = e as object[];
             dgv_File.CurrentRow.Cells[0].Value = vs[0];
             dgv_File.CurrentRow.Cells[1].Value = vs[1];
-            // dataGridView1.CurrentRow.Cells[2].Value = vs[2];
-            // dataGridView1.CurrentRow.Cells[3].Value = vs[3];
+            dgv_File.CurrentRow.Cells[2].Value = vs[2];
+         
             UpdateDataGridView();
             return 0;
         }
@@ -262,8 +262,8 @@ namespace Vision.Forms
         private void dgv_File_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex < 3 || e.RowIndex < 0 || e.ColumnIndex > 4 || e.RowIndex == dgv_File.RowCount) return;//点击的不是按钮
-            string s = "定位线";
-            foreach (DataGridViewCell item in dgv_File.Rows[e.RowIndex].Cells) if (s == item.FormattedValue.ToString()) return;
+          
+         
 
             //获取该项id
             int id = int.Parse(dgv_File.Rows[e.RowIndex].Cells[0].Value.ToString());
@@ -283,6 +283,7 @@ namespace Vision.Forms
 
                 methodInfo.Invoke(form, null);//执行Show方法 
                 #endregion
+                
 
             }
             if (e.ColumnIndex == 4)//删除
@@ -293,25 +294,7 @@ namespace Vision.Forms
                     if (measureManager.RemoveMeasuringUnit(id) == null)
                     {
                         dgv_File.Rows.Remove(dgv_File.Rows[e.RowIndex]);//从表格中删除该行
-
-                        #region 删除定位时删除定位线
-                        if (e.RowIndex >= 1)
-                        {
-                            foreach (DataGridViewCell item in dgv_File.Rows[e.RowIndex - 1].Cells)
-                            {
-
-                                if (s == item.FormattedValue.ToString())
-                                {
-                                    measureManager.RemoveMeasuringUnit(id - 1);
-                                    dgv_File.Rows.Remove(dgv_File.Rows[e.RowIndex - 1]);//删除定位线
-                                    return;
-                                }
-                            }
-                        }
-                        #endregion
-
-
-
+                        return;
                     }
                 }
             }

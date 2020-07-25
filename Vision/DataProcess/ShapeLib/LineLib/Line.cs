@@ -47,7 +47,7 @@ namespace Vision.DataProcess.ShapeLib
             this.hv_Row1 = 0;
             this.hv_Column2 = 0;
             this.hv_Row2 = 0;
-            name = "线";
+          
         }
 
         public Line(HTuple hv_Column1, HTuple hv_Row1, HTuple hv_Column2, HTuple hv_Row2)//带参数的构造函数
@@ -56,7 +56,7 @@ namespace Vision.DataProcess.ShapeLib
             this.hv_Row1 = hv_Row1;
             this.hv_Column2 = hv_Column2;
             this.hv_Row2 = hv_Row2;
-            name = "线";
+          
         }
 
         /// <summary>

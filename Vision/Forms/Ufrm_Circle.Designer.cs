@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.hWindow_Final1 = new ChoiceTech.Halcon.Control.HWindow_Final();
+            this.btn_Cancel = new System.Windows.Forms.Button();
+            this.btn_OK = new System.Windows.Forms.Button();
+            this.txt_Name = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
@@ -42,12 +46,13 @@
             this.btn_DrawCircle = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.trb_slg_MaxGray = new System.Windows.Forms.TrackBar();
+            this.btn_slg_ReDrowROI = new System.Windows.Forms.Button();
             this.nud_slg_MaxGray = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.trb_slg_MinGray = new System.Windows.Forms.TrackBar();
             this.nud_slg_MinGray = new System.Windows.Forms.NumericUpDown();
-            this.btn_slg_ReDrowROI = new System.Windows.Forms.Button();
             this.cmb_slg_SelectItem = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -58,16 +63,16 @@
             this.trb_MinGray = new System.Windows.Forms.TrackBar();
             this.nud_MinGray = new System.Windows.Forms.NumericUpDown();
             this.btn_DrawROIs = new System.Windows.Forms.Button();
-            this.txt_Name = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btn_Cancel = new System.Windows.Forms.Button();
-            this.btn_OK = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmi_Next = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_Done = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_Cancel = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cmb_VerticalTracking_L = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmb_HorizontalTracking = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -89,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trb_MinGray)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_MinGray)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -105,13 +111,14 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Cancel);
             this.splitContainer1.Panel2.Controls.Add(this.btn_OK);
             this.splitContainer1.Panel2.Controls.Add(this.txt_Name);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 845;
+            this.splitContainer1.SplitterDistance = 848;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -125,8 +132,47 @@
             this.hWindow_Final1.Image = null;
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(845, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(848, 796);
             this.hWindow_Final1.TabIndex = 0;
+            // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_Cancel.Location = new System.Drawing.Point(11, 719);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
+            this.btn_Cancel.TabIndex = 52;
+            this.btn_Cancel.Text = "取消";
+            this.btn_Cancel.UseVisualStyleBackColor = true;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            // 
+            // btn_OK
+            // 
+            this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_OK.Location = new System.Drawing.Point(337, 719);
+            this.btn_OK.Name = "btn_OK";
+            this.btn_OK.Size = new System.Drawing.Size(75, 27);
+            this.btn_OK.TabIndex = 51;
+            this.btn_OK.Text = "确定";
+            this.btn_OK.UseVisualStyleBackColor = true;
+            this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
+            // 
+            // txt_Name
+            // 
+            this.txt_Name.Location = new System.Drawing.Point(127, 30);
+            this.txt_Name.Name = "txt_Name";
+            this.txt_Name.Size = new System.Drawing.Size(151, 23);
+            this.txt_Name.TabIndex = 50;
+            this.txt_Name.Text = "圆";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 17);
+            this.label1.TabIndex = 49;
+            this.label1.Text = "请输入名字：";
             // 
             // tabControl1
             // 
@@ -137,6 +183,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(444, 464);
             this.tabControl1.TabIndex = 1;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -274,6 +321,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "单项参数设置";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 144);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 17);
+            this.label2.TabIndex = 51;
+            this.label2.Text = "上限灰度值";
+            // 
             // trb_slg_MaxGray
             // 
             this.trb_slg_MaxGray.AutoSize = false;
@@ -287,6 +343,17 @@
             this.trb_slg_MaxGray.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.trb_slg_MaxGray.Value = 255;
             this.trb_slg_MaxGray.Scroll += new System.EventHandler(this.trb_slg_MaxGray_Scroll);
+            // 
+            // btn_slg_ReDrowROI
+            // 
+            this.btn_slg_ReDrowROI.Enabled = false;
+            this.btn_slg_ReDrowROI.Location = new System.Drawing.Point(86, 36);
+            this.btn_slg_ReDrowROI.Name = "btn_slg_ReDrowROI";
+            this.btn_slg_ReDrowROI.Size = new System.Drawing.Size(84, 30);
+            this.btn_slg_ReDrowROI.TabIndex = 56;
+            this.btn_slg_ReDrowROI.Text = "重画选区";
+            this.btn_slg_ReDrowROI.UseVisualStyleBackColor = true;
+            this.btn_slg_ReDrowROI.Click += new System.EventHandler(this.btn_slg_ReDrowROI_Click);
             // 
             // nud_slg_MaxGray
             // 
@@ -339,17 +406,6 @@
             this.nud_slg_MinGray.Size = new System.Drawing.Size(48, 23);
             this.nud_slg_MinGray.TabIndex = 58;
             this.nud_slg_MinGray.ValueChanged += new System.EventHandler(this.nud_slg_MinGray_ValueChanged);
-            // 
-            // btn_slg_ReDrowROI
-            // 
-            this.btn_slg_ReDrowROI.Enabled = false;
-            this.btn_slg_ReDrowROI.Location = new System.Drawing.Point(86, 36);
-            this.btn_slg_ReDrowROI.Name = "btn_slg_ReDrowROI";
-            this.btn_slg_ReDrowROI.Size = new System.Drawing.Size(84, 30);
-            this.btn_slg_ReDrowROI.TabIndex = 56;
-            this.btn_slg_ReDrowROI.Text = "重画选区";
-            this.btn_slg_ReDrowROI.UseVisualStyleBackColor = true;
-            this.btn_slg_ReDrowROI.Click += new System.EventHandler(this.btn_slg_ReDrowROI_Click);
             // 
             // cmb_slg_SelectItem
             // 
@@ -472,54 +528,6 @@
             this.btn_DrawROIs.UseVisualStyleBackColor = true;
             this.btn_DrawROIs.Click += new System.EventHandler(this.btn_DrawROIs_Click);
             // 
-            // txt_Name
-            // 
-            this.txt_Name.Location = new System.Drawing.Point(127, 30);
-            this.txt_Name.Name = "txt_Name";
-            this.txt_Name.Size = new System.Drawing.Size(151, 23);
-            this.txt_Name.TabIndex = 50;
-            this.txt_Name.Text = "圆";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 17);
-            this.label1.TabIndex = 49;
-            this.label1.Text = "请输入名字：";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 144);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 17);
-            this.label2.TabIndex = 51;
-            this.label2.Text = "上限灰度值";
-            // 
-            // btn_Cancel
-            // 
-            this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Cancel.Location = new System.Drawing.Point(11, 719);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
-            this.btn_Cancel.TabIndex = 52;
-            this.btn_Cancel.Text = "取消";
-            this.btn_Cancel.UseVisualStyleBackColor = true;
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
-            // 
-            // btn_OK
-            // 
-            this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_OK.Location = new System.Drawing.Point(337, 719);
-            this.btn_OK.Name = "btn_OK";
-            this.btn_OK.Size = new System.Drawing.Size(75, 27);
-            this.btn_OK.TabIndex = 51;
-            this.btn_OK.Text = "确定";
-            this.btn_OK.UseVisualStyleBackColor = true;
-            this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -533,14 +541,14 @@
             // tsmi_Next
             // 
             this.tsmi_Next.Name = "tsmi_Next";
-            this.tsmi_Next.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_Next.Size = new System.Drawing.Size(112, 22);
             this.tsmi_Next.Text = "下一个";
             this.tsmi_Next.Click += new System.EventHandler(this.tsmi_Next_Click);
             // 
             // tsmi_Done
             // 
             this.tsmi_Done.Name = "tsmi_Done";
-            this.tsmi_Done.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_Done.Size = new System.Drawing.Size(112, 22);
             this.tsmi_Done.Text = "完成";
             this.tsmi_Done.Click += new System.EventHandler(this.tsmi_Done_Click);
             // 
@@ -552,9 +560,60 @@
             // tsmi_Cancel
             // 
             this.tsmi_Cancel.Name = "tsmi_Cancel";
-            this.tsmi_Cancel.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_Cancel.Size = new System.Drawing.Size(112, 22);
             this.tsmi_Cancel.Text = "取消";
             this.tsmi_Cancel.Click += new System.EventHandler(this.tsmi_Cancel_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cmb_VerticalTracking_L);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.cmb_HorizontalTracking);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Location = new System.Drawing.Point(6, 570);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(297, 104);
+            this.panel1.TabIndex = 67;
+            // 
+            // cmb_VerticalTracking_L
+            // 
+            this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_VerticalTracking_L.FormattingEnabled = true;
+            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(123, 59);
+            this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
+            this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
+            this.cmb_VerticalTracking_L.TabIndex = 65;
+            this.cmb_VerticalTracking_L.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_L_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(16, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.TabIndex = 62;
+            this.label3.Text = "水平跟踪：";
+            // 
+            // cmb_HorizontalTracking
+            // 
+            this.cmb_HorizontalTracking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_HorizontalTracking.FormattingEnabled = true;
+            this.cmb_HorizontalTracking.Location = new System.Drawing.Point(123, 12);
+            this.cmb_HorizontalTracking.Name = "cmb_HorizontalTracking";
+            this.cmb_HorizontalTracking.Size = new System.Drawing.Size(121, 25);
+            this.cmb_HorizontalTracking.TabIndex = 64;
+            this.cmb_HorizontalTracking.SelectedIndexChanged += new System.EventHandler(this.cmb_HorizontalTracking_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(16, 67);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 17);
+            this.label5.TabIndex = 63;
+            this.label5.Text = "垂直跟踪：";
             // 
             // Ufrm_Circle
             // 
@@ -564,7 +623,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Ufrm_Circle";
@@ -600,6 +659,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trb_MinGray)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_MinGray)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -645,5 +706,10 @@
         private System.Windows.Forms.ToolStripMenuItem tsmi_Done;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem tsmi_Cancel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox cmb_VerticalTracking_L;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmb_HorizontalTracking;
+        private System.Windows.Forms.Label label5;
     }
 }

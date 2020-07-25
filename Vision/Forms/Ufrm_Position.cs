@@ -296,5 +296,10 @@ namespace Vision.Forms
             if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
         }
+
+        private void Ufrm_Position_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            data.Measure(ho_Image);
+        }
     }
 }

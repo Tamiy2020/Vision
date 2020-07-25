@@ -130,7 +130,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.chk_Angle);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Draw);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 863;
+            this.splitContainer1.SplitterDistance = 848;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -144,7 +144,7 @@
             this.hWindow_Final1.Image = null;
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(863, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(848, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // panel1
@@ -153,7 +153,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cmb_HorizontalTracking);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(9, 630);
+            this.panel1.Location = new System.Drawing.Point(9, 572);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(297, 104);
             this.panel1.TabIndex = 66;
@@ -200,7 +200,7 @@
             // 
             // txt_Name
             // 
-            this.txt_Name.Location = new System.Drawing.Point(243, 101);
+            this.txt_Name.Location = new System.Drawing.Point(247, 65);
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.Size = new System.Drawing.Size(151, 23);
             this.txt_Name.TabIndex = 54;
@@ -209,7 +209,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 107);
+            this.label1.Location = new System.Drawing.Point(19, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 17);
             this.label1.TabIndex = 53;
@@ -217,7 +217,7 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(9, 743);
+            this.btn_Cancel.Location = new System.Drawing.Point(9, 705);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
             this.btn_Cancel.TabIndex = 52;
@@ -227,7 +227,7 @@
             // 
             // btn_OK
             // 
-            this.btn_OK.Location = new System.Drawing.Point(341, 743);
+            this.btn_OK.Location = new System.Drawing.Point(332, 705);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 27);
             this.btn_OK.TabIndex = 51;
@@ -240,7 +240,7 @@
             this.tabControl1.Controls.Add(this.tp_Threshold);
             this.tabControl1.Controls.Add(this.tp_Measure_Pos);
             this.tabControl1.Controls.Add(this.tp_Canny);
-            this.tabControl1.Location = new System.Drawing.Point(18, 165);
+            this.tabControl1.Location = new System.Drawing.Point(9, 107);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(406, 459);
@@ -758,7 +758,7 @@
             // chk_Angle
             // 
             this.chk_Angle.AutoSize = true;
-            this.chk_Angle.Location = new System.Drawing.Point(243, 37);
+            this.chk_Angle.Location = new System.Drawing.Point(243, 25);
             this.chk_Angle.Name = "chk_Angle";
             this.chk_Angle.Size = new System.Drawing.Size(51, 21);
             this.chk_Angle.TabIndex = 2;
@@ -767,7 +767,7 @@
             // 
             // btn_Draw
             // 
-            this.btn_Draw.Location = new System.Drawing.Point(15, 24);
+            this.btn_Draw.Location = new System.Drawing.Point(18, 12);
             this.btn_Draw.Name = "btn_Draw";
             this.btn_Draw.Size = new System.Drawing.Size(130, 34);
             this.btn_Draw.TabIndex = 1;

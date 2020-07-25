@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.DataProcess;
 using Vision.DataProcess.ParameterLib;
+using Vision.DataProcess.PositionLib;
 using Vision.DataProcess.ShapeLib;
 
 namespace Vision.Forms
@@ -58,6 +59,19 @@ namespace Vision.Forms
         /// 编辑模式
         /// </summary>
         public bool EditMode { get; }
+
+
+        /// <summary>
+        /// 垂直定位列队
+        /// </summary>
+        private List<MeasuringUnit> verticalPositions;
+
+        /// <summary>
+        /// 水平定位列队
+        /// </summary>
+        private List<MeasuringUnit> horizontalPositions;
+
+
 
         public Ufrm_Circle(Frm_Edit form, HObject ho_Image)//构造函数
         {
@@ -111,6 +125,29 @@ namespace Vision.Forms
             {
                 measureManager = form.measureManager;
             }
+
+            List<MeasuringUnit> translations = measureManager.ListAllTranslation();//所有平移跟踪
+
+            verticalPositions = new List<MeasuringUnit>();
+            horizontalPositions = new List<MeasuringUnit>();
+            for (int i = translations.Count - 1; i >= 0; i--)
+            {
+
+
+                if ((translations[i] as TranslationTracking).line.AxByC0.k == null)
+                {
+                    horizontalPositions.Add(translations[i]);
+                    cmb_HorizontalTracking.Items.Add(translations[i].name);
+                }
+
+                else if ((translations[i] as TranslationTracking).line.AxByC0.k.D == 0)//？是水平线
+                {
+                    verticalPositions.Add(translations[i]);//添加垂直定位
+                    cmb_VerticalTracking_L.Items.Add(translations[i].name);//添加垂直跟踪
+
+                }
+            }
+
             if (EditMode)//编辑模式
             {
                 txt_Name.Text = data.name;
@@ -133,6 +170,18 @@ namespace Vision.Forms
                     nud_Circle_x.Value = (decimal)circle.hv_Column.D;
                     nud_Circle_y.Value = (decimal)circle.hv_Row.D;
                     nud_Radius.Value = (decimal)circle.hv_Radius.D;
+
+                    if (circle.position_Horizontal != null)
+                    {
+                        cmb_HorizontalTracking.SelectedItem = circle.position_Horizontal.name;
+                    }
+
+                    if (circle.position_Vertical_L != null)
+                    {
+                        cmb_VerticalTracking_L.SelectedItem = circle.position_Vertical_L.name;
+                    }
+
+
                     tabControl1.SelectedTab = tabPage1;
                     tabControl1.TabPages.Remove(tabPage2);
                 }
@@ -444,8 +493,44 @@ namespace Vision.Forms
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
-            if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
+           // if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
+        }
+
+        private void cmb_HorizontalTracking_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prepared)
+            {
+
+
+                (data as BaseShape).position_Horizontal = horizontalPositions[cmb_HorizontalTracking.SelectedIndex] as BasePosition;
+              //  (data as BaseShape).SetPosition();
+                RunOnce();
+
+
+            }
+        }
+
+        private void cmb_VerticalTracking_L_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prepared)
+            {
+                (data as BaseShape).position_Vertical_L = verticalPositions[cmb_VerticalTracking_L.SelectedIndex] as BasePosition;
+             //   (data as BaseShape).SetPosition();
+                RunOnce();
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1)
+            {
+                panel1.Visible = false;
+            }
+            else
+            {
+                panel1.Visible = true;
+            }
         }
     }
 }

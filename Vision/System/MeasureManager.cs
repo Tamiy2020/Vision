@@ -292,10 +292,10 @@ namespace Vision
             {
                 measureResult = MeasureStart(ho_Image);//测量
                 MeasureFinish(Convert.ToInt32(!measureResult) + 2 * camera.Index, 0);//发结果信号  亮灯
+                Thread.Sleep(200);
                 camera.displayWin.HobjectToHimage(ho_Image);
                 DisplayResult(camera.displayWin);//字符串
                 Display();
-                Thread.Sleep(50);
                 MeasureFinish(Convert.ToInt32(!measureResult) + 2 * camera.Index, 1);//发结果信号 灭灯
             }
             else//实时

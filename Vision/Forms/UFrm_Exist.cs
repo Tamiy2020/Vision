@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -144,10 +145,6 @@ namespace Vision.Forms
                     cmb_VerticalTracking_L.SelectedItem = getRegionUseThreshold.position_Vertical_L.name;
                 }
 
-
-
-
-
                 txt_Name.Text = getRegionUseThreshold.name;
                 txt_Name.Enabled = false;//编辑模式下不能编辑名字
                 prepared = true;
@@ -255,6 +252,14 @@ namespace Vision.Forms
 
         private void btn_OK_Click(object sender, EventArgs e)
         {
+            if (rdo_ExistTwo.Checked)
+            {
+                data.function = "缺陷检测";
+            }
+            if (rdo_Exist.Checked)
+            {
+                data.function = "产品有无";
+            }
             if (!EditMode)//非编辑模式
             {
                 if (txt_Name.Text.Trim() == "线" || txt_Name.Text.Trim() == "多边" || txt_Name.Text.Trim() == "圆" || txt_Name.Text.Trim() == "有无" || txt_Name.Text.Trim() == "单项计算" || txt_Name.Text.Trim() == "多边计算" || txt_Name.Text.Trim() == "角度" || txt_Name.Text.Trim() == "半径" || txt_Name.Text.Trim() == "定位" || txt_Name.Text.Trim() == "定位线" || txt_Name.Text.Trim() == "点")
@@ -310,15 +315,9 @@ namespace Vision.Forms
             Close();
         }
 
-        private void UFrm_Exist_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
         private void nud_MinValue_ValueChanged(object sender, EventArgs e)
         {
             getRegionUseThreshold.minValue = (double)nud_MinValue.Value;
-
 
         }
 
@@ -346,5 +345,7 @@ namespace Vision.Forms
                 RunOnce();
             }
         }
+
+       
     }
 }

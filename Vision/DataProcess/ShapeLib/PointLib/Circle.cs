@@ -79,7 +79,11 @@ namespace Vision.DataProcess.ShapeLib
         {
             Circle circle = new Circle(hv_Row, hv_Column, hv_Radius);
             GetHomMat2D();
-          //  HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, circle.hv_Row, circle.hv_Column, out circle.hv_Row, out circle.hv_Column);
+
+            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslat_H, circle.hv_Row, circle.hv_Column, out circle.hv_Row, out circle.hv_Column);//水平
+
+            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate_VL, circle.hv_Row, circle.hv_Column, out circle.hv_Row, out circle.hv_Column);//垂直
+
             return circle;
         }
 
