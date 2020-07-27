@@ -77,7 +77,7 @@ namespace Vision.DataProcess.ShapeLib
         {
            
           //  HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, hv_Row, hv_Column, out hv_Row, out hv_Column);
-            HTuple h1, h2, hv_phi, h4, h5, h6;
+          //  HTuple h1, h2, hv_phi, h4, h5, h6;
           //  HOperatorSet.HomMat2dToAffinePar(hv_HomMat2DTranslate, out h1, out h2, out hv_phi, out h4, out h5, out h6);
         //    hv_Phi += hv_phi;
 

@@ -65,6 +65,11 @@
             this.tsmi_Done = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_Cancel = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cmb_VerticalTracking_L = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmb_HorizontalTracking = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -82,6 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trb_MinGray)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_MinGray)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -98,6 +104,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Cancel);
             this.splitContainer1.Panel2.Controls.Add(this.btn_OK);
             this.splitContainer1.Panel2.Controls.Add(this.txt_Name);
@@ -106,7 +113,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.btn_DrawROIs);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 848;
+            this.splitContainer1.SplitterDistance = 851;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -121,7 +128,7 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(848, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(851, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // btn_Cancel
@@ -177,9 +184,9 @@
             this.groupBox3.Controls.Add(this.nud_slg_MinGray);
             this.groupBox3.Controls.Add(this.cmb_slg_SelectItem);
             this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Location = new System.Drawing.Point(6, 382);
+            this.groupBox3.Location = new System.Drawing.Point(6, 357);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(440, 256);
+            this.groupBox3.Size = new System.Drawing.Size(440, 186);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "单项参数设置";
@@ -187,7 +194,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 144);
+            this.label1.Location = new System.Drawing.Point(9, 129);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 65;
@@ -195,7 +202,7 @@
             // 
             // nud_slg_b_pex
             // 
-            this.nud_slg_b_pex.Location = new System.Drawing.Point(9, 218);
+            this.nud_slg_b_pex.Location = new System.Drawing.Point(350, 42);
             this.nud_slg_b_pex.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -214,7 +221,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(9, 203);
+            this.label15.Location = new System.Drawing.Point(350, 27);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(56, 17);
             this.label15.TabIndex = 63;
@@ -225,7 +232,7 @@
             this.trb_slg_MaxGray.AutoSize = false;
             this.trb_slg_MaxGray.BackColor = System.Drawing.Color.LightGreen;
             this.trb_slg_MaxGray.LargeChange = 1;
-            this.trb_slg_MaxGray.Location = new System.Drawing.Point(83, 144);
+            this.trb_slg_MaxGray.Location = new System.Drawing.Point(83, 129);
             this.trb_slg_MaxGray.Maximum = 255;
             this.trb_slg_MaxGray.Name = "trb_slg_MaxGray";
             this.trb_slg_MaxGray.Size = new System.Drawing.Size(345, 43);
@@ -236,7 +243,7 @@
             // 
             // nud_slg_MaxGray
             // 
-            this.nud_slg_MaxGray.Location = new System.Drawing.Point(12, 164);
+            this.nud_slg_MaxGray.Location = new System.Drawing.Point(12, 149);
             this.nud_slg_MaxGray.Maximum = new decimal(new int[] {
             255,
             0,
@@ -329,7 +336,7 @@
             this.groupBox1.Controls.Add(this.nud_MinGray);
             this.groupBox1.Location = new System.Drawing.Point(6, 115);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(440, 265);
+            this.groupBox1.Size = new System.Drawing.Size(440, 241);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "整体参数设置";
@@ -340,7 +347,7 @@
             this.groupBox2.Controls.Add(this.rdo_LeftEdge);
             this.groupBox2.Controls.Add(this.rdo_DownEdge);
             this.groupBox2.Controls.Add(this.rdo_UpEdge);
-            this.groupBox2.Location = new System.Drawing.Point(6, 138);
+            this.groupBox2.Location = new System.Drawing.Point(7, 123);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(415, 114);
             this.groupBox2.TabIndex = 12;
@@ -396,7 +403,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 89);
+            this.label8.Location = new System.Drawing.Point(9, 74);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(68, 17);
             this.label8.TabIndex = 11;
@@ -407,7 +414,7 @@
             this.trb_MaxGray.AutoSize = false;
             this.trb_MaxGray.BackColor = System.Drawing.Color.LightGreen;
             this.trb_MaxGray.LargeChange = 1;
-            this.trb_MaxGray.Location = new System.Drawing.Point(83, 89);
+            this.trb_MaxGray.Location = new System.Drawing.Point(83, 74);
             this.trb_MaxGray.Maximum = 255;
             this.trb_MaxGray.Name = "trb_MaxGray";
             this.trb_MaxGray.Size = new System.Drawing.Size(345, 43);
@@ -418,7 +425,7 @@
             // 
             // nud_MaxGray
             // 
-            this.nud_MaxGray.Location = new System.Drawing.Point(12, 109);
+            this.nud_MaxGray.Location = new System.Drawing.Point(12, 94);
             this.nud_MaxGray.Maximum = new decimal(new int[] {
             255,
             0,
@@ -514,6 +521,57 @@
             this.tsmi_Cancel.Text = "取消";
             this.tsmi_Cancel.Click += new System.EventHandler(this.tsmi_Cancel_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cmb_VerticalTracking_L);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.cmb_HorizontalTracking);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Location = new System.Drawing.Point(6, 559);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(297, 104);
+            this.panel1.TabIndex = 67;
+            // 
+            // cmb_VerticalTracking_L
+            // 
+            this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_VerticalTracking_L.FormattingEnabled = true;
+            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(123, 59);
+            this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
+            this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
+            this.cmb_VerticalTracking_L.TabIndex = 65;
+            this.cmb_VerticalTracking_L.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_L_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(16, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.TabIndex = 62;
+            this.label3.Text = "水平跟踪：";
+            // 
+            // cmb_HorizontalTracking
+            // 
+            this.cmb_HorizontalTracking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_HorizontalTracking.FormattingEnabled = true;
+            this.cmb_HorizontalTracking.Location = new System.Drawing.Point(123, 12);
+            this.cmb_HorizontalTracking.Name = "cmb_HorizontalTracking";
+            this.cmb_HorizontalTracking.Size = new System.Drawing.Size(121, 25);
+            this.cmb_HorizontalTracking.TabIndex = 64;
+            this.cmb_HorizontalTracking.SelectedIndexChanged += new System.EventHandler(this.cmb_HorizontalTracking_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(16, 67);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 17);
+            this.label5.TabIndex = 63;
+            this.label5.Text = "垂直跟踪：";
+            // 
             // Ufrm_LineList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -553,6 +611,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trb_MinGray)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_MinGray)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -595,5 +655,10 @@
         private System.Windows.Forms.ToolStripMenuItem tsmi_Done;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem tsmi_Cancel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox cmb_VerticalTracking_L;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmb_HorizontalTracking;
+        private System.Windows.Forms.Label label5;
     }
 }

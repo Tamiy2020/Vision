@@ -47,12 +47,12 @@ namespace Vision.DataProcess.ShapeLib
         /// </summary>
         public override void SetPosition()
         {
-            base.SetPosition();
+           // base.SetPosition();
             foreach (BaseShape item in LineList)
             {
                 item.position_Horizontal = position_Horizontal;
-               // item.position_Vertical = position_Vertical;
-                item.SetPosition();
+                item.position_Vertical_L = position_Vertical_L;
+               ( item as GetLineUseThreshold) .SetPosition();
             }
         }
 

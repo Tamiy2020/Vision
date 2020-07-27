@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.DataProcess;
 using Vision.DataProcess.ParameterLib;
+using Vision.DataProcess.PositionLib;
 using Vision.DataProcess.ShapeLib;
 
 namespace Vision.Forms
@@ -53,6 +54,19 @@ namespace Vision.Forms
         /// 编辑模式
         /// </summary>
         public bool EditMode { get; }
+
+
+        /// <summary>
+        /// 垂直定位列队
+        /// </summary>
+        private List<MeasuringUnit> verticalPositions;
+
+        /// <summary>
+        /// 水平定位列队
+        /// </summary>
+        private List<MeasuringUnit> horizontalPositions;
+
+
 
         public Ufrm_LineList(Frm_Edit form, HObject ho_Image)//构造函数
         {
@@ -116,11 +130,45 @@ namespace Vision.Forms
             {
                 measureManager = form.measureManager;
             }
+
+            List<MeasuringUnit> translations = measureManager.ListAllTranslation();//所有平移跟踪
+
+            verticalPositions = new List<MeasuringUnit>();
+            horizontalPositions = new List<MeasuringUnit>();
+            for (int i = translations.Count - 1; i >= 0; i--)
+            {
+
+
+                if ((translations[i] as TranslationTracking).line.AxByC0.k == null)
+                {
+                    horizontalPositions.Add(translations[i]);
+                    cmb_HorizontalTracking.Items.Add(translations[i].name);
+                }
+
+                else if ((translations[i] as TranslationTracking).line.AxByC0.k.D == 0)//？是水平线
+                {
+                    verticalPositions.Add(translations[i]);//添加垂直定位
+                    cmb_VerticalTracking_L.Items.Add(translations[i].name);//添加垂直跟踪
+
+                }
+            }
+
             if (EditMode)
             {
                 getSetOfLines = data as GetSetOfLines;
+
+                if (getSetOfLines.position_Horizontal != null)
+                {
+                    cmb_HorizontalTracking.SelectedItem = getSetOfLines.position_Horizontal.name;
+                }
+
+                if (getSetOfLines.position_Vertical_L != null)
+                {
+                    cmb_VerticalTracking_L.SelectedItem = getSetOfLines.position_Vertical_L.name;
+                }
+
                 //nud_MaxGray.Value = trb_MaxGray.Value = (getSetOfLines.LineList[0] as GetLineUseThreshold).parameter.hv_MaxGray;
-               // nud_MinGray.Value = trb_MinGray.Value = (getSetOfLines.LineList[0] as GetLineUseThreshold).parameter.hv_MinGray;
+                // nud_MinGray.Value = trb_MinGray.Value = (getSetOfLines.LineList[0] as GetLineUseThreshold).parameter.hv_MinGray;
                 if (2 == (getSetOfLines.LineList[0] as GetLineUseThreshold).TPLR)
                 {
                     rdo_DownEdge.Checked = true;
@@ -444,6 +492,26 @@ namespace Vision.Forms
         {
             if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
+        }
+
+        private void cmb_HorizontalTracking_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prepared)
+            {
+                (data as BaseShape).position_Horizontal = horizontalPositions[cmb_HorizontalTracking.SelectedIndex] as BasePosition;
+                (data as BaseShape).SetPosition();
+                RunOnce();
+            }
+        }
+
+        private void cmb_VerticalTracking_L_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prepared)
+            {
+                (data as BaseShape).position_Vertical_L = verticalPositions[cmb_VerticalTracking_L.SelectedIndex] as BasePosition;
+                (data as BaseShape).SetPosition();
+                RunOnce();
+            }
         }
     }
 }

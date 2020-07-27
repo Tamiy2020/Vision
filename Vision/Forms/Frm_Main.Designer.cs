@@ -68,6 +68,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.sfd_Image = new System.Windows.Forms.SaveFileDialog();
+            this.fbd_Excel = new Ookii.Dialogs.WinForms.VistaFolderBrowserDialog();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -166,14 +167,14 @@
             // tsmi_Excel
             // 
             this.tsmi_Excel.Name = "tsmi_Excel";
-            this.tsmi_Excel.Size = new System.Drawing.Size(160, 24);
+            this.tsmi_Excel.Size = new System.Drawing.Size(180, 24);
             this.tsmi_Excel.Text = "写入Excel";
             this.tsmi_Excel.Click += new System.EventHandler(this.tsmi_Excel_Click);
             // 
             // tsmi_IO
             // 
             this.tsmi_IO.Name = "tsmi_IO";
-            this.tsmi_IO.Size = new System.Drawing.Size(160, 24);
+            this.tsmi_IO.Size = new System.Drawing.Size(180, 24);
             this.tsmi_IO.Text = "IO控制";
             this.tsmi_IO.Click += new System.EventHandler(this.tsmi_IO_Click);
             // 
@@ -181,7 +182,7 @@
             // 
             this.tsmi_Clear.Name = "tsmi_Clear";
             this.tsmi_Clear.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.tsmi_Clear.Size = new System.Drawing.Size(160, 24);
+            this.tsmi_Clear.Size = new System.Drawing.Size(180, 24);
             this.tsmi_Clear.Text = "计数清零";
             this.tsmi_Clear.Click += new System.EventHandler(this.tsmi_Clear_Click);
             // 
@@ -498,6 +499,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.SaveFileDialog sfd_Image;
+        private Ookii.Dialogs.WinForms.VistaFolderBrowserDialog fbd_Excel;
     }
 }
 

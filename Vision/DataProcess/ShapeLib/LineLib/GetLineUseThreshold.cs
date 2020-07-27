@@ -147,12 +147,12 @@ namespace Vision.DataProcess.ShapeLib
 
         public override void DisplayResult(HWindow_Final window)//显示简单信息
         {
-           /* window.DispObj(ho_ROI, "blue", "margin");
-            window.DispObj(ho_SelectedRegions, "green", "fill");
-            HObject ho_Line = Func_HalconFunction.GenRegionLine(this);
-            window.DispObj(ho_Line, "red", "fill");
-            ho_Line.Dispose();
-            window.DispString(DP.hv_Column, DP.hv_Row, name, "orange");//显示文字*/
+            /* window.DispObj(ho_ROI, "blue", "margin");
+             window.DispObj(ho_SelectedRegions, "green", "fill");
+             HObject ho_Line = Func_HalconFunction.GenRegionLine(this);
+             window.DispObj(ho_Line, "red", "fill");
+             ho_Line.Dispose();
+             window.DispString(DP.hv_Column, DP.hv_Row, name, "orange");//显示文字*/
 
 
 

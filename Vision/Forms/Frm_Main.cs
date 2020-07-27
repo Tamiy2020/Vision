@@ -24,7 +24,7 @@ namespace Vision.Forms
         /// <summary>
         /// 文件配置管理器
         /// </summary>
-        private ConfigManager configManager = null;
+        public ConfigManager configManager = null;
 
         /// <summary>
         /// 相机显示窗体
@@ -356,12 +356,24 @@ namespace Vision.Forms
 
         private void tsmi_Excel_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("尚未开发，敬请期待！");
+            if (fbd_Excel .ShowDialog()==DialogResult.OK)
+            {
+                string path=fbd_Excel.SelectedPath+ "\\" + DateTime.Now.Year.ToString()
+                      + "年" + DateTime.Now.Month.ToString()
+                      + "月" + DateTime.Now.Day.ToString()
+                      + "日——" + DateTime.Now.Hour.ToString()
+                      + "时" + DateTime.Now.Minute.ToString()
+                      + "分" + DateTime.Now.Second.ToString()
+                      + ".xls";
+                configManager.ExecutionManager.DataExport(path);
+            }
         }
 
+        //IO控制
         private void tsmi_IO_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("尚未开发，敬请期待！");
+            Frm_IOControl frm_IOControl = new Frm_IOControl(this);
+            frm_IOControl.ShowDialog();
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)

@@ -65,6 +65,8 @@ namespace Vision
         /// </summary>
         public double k;
 
+        public int sleeptime;
+
         /// <summary>
         /// 数据表格
         /// </summary>
@@ -146,12 +148,35 @@ namespace Vision
         /// </summary>
         private void Initialize()
         {
+            sleeptime = 200;
             Sum = 0;
             Num_OK = 0;
             LastResult = Result.OK;
             k = 1;
             maxId = 1;
             measuringUnits = new ArrayList();//测量列队
+            InitData();
+
+
+        }
+
+        public void InitData()
+        {
+            dataTable = new DataTable("相机" + (camera.Index + 1).ToString());
+            DataColumn dc = null;
+            dc = dataTable.Columns.Add("ID", Type.GetType("System.Int32"));
+            dc.AutoIncrement = true;    //自动增加
+            dc.AutoIncrementSeed = 1;   //起始为1
+            dc.AutoIncrementStep = 1;   //步长为1
+            dc.AllowDBNull = false;     //
+            dc = dataTable.Columns.Add("名称", Type.GetType("System.String"));
+            dc = dataTable.Columns.Add("功能", Type.GetType("System.String"));
+            dc = dataTable.Columns.Add("下限", Type.GetType("System.Double"));
+            dc = dataTable.Columns.Add("上限", Type.GetType("System.Double"));
+            dc = dataTable.Columns.Add("测量值", Type.GetType("System.Double"));
+            dc = dataTable.Columns.Add("结果", Type.GetType("System.String"));
+            dc = dataTable.Columns.Add("时间", Type.GetType("System.DateTime"));
+
         }
 
         /// <summary>
@@ -292,11 +317,17 @@ namespace Vision
             {
                 measureResult = MeasureStart(ho_Image);//测量
                 MeasureFinish(Convert.ToInt32(!measureResult) + 2 * camera.Index, 0);//发结果信号  亮灯
-                Thread.Sleep(200);
+
+                Thread.Sleep(sleeptime);
+
                 camera.displayWin.HobjectToHimage(ho_Image);
                 DisplayResult(camera.displayWin);//字符串
                 Display();
+
                 MeasureFinish(Convert.ToInt32(!measureResult) + 2 * camera.Index, 1);//发结果信号 灭灯
+
+
+                dataTable = GetDataTable(dataTable);//保存数据列表
             }
             else//实时
             {
@@ -328,6 +359,27 @@ namespace Vision
             InvokeHelper.Set(camera.Label_Sum, "Text", Sum.ToString());
             InvokeHelper.Set(camera.Label_Num, "Text", Num_OK.ToString());
             InvokeHelper.Set(camera.Label_Yield, "Text", Yield);
+        }
+
+        /// <summary>
+        /// 获取所有表格数据
+        /// </summary>
+        /// <param name="dataTable"></param>
+        /// <returns></returns>
+        private DataTable GetDataTable(DataTable dataTable)
+        {
+            foreach (MeasuringUnit item in measuringUnits)
+            {
+                if (item != null)
+                {
+                    List<DataRow> dataRows = item.GetDataTableRows(dataTable);
+                    if (dataRows != null)
+                        foreach (var item1 in dataRows)
+                            if (item != null)
+                                dataTable.Rows.Add(item1);
+                }
+            }
+            return dataTable;
         }
 
 
