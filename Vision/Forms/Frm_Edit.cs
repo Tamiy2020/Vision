@@ -176,14 +176,10 @@ namespace Vision.Forms
         }
 
 
-        /// <summary>
-        /// 实时模式
-        /// </summary>
-        /// <param name="sign"></param>
-        public void LiveMod(bool sign)
+        public void AdminMod(bool sign)
         {
-            toolStrip1.Enabled = !sign;
-            dgv_File.Enabled = !sign;
+            toolStrip1.Enabled = sign;
+            dgv_File.Enabled = sign;
         }
 
         //跟踪定位

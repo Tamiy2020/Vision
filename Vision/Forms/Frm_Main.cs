@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,7 @@ namespace Vision.Forms
         public Frm_Main()
         {
             InitializeComponent();
+           
             //使用双缓冲，让图像显示不闪烁
             SetStyle(
                      ControlStyles.OptimizedDoubleBuffer
@@ -80,7 +82,9 @@ namespace Vision.Forms
                 if (temp) { }
                 else
                 {
-                    cameraManager = new FileManager();
+                    //cameraManager = new FileManager();
+                    MessageBox.Show("未发现设备");
+                    Environment.Exit(0);
                 }
             }
 
@@ -108,6 +112,11 @@ namespace Vision.Forms
         /// <param name="e"></param>
         private void Frm_Main_Load(object sender, EventArgs e)
         {
+
+            this.BeginInvoke(new Action(() => {
+                this.Hide();
+                this.Opacity = 1;
+            }));
 
             cameraWin.Show();//会报异常
 
@@ -144,6 +153,11 @@ namespace Vision.Forms
                 }
 
             }
+            configManager.ExecutionManager.GradAll();
+
+            new Frm_Start().ShowDialog();
+            this.Show();
+           
 
         }
 
@@ -194,7 +208,7 @@ namespace Vision.Forms
         /// <param name="e"></param>
         private void Frm_Main_Shown(object sender, EventArgs e)
         {
-            configManager.ExecutionManager.GradAll();
+           
         }
 
 
@@ -206,10 +220,11 @@ namespace Vision.Forms
             btn_Live.Enabled = false;
             btn_Test.Enabled = false;
             btn_Auto.Enabled = true;
-            foreach (var item in edits)
+            if (label1.Text == "管理员" || label1.Text == "程序员")
             {
-                item.LiveMod(true);
+                EditAdmin(false);
             }
+        
         }
         #endregion
 
@@ -220,9 +235,9 @@ namespace Vision.Forms
             btn_Live.Enabled = true;
             btn_Test.Enabled = true;
             btn_Auto.Enabled = false;
-            foreach (var item in edits)
+            if (label1.Text == "管理员" || label1.Text == "程序员")
             {
-                item.LiveMod(false);
+                EditAdmin(true);
             }
         }
         #endregion
@@ -251,7 +266,9 @@ namespace Vision.Forms
         /// <param name="e"></param>
         private void Frm_Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            this.Hide();
             cameraManager.CloseAll();
+            new Frm_CloseTip().ShowDialog();
             Environment.Exit(0);
         }
 
@@ -356,9 +373,9 @@ namespace Vision.Forms
 
         private void tsmi_Excel_Click(object sender, EventArgs e)
         {
-            if (fbd_Excel .ShowDialog()==DialogResult.OK)
+            if (fbd_Excel.ShowDialog() == DialogResult.OK)
             {
-                string path=fbd_Excel.SelectedPath+ "\\" + DateTime.Now.Year.ToString()
+                string path = fbd_Excel.SelectedPath + "\\" + DateTime.Now.Year.ToString()
                       + "年" + DateTime.Now.Month.ToString()
                       + "月" + DateTime.Now.Day.ToString()
                       + "日——" + DateTime.Now.Hour.ToString()
@@ -471,34 +488,112 @@ namespace Vision.Forms
 
         private void tsmi_Login_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("还没写ε=(´ο｀*)))唉");
+            new Frm_User_Login(this).ShowDialog();
         }
 
         private void tsmi_Password_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("还没写ε=(´ο｀*)))唉");
+            new Frm_User_ChangePassword(this).ShowDialog();
         }
 
         private void tsmi_LogOut_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("还没写ε=(´ο｀*)))唉");
+            Admin(User.操作员);
         }
+
+        //软键盘
         private void tsmi_osk_Click(object sender, EventArgs e)
         {
+            Process.Start("osk.exe");
 
-            MessageBox.Show("还没有键盘");
         }
 
+        //关于软件
         private void tsmi_About_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("17887202071");
+            new Frm_About().ShowDialog();
         }
 
+        //软件说明
         private void tsmi_Instruction_Click(object sender, EventArgs e)
         {
             MessageBox.Show("没有说明");
         }
 
+        private void EditAdmin(bool status)
+        {
+            foreach (var item in edits)
+            {
+                item.AdminMod(status);
+            }
+        }
 
+        /// <summary>
+        /// 管理员状态
+        /// </summary>
+        /// <param name="status"></param>
+        private void AdminMod(bool status)
+        {
+            tsmi_New.Enabled = status;
+            tsmi_Open.Enabled = status;
+            tsmi_Save.Enabled = status;
+            tsmi_SaveAs.Enabled = status;
+
+            tsmi_Login.Enabled = !status;
+            tsmi_LogOut.Enabled = status;
+
+
+        }
+
+        /// <summary>
+        /// 用户
+        /// </summary>
+        /// <param name="user"></param>
+        public void Admin(User user)
+        {
+            switch (user)
+            {
+
+                case User.操作员:
+                    EditAdmin(false);
+                    AdminMod(false);
+
+                    tsmi_Test.Enabled = false;
+                    button1.Visible = false;
+                    button2.Visible = false;
+                    label1.Text = "操作员";
+
+
+                    break;
+                case User.管理员:
+                    EditAdmin(true);
+                    AdminMod(true);
+                    tsmi_Test.Enabled = false;
+                    button1.Visible = false;
+                    button2.Visible = false;
+                    label1.Text = "管理员";
+
+                    break;
+                case User.程序员:
+                    EditAdmin(true);
+                    AdminMod(true);
+                    tsmi_Test.Enabled = true;
+                    button1.Visible = true;
+                    button2.Visible = true;
+                    label1.Text = "程序员";
+
+
+
+                    break;
+                default:
+
+                    break;
+            }
+        }
+
+        private void tsmi_Test_Click(object sender, EventArgs e)
+        {
+            btn_Test.PerformClick();
+        }
     }
 }

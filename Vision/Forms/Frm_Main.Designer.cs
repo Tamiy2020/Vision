@@ -41,6 +41,7 @@
             this.tsmi_Excel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_IO = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_Clear = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_Test = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_SaveImage = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_SaveResultImage = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,6 +70,7 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.sfd_Image = new System.Windows.Forms.SaveFileDialog();
             this.fbd_Excel = new Ookii.Dialogs.WinForms.VistaFolderBrowserDialog();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +107,7 @@
             // 
             // tsmi_New
             // 
+            this.tsmi_New.Enabled = false;
             this.tsmi_New.Image = global::Vision.Properties.Resources.新建;
             this.tsmi_New.Name = "tsmi_New";
             this.tsmi_New.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
@@ -114,6 +117,7 @@
             // 
             // tsmi_Open
             // 
+            this.tsmi_Open.Enabled = false;
             this.tsmi_Open.Image = global::Vision.Properties.Resources.打开;
             this.tsmi_Open.Name = "tsmi_Open";
             this.tsmi_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
@@ -123,6 +127,7 @@
             // 
             // tsmi_Save
             // 
+            this.tsmi_Save.Enabled = false;
             this.tsmi_Save.Image = global::Vision.Properties.Resources.保存;
             this.tsmi_Save.Name = "tsmi_Save";
             this.tsmi_Save.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
@@ -132,6 +137,7 @@
             // 
             // tsmi_SaveAs
             // 
+            this.tsmi_SaveAs.Enabled = false;
             this.tsmi_SaveAs.Image = global::Vision.Properties.Resources.另存为;
             this.tsmi_SaveAs.Name = "tsmi_SaveAs";
             this.tsmi_SaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
@@ -159,7 +165,8 @@
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_Excel,
             this.tsmi_IO,
-            this.tsmi_Clear});
+            this.tsmi_Clear,
+            this.tsmi_Test});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(70, 29);
             this.toolStripMenuItem2.Text = "设置(&O)";
@@ -167,14 +174,14 @@
             // tsmi_Excel
             // 
             this.tsmi_Excel.Name = "tsmi_Excel";
-            this.tsmi_Excel.Size = new System.Drawing.Size(180, 24);
+            this.tsmi_Excel.Size = new System.Drawing.Size(160, 24);
             this.tsmi_Excel.Text = "写入Excel";
             this.tsmi_Excel.Click += new System.EventHandler(this.tsmi_Excel_Click);
             // 
             // tsmi_IO
             // 
             this.tsmi_IO.Name = "tsmi_IO";
-            this.tsmi_IO.Size = new System.Drawing.Size(180, 24);
+            this.tsmi_IO.Size = new System.Drawing.Size(160, 24);
             this.tsmi_IO.Text = "IO控制";
             this.tsmi_IO.Click += new System.EventHandler(this.tsmi_IO_Click);
             // 
@@ -182,9 +189,19 @@
             // 
             this.tsmi_Clear.Name = "tsmi_Clear";
             this.tsmi_Clear.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.tsmi_Clear.Size = new System.Drawing.Size(180, 24);
+            this.tsmi_Clear.Size = new System.Drawing.Size(160, 24);
             this.tsmi_Clear.Text = "计数清零";
             this.tsmi_Clear.Click += new System.EventHandler(this.tsmi_Clear_Click);
+            // 
+            // tsmi_Test
+            // 
+            this.tsmi_Test.Enabled = false;
+            this.tsmi_Test.Name = "tsmi_Test";
+            this.tsmi_Test.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.tsmi_Test.Size = new System.Drawing.Size(160, 24);
+            this.tsmi_Test.Text = "手动测试";
+            this.tsmi_Test.Visible = false;
+            this.tsmi_Test.Click += new System.EventHandler(this.tsmi_Test_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -232,11 +249,12 @@
             // 
             this.tsmi_Password.Name = "tsmi_Password";
             this.tsmi_Password.Size = new System.Drawing.Size(134, 24);
-            this.tsmi_Password.Text = "密码管理";
+            this.tsmi_Password.Text = "修改密码";
             this.tsmi_Password.Click += new System.EventHandler(this.tsmi_Password_Click);
             // 
             // tsmi_LogOut
             // 
+            this.tsmi_LogOut.Enabled = false;
             this.tsmi_LogOut.Name = "tsmi_LogOut";
             this.tsmi_LogOut.Size = new System.Drawing.Size(134, 24);
             this.tsmi_LogOut.Text = "退出登录";
@@ -385,6 +403,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "开始测试";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
@@ -396,6 +415,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "停止测试";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // timer1
@@ -427,11 +447,22 @@
             // 
             this.sfd_Image.Filter = "图片文件(*.tif)|*.tif";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1174, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 17);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "操作员";
+            this.label1.Visible = false;
+            // 
             // Frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 802);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_Auto);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -445,16 +476,17 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Frm_Main";
+            this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "HRDVision";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_Main_FormClosing);
             this.Load += new System.EventHandler(this.Frm_Main_Load);
-            this.Shown += new System.EventHandler(this.Frm_Main_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -500,6 +532,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.SaveFileDialog sfd_Image;
         private Ookii.Dialogs.WinForms.VistaFolderBrowserDialog fbd_Excel;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_Test;
+        private System.Windows.Forms.Label label1;
     }
 }
 

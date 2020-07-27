@@ -28,6 +28,8 @@ namespace Vision.Forms
             InitializeComponent();
             Registry.ClassesRoot.CreateSubKey(".fpc").SetValue("","fpcfile"); //创建注册表
             Registry.ClassesRoot.CreateSubKey("fpcfile").CreateSubKey("DefaultIcon").SetValue("", "C:\\Windows\\System32\\HRD.ico");
+            Registry.CurrentUser.OpenSubKey("System", true).CreateSubKey("HRD").SetValue("Password", "123456");
+            Registry.CurrentUser.OpenSubKey("System", true).CreateSubKey("HRD").SetValue("SeniorPassword", "tangming");
         }
 
         private void Frm_CameraConfig_Load(object sender, EventArgs e)

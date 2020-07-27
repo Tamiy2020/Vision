@@ -73,6 +73,16 @@ namespace Vision.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap start {
+            get {
+                object obj = ResourceManager.GetObject("start", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 保存 {
             get {
                 object obj = ResourceManager.GetObject("保存", resourceCulture);
@@ -96,6 +106,16 @@ namespace Vision.Properties {
         internal static System.Drawing.Bitmap 另存为 {
             get {
                 object obj = ResourceManager.GetObject("另存为", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 图标 {
+            get {
+                object obj = ResourceManager.GetObject("图标", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

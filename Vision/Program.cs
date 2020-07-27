@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Vision.CameraLib;
 using Vision.Forms;
 
+
 namespace Vision
 {
     static class Program
@@ -30,8 +31,10 @@ namespace Vision
                 RegistryKey regkey = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("HRDVision");
                 if (regkey != null)
                 {
+                  
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
+
 
                     Frm_Main form = new Frm_Main();
                     string str1 = "";
