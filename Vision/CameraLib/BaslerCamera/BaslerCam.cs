@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace Vision.CameraLib
         /// <summary>
         /// 设备对象
         /// </summary>
-        public Basler.Pylon.Camera objDev =null;
+        public Basler.Pylon.Camera objDev = null;
 
         /// <summary>
         /// 图像宽
@@ -69,12 +69,12 @@ namespace Vision.CameraLib
 
                 imageWidth = objDev.Parameters[PLCamera.Width].GetValue();               // 获取图像宽 
                 imageHeight = objDev.Parameters[PLCamera.Height].GetValue();              // 获取图像高
-               // GetMinMaxExposureTime();
-              //  GetMinMaxGain();
+                                                                                          // GetMinMaxExposureTime();
+                                                                                          //  GetMinMaxGain();
                 objDev.StreamGrabber.ImageGrabbed += OnImageGrabbed;                      // 注册采集回调函数
                 objDev.ConnectionLost += OnConnectionLost;
             }
-            catch (Exception e )
+            catch (Exception e)
             {
                 ShowException(e);
             }
@@ -98,11 +98,11 @@ namespace Vision.CameraLib
             }
         }
 
-      
+
 
         public override void Grad()
         {
-           
+
             try
             {
                 if (objDev.WaitForFrameTriggerReady(1000, TimeoutHandling.ThrowException))
@@ -302,8 +302,8 @@ namespace Vision.CameraLib
 
                 imageWidth = objDev.Parameters[PLCamera.Width].GetValue();               // 获取图像宽 
                 imageHeight = objDev.Parameters[PLCamera.Height].GetValue();              // 获取图像高
-                //GetMinMaxExposureTime();
-               // GetMinMaxGain();
+                                                                                          //GetMinMaxExposureTime();
+                                                                                          // GetMinMaxGain();
                 objDev.StreamGrabber.ImageGrabbed += OnImageGrabbed;                      // 注册采集回调函数
                 objDev.ConnectionLost += OnConnectionLost;
 
@@ -341,4 +341,3 @@ namespace Vision.CameraLib
         }
     }
 }
-*/

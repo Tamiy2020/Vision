@@ -118,7 +118,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 851;
+            this.splitContainer1.SplitterDistance = 857;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -132,7 +132,7 @@
             this.hWindow_Final1.Image = null;
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(851, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(857, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // panel1
@@ -150,7 +150,7 @@
             // 
             this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_VerticalTracking_L.FormattingEnabled = true;
-            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(123, 59);
+            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(121, 59);
             this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
             this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
             this.cmb_VerticalTracking_L.TabIndex = 65;
@@ -170,7 +170,7 @@
             // 
             this.cmb_HorizontalTracking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_HorizontalTracking.FormattingEnabled = true;
-            this.cmb_HorizontalTracking.Location = new System.Drawing.Point(123, 12);
+            this.cmb_HorizontalTracking.Location = new System.Drawing.Point(121, 12);
             this.cmb_HorizontalTracking.Name = "cmb_HorizontalTracking";
             this.cmb_HorizontalTracking.Size = new System.Drawing.Size(121, 25);
             this.cmb_HorizontalTracking.TabIndex = 64;
@@ -189,7 +189,7 @@
             // btn_Cancel
             // 
             this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Cancel.Location = new System.Drawing.Point(11, 719);
+            this.btn_Cancel.Location = new System.Drawing.Point(5, 757);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
             this.btn_Cancel.TabIndex = 52;
@@ -200,7 +200,7 @@
             // btn_OK
             // 
             this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_OK.Location = new System.Drawing.Point(337, 719);
+            this.btn_OK.Location = new System.Drawing.Point(350, 757);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 27);
             this.btn_OK.TabIndex = 51;

@@ -91,11 +91,11 @@ namespace Vision.CameraLib
                     catch { }
 
                 }
-                catch (Exception /*exception*/)
+                catch (Exception exception)
                 {
-                    //Catcher.Show(exception);
-                    MessageBox.Show("系统异常");
-                    Environment.Exit(0);
+                    Catcher.Show(exception);
+                   /* MessageBox.Show("Dahua:系统异常");
+                    Environment.Exit(0);*/
                 }
             }
         }

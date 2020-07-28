@@ -46,7 +46,7 @@ namespace Vision.DataProcess.CalculationLib
         public override List<DataRow> GetDataTableRows(DataTable dataTable)
         {
             List<DataRow> dataRows = base.GetDataTableRows(dataTable);
-            dataRows[0]["测量类型"] = "点点距离";
+            dataRows[0]["功能"] = "点点距离";
             return dataRows;
         }
     }

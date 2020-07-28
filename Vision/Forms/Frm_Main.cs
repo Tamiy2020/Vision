@@ -201,17 +201,6 @@ namespace Vision.Forms
             //cameraWin.Show();
         }
 
-        /// <summary>
-        /// 窗体显示完成时
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Frm_Main_Shown(object sender, EventArgs e)
-        {
-           
-        }
-
-
 
         #region 实时图像
         private void btn_Live_Click(object sender, EventArgs e)

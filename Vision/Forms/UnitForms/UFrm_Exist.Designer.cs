@@ -99,7 +99,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btn_SelectROI);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 854;
+            this.splitContainer1.SplitterDistance = 860;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -114,7 +114,7 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(854, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(860, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // cmb_VerticalTracking_L
@@ -181,7 +181,7 @@
             // rdo_Exist
             // 
             this.rdo_Exist.AutoSize = true;
-            this.rdo_Exist.Location = new System.Drawing.Point(351, 409);
+            this.rdo_Exist.Location = new System.Drawing.Point(313, 409);
             this.rdo_Exist.Name = "rdo_Exist";
             this.rdo_Exist.Size = new System.Drawing.Size(74, 21);
             this.rdo_Exist.TabIndex = 56;
@@ -191,7 +191,7 @@
             // 
             // nud_MaxValue
             // 
-            this.nud_MaxValue.Location = new System.Drawing.Point(351, 312);
+            this.nud_MaxValue.Location = new System.Drawing.Point(313, 312);
             this.nud_MaxValue.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -218,7 +218,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(349, 297);
+            this.label5.Location = new System.Drawing.Point(310, 297);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 17);
             this.label5.TabIndex = 53;
@@ -236,7 +236,7 @@
             // btn_Cancel
             // 
             this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Cancel.Location = new System.Drawing.Point(26, 637);
+            this.btn_Cancel.Location = new System.Drawing.Point(27, 747);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
             this.btn_Cancel.TabIndex = 50;
@@ -247,7 +247,7 @@
             // btn_OK
             // 
             this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_OK.Location = new System.Drawing.Point(356, 637);
+            this.btn_OK.Location = new System.Drawing.Point(313, 747);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 27);
             this.btn_OK.TabIndex = 49;

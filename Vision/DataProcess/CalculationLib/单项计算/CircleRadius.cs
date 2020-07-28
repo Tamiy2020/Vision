@@ -41,7 +41,7 @@ namespace Vision.DataProcess.CalculationLib
         public override List<DataRow> GetDataTableRows(DataTable dataTable)//返回数据表格
         {
             List<DataRow> dataRows = base.GetDataTableRows(dataTable);
-            dataRows[0]["测量类型"] = "半径计算";
+            dataRows[0]["功能"] = "半径计算";
             return dataRows;
         }
     }

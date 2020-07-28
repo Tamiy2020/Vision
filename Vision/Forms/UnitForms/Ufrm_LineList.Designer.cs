@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.hWindow_Final1 = new ChoiceTech.Halcon.Control.HWindow_Final();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cmb_VerticalTracking_L = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmb_HorizontalTracking = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_OK = new System.Windows.Forms.Button();
             this.txt_Name = new System.Windows.Forms.TextBox();
@@ -65,15 +70,11 @@
             this.tsmi_Done = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_Cancel = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.cmb_VerticalTracking_L = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmb_HorizontalTracking = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_slg_b_pex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trb_slg_MaxGray)).BeginInit();
@@ -87,7 +88,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trb_MinGray)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_MinGray)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -113,7 +113,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.btn_DrawROIs);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 851;
+            this.splitContainer1.SplitterDistance = 854;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -128,8 +128,59 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(851, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(854, 796);
             this.hWindow_Final1.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cmb_VerticalTracking_L);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.cmb_HorizontalTracking);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Location = new System.Drawing.Point(6, 559);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(406, 97);
+            this.panel1.TabIndex = 67;
+            // 
+            // cmb_VerticalTracking_L
+            // 
+            this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_VerticalTracking_L.FormattingEnabled = true;
+            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(162, 64);
+            this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
+            this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
+            this.cmb_VerticalTracking_L.TabIndex = 65;
+            this.cmb_VerticalTracking_L.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_L_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(16, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.TabIndex = 62;
+            this.label3.Text = "水平跟踪：";
+            // 
+            // cmb_HorizontalTracking
+            // 
+            this.cmb_HorizontalTracking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_HorizontalTracking.FormattingEnabled = true;
+            this.cmb_HorizontalTracking.Location = new System.Drawing.Point(162, 20);
+            this.cmb_HorizontalTracking.Name = "cmb_HorizontalTracking";
+            this.cmb_HorizontalTracking.Size = new System.Drawing.Size(121, 25);
+            this.cmb_HorizontalTracking.TabIndex = 64;
+            this.cmb_HorizontalTracking.SelectedIndexChanged += new System.EventHandler(this.cmb_HorizontalTracking_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(16, 67);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 17);
+            this.label5.TabIndex = 63;
+            this.label5.Text = "垂直跟踪：";
             // 
             // btn_Cancel
             // 
@@ -155,7 +206,7 @@
             // 
             // txt_Name
             // 
-            this.txt_Name.Location = new System.Drawing.Point(178, 70);
+            this.txt_Name.Location = new System.Drawing.Point(168, 73);
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.Size = new System.Drawing.Size(151, 23);
             this.txt_Name.TabIndex = 50;
@@ -521,57 +572,6 @@
             this.tsmi_Cancel.Text = "取消";
             this.tsmi_Cancel.Click += new System.EventHandler(this.tsmi_Cancel_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.cmb_VerticalTracking_L);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.cmb_HorizontalTracking);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(6, 559);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(297, 104);
-            this.panel1.TabIndex = 67;
-            // 
-            // cmb_VerticalTracking_L
-            // 
-            this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_VerticalTracking_L.FormattingEnabled = true;
-            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(123, 59);
-            this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
-            this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
-            this.cmb_VerticalTracking_L.TabIndex = 65;
-            this.cmb_VerticalTracking_L.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_L_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(16, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 17);
-            this.label3.TabIndex = 62;
-            this.label3.Text = "水平跟踪：";
-            // 
-            // cmb_HorizontalTracking
-            // 
-            this.cmb_HorizontalTracking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_HorizontalTracking.FormattingEnabled = true;
-            this.cmb_HorizontalTracking.Location = new System.Drawing.Point(123, 12);
-            this.cmb_HorizontalTracking.Name = "cmb_HorizontalTracking";
-            this.cmb_HorizontalTracking.Size = new System.Drawing.Size(121, 25);
-            this.cmb_HorizontalTracking.TabIndex = 64;
-            this.cmb_HorizontalTracking.SelectedIndexChanged += new System.EventHandler(this.cmb_HorizontalTracking_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(16, 67);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 17);
-            this.label5.TabIndex = 63;
-            this.label5.Text = "垂直跟踪：";
-            // 
             // Ufrm_LineList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -595,6 +595,8 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_slg_b_pex)).EndInit();
@@ -611,8 +613,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trb_MinGray)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_MinGray)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

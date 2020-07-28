@@ -30,6 +30,10 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.hWindow_Final1 = new ChoiceTech.Halcon.Control.HWindow_Final();
+            this.cmb_VerticalTracking_R = new System.Windows.Forms.ComboBox();
+            this.cmb_VerticalTracking_L = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.txt_Name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_Cancel = new System.Windows.Forms.Button();
@@ -44,10 +48,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.nud_xStart = new System.Windows.Forms.NumericUpDown();
             this.btn_Draw = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmb_VerticalTracking_L = new System.Windows.Forms.ComboBox();
-            this.cmb_VerticalTracking_R = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -84,7 +84,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Draw);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 948;
+            this.splitContainer1.SplitterDistance = 954;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -99,8 +99,48 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(948, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(954, 796);
             this.hWindow_Final1.TabIndex = 0;
+            // 
+            // cmb_VerticalTracking_R
+            // 
+            this.cmb_VerticalTracking_R.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_VerticalTracking_R.FormattingEnabled = true;
+            this.cmb_VerticalTracking_R.Location = new System.Drawing.Point(132, 478);
+            this.cmb_VerticalTracking_R.Name = "cmb_VerticalTracking_R";
+            this.cmb_VerticalTracking_R.Size = new System.Drawing.Size(121, 25);
+            this.cmb_VerticalTracking_R.TabIndex = 54;
+            this.cmb_VerticalTracking_R.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_R_SelectedIndexChanged);
+            // 
+            // cmb_VerticalTracking_L
+            // 
+            this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_VerticalTracking_L.FormattingEnabled = true;
+            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(132, 422);
+            this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
+            this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
+            this.cmb_VerticalTracking_L.TabIndex = 53;
+            this.cmb_VerticalTracking_L.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_L_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(9, 486);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 17);
+            this.label3.TabIndex = 52;
+            this.label3.Text = "垂直跟踪右：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(9, 430);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 17);
+            this.label2.TabIndex = 51;
+            this.label2.Text = "垂直跟踪左：";
             // 
             // txt_Name
             // 
@@ -122,7 +162,7 @@
             // btn_Cancel
             // 
             this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Cancel.Location = new System.Drawing.Point(12, 592);
+            this.btn_Cancel.Location = new System.Drawing.Point(14, 746);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
             this.btn_Cancel.TabIndex = 4;
@@ -133,7 +173,7 @@
             // btn_OK
             // 
             this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_OK.Location = new System.Drawing.Point(262, 592);
+            this.btn_OK.Location = new System.Drawing.Point(262, 746);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 27);
             this.btn_OK.TabIndex = 3;
@@ -276,46 +316,6 @@
             this.btn_Draw.Text = "画基准线";
             this.btn_Draw.UseVisualStyleBackColor = true;
             this.btn_Draw.Click += new System.EventHandler(this.btn_Draw_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(9, 430);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 17);
-            this.label2.TabIndex = 51;
-            this.label2.Text = "垂直跟踪左：";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(9, 486);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 17);
-            this.label3.TabIndex = 52;
-            this.label3.Text = "垂直跟踪右：";
-            // 
-            // cmb_VerticalTracking_L
-            // 
-            this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_VerticalTracking_L.FormattingEnabled = true;
-            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(132, 422);
-            this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
-            this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
-            this.cmb_VerticalTracking_L.TabIndex = 53;
-            this.cmb_VerticalTracking_L.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_L_SelectedIndexChanged);
-            // 
-            // cmb_VerticalTracking_R
-            // 
-            this.cmb_VerticalTracking_R.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_VerticalTracking_R.FormattingEnabled = true;
-            this.cmb_VerticalTracking_R.Location = new System.Drawing.Point(132, 478);
-            this.cmb_VerticalTracking_R.Name = "cmb_VerticalTracking_R";
-            this.cmb_VerticalTracking_R.Size = new System.Drawing.Size(121, 25);
-            this.cmb_VerticalTracking_R.TabIndex = 54;
-            this.cmb_VerticalTracking_R.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_R_SelectedIndexChanged);
             // 
             // Ufrm_DatumLine
             // 

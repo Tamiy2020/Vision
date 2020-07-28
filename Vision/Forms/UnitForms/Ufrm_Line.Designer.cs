@@ -130,7 +130,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.chk_Angle);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Draw);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 851;
+            this.splitContainer1.SplitterDistance = 854;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -144,7 +144,7 @@
             this.hWindow_Final1.Image = null;
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(851, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(854, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // panel1
@@ -217,7 +217,8 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(9, 705);
+            this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_Cancel.Location = new System.Drawing.Point(6, 757);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 27);
             this.btn_Cancel.TabIndex = 52;
@@ -227,7 +228,8 @@
             // 
             // btn_OK
             // 
-            this.btn_OK.Location = new System.Drawing.Point(332, 705);
+            this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_OK.Location = new System.Drawing.Point(340, 757);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 27);
             this.btn_OK.TabIndex = 51;
@@ -278,6 +280,7 @@
             this.nud_slg_b_pex.Name = "nud_slg_b_pex";
             this.nud_slg_b_pex.Size = new System.Drawing.Size(53, 23);
             this.nud_slg_b_pex.TabIndex = 8;
+            this.nud_slg_b_pex.ValueChanged += new System.EventHandler(this.nud_slg_b_pex_ValueChanged);
             // 
             // label9
             // 

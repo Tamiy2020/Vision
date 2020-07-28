@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +17,9 @@ namespace Vision.CameraLib
         /// <summary>
         /// 枚举设备
         /// </summary>
-        public bool  EnumDevice()
+        public bool EnumDevice()
         {
-            listCameraInfo= CameraFinder.Enumerate();
+            listCameraInfo = CameraFinder.Enumerate();
             if (listCameraInfo.Count == 0)
             {
                 return false;
@@ -39,4 +39,3 @@ namespace Vision.CameraLib
         }
     }
 }
-*/

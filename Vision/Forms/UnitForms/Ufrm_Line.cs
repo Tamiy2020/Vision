@@ -692,5 +692,14 @@ namespace Vision.Forms
                 panel1.Visible = true;
             }
         }
+
+        private void nud_slg_b_pex_ValueChanged(object sender, EventArgs e)
+        {
+            if (sign == LineStyle.灰度抓取)
+            {
+                (line as GetLineUseThreshold).b = (double)nud_slg_b_pex.Value;
+                RunOnce();//运行测试
+            }
+        }
     }
 }
