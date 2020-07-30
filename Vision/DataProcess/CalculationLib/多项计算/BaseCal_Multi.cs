@@ -2,9 +2,6 @@
 using HalconDotNet;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vision.DataProcess.ShapeLib;
 
 namespace Vision.DataProcess.CalculationLib
@@ -187,8 +184,6 @@ namespace Vision.DataProcess.CalculationLib
             return 1;
         }
 
-
-
         public override void DisplayDetail(HWindow_Final window)//显示详细信息
         {
             for (int i = 0; i < calList.Count; i++)
@@ -206,6 +201,5 @@ namespace Vision.DataProcess.CalculationLib
         }
 
         public override void Dispose() { }
-       
     }
 }

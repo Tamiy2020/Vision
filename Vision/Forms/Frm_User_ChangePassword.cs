@@ -1,14 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Vision.Forms
@@ -25,6 +18,7 @@ namespace Vision.Forms
             mainForm = form;
         }
 
+        #region 旧密码框
         private void txt_Old_TextChanged(object sender, EventArgs e)
         {
             lbl_Old.Text = Match(txt_Old.Text);
@@ -45,8 +39,9 @@ namespace Vision.Forms
                 lbl_Old.Text = string.Empty;
             }
         }
+        #endregion
 
-
+        #region 新密码框
         private void txt_New_TextChanged(object sender, EventArgs e)
         {
             lbl_New.Text = Match(txt_New.Text);
@@ -67,8 +62,9 @@ namespace Vision.Forms
                 lbl_New.Text = string.Empty;
             }
         }
+        #endregion
 
-
+        #region 确认密码框
         private void txt_Confirm_TextChanged(object sender, EventArgs e)
         {
             lbl_Confirm.Text = Match(txt_Confirm.Text);
@@ -94,10 +90,12 @@ namespace Vision.Forms
                 lbl_Confirm.Text = string.Empty;
             }
         }
+        #endregion
 
+        #region 修改密码
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txt_Old.Text != regkey.GetValue("Password").ToString () && txt_Old.Text != string.Empty)
+            if (txt_Old.Text != regkey.GetValue("Password").ToString() && txt_Old.Text != string.Empty)
             {
                 lbl_Old.Text = "旧密码错误";
                 return;
@@ -124,15 +122,8 @@ namespace Vision.Forms
                 Thread.Sleep(500);
                 Close();
             }
-        }
-
-
-
-
-
-
-
-
+        } 
+        #endregion
 
         /// <summary>
         /// 密码匹配

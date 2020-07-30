@@ -2,16 +2,11 @@
 using HalconDotNet;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vision.DataProcess.ParameterLib;
 using Vision.DataProcess.ShapeLib;
 
 namespace Vision.DataProcess
 {
-
-
     /// <summary>
     /// 系统操作类
     /// </summary>
@@ -24,6 +19,7 @@ namespace Vision.DataProcess
                     return i;
             return -1;
         }
+
         public static int GetIndex(List<Line> measuringUnits, MeasuringUnit unit)
         {
             for (int i = 0; i < measuringUnits.Count; i++)
@@ -31,6 +27,7 @@ namespace Vision.DataProcess
                     return i;
             return -1;
         }
+
         public static int GetIndex(List<GetSetOfLines> measuringUnits, MeasuringUnit unit)
         {
             for (int i = 0; i < measuringUnits.Count; i++)
@@ -38,6 +35,7 @@ namespace Vision.DataProcess
                     return i;
             return -1;
         }
+
         public static MeasuringUnit GetUnit(List<MeasuringUnit> measuringUnits, int id)
         {
             foreach (var item in measuringUnits)
@@ -47,6 +45,7 @@ namespace Vision.DataProcess
             }
             return null;
         }
+
         public static MeasuringUnit GetUnit(List<Line> measuringUnits, int id)
         {
             foreach (var item in measuringUnits)
@@ -56,6 +55,7 @@ namespace Vision.DataProcess
             }
             return null;
         }
+
         public static MeasuringUnit GetUnit(List<GetSetOfLines> measuringUnits, int id)
         {
             foreach (var item in measuringUnits)

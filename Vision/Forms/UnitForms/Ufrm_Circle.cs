@@ -1,12 +1,6 @@
 ﻿using HalconDotNet;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.DataProcess;
 using Vision.DataProcess.ParameterLib;
@@ -17,10 +11,19 @@ namespace Vision.Forms
 {
     public partial class Ufrm_Circle : Form
     {
+        /// <summary>
+        /// 图像
+        /// </summary>
         private HObject ho_Image;
 
+        /// <summary>
+        /// 编辑窗体
+        /// </summary>
         private Frm_Edit form;
 
+        /// <summary>
+        /// 测量单元管理器
+        /// </summary>
         private MeasureManager measureManager;
 
         /// <summary>
@@ -37,7 +40,6 @@ namespace Vision.Forms
         /// 灰度区域检测单元
         /// </summary>
         private GetRegionUseThreshold getRegionUseThreshold;
-
 
 
         /// <summary>
@@ -71,8 +73,6 @@ namespace Vision.Forms
         /// </summary>
         private List<MeasuringUnit> horizontalPositions;
 
-
-
         public Ufrm_Circle(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
@@ -81,7 +81,7 @@ namespace Vision.Forms
             EditMode = false;
         }
 
-        public Ufrm_Circle(Frm_Edit form, HObject ho_Image, MeasuringUnit data)//编辑模式
+        public Ufrm_Circle(Frm_Edit form, HObject ho_Image, MeasuringUnit data)//编辑模式的构造函数
         {
             InitializeComponent();
             this.form = form;
@@ -91,6 +91,10 @@ namespace Vision.Forms
             EditMode = true;
         }
 
+        /// <summary>
+        /// 编辑模式
+        /// </summary>
+        /// <param name="enable"></param>
         private void DrawMode(bool enable)
         {
             HOperatorSet.SetColor(hWindow_Final1.hWindowControl.HalconWindow, "blue");//设置显示颜色-蓝色
@@ -100,12 +104,18 @@ namespace Vision.Forms
 
         }
 
+        /// <summary>
+        /// 数据赋值
+        /// </summary>
         private void FinalAssessment()
         {
             data.name = (txt_Name.Text).Trim();
             data.formType = GetType();
         }
 
+        /// <summary>
+        /// 运行测试
+        /// </summary>
         private void RunOnce()
         {
             if (prepared)
@@ -117,7 +127,7 @@ namespace Vision.Forms
 
         }
 
-
+        #region 窗体加载时
         private void Ufrm_Circle_Load(object sender, EventArgs e)
         {
             hWindow_Final1.HobjectToHimage(ho_Image);
@@ -126,6 +136,7 @@ namespace Vision.Forms
                 measureManager = form.measureManager;
             }
 
+            #region 跟踪
             List<MeasuringUnit> translations = measureManager.ListAllTranslation();//所有平移跟踪
 
             verticalPositions = new List<MeasuringUnit>();
@@ -147,6 +158,7 @@ namespace Vision.Forms
 
                 }
             }
+            #endregion
 
             if (EditMode)//编辑模式
             {
@@ -157,11 +169,9 @@ namespace Vision.Forms
                 {
                     tabControl1.TabPages.Remove(tabPage1);
                     getCircleUseThreshold = data as GetCircleUseThreshold;
-                   // nud_MaxGray.Value = trb_MaxGray.Value = (getCircleUseThreshold.RegionList[0] as GetRegionUseThreshold).parameter.hv_MaxGray;
+                    // nud_MaxGray.Value = trb_MaxGray.Value = (getCircleUseThreshold.RegionList[0] as GetRegionUseThreshold).parameter.hv_MaxGray;
                     //nud_MinGray.Value = trb_MinGray.Value = (getCircleUseThreshold.RegionList[0] as GetRegionUseThreshold).parameter.hv_MinGray;
                     tabControl1.SelectedTab = tabPage2;
-
-
                     cmb_slg_SelectItem.Items.AddRange(getCircleUseThreshold.GetRegionsName());//添加combobox项
                 }
                 else
@@ -170,6 +180,7 @@ namespace Vision.Forms
                     nud_Circle_x.Value = (decimal)circle.hv_Column.D;
                     nud_Circle_y.Value = (decimal)circle.hv_Row.D;
                     nud_Radius.Value = (decimal)circle.hv_Radius.D;
+
 
                     if (circle.position_Horizontal != null)
                     {
@@ -180,7 +191,6 @@ namespace Vision.Forms
                     {
                         cmb_VerticalTracking_L.SelectedItem = circle.position_Vertical_L.name;
                     }
-
 
                     tabControl1.SelectedTab = tabPage1;
                     tabControl1.TabPages.Remove(tabPage2);
@@ -196,8 +206,9 @@ namespace Vision.Forms
 
 
         }
+        #endregion
 
-        //画圆
+        #region 画圆按钮
         private void btn_DrawCircle_Click(object sender, EventArgs e)
         {
             if (circle == null)
@@ -215,35 +226,36 @@ namespace Vision.Forms
             nud_Circle_x.Value = (decimal)circle.hv_Column.D;//赋值
             nud_Circle_y.Value = (decimal)circle.hv_Row.D;//赋值
             nud_Radius.Value = (decimal)circle.hv_Radius.D;//赋值
-           // PositionAssigment();//跟踪赋值
-           // SetShapeInvert();
             prepared = true;//可以运行
             RunOnce();//运行一次
         }
+        #endregion
 
-        //半径
+        #region 半径
         private void nud_Radius_ValueChanged(object sender, EventArgs e)
         {
             circle.hv_Radius = (double)(sender as NumericUpDown).Value;
             RunOnce();
         }
+        #endregion
 
-        //圆心x
+        #region 圆心x
         private void nud_Circle_x_ValueChanged(object sender, EventArgs e)
         {
             circle.hv_Column = (double)(sender as NumericUpDown).Value;
             RunOnce();
         }
+        #endregion
 
-        //圆心y
+        #region 圆心y
         private void nud_Circle_y_ValueChanged(object sender, EventArgs e)
         {
             circle.hv_Row = (double)(sender as NumericUpDown).Value;
             RunOnce();
-
         }
+        #endregion
 
-        //框选区域
+        #region 框选区域
         private void btn_DrawROIs_Click(object sender, EventArgs e)
         {
             if (getCircleUseThreshold == null)
@@ -262,8 +274,9 @@ namespace Vision.Forms
             hWindow_Final1.DispObj(ho_Rectangle, "blue");//显示矩形
             getCircleUseThreshold.AddRegion(new GetRegionUseThreshold(new Threshold(rectangle2)));//添加该项
         }
+        #endregion
 
-        //下一个
+        #region 下一个
         private void tsmi_Next_Click(object sender, EventArgs e)
         {
             DrawMode(true);//绘制模式开启
@@ -273,8 +286,9 @@ namespace Vision.Forms
             hWindow_Final1.DispObj(ho_Rectangle, "blue");//显示矩形
             getCircleUseThreshold.AddRegion(new GetRegionUseThreshold(new Threshold(rectangle2)));//添加该项
         }
+        #endregion
 
-        //完成
+        #region 完成
         private void tsmi_Done_Click(object sender, EventArgs e)
         {
             hWindow_Final1.ContextMenuStrip = null;//禁用右键菜单
@@ -284,16 +298,18 @@ namespace Vision.Forms
             prepared = true;
             RunOnce();//运行测试
         }
+        #endregion
 
-        //取消
+        #region 取消
         private void tsmi_Cancel_Click(object sender, EventArgs e)
         {
-
             hWindow_Final1.ContextMenuStrip = null;//禁用右键菜单
             RunOnce();//运行测试
         }
+        #endregion
 
-        //整体最小灰度滑条
+        #region 整体最小灰度
+        //滑条
         private void trb_MinGray_Scroll(object sender, EventArgs e)
         {
             if (trb_MinGray.Value > trb_MaxGray.Value)
@@ -304,7 +320,7 @@ namespace Vision.Forms
             nud_MinGray.Value = trb_MinGray.Value;
         }
 
-        //整体最小灰度数字
+        //数字
         private void nud_MinGray_ValueChanged(object sender, EventArgs e)
         {
             if (nud_MinGray.Value > nud_MinGray.Value)
@@ -326,8 +342,10 @@ namespace Vision.Forms
 
             RunOnce();//运行测试
         }
+        #endregion
 
-        //整体最大灰度滑条
+        #region 整体最大灰度
+        //滑条
         private void trb_MaxGray_Scroll(object sender, EventArgs e)
         {
             if (trb_MaxGray.Value < trb_MinGray.Value)
@@ -338,7 +356,7 @@ namespace Vision.Forms
             nud_MaxGray.Value = trb_MaxGray.Value;
         }
 
-        //整体最大灰度数字
+        //数字
         private void nud_MaxGray_ValueChanged(object sender, EventArgs e)
         {
             if (nud_MaxGray.Value < nud_MinGray.Value)
@@ -359,8 +377,9 @@ namespace Vision.Forms
             }
             RunOnce();//运行测试
         }
+        #endregion
 
-        //选择单项
+        #region 选择单项
         private void cmb_slg_SelectItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmb_slg_SelectItem.SelectedItem == null)
@@ -379,8 +398,9 @@ namespace Vision.Forms
             nud_slg_MinGray.Value = getRegionUseThreshold.parameter.hv_MinGray.I;
             btn_slg_ReDrowROI.Enabled = true;
         }
+        #endregion
 
-        //重画
+        #region 重画
         private void btn_slg_ReDrowROI_Click(object sender, EventArgs e)
         {
             DrawMode(true);//绘制模式开启
@@ -388,8 +408,10 @@ namespace Vision.Forms
             DrawMode(false);//绘制模式关闭
             RunOnce();//运行测试
         }
+        #endregion
 
-        //单项最小灰度滑条
+        #region 单项最小灰度
+        //滑条
         private void trb_slg_MinGray_Scroll(object sender, EventArgs e)
         {
             if (trb_slg_MinGray.Value > trb_slg_MaxGray.Value)
@@ -400,7 +422,7 @@ namespace Vision.Forms
             nud_slg_MinGray.Value = trb_slg_MinGray.Value;
         }
 
-        //单项最小灰度数字
+        //数字
         private void nud_slg_MinGray_ValueChanged(object sender, EventArgs e)
         {
             if (nud_slg_MinGray.Value > nud_slg_MinGray.Value)
@@ -416,8 +438,10 @@ namespace Vision.Forms
 
             RunOnce();//运行测试
         }
+        #endregion
 
-        //单项最大灰度滑条
+        #region 单项最大灰度
+        //滑条
         private void trb_slg_MaxGray_Scroll(object sender, EventArgs e)
         {
             if (trb_slg_MaxGray.Value < trb_slg_MinGray.Value)
@@ -428,7 +452,7 @@ namespace Vision.Forms
             nud_slg_MaxGray.Value = trb_slg_MaxGray.Value;
         }
 
-        //单项最大灰度数字
+        //数字
         private void nud_slg_MaxGray_ValueChanged(object sender, EventArgs e)
         {
             if (nud_slg_MaxGray.Value < nud_slg_MinGray.Value)
@@ -440,7 +464,9 @@ namespace Vision.Forms
             if (getRegionUseThreshold != null) getRegionUseThreshold.parameter.hv_MaxGray = (int)(sender as NumericUpDown).Value;
             RunOnce();//运行测试
         }
+        #endregion
 
+        #region 确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
             if (!EditMode)//非编辑模式
@@ -490,37 +516,39 @@ namespace Vision.Forms
             Close();
             return;
         }
+        #endregion
 
+        #region 取消
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
-           // if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
+            // if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
         }
+        #endregion
 
+        #region 水平跟踪
         private void cmb_HorizontalTracking_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (prepared)
             {
-
-
                 (data as BaseShape).position_Horizontal = horizontalPositions[cmb_HorizontalTracking.SelectedIndex] as BasePosition;
-              //  (data as BaseShape).SetPosition();
                 RunOnce();
-
-
             }
         }
+        #endregion
 
+        #region 垂直跟踪
         private void cmb_VerticalTracking_L_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (prepared)
             {
                 (data as BaseShape).position_Vertical_L = verticalPositions[cmb_VerticalTracking_L.SelectedIndex] as BasePosition;
-             //   (data as BaseShape).SetPosition();
                 RunOnce();
             }
         }
+        #endregion
 
+        #region 切换圆编辑方式时
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == 1)
@@ -531,6 +559,7 @@ namespace Vision.Forms
             {
                 panel1.Visible = true;
             }
-        }
+        } 
+        #endregion
     }
 }

@@ -1,14 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.CameraLib;
 
@@ -16,17 +9,26 @@ namespace Vision.Forms
 {
     public partial class Frm_CameraConfig : Form
     {
-        Frm_Main form = null;
-        RegistryKey regkey = null;
+        /// <summary>
+        /// 主窗体
+        /// </summary>
+        private Frm_Main form = null;
+
+        /// <summary>
+        /// 注册表
+        /// </summary>
+        private RegistryKey regkey = null;
+
         string str1 = "";
         string str2 = "";
         string str3 = "";
         string str4 = "";
         string str5 = "";
+
         public Frm_CameraConfig()
         {
             InitializeComponent();
-            Registry.ClassesRoot.CreateSubKey(".fpc").SetValue("","fpcfile"); //创建注册表
+            Registry.ClassesRoot.CreateSubKey(".fpc").SetValue("", "fpcfile"); //创建注册表
             Registry.ClassesRoot.CreateSubKey("fpcfile").CreateSubKey("DefaultIcon").SetValue("", "C:\\Windows\\System32\\HRD.ico");
             Registry.CurrentUser.OpenSubKey("System", true).CreateSubKey("HRD").SetValue("Password", "123456");
             Registry.CurrentUser.OpenSubKey("System", true).CreateSubKey("HRD").SetValue("SeniorPassword", "tangming");
@@ -36,13 +38,13 @@ namespace Vision.Forms
         {
             form = new Frm_Main();
 
-            if (form.cameraManager is DahengManager|| form.cameraManager is DahuaManager)
+            if (form.cameraManager is DahengManager || form.cameraManager is DahuaManager)
             {
                 panel2.Visible = false;
                 foreach (var camera in form.cameraManager.listCamera)
                 {
                     camera.Open();
-                    if (camera is Dahua )
+                    if (camera is Dahua)
                     {
                         camera.Grad();
                     }
@@ -69,7 +71,7 @@ namespace Vision.Forms
             {
                 regkey = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("HRDVision"); //创建注册表
                 regkey.CreateSubKey("FilePath"); //创建注册表
-            
+
             }
             if (lbl_C1.Text == string.Empty)
             {
@@ -116,8 +118,6 @@ namespace Vision.Forms
             str = $"相机{index}：" + comboBox1.SelectedItem.ToString();
             regkey.SetValue($"Camera{index}", comboBox1.SelectedItem.ToString());
             comboBox1.Items.RemoveAt(comboBox1.SelectedIndex);
-
-
         }
 
 
@@ -131,14 +131,14 @@ namespace Vision.Forms
             form.SetCameraWindows(form.cameraManager.listCamera.Count);
             Program.GetWin(form.cameraWin, form.cameraManager.listCamera, str1, str2, str3, str4, str5);
             regkey.SetValue("Cameras", form.cameraManager.listCamera.Count, RegistryValueKind.DWord);
-            foreach (var camera  in form.cameraManager.listCamera)
+            foreach (var camera in form.cameraManager.listCamera)
             {
                 if (camera is Dahua)
                 {
-                    regkey.SetValue($"ExposureTime{camera .Index +1}", (camera as Dahua).GetExposureTime(), RegistryValueKind.DWord);
+                    regkey.SetValue($"ExposureTime{camera.Index + 1}", (camera as Dahua).GetExposureTime(), RegistryValueKind.DWord);
                     regkey.SetValue($"GainRaw{camera.Index + 1}", (camera as Dahua).GetGainRaw(), RegistryValueKind.DWord);
                 }
-                if (camera is Daheng )
+                if (camera is Daheng)
                 {
                     regkey.SetValue($"ExposureTime{camera.Index + 1}", (camera as Daheng).GetExposureTime(), RegistryValueKind.DWord);
                     regkey.SetValue($"GainRaw{camera.Index + 1}", (camera as Daheng).GetGainRaw(), RegistryValueKind.DWord);
@@ -168,7 +168,7 @@ namespace Vision.Forms
                 regkey = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("HRDVision"); //创建注册表
                 regkey.CreateSubKey("FilePath"); //创建注册表
             }
-               
+
             if (lbl_C1.Text == string.Empty)
             {
                 str1 = txt_Path.Text;
@@ -217,7 +217,7 @@ namespace Vision.Forms
         private void btn_OK2_Click(object sender, EventArgs e)
         {
             form.SetCameraWindows(form.cameraManager.listCamera.Count);
-            Program.GetWin(form.cameraWin, form.cameraManager.listCamera, str1, str2, str3, str4, str5 );
+            Program.GetWin(form.cameraWin, form.cameraManager.listCamera, str1, str2, str3, str4, str5);
             try
             {
                 form.cameraManager.OpenAll();

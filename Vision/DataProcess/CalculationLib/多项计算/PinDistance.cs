@@ -3,9 +3,6 @@ using HalconDotNet;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision.DataProcess.CalculationLib
 {
@@ -20,7 +17,6 @@ namespace Vision.DataProcess.CalculationLib
             function = "Pin距";
         }
        
-
         public override int Measure(HObject ho_Image)//测量
         {
             base.Measure(ho_Image);//调用父类的测量方法
@@ -84,7 +80,6 @@ namespace Vision.DataProcess.CalculationLib
             return false;
         }
 
-
         public override void DisplayDetail(HWindow_Final window)//显示详细信息
         {
             base.DisplayDetail(window);
@@ -139,6 +134,5 @@ namespace Vision.DataProcess.CalculationLib
             }
             return dataRows;
         }
-
     }
 }

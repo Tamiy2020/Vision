@@ -1,9 +1,5 @@
 ﻿using HalconDotNet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision.DataProcess.ShapeLib
 {  /// <summary>
@@ -75,15 +71,7 @@ namespace Vision.DataProcess.ShapeLib
         /// <returns></returns>
         public override BaseShape GetShapeReset()
         {
-           
-          //  HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate, hv_Row, hv_Column, out hv_Row, out hv_Column);
-          //  HTuple h1, h2, hv_phi, h4, h5, h6;
-          //  HOperatorSet.HomMat2dToAffinePar(hv_HomMat2DTranslate, out h1, out h2, out hv_phi, out h4, out h5, out h6);
-        //    hv_Phi += hv_phi;
-
-
             return this;
-
         }
 
         public override BaseShape GetShapePositioned()//获取定位后的实例
@@ -94,13 +82,7 @@ namespace Vision.DataProcess.ShapeLib
             HOperatorSet.AffineTransPixel(hv_HomMat2DTranslat_H, rectangle2.hv_Row, rectangle2.hv_Column, out rectangle2.hv_Row, out rectangle2.hv_Column);
 
             HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate_VL, rectangle2.hv_Row, rectangle2.hv_Column, out rectangle2.hv_Row, out rectangle2.hv_Column);
-          //  HTuple h1, h2, hv_phi, h4, h5, h6;
-           // HOperatorSet.HomMat2dToAffinePar(hv_HomMat2DTranslate, out h1, out h2, out hv_phi, out h4, out h5, out h6);
-           // rectangle2.hv_Phi += hv_phi;
-
-
-
-
+       
             return rectangle2;
         }
 
@@ -110,6 +92,5 @@ namespace Vision.DataProcess.ShapeLib
             ho_Shape = Func_HalconFunction.GenRectangle2(GetShapePositioned() as Rectangle2);//创建定位后的形状
             return 1;
         }
-
     }
 }

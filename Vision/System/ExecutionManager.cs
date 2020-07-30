@@ -1,14 +1,9 @@
 ﻿using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
-using Rabbit.InvokeHelper;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Vision.CameraLib;
 
 namespace Vision
@@ -32,15 +27,16 @@ namespace Vision
 
         public ExecutionManager(CameraManager cameraManager)
         {
-            listMeasureManager = new List<MeasureManager>();
+            listMeasureManager = new List<MeasureManager>();//实例化
             foreach (var camera in cameraManager.listCamera)
             {
                 MeasureManager measureManager = new MeasureManager(camera);
                 measureManager.ImageAcqed();
-                measureManager.MeasureFinish += MeasureManager_MeasureFinish;//
+                measureManager.MeasureFinish += MeasureManager_MeasureFinish;//绑定测量单元管理器测量完成事件
+
                 listMeasureManager.Add(measureManager);
             }
-            Initialize();
+            Initialize();//初始化
         }
 
         public ExecutionManager(CameraManager cameraManager, List<MeasureManager> measureManagers)
@@ -51,21 +47,18 @@ namespace Vision
                 this.listMeasureManager[i].camera = cameraManager.listCamera[i];//赋值测量单元管理器的相机
                 this.listMeasureManager[i].ImageAcqed();
                 this.listMeasureManager[i].InitData();
-                this.listMeasureManager[i].MeasureFinish += MeasureManager_MeasureFinish;//挂载测量单元管理器测量完成事件
+                this.listMeasureManager[i].MeasureFinish += MeasureManager_MeasureFinish;//绑定测量单元管理器测量完成事件
             }
-            Initialize();
+            Initialize();//初始化
         }
-
-
-
 
         /// <summary>
         /// 初始化
         /// </summary>
         private void Initialize()
         {
-            iOManager = new IOManager();
-            iOManager.eventOneSignal += IOManager_eventOneSignal;
+            iOManager = new IOManager();//实例化
+            iOManager.eventOneSignal += IOManager_eventOneSignal;//绑定IO卡触发事件
         }
 
         private int IOManager_eventOneSignal(int arg)
@@ -83,6 +76,9 @@ namespace Vision
             return 0;
         }
 
+        /// <summary>
+        /// 测试所有相机
+        /// </summary>
         public void GradAll()
         {
             foreach (var measureManager in listMeasureManager)
@@ -91,13 +87,16 @@ namespace Vision
             }
         }
 
+        /// <summary>
+        /// 实时所有相机
+        /// </summary>
+        /// <param name="live"></param>
         public void LiveAll(bool live)
         {
             foreach (var measureManager in listMeasureManager)
             {
                 measureManager.Live(live);
             }
-
         }
 
         /// <summary>
@@ -120,13 +119,11 @@ namespace Vision
         /// </summary>
         public void ClearMUMList()
         {
-            foreach (var item in listMeasureManager)
+            foreach (var measureManager in listMeasureManager)
             {
-                item.CreateNewMUM();
+                measureManager.CreateNewMUM();
             }
         }
-
-
 
         /// <summary>
         /// 获取所有表格数据
@@ -135,10 +132,12 @@ namespace Vision
         private List<DataTable> GetAllDataTable()
         {
             List<DataTable> dataTables = new List<DataTable>();
-            foreach (var item in listMeasureManager)
+            foreach (var measureManager in listMeasureManager)
             {
-                if (item.dataTable != null)
-                    dataTables.Add(item.dataTable);
+                if (measureManager.dataTable != null)
+                {
+                    dataTables.Add(measureManager.dataTable);
+                }   
             }
             return dataTables;
         }
@@ -148,13 +147,14 @@ namespace Vision
         /// </summary>
         private void ClearAllDataTables()
         {
-            foreach (var item in listMeasureManager)
+            foreach (var measureManager in listMeasureManager)
             {
-                if (item.dataTable != null)
-                    item.dataTable.Rows.Clear();
+                if (measureManager.dataTable != null)
+                {
+                    measureManager.dataTable.Rows.Clear();
+                } 
             }
         }
-
 
         /// <summary>
         /// 保存所有数据表格
@@ -169,17 +169,13 @@ namespace Vision
             {
                 ISheet sheet = workbook.CreateSheet(dataTables[n].TableName);//创建一个 sheet 表
 
-
                 //设置列宽
                 sheet.SetColumnWidth(1, 30 * 256);//名称
-                sheet.SetColumnWidth(2, 30 * 256);//测量类型
+                sheet.SetColumnWidth(2, 30 * 256);//功能
                 sheet.SetColumnWidth(7, 30 * 256);//时间
-                sheet.SetColumnWidth(3, 15 * 256);//最小值
-                sheet.SetColumnWidth(4, 15 * 256);//最大值
+                sheet.SetColumnWidth(3, 15 * 256);//下限
+                sheet.SetColumnWidth(4, 15 * 256);//上限
                 sheet.SetColumnWidth(5, 15 * 256);//测量值
-
-
-
 
                 IRow rowH = sheet.CreateRow(0);//创建一行
                 ICell cell = null;//创建一个单元格
@@ -240,8 +236,6 @@ namespace Vision
             workbook = null;
         }
 
-
-
         /// <summary>
         /// 导出数据到表格
         /// </summary>
@@ -253,13 +247,15 @@ namespace Vision
             ClearAllDataTables();
         }
 
-
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public void Dispose()
         {
-            foreach (var item in listMeasureManager)
+            foreach (var measureManager in listMeasureManager)
             {
-                item.Dispose();
-                item.ClearImageAcqed();
+                measureManager.Dispose();
+                measureManager.ClearImageAcqed();
             }
         }
     }

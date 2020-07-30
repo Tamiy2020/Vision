@@ -4,11 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using Vision.DataProcess.ShapeLib;
 
 namespace Vision.DataProcess
@@ -74,7 +71,6 @@ namespace Vision.DataProcess
             return new object[] { (iD).ToString(), name, function};
         }
 
-
         /// <summary>
         /// 获取当前实例的一个克隆副本
         /// </summary>
@@ -87,7 +83,6 @@ namespace Vision.DataProcess
             ms.Seek(0, SeekOrigin.Begin);
             return bf.Deserialize(ms);//反序列化
         }
-
 
         /// <summary>
         /// 按照传来的对象赋值所有字段值
@@ -107,8 +102,6 @@ namespace Vision.DataProcess
             }
         }
 
-
-
         /// <summary>
         /// 测量
         /// </summary>
@@ -120,21 +113,14 @@ namespace Vision.DataProcess
             return 1;
         }
 
-
-
-
         public abstract void DisplayDetail(HWindow_Final window);//显示详细信息
 
-
         public abstract void DisplayResult(HWindow_Final window);//显示简单信息
-
-
 
         public virtual object[] GetResultDetail()//返回详细信息
         {
             return null;
         }
-
 
         public virtual List<DataRow> GetDataTableRows(DataTable dataTable)//返回表格数据
         {

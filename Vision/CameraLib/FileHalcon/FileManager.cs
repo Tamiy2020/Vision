@@ -1,5 +1,4 @@
-﻿using ChoiceTech.Halcon.Control;
-using HalconDotNet;
+﻿using HalconDotNet;
 
 namespace Vision.CameraLib
 {

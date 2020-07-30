@@ -1,10 +1,6 @@
 ﻿using ChoiceTech.Halcon.Control;
 using HalconDotNet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vision.DataProcess.ParameterLib;
 
 namespace Vision.DataProcess.ShapeLib
@@ -102,7 +98,6 @@ namespace Vision.DataProcess.ShapeLib
             parameter.rectangle2.position_Vertical_R = position_Vertical_R;
         }
 
-
         public override int Measure(HObject ho_Image)//测量
         {
             measureResult = Result.OK;//测量结果初始OK
@@ -147,15 +142,6 @@ namespace Vision.DataProcess.ShapeLib
 
         public override void DisplayResult(HWindow_Final window)//显示简单信息
         {
-            /* window.DispObj(ho_ROI, "blue", "margin");
-             window.DispObj(ho_SelectedRegions, "green", "fill");
-             HObject ho_Line = Func_HalconFunction.GenRegionLine(this);
-             window.DispObj(ho_Line, "red", "fill");
-             ho_Line.Dispose();
-             window.DispString(DP.hv_Column, DP.hv_Row, name, "orange");//显示文字*/
-
-
-
             try { ho_Shape.Dispose(); } catch (Exception) { }
             ho_Shape = Func_HalconFunction.GenRegionLine(this);
             window.DispObj(ho_Shape, shapeColor);//显示形状
@@ -167,8 +153,5 @@ namespace Vision.DataProcess.ShapeLib
             try { ho_ROI.Dispose(); } catch (Exception) { }
             try { ho_SelectedRegions.Dispose(); } catch (Exception) { }
         }
-
-
-
     }
 }

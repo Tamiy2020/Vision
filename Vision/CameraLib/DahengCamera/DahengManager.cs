@@ -1,9 +1,5 @@
 ﻿using GxIAPINET;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision.CameraLib
 {
@@ -12,12 +8,12 @@ namespace Vision.CameraLib
         /// <summary>
         /// Factory对象
         /// </summary>
-        IGXFactory objIGXFactory = null;
+        private IGXFactory objIGXFactory = null;
 
         /// <summary>
         /// 设备信息列表
         /// </summary>
-        List<IGXDeviceInfo> listIGXDeviceInfo = new List<IGXDeviceInfo>();
+        private List<IGXDeviceInfo> listIGXDeviceInfo = new List<IGXDeviceInfo>();
 
         /// <summary>
         /// 枚举设备

@@ -1,9 +1,5 @@
 ﻿using HalconDotNet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision.DataProcess.PositionLib
 {
@@ -22,7 +18,6 @@ namespace Vision.DataProcess.PositionLib
         /// 垂直位移量
         /// </summary>
         public HTuple hv_Vertical;
-
 
         /// <summary>
         /// 变换矩阵

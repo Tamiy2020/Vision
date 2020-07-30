@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision
 {
@@ -13,8 +8,6 @@ namespace Vision
     /// </summary>
     public class SystemData
     {
-
-
         /// <summary>
         /// 写入数据
         /// </summary>
@@ -29,7 +22,6 @@ namespace Vision
 
             }
         }
-
 
         /// <summary>
         /// 读取数据

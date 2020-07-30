@@ -1,12 +1,6 @@
 ﻿using HalconDotNet;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.DataProcess;
 using Vision.DataProcess.ParameterLib;
@@ -17,10 +11,19 @@ namespace Vision.Forms
 {
     public partial class Ufrm_LineList : Form
     {
+        /// <summary>
+        /// 图像
+        /// </summary>
         private HObject ho_Image;
 
+        /// <summary>
+        /// 编辑窗体
+        /// </summary>
         private Frm_Edit form;
 
+        /// <summary>
+        /// 测量单元管理器
+        /// </summary>
         private MeasureManager measureManager;
 
         /// <summary>
@@ -32,8 +35,6 @@ namespace Vision.Forms
         /// 抓线单元
         /// </summary>
         private GetLineUseThreshold slgLine;
-
-
 
         /// <summary>
         /// 测量单元
@@ -67,7 +68,6 @@ namespace Vision.Forms
         private List<MeasuringUnit> horizontalPositions;
 
 
-
         public Ufrm_LineList(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
@@ -86,13 +86,17 @@ namespace Vision.Forms
             EditMode = true;
         }
 
+
+        /// <summary>
+        /// 绘制模式
+        /// </summary>
+        /// <param name="enable"></param>
         private void DrawMode(bool enable)
         {
             HOperatorSet.SetColor(hWindow_Final1.hWindowControl.HalconWindow, "blue");//设置显示颜色-蓝色
             hWindow_Final1.hWindowControl.Focus();//聚焦到窗口
             hWindow_Final1.DrawModel = enable;//禁止缩放平移
             splitContainer1.Panel2.Enabled = !enable;
-
             if (null == slgLine)
             {
                 btn_slg_ReDrowROI.Enabled = false;
@@ -103,15 +107,20 @@ namespace Vision.Forms
                 btn_slg_ReDrowROI.Enabled = true;
 
             }
-
         }
 
+        /// <summary>
+        /// 数据赋值
+        /// </summary>
         private void FinalAssessment()
         {
             data.name = (txt_Name.Text).Trim();
             data.formType = GetType();
         }
 
+        /// <summary>
+        /// 运行测试
+        /// </summary>
         private void RunOnce()
         {
             if (prepared)
@@ -123,6 +132,7 @@ namespace Vision.Forms
 
         }
 
+        #region 窗体加载中
         private void Ufrm_LineList_Load(object sender, EventArgs e)
         {
             hWindow_Final1.HobjectToHimage(ho_Image);
@@ -131,6 +141,7 @@ namespace Vision.Forms
                 measureManager = form.measureManager;
             }
 
+            #region 跟踪
             List<MeasuringUnit> translations = measureManager.ListAllTranslation();//所有平移跟踪
 
             verticalPositions = new List<MeasuringUnit>();
@@ -152,6 +163,7 @@ namespace Vision.Forms
 
                 }
             }
+            #endregion
 
             if (EditMode)
             {
@@ -194,7 +206,9 @@ namespace Vision.Forms
                 data = getSetOfLines;
             }
         }
+        #endregion
 
+        #region 框选区域
         private void btn_DrawROIs_Click(object sender, EventArgs e)
         {
             getSetOfLines.RemoveAll();//删除所有项
@@ -211,9 +225,10 @@ namespace Vision.Forms
             cmb_slg_SelectItem.SelectedItem = null;//
             slgLine = null;
         }
+        #endregion
 
-
-        // 整体最小灰度滑条
+        #region 整体最小灰度
+        //滑条
         private void trb_MinGray_Scroll(object sender, EventArgs e)
         {
             if (trb_MinGray.Value > trb_MaxGray.Value)
@@ -224,7 +239,7 @@ namespace Vision.Forms
             nud_MinGray.Value = trb_MinGray.Value;
         }
 
-        //整体最小灰度数字
+        //数字
         private void nud_MinGray_ValueChanged(object sender, EventArgs e)
         {
             if (nud_MinGray.Value > nud_MinGray.Value)
@@ -241,8 +256,10 @@ namespace Vision.Forms
             }
             RunOnce();//运行测试
         }
+        #endregion
 
-        //整体最大灰度滑条
+        #region 整体最大灰度
+        //滑条
         private void trb_MaxGray_Scroll(object sender, EventArgs e)
         {
             if (trb_MaxGray.Value < trb_MinGray.Value)
@@ -253,7 +270,7 @@ namespace Vision.Forms
             nud_MaxGray.Value = trb_MaxGray.Value;
         }
 
-        //整体最大灰度数字
+        //数字
         private void nud_MaxGray_ValueChanged(object sender, EventArgs e)
         {
             if (nud_MaxGray.Value < nud_MinGray.Value)
@@ -270,8 +287,9 @@ namespace Vision.Forms
             }
             RunOnce();//运行测试
         }
+        #endregion
 
-        //上
+        #region 上
         private void rdo_UpEdge_CheckedChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < getSetOfLines.CountOfLine; i++)
@@ -280,9 +298,9 @@ namespace Vision.Forms
             }
             RunOnce();//运行测试
         }
+        #endregion
 
-
-        //下
+        #region 下
         private void rdo_DownEdge_CheckedChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < getSetOfLines.CountOfLine; i++)
@@ -291,8 +309,9 @@ namespace Vision.Forms
             }
             RunOnce();//运行测试
         }
+        #endregion
 
-        //左
+        #region 左
         private void rdo_LeftEdge_CheckedChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < getSetOfLines.CountOfLine; i++)
@@ -301,8 +320,9 @@ namespace Vision.Forms
             }
             RunOnce();//运行测试
         }
+        #endregion
 
-        //右
+        #region 右
         private void rdo_RightEdge_CheckedChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < getSetOfLines.CountOfLine; i++)
@@ -311,8 +331,9 @@ namespace Vision.Forms
             }
             RunOnce();//运行测试
         }
+        #endregion
 
-        //选择单项
+        #region 选择单项
         private void cmb_slg_SelectItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmb_slg_SelectItem.SelectedItem == null)
@@ -329,8 +350,9 @@ namespace Vision.Forms
             nud_slg_b_pex.Value = (decimal)slgLine.b.D;
             btn_slg_ReDrowROI.Enabled = true;
         }
+        #endregion
 
-        //重画选区
+        #region 重画选区
         private void btn_slg_ReDrowROI_Click(object sender, EventArgs e)
         {
             DrawMode(true);//绘制模式开启
@@ -350,7 +372,10 @@ namespace Vision.Forms
             RunOnce();//运行测试
         }
 
-        //单项最小灰度滑条
+        #endregion
+
+        #region 单项最小灰度
+        //滑条
         private void trb_slg_MinGray_Scroll(object sender, EventArgs e)
         {
             if (trb_slg_MinGray.Value > trb_slg_MaxGray.Value)
@@ -361,7 +386,7 @@ namespace Vision.Forms
             nud_slg_MinGray.Value = trb_slg_MinGray.Value;
         }
 
-        //单项最小灰度数字
+        //数字
         private void nud_slg_MinGray_ValueChanged(object sender, EventArgs e)
         {
             if (nud_slg_MinGray.Value > nud_slg_MinGray.Value)
@@ -374,8 +399,10 @@ namespace Vision.Forms
             slgLine.parameter.hv_MinGray = (int)(sender as NumericUpDown).Value;
             RunOnce();//运行测试
         }
+        #endregion
 
-        //单项最大灰度滑条
+        #region 单项最大灰度
+        //滑条
         private void trb_slg_MaxGray_Scroll(object sender, EventArgs e)
         {
             if (trb_slg_MaxGray.Value < trb_slg_MinGray.Value)
@@ -386,7 +413,7 @@ namespace Vision.Forms
             nud_slg_MaxGray.Value = trb_slg_MaxGray.Value;
         }
 
-        //单项最大灰度数字
+        //数字
         private void nud_slg_MaxGray_ValueChanged(object sender, EventArgs e)
         {
             if (nud_slg_MaxGray.Value < nud_slg_MinGray.Value)
@@ -399,15 +426,18 @@ namespace Vision.Forms
             slgLine.parameter.hv_MaxGray = (int)(sender as NumericUpDown).Value;
             RunOnce();//运行测试
         }
+        #endregion
 
-        //上下微调
+        #region 上下微调
         private void nud_slg_b_pex_ValueChanged(object sender, EventArgs e)
         {
             slgLine.b = (double)nud_slg_b_pex.Value;
             RunOnce();//运行测试
         }
 
-        //下一个
+        #endregion
+
+        #region 下一个
         private void tsmi_Next_Click(object sender, EventArgs e)
         {
             DrawMode(true);//绘制模式开启
@@ -419,8 +449,9 @@ namespace Vision.Forms
             GetLineUseThreshold line = new GetLineUseThreshold(new Threshold(Func_Mathematics.ToRectangle2(rectangle1)));
             getSetOfLines.AddLine(line);
         }
+        #endregion
 
-        //完成
+        #region 完成
         private void tsmi_Done_Click(object sender, EventArgs e)
         {
             hWindow_Final1.ContextMenuStrip = null;//禁用右键菜单
@@ -429,14 +460,17 @@ namespace Vision.Forms
             prepared = true;
             RunOnce();//运行测试
         }
+        #endregion
 
+        #region 右键菜单取消
         private void tsmi_Cancel_Click(object sender, EventArgs e)
         {
             hWindow_Final1.ContextMenuStrip = null;//禁用右键菜单
             RunOnce();//运行测试
         }
+        #endregion
 
-        //确定
+        #region 确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
             if (!EditMode)//非编辑模式
@@ -487,13 +521,17 @@ namespace Vision.Forms
             return;
         }
 
-        //取消
+        #endregion
+
+        #region 取消
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
         }
+        #endregion
 
+        #region 水平跟踪
         private void cmb_HorizontalTracking_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (prepared)
@@ -503,7 +541,9 @@ namespace Vision.Forms
                 RunOnce();
             }
         }
+        #endregion
 
+        #region 垂直跟踪
         private void cmb_VerticalTracking_L_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (prepared)
@@ -512,6 +552,7 @@ namespace Vision.Forms
                 (data as BaseShape).SetPosition();
                 RunOnce();
             }
-        }
+        } 
+        #endregion
     }
 }

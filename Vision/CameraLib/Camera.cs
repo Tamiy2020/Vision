@@ -1,12 +1,5 @@
 ﻿using ChoiceTech.Halcon.Control;
-using GxIAPINET;
 using HalconDotNet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Vision.CameraLib
@@ -73,7 +66,7 @@ namespace Vision.CameraLib
         public virtual void Grad() { }
 
         /// <summary>
-        /// 图像接收事件
+        /// 图像接收完成事件
         /// </summary>
         public event ImageAcqedEventHandle ImageAcqed;
 
@@ -86,7 +79,6 @@ namespace Vision.CameraLib
             ImageAcqed?.Invoke(ho_Image);
         }
 
-      
         /// <summary>
         /// 设置窗体
         /// </summary>

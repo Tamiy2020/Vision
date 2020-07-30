@@ -130,7 +130,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.chk_Angle);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Draw);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 854;
+            this.splitContainer1.SplitterDistance = 857;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -144,7 +144,7 @@
             this.hWindow_Final1.Image = null;
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(854, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(857, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // panel1
@@ -155,14 +155,14 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(9, 572);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(297, 104);
+            this.panel1.Size = new System.Drawing.Size(402, 104);
             this.panel1.TabIndex = 66;
             // 
             // cmb_VerticalTracking_L
             // 
             this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_VerticalTracking_L.FormattingEnabled = true;
-            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(123, 59);
+            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(234, 59);
             this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
             this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
             this.cmb_VerticalTracking_L.TabIndex = 65;
@@ -182,7 +182,7 @@
             // 
             this.cmb_HorizontalTracking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_HorizontalTracking.FormattingEnabled = true;
-            this.cmb_HorizontalTracking.Location = new System.Drawing.Point(123, 12);
+            this.cmb_HorizontalTracking.Location = new System.Drawing.Point(234, 12);
             this.cmb_HorizontalTracking.Name = "cmb_HorizontalTracking";
             this.cmb_HorizontalTracking.Size = new System.Drawing.Size(121, 25);
             this.cmb_HorizontalTracking.TabIndex = 64;
@@ -200,7 +200,7 @@
             // 
             // txt_Name
             // 
-            this.txt_Name.Location = new System.Drawing.Point(247, 65);
+            this.txt_Name.Location = new System.Drawing.Point(243, 65);
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.Size = new System.Drawing.Size(151, 23);
             this.txt_Name.TabIndex = 54;

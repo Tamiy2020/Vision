@@ -1,9 +1,5 @@
 ﻿using HalconDotNet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision.DataProcess.ShapeLib
 {
@@ -13,26 +9,20 @@ namespace Vision.DataProcess.ShapeLib
     [Serializable]//序列化标志，表示当前类的实例可以被序列化储存
     public class Rectangle1 : BaseShape
     {
-
-
         /// <summary>
         /// x1
         /// </summary>
         public HTuple hv_Column1;
-
 
         /// <summary>
         /// y1
         /// </summary>
         public HTuple hv_Row1;
 
-
-
         /// <summary>
         /// x2
         /// </summary>
         public HTuple hv_Column2;
-
 
         /// <summary>
         /// y2
@@ -47,7 +37,6 @@ namespace Vision.DataProcess.ShapeLib
             hv_Column2 = 0;
         }
 
-
         public Rectangle1(HTuple hv_Row1, HTuple hv_Column1, HTuple hv_Row2, HTuple hv_Column2)//带参数的构造函数
         {
             this.hv_Row1 = hv_Row1;
@@ -56,7 +45,6 @@ namespace Vision.DataProcess.ShapeLib
             this.hv_Column2 = hv_Column2;
         }
 
-
         public override BaseShape GetShapePositioned()//获取定位后的实例
         {
             if (position_Horizontal != null)
@@ -64,11 +52,6 @@ namespace Vision.DataProcess.ShapeLib
                 hv_Column1 += position_Horizontal.hv_Horizontal;
                 hv_Column2 += position_Horizontal.hv_Horizontal;
             }
-          /*  if (position_Vertical != null)
-            {
-                hv_Row1 += position_Vertical.hv_Vertical;
-                hv_Row2 += position_Vertical.hv_Vertical;
-            }*/
             return new Rectangle1(hv_Row1, hv_Column1, hv_Row2, hv_Column2);
         }
 

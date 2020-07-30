@@ -2,9 +2,6 @@
 using HalconDotNet;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision.DataProcess.ShapeLib
 {
@@ -41,7 +38,6 @@ namespace Vision.DataProcess.ShapeLib
             GetHomMat2D();
             return this;
         }
-
 
         /// <summary>
         /// 获取还原后的实例
@@ -149,8 +145,5 @@ namespace Vision.DataProcess.ShapeLib
         {
             base.DisplayResult(window);
         }
-
-
-
     }
 }

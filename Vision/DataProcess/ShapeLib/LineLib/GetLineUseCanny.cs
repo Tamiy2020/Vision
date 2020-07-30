@@ -1,10 +1,6 @@
 ﻿using ChoiceTech.Halcon.Control;
 using HalconDotNet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vision.DataProcess.ParameterLib;
 
 namespace Vision.DataProcess.ShapeLib
@@ -100,18 +96,9 @@ namespace Vision.DataProcess.ShapeLib
 
         public override void DisplayResult(HWindow_Final window)
         {
-            /*  HObject ho_Rectangle = Func_HalconFunction.GenRectangle2(parameter.rectangle2.GetShapePositioned() as Rectangle2);
-              window.DispObj(ho_Rectangle, "blue", "margin");
-              ho_Rectangle.Dispose();
-              base.DisplayDetail(window);*/
-
-
-
             try { ho_Shape.Dispose(); } catch (Exception) { }
             ho_Shape = Func_HalconFunction.GenRegionLine(this);
             window.DispObj(ho_Shape, shapeColor);//显示形状
         }
-
-
     }
 }

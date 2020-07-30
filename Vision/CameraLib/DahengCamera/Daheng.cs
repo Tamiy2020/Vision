@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChoiceTech.Halcon.Control;
 using GxIAPINET;
@@ -40,12 +36,10 @@ namespace Vision.CameraLib
         /// </summary>
         private bool bIsSnap = false;
 
-        private DahengImage dahengImage = null;
-
         /// <summary>
-        /// 图像接收事件
+        /// 大恒图像
         /// </summary>
-       // public event Action<HObject> eventImage;
+        private DahengImage dahengImage = null;
 
         /// <summary>
         /// 打开相机
@@ -67,11 +61,25 @@ namespace Vision.CameraLib
             objIGXStream = objIGXDevice.OpenStream(0);
             objIGXStreamFeatureControl = objIGXStream.GetFeatureControl();
 
+            // 建议用户在打开网络相机之后，根据当前网络环境设置相机的流通道包长值，
+            // 以提高网络相机的采集性能,设置方法参考以下代码。
+            GX_DEVICE_CLASS_LIST objDeviceClass = objIGXDevice.GetDeviceInfo().GetDeviceClass();
+            if (GX_DEVICE_CLASS_LIST.GX_DEVICE_CLASS_GEV == objDeviceClass)
+            {
+                // 判断设备是否支持流通道数据包功能
+                if (true == objIGXFeatureControl.IsImplemented("GevSCPSPacketSize"))
+                {
+                    // 获取当前网络环境的最优包长值
+                    uint nPacketSize = objIGXStream.GetOptimalPacketSize();
+                    // 将最优包长值设置为当前设备的流通道包长值
+                    objIGXFeatureControl.GetIntFeature("GevSCPSPacketSize").SetValue(nPacketSize);
+                }
+            }
+
             //初始化相机参数
             objIGXFeatureControl.GetEnumFeature("AcquisitionMode").SetValue("Continuous");//设置采集模式连续采集
             objIGXFeatureControl.GetEnumFeature("TriggerSource").SetValue("Software");//设置触发源软触发
             objIGXFeatureControl.GetEnumFeature("TriggerMode").SetValue("On");//默认单张
-
 
         }
 
@@ -82,7 +90,6 @@ namespace Vision.CameraLib
         {
             //设置流层Buffer处理模式为OldestFirst
             objIGXStreamFeatureControl.GetEnumFeature("StreamBufferHandlingMode").SetValue("OldestFirst");
-
 
             //开启采集流通道
             if (null != objIGXStream)
@@ -142,7 +149,6 @@ namespace Vision.CameraLib
         /// <param name="isOn"></param>
         public void ChangeTriggerMode(bool live)
         {
-          
             if (live)
             {
                 objIGXFeatureControl.GetEnumFeature("TriggerMode").SetValue("Off");//实时
@@ -232,7 +238,5 @@ namespace Vision.CameraLib
         {
             objIGXFeatureControl.GetFloatFeature("Gain").SetValue(double.Parse(gainRaw));
         }
-
-
     }
 }

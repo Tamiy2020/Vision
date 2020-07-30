@@ -1,13 +1,6 @@
 ﻿using HalconDotNet;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.DataProcess;
 using Vision.DataProcess.PositionLib;
@@ -17,9 +10,20 @@ namespace Vision.Forms
 {
     public partial class UFrm_Exist : Form
     {
+        /// <summary>
+        /// 图像
+        /// </summary>
         private HObject ho_Image;
 
+        /// <summary>
+        /// 编辑窗体
+        /// </summary>
         private Frm_Edit form;
+
+        /// <summary>
+        /// 测量单元管理器
+        /// </summary>
+        private MeasureManager measureManager;
 
         /// <summary>
         /// 灰度区域检测单元
@@ -35,8 +39,6 @@ namespace Vision.Forms
         /// 旧测量单元
         /// </summary>
         protected MeasuringUnit oldData;
-
-        private MeasureManager measureManager;
 
         /// <summary>
         /// 可以执行测量方法的标志
@@ -59,8 +61,6 @@ namespace Vision.Forms
         private List<MeasuringUnit> horizontalPositions;
 
 
-
-
         public UFrm_Exist(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
@@ -79,9 +79,44 @@ namespace Vision.Forms
             EditMode = true;
         }
 
+        /// <summary>
+        /// 绘制模式
+        /// </summary>
+        /// <param name="enable"></param>
+        private void DrawMode(bool enable)
+        {
+            HOperatorSet.SetColor(hWindow_Final1.hWindowControl.HalconWindow, "blue");//设置显示颜色-蓝色
+            hWindow_Final1.hWindowControl.Focus();//聚焦到窗口
+            hWindow_Final1.DrawModel = enable;//禁止缩放平移
+            splitContainer1.Panel2.Enabled = !enable;
 
+        }
 
+        /// <summary>
+        /// 赋值
+        /// </summary>
+        private void FinalAssessment()
+        {
+            data.name = (txt_Name.Text).Trim();
+            data.formType = GetType();
+        }
 
+        /// <summary>
+        /// 运行测试
+        /// </summary>
+        private void RunOnce()
+        {
+            if (prepared)
+            {
+                hWindow_Final1.HobjectToHimage(ho_Image);
+                data.Measure(ho_Image);
+                data.DisplayDetail(hWindow_Final1);
+                lbl_Area.Text = getRegionUseThreshold.hv_Area.D.ToString();
+            }
+
+        }
+
+        #region 窗体加载中
         private void UFrm_Exist_Load(object sender, EventArgs e)
         {
             hWindow_Final1.HobjectToHimage(ho_Image);
@@ -90,6 +125,7 @@ namespace Vision.Forms
                 measureManager = form.measureManager;
             }
 
+            #region 跟踪
             List<MeasuringUnit> translations = measureManager.ListAllTranslation();//所有平移跟踪
 
             verticalPositions = new List<MeasuringUnit>();
@@ -111,15 +147,7 @@ namespace Vision.Forms
 
                 }
             }
-
-
-
-
-
-
-
-
-
+            #endregion
 
             //判断是否编辑模式进入
             if (EditMode)
@@ -133,17 +161,17 @@ namespace Vision.Forms
                 nud_MaxValue.Value = (decimal)getRegionUseThreshold.maxValue;
                 nud_MinValue.Value = (decimal)getRegionUseThreshold.minValue;
 
+
                 if (getRegionUseThreshold.position_Horizontal != null)
                 {
                     cmb_HorizontalTracking.SelectedItem = getRegionUseThreshold.position_Horizontal.name;
                 }
 
-
-
                 if (getRegionUseThreshold.position_Vertical_L != null)
                 {
                     cmb_VerticalTracking_L.SelectedItem = getRegionUseThreshold.position_Vertical_L.name;
                 }
+
 
                 txt_Name.Text = getRegionUseThreshold.name;
                 txt_Name.Enabled = false;//编辑模式下不能编辑名字
@@ -156,22 +184,12 @@ namespace Vision.Forms
                 getRegionUseThreshold = new GetRegionUseThreshold();
                 data = getRegionUseThreshold;
             }
-        }
+        } 
+        #endregion
 
-
-        private void DrawMode(bool enable)
-        {
-            HOperatorSet.SetColor(hWindow_Final1.hWindowControl.HalconWindow, "blue");//设置显示颜色-蓝色
-            hWindow_Final1.hWindowControl.Focus();//聚焦到窗口
-            hWindow_Final1.DrawModel = enable;//禁止缩放平移
-            splitContainer1.Panel2.Enabled = !enable;
-
-        }
-
-        //框选区域
+        #region 框选区域
         private void btn_SelectROI_Click(object sender, EventArgs e)
         {
-
             DrawMode(true);
 
             Rectangle1 rectangle1 = Func_HalconFunction.DrawRectangle1(hWindow_Final1.hWindowControl.HalconWindow);
@@ -180,26 +198,11 @@ namespace Vision.Forms
             DrawMode(false);
             prepared = true;
             RunOnce();
-        }
+        } 
+        #endregion
 
-        private void RunOnce()
-        {
-            if (prepared)
-            {
-                hWindow_Final1.HobjectToHimage(ho_Image);
-                data.Measure(ho_Image);
-                data.DisplayDetail(hWindow_Final1);
-                lbl_Area.Text = getRegionUseThreshold.hv_Area.D.ToString();
-            }
-
-        }
-
-        private void FinalAssessment()
-        {
-            data.name = (txt_Name.Text).Trim();
-            data.formType = GetType();
-        }
-
+        #region 下限灰度
+        //数字
         private void nud_MinGray_ValueChanged(object sender, EventArgs e)
         {
             if (nud_MinGray.Value > nud_MinGray.Value)
@@ -211,7 +214,8 @@ namespace Vision.Forms
             getRegionUseThreshold.parameter.hv_MinGray = (int)(sender as NumericUpDown).Value;
             RunOnce();
         }
-
+        
+        //滑条
         private void trb_MinGray_Scroll(object sender, EventArgs e)
         {
             if (trb_MinGray.Value > trb_MaxGray.Value)
@@ -221,7 +225,10 @@ namespace Vision.Forms
             }
             nud_MinGray.Value = trb_MinGray.Value;
         }
+        #endregion
 
+        #region 上限灰度
+        //滑条
         private void trb_MaxGray_Scroll(object sender, EventArgs e)
         {
             if (trb_MaxGray.Value < trb_MinGray.Value)
@@ -232,6 +239,7 @@ namespace Vision.Forms
             nud_MaxGray.Value = trb_MaxGray.Value;
         }
 
+        //数字
         private void nud_MaxGray_ValueChanged(object sender, EventArgs e)
         {
             if (nud_MaxGray.Value < nud_MinGray.Value)
@@ -243,13 +251,17 @@ namespace Vision.Forms
             getRegionUseThreshold.parameter.hv_MaxGray = (int)(sender as NumericUpDown).Value;
             RunOnce();
         }
+        #endregion
 
+        #region 产品有无
         private void rdo_Exist_CheckedChanged(object sender, EventArgs e)
         {
             getRegionUseThreshold.Exist = (sender as RadioButton).Checked;
             RunOnce();
         }
+        #endregion
 
+        #region 确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
             if (rdo_ExistTwo.Checked)
@@ -308,24 +320,32 @@ namespace Vision.Forms
             return;
 
         }
+        #endregion
 
+        #region 取消
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             //if (EditMode) data=oldData;//?编辑模式,恢复数据
             Close();
         }
+        #endregion
 
+        #region 最小值
         private void nud_MinValue_ValueChanged(object sender, EventArgs e)
         {
             getRegionUseThreshold.minValue = (double)nud_MinValue.Value;
 
         }
+        #endregion
 
+        #region 最大值
         private void nud_MaxValue_ValueChanged(object sender, EventArgs e)
         {
             getRegionUseThreshold.maxValue = (double)nud_MaxValue.Value;
         }
+        #endregion
 
+        #region 水平跟踪
         private void cmb_HorizontalTracking_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (prepared)
@@ -335,7 +355,9 @@ namespace Vision.Forms
                 RunOnce();
             }
         }
+        #endregion
 
+        #region 垂直跟踪
         private void cmb_VerticalTracking_L_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (prepared)
@@ -344,8 +366,8 @@ namespace Vision.Forms
                 getRegionUseThreshold.SetPosition();
                 RunOnce();
             }
-        }
+        } 
+        #endregion
 
-       
     }
 }

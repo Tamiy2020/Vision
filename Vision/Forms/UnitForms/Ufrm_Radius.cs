@@ -1,12 +1,6 @@
 ﻿using HalconDotNet;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.DataProcess;
 using Vision.DataProcess.CalculationLib;
@@ -16,11 +10,19 @@ namespace Vision.Forms
 {
     public partial class Ufrm_Radius : Form
     {
-
+        /// <summary>
+        /// 图像
+        /// </summary>
         private HObject ho_Image;
 
+        /// <summary>
+        /// 编辑窗体
+        /// </summary>
         private Frm_Edit form;
 
+        /// <summary>
+        /// 测量单元管理器
+        /// </summary>
         private MeasureManager measureManager;
 
         /// <summary>
@@ -37,8 +39,6 @@ namespace Vision.Forms
         /// 测量单元列队
         /// </summary>
         private List<MeasuringUnit> measuringUnits;
-
-
 
         /// <summary>
         /// 测量单元
@@ -60,7 +60,7 @@ namespace Vision.Forms
         /// </summary>
         public bool EditMode { get; }
 
-        public Ufrm_Radius(Frm_Edit form, HObject ho_Image)
+        public Ufrm_Radius(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
             this.form = form;
@@ -68,7 +68,7 @@ namespace Vision.Forms
             EditMode = false;
         }
 
-        public Ufrm_Radius(Frm_Edit form, HObject ho_Image, MeasuringUnit data)
+        public Ufrm_Radius(Frm_Edit form, HObject ho_Image, MeasuringUnit data)//编辑模式
         {
             InitializeComponent();
             this.form = form;
@@ -78,18 +78,22 @@ namespace Vision.Forms
             EditMode = true;
         }
 
-
+        /// <summary>
+        /// 数据赋值
+        /// </summary>
         private void FinalAssessment()
         {
             data.name = (txt_Name.Text).Trim();
             data.formType = GetType();
 
-
             calculate.maxValue = (double)nud_MaxValue.Value;
             calculate.minValue = (double)nud_MinValue.Value;
         }
 
-
+        /// <summary>
+        /// 运行
+        /// </summary>
+        /// <returns></returns>
         private bool Run()
         {
             if (prepared)
@@ -103,6 +107,9 @@ namespace Vision.Forms
             return false;
         }
 
+        /// <summary>
+        /// 运行测试
+        /// </summary>
         private void RunOnce()
         {
             if (Run())
@@ -113,6 +120,7 @@ namespace Vision.Forms
 
         }
 
+        #region 窗体加载时
         private void Ufrm_Radius_Load(object sender, EventArgs e)
         {
             hWindow_Final1.HobjectToHimage(ho_Image);
@@ -131,7 +139,7 @@ namespace Vision.Forms
             if (EditMode)
             {
                 //编辑模式
-               
+
                 nud_Spacing.Value = data.StringHeight;
 
                 txt_Name.Text = data.name;
@@ -157,13 +165,17 @@ namespace Vision.Forms
                 prepared = true;
             }
         }
+        #endregion
 
+        #region 选择圆
         private void cmb_Circles_SelectedIndexChanged(object sender, EventArgs e)
         {
             calculate.unit1 = circles[(sender as ComboBox).SelectedIndex];
             RunOnce();
         }
+        #endregion
 
+        #region k值
         private void nud_k_ValueChanged(object sender, EventArgs e)
         {
             if (calculate != null)
@@ -172,7 +184,9 @@ namespace Vision.Forms
             }
             RunOnce();
         }
+        #endregion
 
+        #region 最小值
         private void nud_MinValue_ValueChanged(object sender, EventArgs e)
         {
             if (calculate != null)
@@ -181,7 +195,9 @@ namespace Vision.Forms
             }
             RunOnce();
         }
+        #endregion
 
+        #region 最大值
         private void nud_MaxValue_ValueChanged(object sender, EventArgs e)
         {
             if (calculate != null)
@@ -190,7 +206,9 @@ namespace Vision.Forms
             }
             RunOnce();
         }
+        #endregion
 
+        #region 计算k值
         private void btn_Calck_Click(object sender, EventArgs e)
         {
             if (calculate != null && calculate.hv_PxDistance != null && calculate.hv_PxDistance.D != 0)
@@ -200,7 +218,9 @@ namespace Vision.Forms
             }
             RunOnce();
         }
+        #endregion
 
+        #region 窗体关闭时
         private void Ufrm_Radius_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (EditMode)
@@ -220,12 +240,16 @@ namespace Vision.Forms
                 { }
             }
         }
+        #endregion
 
+        #region 字符间距调整
         private void nud_Spacing_ValueChanged(object sender, EventArgs e)
         {
             data.StringHeight = (int)nud_Spacing.Value;
         }
+        #endregion
 
+        #region 确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
             if (!EditMode)//非编辑模式
@@ -275,11 +299,14 @@ namespace Vision.Forms
             Close();
             return;
         }
+        #endregion
 
+        #region 关闭
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
-        }
+        } 
+        #endregion
     }
 }

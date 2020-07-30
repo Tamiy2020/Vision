@@ -11,14 +11,20 @@ namespace Vision.Forms
 {
     public partial class Ufrm_MultipleDistance : Form
     {
-
+        /// <summary>
+        /// 图像
+        /// </summary>
         private HObject ho_Image;
 
+        /// <summary>
+        /// 编辑窗体
+        /// </summary>
         private Frm_Edit form;
 
+        /// <summary>
+        /// 测量单元管理器
+        /// </summary>
         private MeasureManager measureManager;
-
-
 
         /// <summary>
         /// 测量单元1
@@ -67,7 +73,6 @@ namespace Vision.Forms
         public bool EditMode { get; }
 
 
-
         public Ufrm_MultipleDistance(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
@@ -86,15 +91,10 @@ namespace Vision.Forms
             EditMode = true;
         }
 
-        private void DrawMode(bool enable)
-        {
-            HOperatorSet.SetColor(hWindow_Final1.hWindowControl.HalconWindow, "blue");//设置显示颜色-蓝色
-            hWindow_Final1.hWindowControl.Focus();//聚焦到窗口
-            hWindow_Final1.DrawModel = enable;//禁止缩放平移
-            splitContainer1.Panel2.Enabled = !enable;
 
-        }
-
+        /// <summary>
+        /// 数据赋值
+        /// </summary>
         private void FinalAssessment()
         {
             data.name = (txt_Name.Text).Trim();
@@ -153,9 +153,12 @@ namespace Vision.Forms
                     }
                 }
             }
-
         }
 
+        /// <summary>
+        /// 运行
+        /// </summary>
+        /// <returns></returns>
         private bool Run()
         {
             if (prepared)
@@ -169,6 +172,9 @@ namespace Vision.Forms
             return false;
         }
 
+        /// <summary>
+        /// 运行测试
+        /// </summary>
         private void RunOnce()
         {
             if (Run() && cmb_slg_Item.SelectedItem != null)
@@ -186,9 +192,9 @@ namespace Vision.Forms
             }
         }
 
-
-
-
+        /// <summary>
+        /// 枚举项目
+        /// </summary>
         private void EnumItem()
         {
             List<MeasuringUnit> lines = measureManager.ListAllLine();
@@ -207,7 +213,9 @@ namespace Vision.Forms
             }
         }
 
-
+        /// <summary>
+        /// 重置枚举项目
+        /// </summary>
         private void ResetEnumItem()
         {
             cmb_Item1.Items.Clear();
@@ -215,7 +223,6 @@ namespace Vision.Forms
             cmb_slg_Item.Items.Clear();
             EnumItem();
         }
-
 
         /// <summary>
         /// 设置项
@@ -248,9 +255,7 @@ namespace Vision.Forms
             }
         }
 
-
-
-
+        #region 窗体加载中
         private void Ufrm_MultipleDistance_Load(object sender, EventArgs e)
         {
             hWindow_Final1.HobjectToHimage(ho_Image);
@@ -259,12 +264,13 @@ namespace Vision.Forms
                 measureManager = form.measureManager;
             }
 
-            EnumItem();
+            EnumItem();//枚举项目
+
             if (EditMode)//编辑模式
             {
                 nud_Spacing.Value = data.StringHeight;
                 groupBox1.Visible = false;
-         
+
                 if (data is MultipleDistance)
                 {
                     calculates = data as MultipleDistance;
@@ -314,9 +320,9 @@ namespace Vision.Forms
                 prepared = true;
             }
         }
+        #endregion
 
-
-        //基准线下拉列表框
+        #region 基准线下拉列表框
         private void cmb_Item1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SetItem(1) && prepared)
@@ -326,8 +332,9 @@ namespace Vision.Forms
             }
             RunOnce();
         }
+        #endregion
 
-        //多边下拉列表框
+        #region 多边下拉列表框
         private void cmb_Item2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SetItem(2) && prepared)
@@ -337,8 +344,9 @@ namespace Vision.Forms
             }
             RunOnce();
         }
+        #endregion
 
-        //整体k值
+        #region 整体k值
         private void nud_k_ValueChanged(object sender, EventArgs e)
         {
             if (data != null && prepared)
@@ -347,8 +355,9 @@ namespace Vision.Forms
                 RunOnce();
             }
         }
+        #endregion
 
-        //整体最小值
+        #region 整体最小值
         private void nud_MinValue_ValueChanged(object sender, EventArgs e)
         {
             if (data != null && prepared)
@@ -361,8 +370,9 @@ namespace Vision.Forms
                 RunOnce();
             }
         }
+        #endregion
 
-        //整体最大值
+        #region 整体最大值
         private void nud_MaxValue_ValueChanged(object sender, EventArgs e)
         {
             if (data != null && prepared)
@@ -376,7 +386,9 @@ namespace Vision.Forms
             }
         }
 
-        //单项选择修改的一项
+        #endregion
+
+        #region 单项选择修改的一项
         private void cmb_slg_Item_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (data != null && (data as BaseCal_Multi).calList.Count >= 0)
@@ -387,8 +399,9 @@ namespace Vision.Forms
                 nud_slg_RealValue.Value = (decimal)(data as BaseCal_Multi).calList[cmb_slg_Item.SelectedIndex].hv_RealDistance.D;
             }
         }
+        #endregion
 
-        //单项k值
+        #region 单项k值
         private void nud_slg_k_ValueChanged(object sender, EventArgs e)
         {
             if (data != null && (data as BaseCal_Multi).calList.Count >= 0 && cmb_slg_Item.SelectedItem != null)
@@ -397,8 +410,9 @@ namespace Vision.Forms
                 RunOnce();
             }
         }
+        #endregion
 
-        //单项最小值
+        #region 单项最小值
         private void nud_slg_MinValue_ValueChanged(object sender, EventArgs e)
         {
             if (data != null && (data as BaseCal_Multi).calList.Count >= 0 && cmb_slg_Item.SelectedItem != null)
@@ -407,9 +421,9 @@ namespace Vision.Forms
                 RunOnce();
             }
         }
+        #endregion
 
-
-        //单项最大值
+        #region 单项最大值
         private void nud_slg_MaxValue_ValueChanged(object sender, EventArgs e)
         {
             if (data != null && (data as BaseCal_Multi).calList.Count >= 0 && cmb_slg_Item.SelectedItem != null)
@@ -418,8 +432,9 @@ namespace Vision.Forms
                 RunOnce();
             }
         }
+        #endregion
 
-        //计算k值按钮
+        #region 计算k值按钮
         private void btn_slg_Calck_Click(object sender, EventArgs e)
         {
             if (data != null && (data as BaseCal_Multi).calList.Count >= 0 && cmb_slg_Item.SelectedItem != null)
@@ -430,9 +445,9 @@ namespace Vision.Forms
                 RunOnce();
             }
         }
+        #endregion
 
-
-        //多边测距单选按钮
+        #region 多边测距单项按钮
         private void rdo_MultipleDistance_CheckedChanged(object sender, EventArgs e)
         {
             ResetEnumItem();
@@ -443,8 +458,9 @@ namespace Vision.Forms
                 Text = "多边测距窗体";
             }
         }
+        #endregion
 
-        //高低落差单选按钮
+        #region 高低落差单选按钮
         private void rdo_DropDistance_CheckedChanged(object sender, EventArgs e)
         {
             ResetEnumItem();
@@ -455,8 +471,9 @@ namespace Vision.Forms
                 Text = "高低落差窗体";
             }
         }
+        #endregion
 
-        //  Pin距单选按钮
+        #region Pin距单选按钮
         private void rdo_PinDistance_CheckedChanged(object sender, EventArgs e)
         {
             ResetEnumItem();
@@ -467,8 +484,9 @@ namespace Vision.Forms
                 Text = "Pin距窗体";
             }
         }
+        #endregion
 
-        //窗体关闭时
+        #region 窗体关闭时
         private void Ufrm_MultipleDistance_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (EditMode)
@@ -541,14 +559,16 @@ namespace Vision.Forms
                 }
             }
         }
+        #endregion
 
-
-
+        #region 字符间距调整
         private void nud_Spacing_ValueChanged(object sender, EventArgs e)
         {
             data.StringHeight = (int)nud_Spacing.Value;
         }
+        #endregion
 
+        #region 确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
             if (!EditMode)//非编辑模式
@@ -598,11 +618,14 @@ namespace Vision.Forms
             Close();
             return;
         }
+        #endregion
 
+        #region 取消
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
-        }
+        } 
+        #endregion
     }
 }

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ThridLibray;
 
 namespace Vision.CameraLib
 {
+    /// <summary>
+    /// 大华相机管理器
+    /// </summary>
     public class DahuaManager : CameraManager
     {
         /// <summary>

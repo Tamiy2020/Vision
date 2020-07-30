@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -29,10 +26,14 @@ namespace Vision
         private WY_hDevice DeviceID0;  //定义板卡句柄参数
 
         bool TaskControl = true;
-        public event Func<int, int> eventOneSignal;//IO卡接收到触发采集信号的事件
+
+        /// <summary>
+        /// IO卡接收到触发采集信号的事件
+        /// </summary>
+        public event Func<int, int> eventOneSignal;
 
 
-        public IOManager()
+        public IOManager()//构造函数
         {
             IOOut = new Queue();
             IOIn = new Queue();
@@ -184,9 +185,6 @@ namespace Vision
             _OutPutData |= value;               //XXXX 0XXX | 0000 V000= XXXX nXXX
             return _OutPutData;
         }
-
-
-
 
         public void SetOutPutData_Bit(int n_Bit, int value)
         {

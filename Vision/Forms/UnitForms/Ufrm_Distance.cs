@@ -10,10 +10,19 @@ namespace Vision.Forms
 {
     public partial class Ufrm_Distance : Form
     {
+        /// <summary>
+        /// 图像
+        /// </summary>
         private HObject ho_Image;
 
+        /// <summary>
+        /// 编辑窗体
+        /// </summary>
         private Frm_Edit form;
 
+        /// <summary>
+        /// 测量单元管理器
+        /// </summary>
         private MeasureManager measureManager;
 
         /// <summary>
@@ -30,8 +39,6 @@ namespace Vision.Forms
         /// 执行单元列队2
         /// </summary>
         List<MeasuringUnit> unitList2;
-
-
 
         /// <summary>
         /// 测量单元
@@ -53,9 +60,6 @@ namespace Vision.Forms
         /// </summary>
         public bool EditMode { get; }
 
-
-
-
         public Ufrm_Distance(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
@@ -73,15 +77,10 @@ namespace Vision.Forms
             oldData = (MeasuringUnit)data.Clone();
             EditMode = true;
         }
-        private void DrawMode(bool enable)
-        {
-            HOperatorSet.SetColor(hWindow_Final1.hWindowControl.HalconWindow, "blue");//设置显示颜色-蓝色
-            hWindow_Final1.hWindowControl.Focus();//聚焦到窗口
-            hWindow_Final1.DrawModel = enable;//禁止缩放平移
-            splitContainer1.Panel2.Enabled = !enable;
 
-        }
-
+        /// <summary>
+        /// 数据赋值
+        /// </summary>
         private void FinalAssessment()
         {
             data.name = (txt_Name.Text).Trim();
@@ -91,6 +90,10 @@ namespace Vision.Forms
             calculate.minValue = (double)nud_MinValue.Value;
         }
 
+        /// <summary>
+        /// 运行
+        /// </summary>
+        /// <returns></returns>
         private bool Run()
         {
             if (prepared)
@@ -104,6 +107,9 @@ namespace Vision.Forms
             return false;
         }
 
+        /// <summary>
+        /// 运行测试
+        /// </summary>
         private void RunOnce()
         {
             if (Run())
@@ -132,7 +138,7 @@ namespace Vision.Forms
             }
         }
 
-
+        #region 窗体加载时
         private void Ufrm_Distance_Load(object sender, EventArgs e)
         {
             hWindow_Final1.HobjectToHimage(ho_Image);
@@ -249,8 +255,9 @@ namespace Vision.Forms
                 //非编辑模式
             }
         }
+        #endregion
 
-        //最小值
+        #region 最小值
         private void nud_MinValue_ValueChanged(object sender, EventArgs e)
         {
             if (calculate != null)
@@ -258,10 +265,10 @@ namespace Vision.Forms
                 calculate.minValue = (double)(sender as NumericUpDown).Value;
             }
             RunOnce();
-
         }
+        #endregion
 
-        //最大值
+        #region 最大值
         private void nud_MaxValue_ValueChanged(object sender, EventArgs e)
         {
             if (calculate != null)
@@ -270,8 +277,9 @@ namespace Vision.Forms
             }
             RunOnce();
         }
+        #endregion
 
-        //点到点
+        #region 点到点
         private void rdo_PTP_CheckedChanged(object sender, EventArgs e)
         {
             if ((sender as RadioButton).Checked && prepared)
@@ -285,8 +293,9 @@ namespace Vision.Forms
                 lab_Item2.Text = "点2";
             }
         }
+        #endregion
 
-        //点到线
+        #region 点到线
         private void rdo_PTL_CheckedChanged(object sender, EventArgs e)
         {
             if ((sender as RadioButton).Checked && prepared)
@@ -301,7 +310,9 @@ namespace Vision.Forms
             }
         }
 
-        //线到线
+        #endregion
+
+        #region 线到线
         private void rdo_LTL_CheckedChanged(object sender, EventArgs e)
         {
             if ((sender as RadioButton).Checked && prepared)
@@ -315,22 +326,25 @@ namespace Vision.Forms
                 lab_Item2.Text = "线2";
             }
         }
+        #endregion
 
-        //项目1下拉列表框
+        #region 项目1下拉列表框
         private void cmb_Item1_SelectedIndexChanged(object sender, EventArgs e)
         {
             calculate.unit1 = unitList1[(sender as ComboBox).SelectedIndex];
             RunOnce();
         }
+        #endregion
 
-        // 项目2下拉列表框
+        #region 项目2下拉列表框
         private void cmb_Item2_SelectedIndexChanged(object sender, EventArgs e)
         {
             calculate.unit2 = unitList2[(sender as ComboBox).SelectedIndex];
             RunOnce();
         }
+        #endregion
 
-        //k值
+        #region k值
         private void nud_k_ValueChanged(object sender, EventArgs e)
         {
             if (calculate != null)
@@ -339,8 +353,9 @@ namespace Vision.Forms
             }
             RunOnce();
         }
+        #endregion
 
-        //计算K值
+        #region 计算k值
         private void btn_Calck_Click(object sender, EventArgs e)
         {
             if (calculate != null && calculate.hv_PxDistance != null && calculate.hv_PxDistance.D != 0)
@@ -350,7 +365,9 @@ namespace Vision.Forms
             }
             RunOnce();
         }
+        #endregion
 
+        #region 窗体关闭时
         private void Ufrm_Distance_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (EditMode)
@@ -377,7 +394,9 @@ namespace Vision.Forms
                 { }
             }
         }
+        #endregion
 
+        #region 确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
             if (!EditMode)//非编辑模式
@@ -427,17 +446,21 @@ namespace Vision.Forms
             Close();
             return;
         }
+        #endregion
 
+        #region 取消
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
         }
+        #endregion
 
-        //字符间距调整
+        #region 字符间距调整
         private void nud_Spacing_ValueChanged(object sender, EventArgs e)
         {
             data.StringHeight = (int)nud_Spacing.Value;
-        }
+        } 
+        #endregion
     }
 }

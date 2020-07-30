@@ -2,10 +2,6 @@
 using HalconDotNet;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision.DataProcess.ShapeLib
 {
@@ -41,18 +37,16 @@ namespace Vision.DataProcess.ShapeLib
             function = "多边抓取";
         }
 
-
         /// <summary>
         /// 设置定位
         /// </summary>
         public override void SetPosition()
         {
-           // base.SetPosition();
             foreach (BaseShape item in LineList)
             {
                 item.position_Horizontal = position_Horizontal;
                 item.position_Vertical_L = position_Vertical_L;
-               ( item as GetLineUseThreshold) .SetPosition();
+                (item as GetLineUseThreshold).SetPosition();
             }
         }
 

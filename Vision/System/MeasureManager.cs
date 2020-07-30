@@ -5,11 +5,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Vision.CameraLib;
 using Vision.DataProcess;
 using Vision.DataProcess.PositionLib;
@@ -65,6 +62,9 @@ namespace Vision
         /// </summary>
         public double k;
 
+        /// <summary>
+        /// IO信号持续时间
+        /// </summary>
         public int sleeptime;
 
         /// <summary>
@@ -100,28 +100,26 @@ namespace Vision
         /// </summary>
         public event Func<object, object, int> ModificationCompleted;
 
-
         /// <summary>
         /// 添加完成事件
         /// </summary>
         public event Func<object, object, int> AddCompleted;
       
-
         public MeasureManager(Camera camera)//构造函数
         {
             this.camera = camera;
             Initialize();//初始化
-          
            // camera.ImageAcqed += Camera_ImageAcqed;
 
         }
 
+        /// <summary>
+        /// 绑定相机图像接收完成事件
+        /// </summary>
         public void ImageAcqed()
         {
             camera.ImageAcqed += Camera_ImageAcqed;
         }
-
-     
 
         public MeasureManager(MeasureManager data)//用于克隆副本的构造函数
         {
@@ -156,10 +154,11 @@ namespace Vision
             maxId = 1;
             measuringUnits = new ArrayList();//测量列队
             InitData();
-
-
         }
 
+        /// <summary>
+        /// 初始化表格
+        /// </summary>
         public void InitData()
         {
             dataTable = new DataTable("相机" + (camera.Index + 1).ToString());
@@ -180,7 +179,7 @@ namespace Vision
         }
 
         /// <summary>
-        /// 开始测量
+        /// 工作界面开始测量
         /// </summary>
         /// <param name="ho_Image"></param>
         /// <returns></returns>
@@ -226,7 +225,7 @@ namespace Vision
         }
 
         /// <summary>
-        /// 开始测量
+        /// 编辑界面开始测量
         /// </summary>
         /// <param name="ho_Image"></param>
         public void MeasureStartDetail(HObject ho_Image)
@@ -304,15 +303,12 @@ namespace Vision
             Initialize();
         }
 
-
-
         /// <summary>
         /// 图像处理
         /// </summary>
         /// <param name="ho_Image"></param>
         private void Camera_ImageAcqed(HObject ho_Image)
         {
-
             if (bisTest)
             {
                 measureResult = MeasureStart(ho_Image);//测量
@@ -325,7 +321,6 @@ namespace Vision
                 Display();
 
                 MeasureFinish(Convert.ToInt32(!measureResult) + 2 * camera.Index, 1);//发结果信号 灭灯
-
 
                 dataTable = GetDataTable(dataTable);//保存数据列表
             }
@@ -389,7 +384,6 @@ namespace Vision
         public void Grad()
         {
             bisTest = true;
-          
             camera.Grad();
         }
 
@@ -434,8 +428,6 @@ namespace Vision
             return Rows;
 
         }
-
-       
 
         /// <summary>
         /// 列出所有线
@@ -603,9 +595,9 @@ namespace Vision
             return null;
         }
 
-
-
-
+        /// <summary>
+        /// 释放资源
+        /// </summary>
         public void Dispose()
         {
             foreach (var item in measuringUnits)
@@ -615,11 +607,18 @@ namespace Vision
          
         }
 
+        /// <summary>
+        /// 移除相机图像接收完成事件
+        /// </summary>
         public void ClearImageAcqed()
         {
             camera.ImageAcqed -= Camera_ImageAcqed;
         }
 
+        /// <summary>
+        /// 克隆
+        /// </summary>
+        /// <returns></returns>
         public object Clone()
         {
             MeasureManager mUM = new MeasureManager(this);

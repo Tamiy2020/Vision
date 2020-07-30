@@ -66,7 +66,7 @@
             // 
             this.label2.Font = new System.Drawing.Font("楷体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(63, 142);
+            this.label2.Location = new System.Drawing.Point(62, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(438, 69);
             this.label2.TabIndex = 9;

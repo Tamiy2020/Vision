@@ -2,14 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.CameraLib;
 
@@ -261,6 +254,7 @@ namespace Vision.Forms
             Environment.Exit(0);
         }
 
+        #region 程序员测试
         private void timer1_Tick(object sender, EventArgs e)
         {
             configManager.ExecutionManager.GradAll();
@@ -276,9 +270,11 @@ namespace Vision.Forms
             timer1.Stop();
         }
 
+        #endregion
 
 
-        //新建
+
+        #region 新建
         private void tsmi_New_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("确定要新建吗？\n\r请确保您之前编辑的项目已保存。", "新建项目", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -297,8 +293,9 @@ namespace Vision.Forms
 
             }
         }
+        #endregion
 
-        //打开
+        #region 打开
         private void tsmi_Open_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)//选择路径
@@ -325,8 +322,9 @@ namespace Vision.Forms
 
             }
         }
+        #endregion
 
-        //保存
+        #region 保存
         private void tsmi_Save_Click(object sender, EventArgs e)
         {
             if (regkey.GetValue("Path").ToString() != "")
@@ -344,8 +342,9 @@ namespace Vision.Forms
             }
 
         }
+        #endregion
 
-        //另存为
+        #region 另存为
         private void tsmi_SaveAs_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)//选择路径
@@ -353,13 +352,16 @@ namespace Vision.Forms
                 configManager.SaveMeasureData(saveFileDialog1.FileName);
             }
         }
+        #endregion
 
-        //退出
+        #region 退出
         private void tsmi_Exit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        #endregion
 
+        #region 导出数据到表格
         private void tsmi_Excel_Click(object sender, EventArgs e)
         {
             if (fbd_Excel.ShowDialog() == DialogResult.OK)
@@ -374,13 +376,15 @@ namespace Vision.Forms
                 configManager.ExecutionManager.DataExport(path);
             }
         }
+        #endregion
 
-        //IO控制
+        #region IO控制
         private void tsmi_IO_Click(object sender, EventArgs e)
         {
             Frm_IOControl frm_IOControl = new Frm_IOControl(this);
             frm_IOControl.ShowDialog();
-        }
+        } 
+        #endregion
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -425,6 +429,8 @@ namespace Vision.Forms
 
 
         }
+
+        //保存当前结果图片
         private void tsmi_SaveResultImage_Click(object sender, EventArgs e)
         {
             switch (tabControl1.SelectedIndex)
@@ -571,14 +577,13 @@ namespace Vision.Forms
                     button2.Visible = true;
                     label1.Text = "程序员";
 
-
-
                     break;
                 default:
 
                     break;
             }
         }
+
 
         private void tsmi_Test_Click(object sender, EventArgs e)
         {

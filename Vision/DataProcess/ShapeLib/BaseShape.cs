@@ -1,10 +1,6 @@
 ﻿using ChoiceTech.Halcon.Control;
 using HalconDotNet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vision.DataProcess.PositionLib;
 
 namespace Vision.DataProcess.ShapeLib
@@ -29,8 +25,6 @@ namespace Vision.DataProcess.ShapeLib
         /// 垂直定位右
         /// </summary>
         protected internal BasePosition position_Vertical_R;
-
-
 
         /// <summary>
         /// 水平变换矩阵
@@ -69,16 +63,12 @@ namespace Vision.DataProcess.ShapeLib
         {
             shapeColor = "blue";
             HOperatorSet.GenEmptyObj(out ho_Shape);//ho_Shape赋空值
-
-          
-
         }
 
         /// <summary>
         /// 设置定位
         /// </summary>
         public virtual void SetPosition() { }
-
 
         /// <summary>
         /// 计算出变换矩阵
@@ -102,15 +92,6 @@ namespace Vision.DataProcess.ShapeLib
 
                 HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Horizontal.hv_HomMat2DInvert, out hv_HomMat2DInvert);
             }
-            /* if (position_Vertical != null)
-             {
-                 HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical.hv_HomMat2DTranslate, out hv_HomMat2DTranslate);
-
-
-
-                 HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical.hv_HomMat2DInvert, out hv_HomMat2DInvert);
-             }*/
-
             if (position_Vertical_L !=null )
             {
                 HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical_L.hv_HomMat2DTranslate, out hv_HomMat2DTranslate_VL);
@@ -119,7 +100,6 @@ namespace Vision.DataProcess.ShapeLib
             {
                 HOperatorSet.HomMat2dCompose(hv_HomMat2D, position_Vertical_R.hv_HomMat2DTranslate, out hv_HomMat2DTranslate_VR);
             }
-
         }
 
         /// <summary>
@@ -146,7 +126,6 @@ namespace Vision.DataProcess.ShapeLib
         /// </summary>
         /// <returns></returns>
         public abstract BaseShape GetShapePositioned();
-
 
         /// <summary>
         /// 测量

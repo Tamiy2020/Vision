@@ -1,10 +1,6 @@
 ﻿using ChoiceTech.Halcon.Control;
 using HalconDotNet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vision.DataProcess.ParameterLib;
 
 namespace Vision.DataProcess.ShapeLib
@@ -60,8 +56,6 @@ namespace Vision.DataProcess.ShapeLib
             parameter.rectangle2.position_Horizontal = position_Horizontal;
             parameter.rectangle2.position_Vertical_L = position_Vertical_L;
             parameter.rectangle2.position_Vertical_R = position_Vertical_R;
-
-
         }
 
         public override int Measure(HObject ho_Image)//测量
@@ -76,10 +70,6 @@ namespace Vision.DataProcess.ShapeLib
 
             ho_Shape = Func_ImageProcessing.Threshold_SelectMaxRegion(ho_Image, ho_ROI, parameter.hv_MinGray, parameter.hv_MaxGray);//创建结果形状
             HOperatorSet.AreaCenter(ho_Shape, out hv_Area, out centerPoint.hv_Row, out centerPoint.hv_Column);//求取区域面积
-          /*  HOperatorSet.RegionFeatures(ho_ROI, "row1", out HTuple hv_Row1);
-            HOperatorSet.RegionFeatures(ho_ROI, "column1", out HTuple hv_Column1);
-            DP.hv_Column = hv_Column1;
-            DP.hv_Row = hv_Row1;*/
             ho_ROI.Dispose();
             if (minValue > hv_Area || hv_Area > maxValue)//？面积在设定范围内
             {
@@ -97,7 +87,6 @@ namespace Vision.DataProcess.ShapeLib
 
         public override void DisplayDetail(HWindow_Final window)//显示详细信息
         {
-
             base.DisplayDetail(window);
             HObject ho_Rectangle = Func_HalconFunction.GenRectangle1(Func_Mathematics.ToRectangle1(ROI));
             window.DispObj(ho_Rectangle, color, "margin");
@@ -117,7 +106,5 @@ namespace Vision.DataProcess.ShapeLib
         {
             return new object[] { name, function, minValue.ToString(), maxValue.ToString(), hv_Area.D.ToString("f0") };
         }
-
-
     }
 }

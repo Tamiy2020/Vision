@@ -1,11 +1,7 @@
 ﻿using ChoiceTech.Halcon.Control;
 using HalconDotNet;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision.DataProcess
 {
@@ -32,13 +28,11 @@ namespace Vision.DataProcess
         /// <param name="window"></param>
         void DisplayDetail(HWindow_Final window);
 
-
         /// <summary>
         /// 显示简单信息
         /// </summary>
         /// <param name="window"></param>
         void DisplayResult(HWindow_Final window);
-
 
         /// <summary>
         /// 返回详细信息

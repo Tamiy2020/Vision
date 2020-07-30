@@ -71,6 +71,9 @@
             this.sfd_Image = new System.Windows.Forms.SaveFileDialog();
             this.fbd_Excel = new Ookii.Dialogs.WinForms.VistaFolderBrowserDialog();
             this.label1 = new System.Windows.Forms.Label();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -97,9 +100,11 @@
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_New,
             this.tsmi_Open,
+            this.toolStripSeparator2,
             this.tsmi_Save,
             this.tsmi_SaveAs,
             this.toolStripSeparator1,
+            this.toolStripSeparator3,
             this.tsmi_Exit});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(67, 29);
@@ -174,14 +179,14 @@
             // tsmi_Excel
             // 
             this.tsmi_Excel.Name = "tsmi_Excel";
-            this.tsmi_Excel.Size = new System.Drawing.Size(160, 24);
+            this.tsmi_Excel.Size = new System.Drawing.Size(180, 24);
             this.tsmi_Excel.Text = "写入Excel";
             this.tsmi_Excel.Click += new System.EventHandler(this.tsmi_Excel_Click);
             // 
             // tsmi_IO
             // 
             this.tsmi_IO.Name = "tsmi_IO";
-            this.tsmi_IO.Size = new System.Drawing.Size(160, 24);
+            this.tsmi_IO.Size = new System.Drawing.Size(180, 24);
             this.tsmi_IO.Text = "IO控制";
             this.tsmi_IO.Click += new System.EventHandler(this.tsmi_IO_Click);
             // 
@@ -189,7 +194,7 @@
             // 
             this.tsmi_Clear.Name = "tsmi_Clear";
             this.tsmi_Clear.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.tsmi_Clear.Size = new System.Drawing.Size(160, 24);
+            this.tsmi_Clear.Size = new System.Drawing.Size(180, 24);
             this.tsmi_Clear.Text = "计数清零";
             this.tsmi_Clear.Click += new System.EventHandler(this.tsmi_Clear_Click);
             // 
@@ -198,7 +203,7 @@
             this.tsmi_Test.Enabled = false;
             this.tsmi_Test.Name = "tsmi_Test";
             this.tsmi_Test.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.tsmi_Test.Size = new System.Drawing.Size(160, 24);
+            this.tsmi_Test.Size = new System.Drawing.Size(180, 24);
             this.tsmi_Test.Text = "手动测试";
             this.tsmi_Test.Visible = false;
             this.tsmi_Test.Click += new System.EventHandler(this.tsmi_Test_Click);
@@ -233,6 +238,7 @@
             this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_Login,
             this.tsmi_Password,
+            this.toolStripSeparator4,
             this.tsmi_LogOut});
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(95, 29);
@@ -241,14 +247,14 @@
             // tsmi_Login
             // 
             this.tsmi_Login.Name = "tsmi_Login";
-            this.tsmi_Login.Size = new System.Drawing.Size(134, 24);
+            this.tsmi_Login.Size = new System.Drawing.Size(180, 24);
             this.tsmi_Login.Text = "用户登录";
             this.tsmi_Login.Click += new System.EventHandler(this.tsmi_Login_Click);
             // 
             // tsmi_Password
             // 
             this.tsmi_Password.Name = "tsmi_Password";
-            this.tsmi_Password.Size = new System.Drawing.Size(134, 24);
+            this.tsmi_Password.Size = new System.Drawing.Size(180, 24);
             this.tsmi_Password.Text = "修改密码";
             this.tsmi_Password.Click += new System.EventHandler(this.tsmi_Password_Click);
             // 
@@ -256,7 +262,7 @@
             // 
             this.tsmi_LogOut.Enabled = false;
             this.tsmi_LogOut.Name = "tsmi_LogOut";
-            this.tsmi_LogOut.Size = new System.Drawing.Size(134, 24);
+            this.tsmi_LogOut.Size = new System.Drawing.Size(180, 24);
             this.tsmi_LogOut.Text = "退出登录";
             this.tsmi_LogOut.Click += new System.EventHandler(this.tsmi_LogOut_Click);
             // 
@@ -273,21 +279,21 @@
             // tsmi_osk
             // 
             this.tsmi_osk.Name = "tsmi_osk";
-            this.tsmi_osk.Size = new System.Drawing.Size(134, 24);
+            this.tsmi_osk.Size = new System.Drawing.Size(180, 24);
             this.tsmi_osk.Text = "软键盘";
             this.tsmi_osk.Click += new System.EventHandler(this.tsmi_osk_Click);
             // 
             // tsmi_About
             // 
             this.tsmi_About.Name = "tsmi_About";
-            this.tsmi_About.Size = new System.Drawing.Size(134, 24);
+            this.tsmi_About.Size = new System.Drawing.Size(180, 24);
             this.tsmi_About.Text = "关于软件";
             this.tsmi_About.Click += new System.EventHandler(this.tsmi_About_Click);
             // 
             // tsmi_Instruction
             // 
             this.tsmi_Instruction.Name = "tsmi_Instruction";
-            this.tsmi_Instruction.Size = new System.Drawing.Size(134, 24);
+            this.tsmi_Instruction.Size = new System.Drawing.Size(180, 24);
             this.tsmi_Instruction.Text = "操作说明";
             this.tsmi_Instruction.Click += new System.EventHandler(this.tsmi_Instruction_Click);
             // 
@@ -457,6 +463,21 @@
             this.label1.Text = "操作员";
             this.label1.Visible = false;
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(235, 6);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(235, 6);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            // 
             // Frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -534,6 +555,9 @@
         private Ookii.Dialogs.WinForms.VistaFolderBrowserDialog fbd_Excel;
         private System.Windows.Forms.ToolStripMenuItem tsmi_Test;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 

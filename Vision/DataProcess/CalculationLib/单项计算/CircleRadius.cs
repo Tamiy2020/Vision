@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vision.DataProcess.ShapeLib;
 
 namespace Vision.DataProcess.CalculationLib
@@ -36,7 +33,6 @@ namespace Vision.DataProcess.CalculationLib
             MeasureDone = true;//已测量标志为true
             return Convert.ToInt32(measureResult);
         }
-
 
         public override List<DataRow> GetDataTableRows(DataTable dataTable)//返回数据表格
         {

@@ -1,11 +1,8 @@
-﻿using ChoiceTech.Halcon.Control;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.CameraLib;
 using Vision.Forms;
@@ -34,7 +31,6 @@ namespace Vision
                   
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-
 
                     Frm_Main form = new Frm_Main();
                     string str1 = "";
@@ -98,9 +94,7 @@ namespace Vision
 
                         form.SetCameraWindows(form.cameraManager.listCamera.Count);//设置相机窗体样式
                         GetWin(form.cameraWin, form.cameraManager.listCamera, str1, str2, str3, str4, str5);//获得相机的窗体
-
                         Thread.Sleep(500);
-                        //前面可加启动中的窗体
                         Application.Run(form);
 
                     }
@@ -165,9 +159,7 @@ namespace Vision
 
                         GetWin(form.cameraWin, form.cameraManager.listCamera, str1, str2, str3, str4, str5);//获得相机的窗体
 
-
                         Thread.Sleep(500);
-                        //前面可加启动中的窗体
                         Application.Run(form);
                     }
 
@@ -211,6 +203,7 @@ namespace Vision
                 {
                     var temp = cameras[i];
                     cameras[i] = cameras[index];
+
                     cameras[index] = temp;
                     cameras[index].Index = index;
                 }

@@ -1,10 +1,6 @@
 ﻿using ChoiceTech.Halcon.Control;
 using HalconDotNet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision.DataProcess.ShapeLib
 {
@@ -24,7 +20,6 @@ namespace Vision.DataProcess.ShapeLib
         /// 中心点
         /// </summary>
         public Point centerPoint=new Point ();
-
 
         /// <summary>
         /// 区域
@@ -53,7 +48,5 @@ namespace Vision.DataProcess.ShapeLib
         {
             return null;
         }
-
-
     }
 }

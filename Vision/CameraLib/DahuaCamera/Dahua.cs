@@ -1,19 +1,19 @@
-﻿using ChoiceTech.Halcon.Control;
-using HalconDotNet;
+﻿using HalconDotNet;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThridLibray;
 
 namespace Vision.CameraLib
 {
+    /// <summary>
+    /// 大华相机类
+    /// </summary>
     public class Dahua : Camera
     {
         /// <summary>
@@ -195,20 +195,6 @@ namespace Vision.CameraLib
                 p.SetValue("Mono8");
             }
 
-          /*  // 设置曝光 
-            // set ExposureTime 
-            using (IFloatParameter p = objDev.ParameterCollection[ParametrizeNameSet.ExposureTime])
-            {
-                p.SetValue(1000);
-            }
-
-            // 设置增益 
-            // set Gain 
-            using (IFloatParameter p = objDev.ParameterCollection[ParametrizeNameSet.GainRaw])
-            {
-                p.SetValue(1.0);
-            }*/
-
             // 开启图像采集函数线程
             renderThread = new Thread(new ThreadStart(ShowThread));
             renderThread.IsBackground = true;
@@ -227,8 +213,6 @@ namespace Vision.CameraLib
                 MessageBox.Show(@"Start grabbing failed");
                 return;
             }
-
-
         }
 
 
@@ -277,7 +261,6 @@ namespace Vision.CameraLib
         /// <param name="isOn"></param>
         public void ChangeTriggerMode(bool live)
         {
-
             if (live)
             {
                 objDev.TriggerSet.Close();//实时
@@ -362,9 +345,5 @@ namespace Vision.CameraLib
                 p.SetValue(double.Parse(gainRaw));
             }
         }
-
-       
-
-
     }
 }

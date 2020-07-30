@@ -1,15 +1,13 @@
-﻿using ChoiceTech.Halcon.Control;
-using GxIAPINET;
+﻿using GxIAPINET;
 using HalconDotNet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision.CameraLib
 {
+    /// <summary>
+    /// 大恒图像类
+    /// </summary>
     public class DahengImage
     {
         const uint PIXEL_FORMATE_BIT = 0x00FF0000;          ///<用于与当前的数据格式进行与运算得到当前的数据位数
@@ -21,7 +19,6 @@ namespace Vision.CameraLib
 
         byte[] m_byMonoBuffer = null;                ///<黑白相机buffer
       
-
         public DahengImage(IGXDevice objIGXDevice)
         {
           
@@ -40,8 +37,6 @@ namespace Vision.CameraLib
 
         public HObject Show(IBaseData objIBaseData)
         {
-
-
             GX_VALID_BIT_LIST emValidBits = GX_VALID_BIT_LIST.GX_BIT_0_7;
             if (null != objIBaseData)
             {
@@ -63,8 +58,7 @@ namespace Vision.CameraLib
                     {
                         fixed (byte* p = m_byMonoBuffer)
                         {
-                            HObject image;
-                            HOperatorSet.GenEmptyObj(out image);
+                            HOperatorSet.GenEmptyObj(out HObject image);
                             image.Dispose();
                             HOperatorSet.GenImage1(out image, "byte", nWidth, nHeigh, new IntPtr(p));
                             return image;
@@ -74,7 +68,6 @@ namespace Vision.CameraLib
                 }
             }
             return null;
-
         }
 
 
@@ -141,6 +134,5 @@ namespace Vision.CameraLib
             }
             return bIsPixelFormat8;
         }
-
     }
 }

@@ -1,14 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Vision.Forms
@@ -18,6 +11,7 @@ namespace Vision.Forms
         private Frm_Main mainForm;
 
         RegistryKey regkey = Registry.CurrentUser.OpenSubKey("System").OpenSubKey("HRD");
+
         public Frm_User_Login(Frm_Main form)
         {
             InitializeComponent();
@@ -87,6 +81,5 @@ namespace Vision.Forms
             }
         }
     }
-
 
 }

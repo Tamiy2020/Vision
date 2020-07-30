@@ -16,12 +16,9 @@ namespace Vision.Forms
         /// </summary>
         public MeasureManager measureManager;
 
-
-
         public Frm_Edit(Control parent, MeasureManager measureManager)
         {
             InitializeComponent();
-
             Initialize(parent, measureManager);//初始化
         }
 
@@ -34,10 +31,10 @@ namespace Vision.Forms
             Parent = parent;//设置控件的父容器
             Dock = DockStyle.Fill;//停靠模式填充
             this.measureManager = measureManager;
-            measureManager.camera.ImageAcqed += Camera_ImageAcqed;//挂载图像接收完成事件
+            measureManager.camera.ImageAcqed += Camera_ImageAcqed;//绑定图像接收完成事件
 
-            measureManager.AddCompleted += MeasureManager_AddCompleted;//挂载测量单元管理器添加完成事件
-            measureManager.ModificationCompleted += MeasureManager_ModificationCompleted;//挂载测量单元管理器修改完成事件
+            measureManager.AddCompleted += MeasureManager_AddCompleted;//绑定测量单元管理器添加完成事件
+            measureManager.ModificationCompleted += MeasureManager_ModificationCompleted;//绑定测量单元管理器修改完成事件
 
         }
 
@@ -45,21 +42,9 @@ namespace Vision.Forms
         {
             this.measureManager = measureManager;
 
-            measureManager.AddCompleted += MeasureManager_AddCompleted;//挂载测量单元管理器添加完成事件
-            measureManager.ModificationCompleted += MeasureManager_ModificationCompleted;//挂载测量单元管理器修改完成事件
-            UpdateDataGridView();
-        }
-
-
-        private int MeasureManager_ModificationCompleted(object sender, object e)
-        {
-            object[] vs = e as object[];
-            dgv_File.CurrentRow.Cells[0].Value = vs[0];
-            dgv_File.CurrentRow.Cells[1].Value = vs[1];
-            dgv_File.CurrentRow.Cells[2].Value = vs[2];
-         
-            UpdateDataGridView();
-            return 0;
+            measureManager.AddCompleted += MeasureManager_AddCompleted;//绑定测量单元管理器添加完成事件
+            measureManager.ModificationCompleted += MeasureManager_ModificationCompleted;//绑定测量单元管理器修改完成事件
+            UpdateDataGridView();//更新文件控制表格显示
         }
 
         /// <summary>
@@ -71,7 +56,7 @@ namespace Vision.Forms
             foreach (var item in measureManager.ListAllUnit())
             {
                 dgv_File.Rows.Add(item);//在表格视图中添加测量项
-                if (item[2].ToString() == "产品有无" || item[2].ToString() == "缺陷检测" || Regex.IsMatch(item[2].ToString(), @"/*距离") || Regex.IsMatch(item[2].ToString(), @"/*距") || item[2].ToString() == "高低落差"|| Regex.IsMatch(item[2].ToString(), @"/*计算"))
+                if (item[2].ToString() == "产品有无" || item[2].ToString() == "缺陷检测" || Regex.IsMatch(item[2].ToString(), @"/*距离") || Regex.IsMatch(item[2].ToString(), @"/*距") || item[2].ToString() == "高低落差" || Regex.IsMatch(item[2].ToString(), @"/*计算"))
                 {
                     dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[1].Style.ForeColor = Color.Blue;
                     dgv_File.Rows[dgv_File.Rows.Count - 1].Cells[2].Style.ForeColor = Color.Tomato;
@@ -138,6 +123,19 @@ namespace Vision.Forms
 
         }
 
+        //修改完成
+        private int MeasureManager_ModificationCompleted(object sender, object e)
+        {
+            object[] vs = e as object[];
+            dgv_File.CurrentRow.Cells[0].Value = vs[0];
+            dgv_File.CurrentRow.Cells[1].Value = vs[1];
+            dgv_File.CurrentRow.Cells[2].Value = vs[2];
+
+            UpdateDataGridView();//更新文件控制表格显示
+            return 0;
+        }
+
+        //添加完成
         private int MeasureManager_AddCompleted(object sender, object e)
         {
             dgv_File.Rows.Add(e as object[]);
@@ -164,103 +162,109 @@ namespace Vision.Forms
             }
         }
 
-
+        /// <summary>
+        /// 得到图像
+        /// </summary>
+        /// <returns></returns>
         public HObject GetImage()
         {
             return hWindow_Final1.Image;
         }
 
+        /// <summary>
+        /// 得到图像窗口句柄
+        /// </summary>
+        /// <returns></returns>
         public HWindow GetHWindow()
         {
             return hWindow_Final1.hWindowControl.HalconWindow;
         }
 
-
+        /// <summary>
+        /// 管理员模式
+        /// </summary>
+        /// <param name="sign"></param>
         public void AdminMod(bool sign)
         {
             toolStrip1.Enabled = sign;
             dgv_File.Enabled = sign;
         }
 
-        //跟踪定位
+
+        #region 跟踪定位
         private void tsbtn_Position_Click(object sender, EventArgs e)
         {
-            Ufrm_Position ufrm_Position = new Ufrm_Position(this, hWindow_Final1.Image);
-            ufrm_Position.Show();
+            new Ufrm_Position(this, hWindow_Final1.Image).Show();
         }
+        #endregion
 
-        //基准线
+        #region 基准线
         private void tsbtn_DatumLine_Click(object sender, EventArgs e)
         {
-            Ufrm_DatumLine ufrm_DatumLine = new Ufrm_DatumLine(this, hWindow_Final1.Image);
-            ufrm_DatumLine.ShowDialog();
+            new Ufrm_DatumLine(this, hWindow_Final1.Image).ShowDialog();
         }
+        #endregion
 
-        //边缘提取
+        #region 边缘提取
         private void tsbtn_Line_Click(object sender, EventArgs e)
         {
-            Ufrm_Line ufrm_Line = new Ufrm_Line(this, hWindow_Final1.Image);
-            ufrm_Line.ShowDialog();
+            new Ufrm_Line(this, hWindow_Final1.Image).ShowDialog();
         }
+        #endregion
 
-        //多边抓取
+        #region 多边抓取
         private void tsbtn_LineList_Click(object sender, EventArgs e)
         {
-            Ufrm_LineList ufrm_LineList = new Ufrm_LineList(this, hWindow_Final1.Image);
-            ufrm_LineList.ShowDialog();
+            new Ufrm_LineList(this, hWindow_Final1.Image).ShowDialog();
         }
+        #endregion
 
-        //圆
+        #region 圆
         private void tsbtn_Circle_Click(object sender, EventArgs e)
         {
-            Ufrm_Circle ufrm_Circle = new Ufrm_Circle(this, hWindow_Final1.Image);
-            ufrm_Circle.ShowDialog();
+            new Ufrm_Circle(this, hWindow_Final1.Image).ShowDialog();
         }
+        #endregion
 
-        //距离测量
+        #region 距离测量
         private void tsbtn_Distance_Click(object sender, EventArgs e)
         {
-            Ufrm_Distance ufrm_Distance = new Ufrm_Distance(this, hWindow_Final1.Image);
-            ufrm_Distance.ShowDialog();
+            new Ufrm_Distance(this, hWindow_Final1.Image).ShowDialog();
         }
+        #endregion
 
-        //多边测距
+        #region 多边测距
         private void tsbtn_MultipleDistance_Click(object sender, EventArgs e)
         {
-            Ufrm_MultipleDistance ufrm_MultipleDistance = new Ufrm_MultipleDistance(this, hWindow_Final1.Image);
-            ufrm_MultipleDistance.ShowDialog();
+            new Ufrm_MultipleDistance(this, hWindow_Final1.Image).ShowDialog();
         }
+        #endregion
 
-        //角度计算
+        #region 角度计算
         private void tsbtn_Angle_Click(object sender, EventArgs e)
         {
-            Ufrm_Angle ufrm_Angle = new Ufrm_Angle(this, hWindow_Final1.Image);
-            ufrm_Angle.ShowDialog();
+            new Ufrm_Angle(this, hWindow_Final1.Image).ShowDialog();
         }
+        #endregion
 
-        //半径计算
+        #region 半径计算
         private void tsbtn_Radius_Click(object sender, EventArgs e)
         {
-            Ufrm_Radius ufrm_Radius = new Ufrm_Radius(this, hWindow_Final1.Image);
-            ufrm_Radius.ShowDialog();
+            new Ufrm_Radius(this, hWindow_Final1.Image).ShowDialog();
         }
+        #endregion
 
-        //缺陷检测
+        #region 缺陷检测
         private void tsbtn_Exist_Click(object sender, EventArgs e)
         {
-            UFrm_Exist uFrm_Exist = new UFrm_Exist(this, hWindow_Final1.Image);
-            uFrm_Exist.ShowDialog();
+            new UFrm_Exist(this, hWindow_Final1.Image).ShowDialog();
         }
+        #endregion
 
-
-
-        //编辑/删除
+        #region 编辑/删除
         private void dgv_File_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex < 3 || e.RowIndex < 0 || e.ColumnIndex > 4 || e.RowIndex == dgv_File.RowCount) return;//点击的不是按钮
-          
-         
-
             //获取该项id
             int id = int.Parse(dgv_File.Rows[e.RowIndex].Cells[0].Value.ToString());
 
@@ -273,13 +277,13 @@ namespace Vision.Forms
                 #region 反射生成窗体
                 Type formType = (measureManager.GetMeasuringUnit(id) as MeasuringUnit).formType;//拿到窗体类型
                 object form = Activator.CreateInstance(formType, this, hWindow_Final1.Image, data);//通过窗体类型创建窗体
-                /*  PropertyInfo propertyInfo = formType.GetProperty("Parent");//找到Paraent属性
-                  propertyInfo.SetValue(form, splitContainer1.Panel2, null);//赋值Paraent属性 */
-                MethodInfo methodInfo = formType.GetMethod("ShowDialog", new Type[] { });//找到Show方法
+                //PropertyInfo propertyInfo = formType.GetProperty("Parent");//找到Paraent属性
+                //propertyInfo.SetValue(form, splitContainer1.Panel2, null);//赋值Paraent属性 
+                MethodInfo methodInfo = formType.GetMethod("ShowDialog", new Type[] { });//找到ShowDialog方法
 
-                methodInfo.Invoke(form, null);//执行Show方法 
+                methodInfo.Invoke(form, null);//执行ShowDialog方法 
                 #endregion
-                
+
 
             }
             if (e.ColumnIndex == 4)//删除
@@ -295,11 +299,14 @@ namespace Vision.Forms
                 }
             }
         }
+        #endregion
 
+        #region 窗体加载时
         private void Frm_Edit_Load(object sender, EventArgs e)
         {
             UpdateDataGridView();
-        }
+        } 
+        #endregion
 
 
         //文件控制  不可编辑
@@ -320,6 +327,6 @@ namespace Vision.Forms
             }
         }
 
-      
+
     }
 }

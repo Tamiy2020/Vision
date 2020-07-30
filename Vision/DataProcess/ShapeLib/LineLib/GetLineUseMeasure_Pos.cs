@@ -1,10 +1,6 @@
 ﻿using ChoiceTech.Halcon.Control;
 using HalconDotNet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vision.DataProcess.ParameterLib;
 
 namespace Vision.DataProcess.ShapeLib
@@ -19,7 +15,6 @@ namespace Vision.DataProcess.ShapeLib
         /// 参数
         /// </summary>
         public Measure_Pos parameter;
-
 
         public GetLineUseMeasure_Pos()//默认构造函数
         {
@@ -70,6 +65,5 @@ namespace Vision.DataProcess.ShapeLib
             ho_Shape = Func_HalconFunction.GenRegionLine(this);
             window.DispObj(ho_Shape, shapeColor);//显示形状
         }
-
     }
 }

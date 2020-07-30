@@ -1,12 +1,6 @@
 ﻿using HalconDotNet;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vision.DataProcess;
 using Vision.DataProcess.PositionLib;
@@ -16,17 +10,25 @@ namespace Vision.Forms
 {
     public partial class Ufrm_DatumLine : Form
     {
+        /// <summary>
+        /// 图像
+        /// </summary>
         private HObject ho_Image;
 
+        /// <summary>
+        /// 编辑窗体
+        /// </summary>
         private Frm_Edit form;
 
+        /// <summary>
+        /// 测量单元管理器
+        /// </summary>
         private MeasureManager measureManager;
 
         /// <summary>
         /// 线
         /// </summary>
         private Line line;
-
 
         /// <summary>
         /// 测量单元
@@ -53,7 +55,6 @@ namespace Vision.Forms
         /// </summary>
         private List<MeasuringUnit> verticalPositions;
 
-
         public Ufrm_DatumLine(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
@@ -73,6 +74,43 @@ namespace Vision.Forms
 
         }
 
+        /// <summary>
+        /// 绘制模式
+        /// </summary>
+        /// <param name="enable"></param>
+        private void DrawMode(bool enable)
+        {
+            HOperatorSet.SetColor(hWindow_Final1.hWindowControl.HalconWindow, "blue");//设置显示颜色-蓝色
+            hWindow_Final1.hWindowControl.Focus();//聚焦到窗口
+            hWindow_Final1.DrawModel = enable;//禁止缩放平移
+            splitContainer1.Panel2.Enabled = !enable;
+        }
+
+        /// <summary>
+        /// 数据赋值
+        /// </summary>
+        private void FinalAssessment()
+        {
+            data.function = "基准线";
+            data.name = (txt_Name.Text).Trim();
+            data.formType = GetType();
+        }
+
+        /// <summary>
+        /// 运行测试
+        /// </summary>
+        private void RunOnce()
+        {
+            if (prepared)
+            {
+                hWindow_Final1.HobjectToHimage(ho_Image);
+                data.Measure(ho_Image);
+                data.DisplayDetail(hWindow_Final1);
+            }
+
+        }
+
+        #region 窗体加载时
         private void Ufrm_DatumLine_Load(object sender, EventArgs e)
         {
             hWindow_Final1.HobjectToHimage(ho_Image);
@@ -81,6 +119,7 @@ namespace Vision.Forms
                 measureManager = form.measureManager;
             }
 
+            #region 跟踪
             List<MeasuringUnit> translations = measureManager.ListAllTranslation();//所有平移跟踪
 
             verticalPositions = new List<MeasuringUnit>();
@@ -88,9 +127,9 @@ namespace Vision.Forms
             {
 
 
-                if ((translations[i] as TranslationTracking).line.AxByC0.k== null )
-                { 
-                    continue; 
+                if ((translations[i] as TranslationTracking).line.AxByC0.k == null)
+                {
+                    continue;
                 }
 
                 if ((translations[i] as TranslationTracking).line.AxByC0.k.D == 0)//？是水平线
@@ -101,8 +140,7 @@ namespace Vision.Forms
 
                 }
             }
-
-
+            #endregion
 
             //判断是否编辑模式进入
             if (EditMode)
@@ -123,9 +161,6 @@ namespace Vision.Forms
                     cmb_VerticalTracking_R.SelectedItem = line.position_Vertical_R.name;
                 }
 
-
-
-
                 txt_Name.Text = data.name;
                 txt_Name.Enabled = false;//编辑模式下不能编辑名字
                 prepared = true;
@@ -139,15 +174,9 @@ namespace Vision.Forms
             }
         }
 
-        private void DrawMode(bool enable)
-        {
-            HOperatorSet.SetColor(hWindow_Final1.hWindowControl.HalconWindow, "blue");//设置显示颜色-蓝色
-            hWindow_Final1.hWindowControl.Focus();//聚焦到窗口
-            hWindow_Final1.DrawModel = enable;//禁止缩放平移
-            splitContainer1.Panel2.Enabled = !enable;
+        #endregion
 
-        }
-
+        #region 画基准线
         private void btn_Draw_Click(object sender, EventArgs e)
         {
             DrawMode(true);//绘制模式开启
@@ -163,60 +192,43 @@ namespace Vision.Forms
 
             prepared = true;
             RunOnce();
-
-
         }
 
+        #endregion
 
-        private void FinalAssessment()
-        {
-            data.function = "基准线";
-            data.name = (txt_Name.Text).Trim();
-            data.formType = GetType();
-        }
-
-
-        private void RunOnce()
-        {
-            if (prepared)
-            {
-                hWindow_Final1.HobjectToHimage(ho_Image);
-                data.Measure(ho_Image);
-                data.DisplayDetail(hWindow_Final1);
-            }
-
-        }
-
-        //起点x
+        #region 起点x
         private void nud_xStart_ValueChanged(object sender, EventArgs e)
         {
             line.hv_Column1 = (double)(sender as NumericUpDown).Value;
             RunOnce();
         }
+        #endregion
 
-        //起点y
+        #region 起点y
         private void nud_yStart_ValueChanged(object sender, EventArgs e)
         {
             line.hv_Row1 = (double)(sender as NumericUpDown).Value;
             RunOnce();
         }
+        #endregion
 
-        //终点x
+        #region 终点x
         private void nud_xEnd_ValueChanged(object sender, EventArgs e)
         {
             line.hv_Column2 = (double)(sender as NumericUpDown).Value;
             RunOnce();
         }
+        #endregion
 
-        //终点y
+        #region 终点y
         private void nud_yEnd_ValueChanged(object sender, EventArgs e)
         {
             line.hv_Row2 = (double)(sender as NumericUpDown).Value;
             RunOnce();
         }
+        #endregion
 
-
-        //确定
+        #region 确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
             if (!EditMode)//非编辑模式
@@ -266,16 +278,17 @@ namespace Vision.Forms
             Close();
             return;
         }
+        #endregion
 
-
-        //取消
+        #region 取消
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             //if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
         }
+        #endregion
 
-        //垂直跟踪左
+        #region 垂直跟踪左
         private void cmb_VerticalTracking_L_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (prepared)
@@ -284,8 +297,9 @@ namespace Vision.Forms
                 RunOnce();
             }
         }
+        #endregion
 
-        //垂直跟踪右
+        #region 垂直跟踪右
         private void cmb_VerticalTracking_R_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (prepared)
@@ -293,6 +307,7 @@ namespace Vision.Forms
                 line.position_Vertical_R = verticalPositions[cmb_VerticalTracking_R.SelectedIndex] as BasePosition;
                 RunOnce();
             }
-        }
+        } 
+        #endregion
     }
 }

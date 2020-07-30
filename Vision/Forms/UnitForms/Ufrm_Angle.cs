@@ -10,10 +10,19 @@ namespace Vision.Forms
 {
     public partial class Ufrm_Angle : Form
     {
+        /// <summary>
+        /// 图像
+        /// </summary>
         private HObject ho_Image;
 
+        /// <summary>
+        /// 编辑窗体
+        /// </summary>
         private Frm_Edit form;
 
+        /// <summary>
+        /// 测量单元管理器
+        /// </summary>
         private MeasureManager measureManager;
 
         /// <summary>
@@ -25,9 +34,6 @@ namespace Vision.Forms
         /// 线组
         /// </summary>
         private List<Line> lines;
-
-
-
 
         /// <summary>
         /// 测量单元
@@ -49,7 +55,7 @@ namespace Vision.Forms
         /// </summary>
         public bool EditMode { get; }
 
-        public Ufrm_Angle(Frm_Edit form, HObject ho_Image)
+        public Ufrm_Angle(Frm_Edit form, HObject ho_Image)//构造函数
         {
             InitializeComponent();
             this.form = form;
@@ -57,7 +63,7 @@ namespace Vision.Forms
             EditMode = false;
         }
 
-        public Ufrm_Angle(Frm_Edit form, HObject ho_Image, MeasuringUnit data)
+        public Ufrm_Angle(Frm_Edit form, HObject ho_Image, MeasuringUnit data)//编辑模式的构造函数
         {
             InitializeComponent();
             this.form = form;
@@ -67,17 +73,22 @@ namespace Vision.Forms
             EditMode = true;
         }
 
-
+        /// <summary>
+        /// 数据赋值
+        /// </summary>
         private void FinalAssessment()
         {
             data.name = (txt_Name.Text).Trim();
             data.formType = GetType();
 
-
             calculate.maxValue = (double)nud_MaxValue.Value;
             calculate.minValue = (double)nud_MinValue.Value;
         }
 
+        /// <summary>
+        /// 运行
+        /// </summary>
+        /// <returns></returns>
         private bool Run()
         {
             if (prepared)
@@ -91,6 +102,9 @@ namespace Vision.Forms
             return false;
         }
 
+        /// <summary>
+        /// 运行测试
+        /// </summary>
         private void RunOnce()
         {
             if (Run())
@@ -100,6 +114,7 @@ namespace Vision.Forms
           
         }
 
+        #region 窗体加载时
         private void Ufrm_Angle_Load(object sender, System.EventArgs e)
         {
             hWindow_Final1.HobjectToHimage(ho_Image);
@@ -107,7 +122,6 @@ namespace Vision.Forms
             {
                 measureManager = form.measureManager;
             }
-
 
             lines = new List<Line>();
             List<MeasuringUnit> units = measureManager.ListAllLine();//获取所有线
@@ -150,18 +164,25 @@ namespace Vision.Forms
             }
         }
 
+        #endregion
+
+        #region 线1下拉列表框
         private void cmb_Item1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             calculate.unit1 = lines[(sender as ComboBox).SelectedIndex];
             RunOnce();
         }
+        #endregion
 
+        #region 线2下拉列表框
         private void cmb_Item2_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             calculate.unit2 = lines[(sender as ComboBox).SelectedIndex];
             RunOnce();
         }
+        #endregion
 
+        #region 最小值
         private void nud_MinValue_ValueChanged(object sender, System.EventArgs e)
         {
             if (calculate != null)
@@ -171,7 +192,9 @@ namespace Vision.Forms
             RunOnce();
 
         }
+        #endregion
 
+        #region 最大值
         private void nud_MaxValue_ValueChanged(object sender, System.EventArgs e)
         {
             if (calculate != null)
@@ -180,18 +203,24 @@ namespace Vision.Forms
             }
             RunOnce();
         }
+        #endregion
 
+        #region 总是选择锐角复选框
         private void cbx_AlwaysMinAngel_CheckedChanged(object sender, System.EventArgs e)
         {
             (calculate as AngelLineToLine).AlwaysMinAngel = (sender as CheckBox).Checked;
             RunOnce();
         }
+        #endregion
 
+        #region 字符间距调整
         private void nud_Spacing_ValueChanged(object sender, System.EventArgs e)
         {
             data.StringHeight = (int)nud_Spacing.Value;
         }
+        #endregion
 
+        #region 窗体关闭时
         private void Ufrm_Angle_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (EditMode)
@@ -218,12 +247,14 @@ namespace Vision.Forms
                 { }
             }
         }
+        #endregion
 
+        #region 确定按钮
         private void btn_OK_Click(object sender, EventArgs e)
         {
             if (!EditMode)//非编辑模式
             {
-                if (txt_Name.Text.Trim() == "无" )
+                if (txt_Name.Text.Trim() == "无")
                 {
                     MessageBox.Show("名字不能命名为无！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txt_Name.Focus();
@@ -268,11 +299,14 @@ namespace Vision.Forms
             Close();
             return;
         }
+        #endregion
 
+        #region 取消按钮
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             if (EditMode) data.SetData(oldData);//?编辑模式,恢复数据
             Close();
-        }
+        } 
+        #endregion
     }
 }

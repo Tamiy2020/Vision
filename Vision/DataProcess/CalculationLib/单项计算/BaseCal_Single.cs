@@ -3,9 +3,6 @@ using HalconDotNet;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vision.DataProcess.ShapeLib;
 
 namespace Vision.DataProcess.CalculationLib
@@ -99,7 +96,7 @@ namespace Vision.DataProcess.CalculationLib
 
             Line line = new Line(pStart.hv_Column, pStart.hv_Row, pEnd.hv_Column, pEnd.hv_Row);//创建结果线
             HObject ho_Line = Func_HalconFunction.GenRegionLine(line);//创建结果线
-            window.DispObj(ho_Line, color, "fill");//显示结果线●●●●●●●●●●●●●●●●●●●●●●●●●●
+            window.DispObj(ho_Line, color, "fill");//显示结果线
             ho_Line.Dispose();//释放ho_Line
         }
 

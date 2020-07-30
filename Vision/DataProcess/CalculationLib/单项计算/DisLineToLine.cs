@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vision.DataProcess.ShapeLib;
 
 namespace Vision.DataProcess.CalculationLib
@@ -71,6 +68,5 @@ namespace Vision.DataProcess.CalculationLib
             dataRows[0]["功能"] = "线线距离";
             return dataRows;
         }
-
     }
 }

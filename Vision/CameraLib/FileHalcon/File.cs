@@ -1,11 +1,5 @@
-﻿using ChoiceTech.Halcon.Control;
-using HalconDotNet;
+﻿using HalconDotNet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Vision.CameraLib
 {
@@ -23,11 +17,6 @@ namespace Vision.CameraLib
         /// 采集句柄HTuple 
         /// </summary>
         private HTuple hv_AcqHandle = null;
-
-        /// <summary>
-        /// 图像接收事件
-        /// </summary>
-      //  public event Action<HObject> eventImage;
 
         public File(HTuple[] initpara)
         {

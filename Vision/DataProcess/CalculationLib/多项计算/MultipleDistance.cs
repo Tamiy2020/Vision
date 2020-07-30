@@ -3,9 +3,6 @@ using HalconDotNet;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vision.DataProcess.CalculationLib
 {
@@ -115,8 +112,6 @@ namespace Vision.DataProcess.CalculationLib
             return vs;
         }
 
-      
-
         private List<object> GetListResult()
         {
             List<object> list = new List<object>();
@@ -130,7 +125,6 @@ namespace Vision.DataProcess.CalculationLib
             }
             return list;
         }
-
 
         /// <summary>
         /// 返回数据表格
@@ -150,7 +144,6 @@ namespace Vision.DataProcess.CalculationLib
             return dataRows;
         }
 
-
         /// <summary>
         /// 释放资源
         /// </summary>
@@ -162,6 +155,5 @@ namespace Vision.DataProcess.CalculationLib
             }
             calList.Clear();
         }
-
     }
 }
