@@ -98,7 +98,7 @@ namespace Vision
                         Application.Run(form);
 
                     }
-                    else if (form.cameraManager is DahengManager || form.cameraManager is DahuaManager)//大恒、大华相机
+                    else if (form.cameraManager is DahengManager || form.cameraManager is MindVisionManager)//大恒、大华相机
                     {
                         switch (regkey.GetValue("Cameras").ToString())
                         {
@@ -136,14 +136,13 @@ namespace Vision
                                 return;
                         }
                         form.cameraManager.OpenAll();//打开所有相机
-                        if (form.cameraManager is DahuaManager)
+                        if (form.cameraManager is MindVisionManager)
                         {
                             foreach (var camera in form.cameraManager.listCamera)
                             {
+                                (camera as MindVision).InitCamera();
                                 camera.Grad();//开始采集
-                                (camera as Dahua).SetExposureTime(regkey.GetValue($"ExposureTime{camera.Index + 1}").ToString());//设置曝光
-                                (camera as Dahua).SetGainRaw(regkey.GetValue($"GainRaw{camera.Index + 1}").ToString());//设置增益
-
+                             
                             }
                         }
                         if (form.cameraManager is DahengManager)
@@ -201,11 +200,18 @@ namespace Vision
             {
                 if (str == cameras[i].strName)
                 {
+                  
                     var temp = cameras[i];
                     cameras[i] = cameras[index];
 
                     cameras[index] = temp;
                     cameras[index].Index = index;
+                    if (cameras[i] is MindVision)
+                    {
+                        var temp1 = (cameras[i] as MindVision).m_hCamera;
+                        (cameras[i] as MindVision).m_hCamera = (cameras[index] as MindVision).m_hCamera;
+                        (cameras[index] as MindVision).m_hCamera = temp1;
+                    }
                 }
             }
         }

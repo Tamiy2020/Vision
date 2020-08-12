@@ -38,14 +38,15 @@ namespace Vision.Forms
         {
             form = new Frm_Main();
 
-            if (form.cameraManager is DahengManager || form.cameraManager is DahuaManager)
+            if (form.cameraManager is DahengManager || form.cameraManager is MindVisionManager)
             {
                 panel2.Visible = false;
                 foreach (var camera in form.cameraManager.listCamera)
                 {
                     camera.Open();
-                    if (camera is Dahua)
+                    if (camera is MindVision)
                     {
+                        (camera as MindVision).InitCamera();
                         camera.Grad();
                     }
                     if (camera is Daheng)

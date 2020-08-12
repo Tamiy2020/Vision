@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vision", "Vision\Vision.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HWindow_Tool", "ImageWindow\HWindow_Tool.csproj", "{9BAA53FD-89B5-43E2-AC59-A27B006DEBB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVSDK", "MVSDK\MVSDK.csproj", "{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{9BAA53FD-89B5-43E2-AC59-A27B006DEBB6}.Release|x64.Build.0 = Release|x64
 		{9BAA53FD-89B5-43E2-AC59-A27B006DEBB6}.Release|x86.ActiveCfg = Release|x86
 		{9BAA53FD-89B5-43E2-AC59-A27B006DEBB6}.Release|x86.Build.0 = Release|x86
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Debug|x64.ActiveCfg = Debug|x64
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Debug|x64.Build.0 = Debug|x64
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Debug|x86.Build.0 = Debug|Any CPU
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Release|x64.ActiveCfg = Release|Any CPU
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Release|x64.Build.0 = Release|Any CPU
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Release|x86.ActiveCfg = Release|Any CPU
+		{F2CA7872-4A09-49DE-BA89-A0D2408C94BE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

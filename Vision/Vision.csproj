@@ -140,6 +140,8 @@
     <Compile Include="CameraLib\DahuaCamera\DahuaManager.cs" />
     <Compile Include="CameraLib\FileHalcon\File.cs" />
     <Compile Include="CameraLib\FileHalcon\FileManager.cs" />
+    <Compile Include="CameraLib\MindVision.cs" />
+    <Compile Include="CameraLib\MindVisionManager.cs" />
     <Compile Include="Forms\Frm_About.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -426,6 +428,10 @@
     <ProjectReference Include="..\ImageWindow\HWindow_Tool.csproj">
       <Project>{9baa53fd-89b5-43e2-ac59-a27b006debb6}</Project>
       <Name>HWindow_Tool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVSDK\MVSDK.csproj">
+      <Project>{f2ca7872-4a09-49de-ba89-a0d2408c94be}</Project>
+      <Name>MVSDK</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

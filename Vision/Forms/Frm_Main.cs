@@ -65,8 +65,8 @@ namespace Vision.Forms
             {
                 try
                 {
-                    cameraManager = new DahuaManager();
-                    temp = (cameraManager as DahuaManager).EnumDevice();
+                    cameraManager = new MindVisionManager();
+                    temp = (cameraManager as MindVisionManager).EnumDevice();
                 }
                 catch (Exception)
                 {

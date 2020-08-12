@@ -398,9 +398,9 @@ namespace Vision
             {
                 (camera as Daheng).ChangeTriggerMode(live);
             }
-            if (camera is Dahua)
+            if (camera is MindVision)
             {
-                (camera as Dahua).ChangeTriggerMode(live);
+                (camera as MindVision).ChangeTriggerMode(live);
             }
         }
 
