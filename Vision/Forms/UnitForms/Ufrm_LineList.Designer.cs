@@ -70,6 +70,7 @@
             this.tsmi_Done = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_Cancel = new System.Windows.Forms.ToolStripMenuItem();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -113,7 +114,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.btn_DrawROIs);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 854;
+            this.splitContainer1.SplitterDistance = 857;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -128,7 +129,7 @@
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Margin = new System.Windows.Forms.Padding(4);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(854, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(857, 796);
             this.hWindow_Final1.TabIndex = 0;
             // 
             // panel1
@@ -253,6 +254,7 @@
             // 
             // nud_slg_b_pex
             // 
+            this.nud_slg_b_pex.Enabled = false;
             this.nud_slg_b_pex.Location = new System.Drawing.Point(350, 42);
             this.nud_slg_b_pex.Maximum = new decimal(new int[] {
             1000,
@@ -394,6 +396,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.radioButton1);
             this.groupBox2.Controls.Add(this.rdo_RightEdge);
             this.groupBox2.Controls.Add(this.rdo_LeftEdge);
             this.groupBox2.Controls.Add(this.rdo_DownEdge);
@@ -408,7 +411,7 @@
             // rdo_RightEdge
             // 
             this.rdo_RightEdge.AutoSize = true;
-            this.rdo_RightEdge.Location = new System.Drawing.Point(198, 73);
+            this.rdo_RightEdge.Location = new System.Drawing.Point(177, 73);
             this.rdo_RightEdge.Name = "rdo_RightEdge";
             this.rdo_RightEdge.Size = new System.Drawing.Size(50, 21);
             this.rdo_RightEdge.TabIndex = 3;
@@ -419,7 +422,7 @@
             // rdo_LeftEdge
             // 
             this.rdo_LeftEdge.AutoSize = true;
-            this.rdo_LeftEdge.Location = new System.Drawing.Point(198, 32);
+            this.rdo_LeftEdge.Location = new System.Drawing.Point(177, 32);
             this.rdo_LeftEdge.Name = "rdo_LeftEdge";
             this.rdo_LeftEdge.Size = new System.Drawing.Size(50, 21);
             this.rdo_LeftEdge.TabIndex = 2;
@@ -572,6 +575,18 @@
             this.tsmi_Cancel.Text = "取消";
             this.tsmi_Cancel.Click += new System.EventHandler(this.tsmi_Cancel_Click);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(342, 51);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(38, 21);
+            this.radioButton1.TabIndex = 4;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "中";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
             // Ufrm_LineList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -660,5 +675,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmb_HorizontalTracking;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

@@ -193,6 +193,10 @@ namespace Vision.Forms
                 {
                     rdo_RightEdge.Checked = true;
                 }
+                if (5 == (getSetOfLines.LineList[0] as GetLineUseThreshold).TPLR)
+                {
+                    radioButton1.Checked = true;
+                }
                 cmb_slg_SelectItem.Items.AddRange(getSetOfLines.GetLinesName());//添加combobox项
 
                 txt_Name.Text = getSetOfLines.name;
@@ -333,13 +337,24 @@ namespace Vision.Forms
         }
         #endregion
 
+        #region 中
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < getSetOfLines.CountOfLine; i++)
+            {
+                (getSetOfLines.GetLine(i) as GetLineUseThreshold).TPLR = 5;
+            }
+            RunOnce();//运行测试
+        } 
+        #endregion
+
         #region 选择单项
         private void cmb_slg_SelectItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmb_slg_SelectItem.SelectedItem == null)
             {
                 btn_slg_ReDrowROI.Enabled = false;
-
+                nud_slg_b_pex.Enabled = false;
                 return;
             }
             slgLine = getSetOfLines.GetLine(cmb_slg_SelectItem.SelectedIndex) as GetLineUseThreshold;//获取选择的项
@@ -349,6 +364,7 @@ namespace Vision.Forms
             nud_slg_MinGray.Value = slgLine.parameter.hv_MinGray.I;
             nud_slg_b_pex.Value = (decimal)slgLine.b.D;
             btn_slg_ReDrowROI.Enabled = true;
+            nud_slg_b_pex.Enabled = true;
         }
         #endregion
 
@@ -552,7 +568,9 @@ namespace Vision.Forms
                 (data as BaseShape).SetPosition();
                 RunOnce();
             }
-        } 
+        }
         #endregion
+
+        
     }
 }

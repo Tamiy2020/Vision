@@ -147,7 +147,7 @@ namespace Vision.Forms
 
             }
             configManager.ExecutionManager.GradAll();
-
+            tsmi_Clear.PerformClick();
             new Frm_Start().ShowDialog();
             this.Show();
            

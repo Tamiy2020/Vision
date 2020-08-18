@@ -855,6 +855,12 @@ namespace Vision.DataProcess
                         resultLine.hv_Row2 = hv_Row2[0];
                     }
                     break;
+                case 5:
+                    resultLine.hv_Column1 = (hv_Column1[0] + hv_Column2[0]) / 2+b;
+                    resultLine.hv_Row1 = hv_Row1[0];
+                    resultLine.hv_Column2 = (hv_Column1[0] + hv_Column2[0]) / 2+b;
+                    resultLine.hv_Row2 = hv_Row2[0];
+                    break;
                 default:
                     break;
             }
