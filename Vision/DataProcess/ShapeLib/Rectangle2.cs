@@ -79,9 +79,9 @@ namespace Vision.DataProcess.ShapeLib
 
             Rectangle2 rectangle2 = new Rectangle2(hv_Row, hv_Column, hv_Phi, hv_Length1, hv_Length2);//要返回的对象
             GetHomMat2D();
-            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslat_H, rectangle2.hv_Row, rectangle2.hv_Column, out rectangle2.hv_Row, out rectangle2.hv_Column);
+            HOperatorSet.AffineTransPoint2d(hv_HomMat2DTranslat_H, rectangle2.hv_Row, rectangle2.hv_Column, out rectangle2.hv_Row, out rectangle2.hv_Column);
 
-            HOperatorSet.AffineTransPixel(hv_HomMat2DTranslate_VL, rectangle2.hv_Row, rectangle2.hv_Column, out rectangle2.hv_Row, out rectangle2.hv_Column);
+            HOperatorSet.AffineTransPoint2d(hv_HomMat2DTranslate_VL, rectangle2.hv_Row, rectangle2.hv_Column, out rectangle2.hv_Row, out rectangle2.hv_Column);
        
             return rectangle2;
         }
