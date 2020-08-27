@@ -20,7 +20,8 @@ namespace Vision
     {
         灰度抓取,
         边缘检测,
-        边缘拟合
+        边缘拟合,
+        直线拟合
     }
 
     /// <summary>

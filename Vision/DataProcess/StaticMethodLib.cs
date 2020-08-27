@@ -856,15 +856,16 @@ namespace Vision.DataProcess
                     }
                     break;
                 case 5:
-                    resultLine.hv_Column1 = (hv_Column1[0] + hv_Column2[0]) / 2+b;
+                    resultLine.hv_Column1 = (hv_Column1[0] + hv_Column2[0]) / 2 + b;
                     resultLine.hv_Row1 = hv_Row1[0];
-                    resultLine.hv_Column2 = (hv_Column1[0] + hv_Column2[0]) / 2+b;
+                    resultLine.hv_Column2 = (hv_Column1[0] + hv_Column2[0]) / 2 + b;
                     resultLine.hv_Row2 = hv_Row2[0];
                     break;
                 default:
                     break;
             }
             ho_RegionTrans.Dispose();
+            GC.Collect();
             return resultLine;
         }
 
@@ -983,6 +984,80 @@ namespace Vision.DataProcess
                 resultLine.hv_Row1 = hv_RowEnd[0];
                 resultLine.hv_Column1 = hv_ColEnd[0];
             }
+            return resultLine;
+        }
+
+
+        public static Line getLine_FromMetrology(HObject ho_Image, Metrology metrologyParams, Line line, out HXLDCont contours, out HXLDCont cross)
+        {
+
+            Line resultLine = new Line();
+            HTuple measureSigma = 1;
+            HTuple genParamName = new HTuple();
+            HTuple genParamValue = new HTuple();
+
+            HMetrologyModel h_MetrologyModel = new HMetrologyModel();
+
+            HTuple result = new HTuple();
+
+
+            try
+            {
+
+                h_MetrologyModel.AddMetrologyObjectLineMeasure(line.hv_Row1, line.hv_Column1, line.hv_Row2, line.hv_Column2, metrologyParams.measureLength1
+                          , metrologyParams.measureLength2, measureSigma, metrologyParams.measureThreshold, genParamName, genParamValue);
+
+
+                h_MetrologyModel.SetMetrologyObjectParam(0, "measure_distance", metrologyParams.measureDistance);
+
+                h_MetrologyModel.SetMetrologyObjectParam(0, "measure_select", metrologyParams.measureSelect);
+
+                h_MetrologyModel.SetMetrologyObjectParam(0, "measure_transition", metrologyParams.measureTransition);
+            }
+            catch (Exception)
+            {
+
+               
+            }
+
+            HOperatorSet.ApplyMetrologyModel(ho_Image, h_MetrologyModel);
+
+       
+            try
+            {
+
+                contours = h_MetrologyModel.GetMetrologyObjectMeasures(0, "all", out HTuple row, out HTuple column);
+                cross = new HXLDCont();
+                cross.GenCrossContourXld(row, column, 6, 0.785398);
+
+                result = h_MetrologyModel.GetMetrologyObjectResult(0, "all", "result_type", 
+                    new HTuple(new string[] { "row_begin", "column_begin", "row_end", "column_end" }));
+            }
+            catch (Exception)
+            {
+                contours = new HXLDCont();
+                cross = new HXLDCont();
+            }
+
+            if (result.Length > 0)
+            {
+                resultLine.hv_Row1 = result[0];
+                resultLine.hv_Column1 = result[1];
+                resultLine.hv_Row2 = result[2];
+                resultLine.hv_Column2 = result[3];
+            }
+            else
+            {
+                resultLine.hv_Column1 = -1;
+                resultLine.hv_Row1 = 0;
+                resultLine.hv_Column2 = -1;
+                resultLine.hv_Row2 = -1;
+            }
+
+
+            h_MetrologyModel.Dispose();
+            GC.Collect();
+
             return resultLine;
         }
 

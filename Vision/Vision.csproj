@@ -140,6 +140,8 @@
     <Compile Include="CameraLib\DahuaCamera\DahuaManager.cs" />
     <Compile Include="CameraLib\FileHalcon\File.cs" />
     <Compile Include="CameraLib\FileHalcon\FileManager.cs" />
+    <Compile Include="DataProcess\ParameterLib\Metrology.cs" />
+    <Compile Include="DataProcess\ShapeLib\LineLib\GetLineUseMetrology.cs" />
     <Compile Include="Forms\Frm_About.cs">
       <SubType>Form</SubType>
     </Compile>
