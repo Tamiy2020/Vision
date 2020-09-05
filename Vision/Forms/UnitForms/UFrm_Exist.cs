@@ -174,7 +174,7 @@ namespace Vision.Forms
 
 
                 txt_Name.Text = getRegionUseThreshold.name;
-                txt_Name.Enabled = false;//编辑模式下不能编辑名字
+               // txt_Name.Enabled = false;//编辑模式下不能编辑名字
                 prepared = true;
                 RunOnce();
             }
@@ -272,7 +272,7 @@ namespace Vision.Forms
             {
                 data.function = "产品有无";
             }
-            if (!EditMode)//非编辑模式
+            if (txt_Name.Text.Trim() != data.name)//非编辑模式
             {
                 if (txt_Name.Text.Trim() == "无")
                 {

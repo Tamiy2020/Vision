@@ -36,6 +36,8 @@ namespace Vision.Forms
         /// </summary>
         private GetCircleUseThreshold getCircleUseThreshold;
 
+        private GetCircleUseMetrology getCircleUseMetrology;
+
         /// <summary>
         /// 灰度区域检测单元
         /// </summary>
@@ -135,6 +137,8 @@ namespace Vision.Forms
             {
                 measureManager = form.measureManager;
             }
+            cmb_Transition.SelectedIndex = 0;
+            cmb_Select.SelectedIndex = 0;
 
             #region 跟踪
             List<MeasuringUnit> translations = measureManager.ListAllTranslation();//所有平移跟踪
@@ -163,16 +167,58 @@ namespace Vision.Forms
             if (EditMode)//编辑模式
             {
                 txt_Name.Text = data.name;
-                txt_Name.Enabled = false;//编辑模式下不能编辑名字
+                //txt_Name.Enabled = false;//编辑模式下不能编辑名字
 
                 if (data is GetCircleUseThreshold)
                 {
                     tabControl1.TabPages.Remove(tabPage1);
+                    tabControl1.TabPages.Remove(tabPage3);
                     getCircleUseThreshold = data as GetCircleUseThreshold;
                     // nud_MaxGray.Value = trb_MaxGray.Value = (getCircleUseThreshold.RegionList[0] as GetRegionUseThreshold).parameter.hv_MaxGray;
                     //nud_MinGray.Value = trb_MinGray.Value = (getCircleUseThreshold.RegionList[0] as GetRegionUseThreshold).parameter.hv_MinGray;
                     tabControl1.SelectedTab = tabPage2;
                     cmb_slg_SelectItem.Items.AddRange(getCircleUseThreshold.GetRegionsName());//添加combobox项
+                }
+                else if (data is GetCircleUseMetrology)
+                {
+                    tabControl1.TabPages.Remove(tabPage1);
+                    tabControl1.TabPages.Remove(tabPage2);
+
+                    getCircleUseMetrology = data as GetCircleUseMetrology;
+                    nud_Length1.Value = (decimal)getCircleUseMetrology.parameter.measureLength1.D;
+                    nud_Length2.Value = (decimal)getCircleUseMetrology.parameter.measureLength2.D;
+                    nud_Distance.Value = (decimal)getCircleUseMetrology.parameter.measureDistance.D;
+                    nud_Threshold.Value = (decimal)getCircleUseMetrology.parameter.measureThreshold.D;
+                    if (getCircleUseMetrology.parameter.measureTransition == "positive")
+                    {
+                        cmb_Transition.SelectedIndex = 0;
+                    }
+                    if (getCircleUseMetrology.parameter.measureTransition == "negative")
+                    {
+                        cmb_Transition.SelectedIndex = 1;
+                    }
+                    if (getCircleUseMetrology.parameter.measureTransition == "all")
+                    {
+                        cmb_Transition.SelectedIndex = 2;
+                    }
+                    if (getCircleUseMetrology.parameter.measureTransition == "uniform")
+                    {
+                        cmb_Transition.SelectedIndex = 3;
+                    }
+                    if (getCircleUseMetrology.parameter.measureSelect == "first")
+                    {
+                        cmb_Select.SelectedIndex = 0;
+                    }
+                    if (getCircleUseMetrology.parameter.measureSelect == "last")
+                    {
+                        cmb_Select.SelectedIndex = 1;
+                    }
+                    if (getCircleUseMetrology.parameter.measureSelect == "all")
+                    {
+                        cmb_Select.SelectedIndex = 2;
+                    }
+
+                    tabControl1.SelectedTab = tabPage3;
                 }
                 else
                 {
@@ -194,6 +240,7 @@ namespace Vision.Forms
 
                     tabControl1.SelectedTab = tabPage1;
                     tabControl1.TabPages.Remove(tabPage2);
+                    tabControl1.TabPages.Remove(tabPage3);
                 }
                 prepared = true;
             }
@@ -469,7 +516,7 @@ namespace Vision.Forms
         #region 确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
-            if (!EditMode)//非编辑模式
+            if (txt_Name.Text.Trim() != data.name)//非编辑模式
             {
                 if (txt_Name.Text.Trim() == "无")
                 {
@@ -551,15 +598,96 @@ namespace Vision.Forms
         #region 切换圆编辑方式时
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 1)
-            {
-                panel1.Visible = false;
-            }
-            else
-            {
-                panel1.Visible = true;
-            }
-        } 
+          
+        }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (getCircleUseMetrology == null)
+            {
+                getCircleUseMetrology = new GetCircleUseMetrology();
+                data = getCircleUseMetrology;
+                circle = null;
+            }
+          
+            hWindow_Final1.HobjectToHimage(ho_Image);//刷新图片
+            
+            DrawMode(true);//绘制模式开启
+            getCircleUseMetrology.parameter.Circle = Func_HalconFunction.DrawCircle(hWindow_Final1.hWindowControl.HalconWindow);
+            DrawMode(false);//绘制模式关闭
+
+            prepared = true;//可以运行
+            RunOnce();//运行一次
+
+        }
+
+        private void nud_Length1_ValueChanged(object sender, EventArgs e)
+        {
+            getCircleUseMetrology.parameter.measureLength1 = (double)(sender as NumericUpDown).Value;
+            RunOnce();
+        }
+
+        private void nud_Length2_ValueChanged(object sender, EventArgs e)
+        {
+            getCircleUseMetrology.parameter.measureLength2 = (double)(sender as NumericUpDown).Value;
+            RunOnce();
+        }
+
+        private void nud_Distance_ValueChanged(object sender, EventArgs e)
+        {
+            getCircleUseMetrology.parameter.measureDistance = (double)(sender as NumericUpDown).Value;
+            RunOnce();
+        }
+
+        private void nud_Threshold_ValueChanged(object sender, EventArgs e)
+        {
+            getCircleUseMetrology.parameter.measureThreshold = (double)(sender as NumericUpDown).Value;
+            RunOnce();
+        }
+
+        private void cmb_Transition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmb_Transition.SelectedIndex == 0)
+            {
+                if (getCircleUseMetrology!=null)
+                {
+                    getCircleUseMetrology.parameter.measureTransition = "positive"; 
+                }
+            }
+            if (cmb_Transition.SelectedIndex == 1)
+            {
+                getCircleUseMetrology.parameter.measureTransition = "negative";
+            }
+            if (cmb_Transition.SelectedIndex == 2)
+            {
+                getCircleUseMetrology.parameter.measureTransition = "all";
+            }
+            if (cmb_Transition.SelectedIndex == 3)
+            {
+                getCircleUseMetrology.parameter.measureTransition = "uniform";
+            }
+            RunOnce();
+        }
+
+        private void cmb_Select_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmb_Select.SelectedIndex == 0)
+            {
+                if (getCircleUseMetrology!=null)
+                {
+                    getCircleUseMetrology.parameter.measureSelect = "first"; 
+                }
+            }
+            if (cmb_Select.SelectedIndex == 1)
+            {
+                getCircleUseMetrology.parameter.measureSelect = "last";
+            }
+            if (cmb_Select.SelectedIndex == 2)
+            {
+                getCircleUseMetrology.parameter.measureSelect = "all";
+            }
+            RunOnce();
+        }
     }
 }

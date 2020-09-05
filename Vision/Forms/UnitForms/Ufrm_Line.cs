@@ -162,7 +162,7 @@ namespace Vision.Forms
             {
                 line = data as Line;
                 txt_Name.Text = data.name;
-                txt_Name.Enabled = false;//编辑模式下不能编辑名字
+              //  txt_Name.Enabled = false;//编辑模式下不能编辑名字
                 if (data is GetLineUseThreshold)
                 {
 
@@ -691,7 +691,7 @@ namespace Vision.Forms
         #region 确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
-            if (!EditMode)//非编辑模式
+            if (txt_Name.Text.Trim() != data.name)//非编辑模式
             {
                 if (txt_Name.Text.Trim() == "无")
                 {
@@ -850,11 +850,11 @@ namespace Vision.Forms
                 {
                     (line as GetLineUseMetrology).parameter.measureSelect = "first";
                 }
-                if (cmb_Select.SelectedIndex == 0)
+                if (cmb_Select.SelectedIndex == 1)
                 {
                     (line as GetLineUseMetrology).parameter.measureSelect = "last";
                 }
-                if (cmb_Select.SelectedIndex == 0)
+                if (cmb_Select.SelectedIndex == 2)
                 {
                     (line as GetLineUseMetrology).parameter.measureSelect = "all";
                 }

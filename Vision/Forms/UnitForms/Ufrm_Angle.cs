@@ -138,7 +138,7 @@ namespace Vision.Forms
 
                 cbx_AlwaysMinAngel.Visible = false;
                 txt_Name.Text = data.name;
-                txt_Name.Enabled = false;//编辑模式下不能编辑名字
+                //txt_Name.Enabled = false;//编辑模式下不能编辑名字
                 calculate = data as BaseCal_Single;
                 cmb_Item1.SelectedIndex = Func_System.GetIndex(lines, calculate.unit1 as Line);
                 cmb_Item2.SelectedIndex = Func_System.GetIndex(lines, calculate.unit2 as Line);
@@ -252,7 +252,7 @@ namespace Vision.Forms
         #region 确定按钮
         private void btn_OK_Click(object sender, EventArgs e)
         {
-            if (!EditMode)//非编辑模式
+            if (txt_Name.Text.Trim() != data.name)//非编辑模式
             {
                 if (txt_Name.Text.Trim() == "无")
                 {

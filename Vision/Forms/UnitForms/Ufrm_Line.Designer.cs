@@ -30,18 +30,18 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.hWindow_Final1 = new ChoiceTech.Halcon.Control.HWindow_Final();
-            this.cmb_VerticalTracking_L = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmb_HorizontalTracking = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txt_Name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_OK = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tp_Threshold = new System.Windows.Forms.TabPage();
+            this.cmb_VerticalTracking_L = new System.Windows.Forms.ComboBox();
             this.nud_slg_b_pex = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmb_HorizontalTracking = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.rdo_RightEdge = new System.Windows.Forms.RadioButton();
@@ -66,22 +66,22 @@
             this.label10 = new System.Windows.Forms.Label();
             this.trb_AmplitudeThreshold = new System.Windows.Forms.TrackBar();
             this.nud_AmplitudeThreshold = new System.Windows.Forms.NumericUpDown();
-            this.chk_Angle = new System.Windows.Forms.CheckBox();
-            this.btn_Draw = new System.Windows.Forms.Button();
             this.tp_Metrology = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.nud_Length1 = new System.Windows.Forms.NumericUpDown();
-            this.nud_Length2 = new System.Windows.Forms.NumericUpDown();
-            this.nud_Distance = new System.Windows.Forms.NumericUpDown();
-            this.nud_Threshold = new System.Windows.Forms.NumericUpDown();
-            this.cmb_Transition = new System.Windows.Forms.ComboBox();
             this.cmb_Select = new System.Windows.Forms.ComboBox();
+            this.cmb_Transition = new System.Windows.Forms.ComboBox();
+            this.nud_Threshold = new System.Windows.Forms.NumericUpDown();
+            this.nud_Distance = new System.Windows.Forms.NumericUpDown();
+            this.nud_Length2 = new System.Windows.Forms.NumericUpDown();
+            this.nud_Length1 = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.chk_Angle = new System.Windows.Forms.CheckBox();
+            this.btn_Draw = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -103,10 +103,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_AmplitudeThreshold)).BeginInit();
             this.tp_Metrology.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_Length1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_Length2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_Distance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Threshold)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Distance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Length2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Length1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -132,7 +132,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.chk_Angle);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Draw);
             this.splitContainer1.Size = new System.Drawing.Size(1292, 796);
-            this.splitContainer1.SplitterDistance = 860;
+            this.splitContainer1.SplitterDistance = 863;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -146,48 +146,8 @@
             this.hWindow_Final1.Image = null;
             this.hWindow_Final1.Location = new System.Drawing.Point(0, 0);
             this.hWindow_Final1.Name = "hWindow_Final1";
-            this.hWindow_Final1.Size = new System.Drawing.Size(860, 796);
+            this.hWindow_Final1.Size = new System.Drawing.Size(863, 796);
             this.hWindow_Final1.TabIndex = 0;
-            // 
-            // cmb_VerticalTracking_L
-            // 
-            this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_VerticalTracking_L.FormattingEnabled = true;
-            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(224, 386);
-            this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
-            this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
-            this.cmb_VerticalTracking_L.TabIndex = 65;
-            this.cmb_VerticalTracking_L.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_L_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(6, 347);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 17);
-            this.label2.TabIndex = 62;
-            this.label2.Text = "水平跟踪：";
-            // 
-            // cmb_HorizontalTracking
-            // 
-            this.cmb_HorizontalTracking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_HorizontalTracking.FormattingEnabled = true;
-            this.cmb_HorizontalTracking.Location = new System.Drawing.Point(224, 339);
-            this.cmb_HorizontalTracking.Name = "cmb_HorizontalTracking";
-            this.cmb_HorizontalTracking.Size = new System.Drawing.Size(121, 25);
-            this.cmb_HorizontalTracking.TabIndex = 64;
-            this.cmb_HorizontalTracking.SelectedIndexChanged += new System.EventHandler(this.cmb_HorizontalTracking_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(6, 394);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 17);
-            this.label3.TabIndex = 63;
-            this.label3.Text = "垂直跟踪：";
             // 
             // txt_Name
             // 
@@ -264,6 +224,16 @@
             this.tp_Threshold.TabIndex = 1;
             this.tp_Threshold.Text = "灰度抓取";
             // 
+            // cmb_VerticalTracking_L
+            // 
+            this.cmb_VerticalTracking_L.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_VerticalTracking_L.FormattingEnabled = true;
+            this.cmb_VerticalTracking_L.Location = new System.Drawing.Point(224, 386);
+            this.cmb_VerticalTracking_L.Name = "cmb_VerticalTracking_L";
+            this.cmb_VerticalTracking_L.Size = new System.Drawing.Size(121, 25);
+            this.cmb_VerticalTracking_L.TabIndex = 65;
+            this.cmb_VerticalTracking_L.SelectedIndexChanged += new System.EventHandler(this.cmb_VerticalTracking_L_SelectedIndexChanged);
+            // 
             // nud_slg_b_pex
             // 
             this.nud_slg_b_pex.Location = new System.Drawing.Point(9, 301);
@@ -277,6 +247,26 @@
             this.nud_slg_b_pex.TabIndex = 8;
             this.nud_slg_b_pex.ValueChanged += new System.EventHandler(this.nud_slg_b_pex_ValueChanged);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(6, 347);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 17);
+            this.label2.TabIndex = 62;
+            this.label2.Text = "水平跟踪：";
+            // 
+            // cmb_HorizontalTracking
+            // 
+            this.cmb_HorizontalTracking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_HorizontalTracking.FormattingEnabled = true;
+            this.cmb_HorizontalTracking.Location = new System.Drawing.Point(224, 339);
+            this.cmb_HorizontalTracking.Name = "cmb_HorizontalTracking";
+            this.cmb_HorizontalTracking.Size = new System.Drawing.Size(121, 25);
+            this.cmb_HorizontalTracking.TabIndex = 64;
+            this.cmb_HorizontalTracking.SelectedIndexChanged += new System.EventHandler(this.cmb_HorizontalTracking_SelectedIndexChanged);
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -285,6 +275,16 @@
             this.label9.Size = new System.Drawing.Size(56, 17);
             this.label9.TabIndex = 7;
             this.label9.Text = "上下微调";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(6, 394);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.TabIndex = 63;
+            this.label3.Text = "垂直跟踪：";
             // 
             // groupBox2
             // 
@@ -603,26 +603,6 @@
             0});
             this.nud_AmplitudeThreshold.ValueChanged += new System.EventHandler(this.nud_AmplitudeThreshold_ValueChanged);
             // 
-            // chk_Angle
-            // 
-            this.chk_Angle.AutoSize = true;
-            this.chk_Angle.Location = new System.Drawing.Point(243, 25);
-            this.chk_Angle.Name = "chk_Angle";
-            this.chk_Angle.Size = new System.Drawing.Size(51, 21);
-            this.chk_Angle.TabIndex = 2;
-            this.chk_Angle.Text = "角度";
-            this.chk_Angle.UseVisualStyleBackColor = true;
-            // 
-            // btn_Draw
-            // 
-            this.btn_Draw.Location = new System.Drawing.Point(18, 12);
-            this.btn_Draw.Name = "btn_Draw";
-            this.btn_Draw.Size = new System.Drawing.Size(130, 34);
-            this.btn_Draw.TabIndex = 1;
-            this.btn_Draw.Text = "框选区域";
-            this.btn_Draw.UseVisualStyleBackColor = true;
-            this.btn_Draw.Click += new System.EventHandler(this.btn_Draw_Click);
-            // 
             // tp_Metrology
             // 
             this.tp_Metrology.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -656,59 +636,87 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "拟合参数调整";
             // 
-            // label4
+            // cmb_Select
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 33);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 17);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "卡尺宽度：";
+            this.cmb_Select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_Select.FormattingEnabled = true;
+            this.cmb_Select.Items.AddRange(new object[] {
+            "第一点",
+            "最后一点",
+            "所有"});
+            this.cmb_Select.Location = new System.Drawing.Point(130, 330);
+            this.cmb_Select.Name = "cmb_Select";
+            this.cmb_Select.Size = new System.Drawing.Size(121, 25);
+            this.cmb_Select.TabIndex = 11;
+            this.cmb_Select.SelectedIndexChanged += new System.EventHandler(this.cmb_Select_SelectedIndexChanged);
             // 
-            // label5
+            // cmb_Transition
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 94);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 17);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "卡尺高度：";
+            this.cmb_Transition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_Transition.FormattingEnabled = true;
+            this.cmb_Transition.Items.AddRange(new object[] {
+            "由白到黑",
+            "由黑到白",
+            "所有"});
+            this.cmb_Transition.Location = new System.Drawing.Point(130, 269);
+            this.cmb_Transition.Name = "cmb_Transition";
+            this.cmb_Transition.Size = new System.Drawing.Size(121, 25);
+            this.cmb_Transition.TabIndex = 10;
+            this.cmb_Transition.SelectedIndexChanged += new System.EventHandler(this.cmb_Transition_SelectedIndexChanged);
             // 
-            // label6
+            // nud_Threshold
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 155);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 17);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "卡尺间隔：";
+            this.nud_Threshold.Location = new System.Drawing.Point(130, 210);
+            this.nud_Threshold.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nud_Threshold.Name = "nud_Threshold";
+            this.nud_Threshold.Size = new System.Drawing.Size(120, 23);
+            this.nud_Threshold.TabIndex = 9;
+            this.nud_Threshold.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.nud_Threshold.ValueChanged += new System.EventHandler(this.nud_Threshold_ValueChanged);
             // 
-            // label16
+            // nud_Distance
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(9, 216);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(68, 17);
-            this.label16.TabIndex = 3;
-            this.label16.Text = "灰度阈值：";
+            this.nud_Distance.Location = new System.Drawing.Point(130, 149);
+            this.nud_Distance.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nud_Distance.Name = "nud_Distance";
+            this.nud_Distance.Size = new System.Drawing.Size(120, 23);
+            this.nud_Distance.TabIndex = 8;
+            this.nud_Distance.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nud_Distance.ValueChanged += new System.EventHandler(this.nud_Distance_ValueChanged);
             // 
-            // label17
+            // nud_Length2
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(9, 277);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(68, 17);
-            this.label17.TabIndex = 4;
-            this.label17.Text = "颜色模式：";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(9, 338);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(56, 17);
-            this.label18.TabIndex = 5;
-            this.label18.Text = "点筛选：";
+            this.nud_Length2.Location = new System.Drawing.Point(130, 88);
+            this.nud_Length2.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nud_Length2.Name = "nud_Length2";
+            this.nud_Length2.Size = new System.Drawing.Size(120, 23);
+            this.nud_Length2.TabIndex = 7;
+            this.nud_Length2.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nud_Length2.ValueChanged += new System.EventHandler(this.nud_Length2_ValueChanged);
             // 
             // nud_Length1
             // 
@@ -733,87 +741,79 @@
             0});
             this.nud_Length1.ValueChanged += new System.EventHandler(this.nud_Length1_ValueChanged);
             // 
-            // nud_Length2
+            // label18
             // 
-            this.nud_Length2.Location = new System.Drawing.Point(130, 88);
-            this.nud_Length2.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nud_Length2.Name = "nud_Length2";
-            this.nud_Length2.Size = new System.Drawing.Size(120, 23);
-            this.nud_Length2.TabIndex = 7;
-            this.nud_Length2.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nud_Length2.ValueChanged += new System.EventHandler(this.nud_Length2_ValueChanged);
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(9, 338);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(56, 17);
+            this.label18.TabIndex = 5;
+            this.label18.Text = "点筛选：";
             // 
-            // nud_Distance
+            // label17
             // 
-            this.nud_Distance.Location = new System.Drawing.Point(130, 149);
-            this.nud_Distance.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nud_Distance.Name = "nud_Distance";
-            this.nud_Distance.Size = new System.Drawing.Size(120, 23);
-            this.nud_Distance.TabIndex = 8;
-            this.nud_Distance.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nud_Distance.ValueChanged += new System.EventHandler(this.nud_Distance_ValueChanged);
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(9, 277);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(68, 17);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "颜色模式：";
             // 
-            // nud_Threshold
+            // label16
             // 
-            this.nud_Threshold.Location = new System.Drawing.Point(130, 210);
-            this.nud_Threshold.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.nud_Threshold.Name = "nud_Threshold";
-            this.nud_Threshold.Size = new System.Drawing.Size(120, 23);
-            this.nud_Threshold.TabIndex = 9;
-            this.nud_Threshold.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.nud_Threshold.ValueChanged += new System.EventHandler(this.nud_Threshold_ValueChanged);
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(9, 216);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(68, 17);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "灰度阈值：";
             // 
-            // cmb_Transition
+            // label6
             // 
-            this.cmb_Transition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_Transition.FormattingEnabled = true;
-            this.cmb_Transition.Items.AddRange(new object[] {
-            "由白到黑",
-            "由黑到白",
-            "所有"});
-            this.cmb_Transition.Location = new System.Drawing.Point(130, 269);
-            this.cmb_Transition.Name = "cmb_Transition";
-            this.cmb_Transition.Size = new System.Drawing.Size(121, 25);
-            this.cmb_Transition.TabIndex = 10;
-            this.cmb_Transition.SelectedIndexChanged += new System.EventHandler(this.cmb_Transition_SelectedIndexChanged);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 155);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 17);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "卡尺间隔：";
             // 
-            // cmb_Select
+            // label5
             // 
-            this.cmb_Select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_Select.FormattingEnabled = true;
-            this.cmb_Select.Items.AddRange(new object[] {
-            "第一点",
-            "最后一点",
-            "所有"});
-            this.cmb_Select.Location = new System.Drawing.Point(130, 330);
-            this.cmb_Select.Name = "cmb_Select";
-            this.cmb_Select.Size = new System.Drawing.Size(121, 25);
-            this.cmb_Select.TabIndex = 11;
-            this.cmb_Select.SelectedIndexChanged += new System.EventHandler(this.cmb_Select_SelectedIndexChanged);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 94);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 17);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "卡尺高度：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 17);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "卡尺宽度：";
+            // 
+            // chk_Angle
+            // 
+            this.chk_Angle.AutoSize = true;
+            this.chk_Angle.Location = new System.Drawing.Point(243, 25);
+            this.chk_Angle.Name = "chk_Angle";
+            this.chk_Angle.Size = new System.Drawing.Size(51, 21);
+            this.chk_Angle.TabIndex = 2;
+            this.chk_Angle.Text = "角度";
+            this.chk_Angle.UseVisualStyleBackColor = true;
+            // 
+            // btn_Draw
+            // 
+            this.btn_Draw.Location = new System.Drawing.Point(18, 12);
+            this.btn_Draw.Name = "btn_Draw";
+            this.btn_Draw.Size = new System.Drawing.Size(130, 34);
+            this.btn_Draw.TabIndex = 1;
+            this.btn_Draw.Text = "框选区域";
+            this.btn_Draw.UseVisualStyleBackColor = true;
+            this.btn_Draw.Click += new System.EventHandler(this.btn_Draw_Click);
             // 
             // Ufrm_Line
             // 
@@ -859,10 +859,10 @@
             this.tp_Metrology.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_Length1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_Length2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_Distance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Threshold)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Distance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Length2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Length1)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -16,6 +16,8 @@ namespace Vision.DataProcess.ParameterLib
         /// </summary>
         public Line Line;
 
+        public Circle Circle;
+
         /// <summary>
         /// 宽度
         /// </summary>
@@ -49,6 +51,7 @@ namespace Vision.DataProcess.ParameterLib
         public Metrology()
         {
             Line = new Line();
+            Circle = new Circle();
             measureLength1 = 20;
             measureLength2 = 5;
             measureDistance = 10;

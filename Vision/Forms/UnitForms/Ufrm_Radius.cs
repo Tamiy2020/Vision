@@ -143,7 +143,7 @@ namespace Vision.Forms
                 nud_Spacing.Value = data.StringHeight;
 
                 txt_Name.Text = data.name;
-                txt_Name.Enabled = false;//编辑模式下不能编辑名字
+               // txt_Name.Enabled = false;//编辑模式下不能编辑名字
                 calculate = data as BaseCal_Single;
                 cmb_Circles.SelectedIndex = Func_System.GetIndex(measuringUnits, calculate.unit1);
                 if (cmb_Circles.SelectedIndex == -1)
@@ -252,7 +252,7 @@ namespace Vision.Forms
         #region 确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
-            if (!EditMode)//非编辑模式
+            if (txt_Name.Text.Trim() != data.name)//非编辑模式
             {
                 if (txt_Name.Text.Trim() == "无")
                 {

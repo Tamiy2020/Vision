@@ -200,7 +200,7 @@ namespace Vision.Forms
                 cmb_slg_SelectItem.Items.AddRange(getSetOfLines.GetLinesName());//添加combobox项
 
                 txt_Name.Text = getSetOfLines.name;
-                txt_Name.Enabled = false;//编辑模式下不能编辑名字
+                //txt_Name.Enabled = false;//编辑模式下不能编辑名字
                 prepared = true;
                 RunOnce();
             }
@@ -489,7 +489,7 @@ namespace Vision.Forms
         #region 确定
         private void btn_OK_Click(object sender, EventArgs e)
         {
-            if (!EditMode)//非编辑模式
+            if (txt_Name.Text.Trim()!=data.name)//非编辑模式
             {
                 if (txt_Name.Text.Trim() == "无")
                 {
